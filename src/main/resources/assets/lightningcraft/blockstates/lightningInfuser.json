@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "active=false": { "model": "lightningcraft:lightningInfuser" },
+		"active=true": { "model": "lightningcraft:lightningInfuser" }
+    }
+}

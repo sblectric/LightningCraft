@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=0": { "model": "lightningcraft:lightningTransmitter" },
+		"variant=1": { "model": "lightningcraft:lightningTransmitter" },
+		"variant=2": { "model": "lightningcraft:lightningTransmitter" },
+		"variant=3": { "model": "lightningcraft:lightningReceiver" },
+		"variant=4": { "model": "lightningcraft:lightningReceiver" },
+		"variant=5": { "model": "lightningcraft:lightningReceiver" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "lightningcraft:blocks/underworld_tnt_bottom",
+        "top": "lightningcraft:blocks/underworld_tnt_top",
+        "side": "lightningcraft:blocks/underworld_tnt_side"
+    }
+}

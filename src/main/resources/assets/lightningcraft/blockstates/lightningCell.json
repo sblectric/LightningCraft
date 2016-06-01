@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=0": { "model": "lightningcraft:lightningCell" },
+		"variant=1": { "model": "lightningcraft:lightningCellAdvanced" },
+		"variant=2": { "model": "lightningcraft:lightningCellMystic" }
+    }
+}

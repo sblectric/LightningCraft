@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "active=false,facing=north": { "model": "lightningcraft:lightningFurnaceOff" },
+        "active=false,facing=south": { "model": "lightningcraft:lightningFurnaceOff", "y": 180 },
+        "active=false,facing=west":  { "model": "lightningcraft:lightningFurnaceOff", "y": 270 },
+        "active=false,facing=east":  { "model": "lightningcraft:lightningFurnaceOff", "y": 90 },
+		"active=true,facing=north": { "model": "lightningcraft:lightningFurnaceOn" },
+        "active=true,facing=south": { "model": "lightningcraft:lightningFurnaceOn", "y": 180 },
+        "active=true,facing=west":  { "model": "lightningcraft:lightningFurnaceOn", "y": 270 },
+        "active=true,facing=east":  { "model": "lightningcraft:lightningFurnaceOn", "y": 90 }
+    }
+}

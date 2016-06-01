@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=0": { "model": "lightningcraft:underworldCannon" },
+		"variant=1": { "model": "lightningcraft:lightningCannon" }
+    }
+}

@@ -1,0 +1,19 @@
+[
+{
+  "modid": "lightningcraft",
+  "name": "LightningCraft",
+  "description": "Harnessing the raw power of lightning to make machines, tools, and more to shape the world to your whim",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "credits": "SBlectric - creator, Ancient_crafter - structuregen assistance",
+  "logoFile": "logo.png",
+  "url": "http://www.sblectric.com/minecraft/mods/lightningcraft/",
+  "updateUrl": "",
+  "authorList": ["SBlectric"],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": [
+  "mod_MinecraftForge"
+  ]
+}
+]

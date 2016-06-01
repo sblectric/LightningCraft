@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=0": { "model": "lightningcraft:underworldLight" },
+		"variant=1": { "model": "lightningcraft:underworldLamp" }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "explode=false": [
+            { "model": "lightningcraft:underTNT" },
+            { "model": "lightningcraft:underTNT", "y": 90 },
+            { "model": "lightningcraft:underTNT", "y": 180 },
+            { "model": "lightningcraft:underTNT", "y": 270 }
+        ],
+		"explode=true": [
+            { "model": "lightningcraft:underTNT" },
+            { "model": "lightningcraft:underTNT", "y": 90 },
+            { "model": "lightningcraft:underTNT", "y": 180 },
+            { "model": "lightningcraft:underTNT", "y": 270 }
+        ]
+    }
+}

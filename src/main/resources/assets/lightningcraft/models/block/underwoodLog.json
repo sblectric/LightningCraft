@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+	    "end": "lightningcraft:blocks/log_underworld_top",
+        "side": "lightningcraft:blocks/log_underworld"
+    }
+}

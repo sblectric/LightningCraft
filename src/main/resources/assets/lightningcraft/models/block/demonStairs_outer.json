@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "lightningcraft:blocks/demonstone_bricks",
+        "top": "lightningcraft:blocks/demonstone_bricks",
+        "side": "lightningcraft:blocks/demonstone_bricks"
+    }
+}

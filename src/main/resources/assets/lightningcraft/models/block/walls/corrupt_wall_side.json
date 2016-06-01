@@ -1,0 +1,6 @@
+{
+    "parent": "block/wall_side",
+    "textures": {
+        "wall": "lightningcraft:blocks/corrupt_stone"
+    }
+}

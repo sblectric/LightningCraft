@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=electricium": { "model": "lightningcraft:elecBlock" },
+		"variant=skyfather": { "model": "lightningcraft:skyBlock" },
+		"variant=mystic": { "model": "lightningcraft:mysticBlock" }
+    }
+}

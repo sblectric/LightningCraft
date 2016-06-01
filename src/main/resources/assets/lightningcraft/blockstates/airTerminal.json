@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "variant=iron": { "model": "lightningcraft:airTerminal" },
+		"variant=steel": { "model": "lightningcraft:airTerminal" },
+		"variant=lead": { "model": "lightningcraft:airTerminal" },
+		"variant=tin": { "model": "lightningcraft:airTerminal" },
+		"variant=aluminum": { "model": "lightningcraft:airTerminal" },
+		"variant=gold": { "model": "lightningcraft:airTerminal" },
+		"variant=copper": { "model": "lightningcraft:airTerminal" },
+		"variant=electricium": { "model": "lightningcraft:airTerminal" },
+		"variant=skyfather": { "model": "lightningcraft:airTerminal" },
+		"variant=mystic": { "model": "lightningcraft:airTerminal" }
+    }
+}

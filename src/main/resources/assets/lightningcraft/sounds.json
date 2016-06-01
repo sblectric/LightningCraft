@@ -1,0 +1,40 @@
+{
+    "mob.demonSoldier.idle":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/demon_soldier/idle"
+        ],
+		"subtitle": "subtitle.mob.demonSoldier.idle"
+    },
+    "mob.demonSoldier.hurt":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/demon_soldier/hurt"
+        ],
+		"subtitle": "subtitle.mob.demonSoldier.hurt"
+    },
+    "mob.demonSoldier.death":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/demon_soldier/death"
+        ],
+		"subtitle": "subtitle.mob.demonSoldier.death"
+    },
+	
+	"portal.underworld":
+	   {
+        "category": "ambient",
+        "sounds":
+        [
+            "lightningcraft:portal/underworld"
+        ],
+		"subtitle": "subtitle.portal.underworld"
+    }
+	
+}
