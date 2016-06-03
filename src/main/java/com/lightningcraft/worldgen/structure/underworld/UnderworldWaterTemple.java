@@ -701,7 +701,7 @@ public class UnderworldWaterTemple extends Feature {
 			this.addSpawner(world, 6, -1, 6, e);
 
 			// place the loot chest
-			if(!lootChests.getChestPlaced(0)) lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 6, 0, 6, 4));
+			lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 6, 0, 6, 4));
 			
 			return true;
 		}

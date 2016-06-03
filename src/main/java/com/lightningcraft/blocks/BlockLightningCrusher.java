@@ -63,7 +63,7 @@ public class BlockLightningCrusher extends BlockContainerLC implements IFurnace 
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		int side = meta % 6;
+		int side = Math.max(2, meta % 6);
 		boolean on = meta / 6 > 0;
 	    return getDefaultState().withProperty(dir, EnumFacing.getFront(side)).withProperty(lit, on);
 	}
@@ -98,7 +98,11 @@ public class BlockLightningCrusher extends BlockContainerLC implements IFurnace 
 	
 	@Override
 	public boolean isBurning(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return state.getValue(lit);
+		try {
+			return state.getValue(lit);
+		} catch(IllegalArgumentException e) { // bug fix
+			return false;
+		}
 	}
 	
 	@Override

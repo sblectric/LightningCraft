@@ -1470,10 +1470,10 @@ public class UnderworldTower extends Feature {
 			int c1 = LCMisc.getMetadataWithOffsetChest(this.getCoordBaseMode(), 3);
 			int c2 = LCMisc.getMetadataWithOffsetChest(this.getCoordBaseMode(), 2);
 			int c3 = LCMisc.getMetadataWithOffsetChest(this.getCoordBaseMode(), 4);
-			if(!lootChests.getChestPlaced(0)) lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 1, 17, 5, c0));
-			if(!lootChests.getChestPlaced(1)) lootChests.setChestPlaced(1, this.generateStructureChestContents(world, box, rand, 5, 17, 1, c1));
-			if(!lootChests.getChestPlaced(2)) lootChests.setChestPlaced(2, this.generateStructureChestContents(world, box, rand, 5, 17, 9, c2));
-			if(!lootChests.getChestPlaced(3)) lootChests.setChestPlaced(3, this.generateStructureChestContents(world, box, rand, 9, 17, 5, c3));
+			lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 1, 17, 5, c0));
+			lootChests.setChestPlaced(1, this.generateStructureChestContents(world, box, rand, 5, 17, 1, c1));
+			lootChests.setChestPlaced(2, this.generateStructureChestContents(world, box, rand, 5, 17, 9, c2));
+			lootChests.setChestPlaced(3, this.generateStructureChestContents(world, box, rand, 9, 17, 5, c3));
 
 			return true;
 		}

@@ -94,7 +94,7 @@ public class GuiLightningBook extends GuiScreen {
 				"By using various mystical items, you can finally make such a device."));
 		pages.add("Now that you know the machinery, you should know some of the items and blocks you can create.");
 		pages.add(S + "lThunderstone" + S + "r - A mysterious dense stone birthed from the depths of the earth. It seems to have semi-liquid properties and resist wear and tear. Four can be made with 4 cobblestone, 4 quartz, and a block of obsidian.");
-		pages.add(S + "lElectricium" + S + "r - Iron and gold are nice, but you've discovered a way to create a metal better than each of them. Electricium has impressive electral properties and is quite shocking! Can be made by infusing iron with gold, diamond and LE.");
+		pages.add(S + "lElectricium" + S + "r - Iron and gold are nice, but you've discovered a way to create a metal better than each of them. Electricium has impressive electrical properties, too. Can be made by infusing iron with gold, diamond and LE or by striking them with lightning.");
 		pages.add("Other Useful Items:\n\nThere are many useful things you can make with infusion, like diamonds from coal or sponges from wool and slimeballs. All infusion recipes can be found in the JEI and index.");
 		pages.add("You've also discovered how to make new tools and armor.");
 		pages.add(S + "lElectricium Tools" + S + "r - These tools are stronger, mine faster, and are more enchantable than vanilla tools, but are quite a bit more expensive to make. Made with electricium rods and ingots.");

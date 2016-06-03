@@ -82,7 +82,11 @@ public class BlockLightningInfuser extends BlockContainerLC implements IFurnace 
 	
 	@Override
 	public boolean isBurning(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return state.getValue(lit);
+		try {
+			return state.getValue(lit);
+		} catch(IllegalArgumentException e) { // bug fix
+			return false;
+		}
 	}
 	
 	@Override

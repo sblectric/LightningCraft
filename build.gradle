@@ -21,7 +21,7 @@ plugins {
 }
 */
 
-version = "2.3.2a"
+version = "2.3.3"
 group= "com.sblectric.lightningcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "lightningcraft"
 

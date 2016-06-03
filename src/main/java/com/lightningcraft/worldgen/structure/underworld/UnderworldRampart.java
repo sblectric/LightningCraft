@@ -1636,11 +1636,11 @@ public class UnderworldRampart extends Feature {
     		this.addSpawner(world, 40, 13, 25, e);
     		
     		// place the loot chests
-    		if(!lootChests.getChestPlaced(0)) lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 10, 14, 25, 5, 0));
-    		if(!lootChests.getChestPlaced(1)) lootChests.setChestPlaced(1, this.generateStructureChestContents(world, box, rand, 25, 14, 10, 3, 1));
-    		if(!lootChests.getChestPlaced(2)) lootChests.setChestPlaced(2, this.generateStructureChestContents(world, box, rand, 25, 14, 25, 4, 2)); // middle
-    		if(!lootChests.getChestPlaced(3)) lootChests.setChestPlaced(3, this.generateStructureChestContents(world, box, rand, 25, 14, 40, 2, 3));
-    		if(!lootChests.getChestPlaced(4)) lootChests.setChestPlaced(4, this.generateStructureChestContents(world, box, rand, 40, 14, 25, 4, 4));
+    		lootChests.setChestPlaced(0, this.generateStructureChestContents(world, box, rand, 10, 14, 25, 5, 0));
+    		lootChests.setChestPlaced(1, this.generateStructureChestContents(world, box, rand, 25, 14, 10, 3, 1));
+    		lootChests.setChestPlaced(2, this.generateStructureChestContents(world, box, rand, 25, 14, 25, 4, 2)); // middle
+    		lootChests.setChestPlaced(3, this.generateStructureChestContents(world, box, rand, 25, 14, 40, 2, 3));
+    		lootChests.setChestPlaced(4, this.generateStructureChestContents(world, box, rand, 40, 14, 25, 4, 4));
     		
             return true;
         }
