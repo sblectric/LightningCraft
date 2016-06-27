@@ -27,6 +27,37 @@
 		"subtitle": "subtitle.mob.demonSoldier.death"
     },
 	
+	"mob.underworldGhast.moan":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/underworld_ghast/moan_1",
+			"lightningcraft:mob/underworld_ghast/moan_2",
+			"lightningcraft:mob/underworld_ghast/moan_3"
+        ],
+		"subtitle": "subtitle.mob.underworldGhast.moan"
+    },
+	"mob.underworldGhast.hurt":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/underworld_ghast/hurt_1",
+			"lightningcraft:mob/underworld_ghast/hurt_2"
+        ],
+		"subtitle": "subtitle.mob.underworldGhast.hurt"
+    },
+	"mob.underworldGhast.death":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/underworld_ghast/death"
+        ],
+		"subtitle": "subtitle.mob.underworldGhast.death"
+    },
+	
 	"portal.underworld":
 	   {
         "category": "ambient",

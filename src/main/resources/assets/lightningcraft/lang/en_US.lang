@@ -11,9 +11,12 @@ entity.lightningcraft.underworldSilverfish.name=Demonfish
 entity.lightningcraft.underworldGhast.name=Underghast
 
 # sounds
-subtitle.mob.demonSoldier.idle=Demon Soldier (Ambient)
-subtitle.mob.demonSoldier.hurt=Demon Soldier (Hurt)
-subtitle.mob.demonSoldier.death=Demon Soldier (Death)
+subtitle.mob.demonSoldier.idle=Demon Soldier
+subtitle.mob.demonSoldier.hurt=Demon Soldier hurts
+subtitle.mob.demonSoldier.death=Demon Soldier dies
+subtitle.mob.underworldGhast.moan=Underghast moans
+subtitle.mob.underworldGhast.hurt=Underghast hurts
+subtitle.mob.underworldGhast.death=Underghast dies
 subtitle.portal.underworld=Underworld Portal
 
 # blocks

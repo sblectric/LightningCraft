@@ -55,12 +55,6 @@ public class EntityUnderworldSkeleton extends EntitySkeleton {
         this.setItemStackToSlot(EntityEquipmentSlot.FEET, leather_boots);
     }
 	
-	/** Not a normal or wither skeleton */
-	@Override
-	public int getSkeletonType() {
-		return 2;
-	}
-	
 	/** Make sure to override the loot table to return null */
 	@Override
     protected ResourceLocation getLootTable() {
