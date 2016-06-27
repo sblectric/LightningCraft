@@ -8,6 +8,7 @@ entity.lightningcraft.demonSoldier.name=Demon Soldier
 entity.lightningcraft.underworldSkeleton.name=Skeletal Guard
 entity.lightningcraft.underworldSlime.name=Underslime
 entity.lightningcraft.underworldSilverfish.name=Demonfish
+entity.lightningcraft.underworldGhast.name=Underghast
 
 # sounds
 subtitle.mob.demonSoldier.idle=Demon Soldier (Ambient)
@@ -45,6 +46,7 @@ tile.underPlankStairs.name=Underwood Stairs
 tile.corruptStone.name=Corrupt Stone
 tile.lightBlock_0.name=Underworld Lantern
 tile.lightBlock_1.name=Underlamp
+tile.lightBlock_2.name=Fancy Underlamp
 tile.wallBlock.name=Corrupt Stone Wall
 tile.oreBlock_0.name=Underworld Iron Ore
 tile.oreBlock_1.name=Underworld Gold Ore
@@ -79,6 +81,7 @@ tile.underPortal.name=Underworld Portal
 tile.underTNT.name=Underworld TNT
 tile.lightningCannon_0.name=Underworld Electrocannon
 tile.lightningCannon_1.name=Lightning Cannon
+tile.lightningCannon_2.name=Elite Lightning Cannon
 tile.rfProvider.name=LE to RF Export Bus
 tile.rfReceiver.name=RF Lightning Generator
 
@@ -138,7 +141,15 @@ item.itemMagnet_2.name=Item Magnet (Tier 3)
 item.itemMagnet_3.name=Item Magnet (Tier 4)
 item.wirelessMarker.name=Tx/Rx Link Tag
 
-# potions
+# potion stuff
+potion.effect.demonFriendNormal=Potion of Demon Warding
+potion.effect.demonFriendExtended=Potion of Demon Warding
+splash_potion.effect.demonFriendNormal=Splash Potion of Demon Warding
+splash_potion.effect.demonFriendExtended=Splash Potion of Demon Warding
+lingering_potion.effect.demonFriendNormal=Lingering Potion of Demon Warding
+lingering_potion.effect.demonFriendExtended=Lingering Potion of Demon Warding
+tipped_arrow.effect.demonFriendNormal=Arrow of Demon Warding
+tipped_arrow.effect.demonFriendExtended=Arrow of Demon Warding
 potion.demonFriend=Demon Warding
 potion.demonFriend.postfix=Potion of Demon Warding
 
