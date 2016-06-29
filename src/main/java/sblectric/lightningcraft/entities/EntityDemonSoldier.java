@@ -25,6 +25,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.LCText;
@@ -120,7 +121,8 @@ public class EntityDemonSoldier extends EntityMob {
 	
     protected Entity findPlayerToAttack() {
     	EntityPlayerMP p = (EntityPlayerMP)this.worldObj.getClosestPlayerToEntity(this, 16.0D);
-        return p != null && !p.capabilities.disableDamage && this.canEntityBeSeen(p) && SkyUtils.isPlayerInsolent(p) ? p : null;
+        return p != null && !LCConfig.demonSoldiersAlwaysNeutral && !p.capabilities.disableDamage && this.canEntityBeSeen(p)
+        		&& SkyUtils.isPlayerInsolent(p) ? p : null;
     }
 	
 	/**

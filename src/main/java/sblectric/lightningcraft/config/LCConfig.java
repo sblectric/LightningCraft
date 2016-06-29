@@ -10,6 +10,7 @@ import sblectric.lightningcraft.ref.Log;
 public class LCConfig {
 	
 	public static int portalCooldown;
+	public static boolean demonSoldiersAlwaysNeutral, useVanillaGhastSounds;
 	public static int underworldDimensionID;
 	public static boolean JEIIntegration, RFIntegration;
 	public static int RFtoLEConversion;
@@ -18,6 +19,8 @@ public class LCConfig {
 	private static void setDefaultValues() {
 		// general
 		portalCooldown = 200;
+		demonSoldiersAlwaysNeutral = false;
+		useVanillaGhastSounds = false;
 		
 		// worldgen
 		underworldDimensionID = -9;
@@ -38,6 +41,10 @@ public class LCConfig {
 		
 		// General
 		portalCooldown = config.getInt("Portal Cooldown Time", "General", portalCooldown, "The cooldown time for the underworld portal");
+		demonSoldiersAlwaysNeutral = config.getBoolean("Wuss Mode", "General", demonSoldiersAlwaysNeutral,
+				"Set to true if Demon Soldiers should only attack the player if they are attacked first");
+		useVanillaGhastSounds = config.getBoolean("Use Vanilla Ghast Sounds", "General", useVanillaGhastSounds,
+				"Whether or not to use the vanilla ghast sounds for the Underghast instead of the provided ones");
 		
 		// World Gen
 		underworldDimensionID = config.getInt("Underworld Dimension ID", "Worldgen", underworldDimensionID, "The ID for the Underworld dimension");

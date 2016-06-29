@@ -18,6 +18,7 @@ public class LCSoundEvents {
 	public static SoundEvent demonSoldierHurt;
 	public static SoundEvent demonSoldierDeath;
 	public static SoundEvent underworldGhastMoan;
+	public static SoundEvent underworldGhastWarn;
 	public static SoundEvent underworldGhastHurt;
 	public static SoundEvent underworldGhastDeath;
 	public static SoundEvent portalUnderworld;
@@ -28,6 +29,7 @@ public class LCSoundEvents {
 		demonSoldierHurt = registerSound("mob.demonSoldier.hurt");
 		demonSoldierDeath = registerSound("mob.demonSoldier.death");
 		underworldGhastMoan = registerSound("mob.underworldGhast.moan");
+		underworldGhastWarn = registerSound("mob.underworldGhast.warn");
 		underworldGhastHurt = registerSound("mob.underworldGhast.hurt");
 		underworldGhastDeath = registerSound("mob.underworldGhast.death");
 		portalUnderworld = registerSound("portal.underworld");

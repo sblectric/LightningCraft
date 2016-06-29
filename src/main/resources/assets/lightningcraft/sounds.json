@@ -38,6 +38,15 @@
         ],
 		"subtitle": "subtitle.mob.underworldGhast.moan"
     },
+	"mob.underworldGhast.warn":
+    {
+        "category": "hostile",
+        "sounds":
+        [
+            "lightningcraft:mob/underworld_ghast/warn"
+        ],
+		"subtitle": "subtitle.mob.underworldGhast.warn"
+    },
 	"mob.underworldGhast.hurt":
     {
         "category": "hostile",
