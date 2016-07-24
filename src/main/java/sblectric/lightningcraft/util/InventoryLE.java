@@ -72,9 +72,9 @@ public class InventoryLE {
 		return 0;
 	}
 
-	/** Is there an LP source? */
+	/** Is there an LE source? */
 	public static boolean hasLESource(EntityPlayer user) {
-		return user != null && user.inventory.hasItemStack(new ItemStack(LCItems.battery));
+		return user != null && LCMisc.posInInventory(user, LCItems.battery) >= 0;
 	}
 
 	/** Find a battery to use */

@@ -5,7 +5,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item.ToolMaterial;
 
 import com.google.common.collect.Multimap;
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.util.SkyUtils;
 
 /** The Skyfather sword */

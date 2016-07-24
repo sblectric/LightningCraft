@@ -18,13 +18,13 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
-import sblectric.lightningcraft.items.ifaces.IKineticRepair;
+import sblectric.lightningcraft.items.ifaces.IKineticGear;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.InventoryLE;
 import sblectric.lightningcraft.util.InventoryLE.LECharge;
 
 /** The kinetic sword */
-public class ItemKineticSword extends ItemSwordLC implements IInventoryLEUser, IKineticRepair {
+public class ItemKineticSword extends ItemSwordLC implements IInventoryLEUser, IKineticGear {
 	
 	public static final double attackDamage = 10;
 

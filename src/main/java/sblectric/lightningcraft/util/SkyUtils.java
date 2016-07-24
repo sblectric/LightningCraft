@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import com.google.common.collect.Multimap;
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.dimensions.LCDimensions;
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.potions.LCPotions;
 
 /** Helper methods related to Skyfather stuff */
@@ -55,7 +55,7 @@ public class SkyUtils {
 	public static void setToolSpeedModifier(Item item, Multimap<String, AttributeModifier> multimap, UUID speedmod, double currentSpeed) {
 		multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName()); // clear the attack speed
 		multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), 
-				new AttributeModifier(speedmod, "Tool modifier", currentSpeed + (item instanceof IAutoRepair ? 0.6 : 0.3), 0));
+				new AttributeModifier(speedmod, "Tool modifier", currentSpeed + (item instanceof IMysticGear ? 0.6 : 0.3), 0));
 	}
 	
 	// ------------ //

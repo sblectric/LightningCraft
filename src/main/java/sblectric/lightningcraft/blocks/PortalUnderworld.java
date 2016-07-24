@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
@@ -25,9 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.google.common.cache.LoadingCache;
-
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.dimensions.LCDimensions;
@@ -38,6 +38,8 @@ import sblectric.lightningcraft.registry.IRegistryBlock;
 import sblectric.lightningcraft.sounds.LCSoundEvents;
 import sblectric.lightningcraft.util.WorldUtils;
 
+import com.google.common.cache.LoadingCache;
+
 /** The underworld portal block */
 public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 	
@@ -46,7 +48,11 @@ public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 	
 	/** Try to fill a portal at this location */
 	public static boolean ignitePortal(World world, BlockPos pos) {
-		return LCBlocks.underPortal.trySpawnPortal(world, pos);
+		if(LCConfig.portalEnabled) {
+			return LCBlocks.underPortal.trySpawnPortal(world, pos);
+		} else {
+			return false;
+		}
 	}
 	
 	/** The underworld portal block */
@@ -231,10 +237,10 @@ public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 		}
 	}
 	
-	/** The portal status */
+	/** The portal status (now with string mappings!) */
 	public static class PortalStatus {
-		private Map<EntityPlayerMP, Boolean> portal;
-		private Map<EntityPlayerMP, Integer> cooldown;
+		private Map<String, Boolean> portal;
+		private Map<String, Integer> cooldown;
 		
 		private PortalStatus() {
 			portal = new HashMap();
@@ -242,26 +248,26 @@ public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 		}
 		
 		public boolean getPortal(EntityPlayerMP player) {
-			if(portal.containsKey(player)) return portal.get(player);
+			if(portal.containsKey(player.getName())) return portal.get(player.getName());
 			return false;
 		}
 		
 		public void setPortal(EntityPlayerMP player, boolean doportal) {
-			if(portal.containsKey(player) || doportal) {
-				portal.put(player, doportal);
+			if(portal.containsKey(player.getName()) || doportal) {
+				portal.put(player.getName(), doportal);
 			}
 		}
 		
 		public void resetCooldown(EntityPlayerMP player) {
-			cooldown.put(player, LCConfig.portalCooldown);
+			cooldown.put(player.getName(), LCConfig.portalCooldown);
 		}
 		
 		public boolean checkCooldown(EntityPlayerMP player) {
-			int i = cooldown.containsKey(player) ? cooldown.get(player) : 0;
+			int i = cooldown.containsKey(player.getName()) ? cooldown.get(player.getName()) : 0;
 			if(i <= 0) {
 				return true;
 			} else {
-				cooldown.put(player, i - 1);
+				cooldown.put(player.getName(), i - 1);
 				return false;
 			}
 		}

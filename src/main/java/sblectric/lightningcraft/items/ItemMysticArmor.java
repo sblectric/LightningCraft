@@ -9,11 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.ref.LCText;
 
 /** Mystic armor */
-public class ItemMysticArmor extends ItemArmorLC implements IAutoRepair {
+public class ItemMysticArmor extends ItemArmorLC implements IMysticGear {
 
 	public ItemMysticArmor(ArmorMaterial mat, EntityEquipmentSlot armorType) {
 		super(mat, armorType);

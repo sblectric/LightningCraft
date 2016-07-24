@@ -10,7 +10,9 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
 import com.google.common.collect.Multimap;
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
+
+import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.SkyUtils;
 
@@ -24,8 +26,8 @@ public class ItemSkySpade extends ItemSpadeLC {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
 		if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
-			list.add(LCText.getAutoSmeltLore());
-			if(this instanceof IAutoRepair) list.add(LCText.getFortuneBonusLore());
+			if(LCConfig.autoSmelt) list.add(LCText.getAutoSmeltLore());
+			if(this instanceof IMysticGear) list.add(LCText.getFortuneBonusLore());
 		}
 	}
 	

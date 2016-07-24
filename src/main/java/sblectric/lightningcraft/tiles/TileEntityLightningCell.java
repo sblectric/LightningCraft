@@ -139,7 +139,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 	public boolean isAirTerminalPresent() {
 		// get the block above
 		this.topTierTerminal = false;
-		IBlockState state = this.worldObj.getBlockState(getPos().add(0, 1, 0));
+		IBlockState state = this.worldObj.getBlockState(getPos().up());
 		Block test = state.getBlock();
 		int meta = test.getMetaFromState(state);
 		boolean flag;

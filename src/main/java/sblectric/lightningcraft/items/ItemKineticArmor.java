@@ -12,13 +12,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
-import sblectric.lightningcraft.items.ifaces.IKineticRepair;
+import sblectric.lightningcraft.items.ifaces.IKineticGear;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.InventoryLE;
 import sblectric.lightningcraft.util.InventoryLE.LECharge;
 
 /** kinetic armor will enable invincibility when LP exists in the inventory */
-public class ItemKineticArmor extends ItemArmorLC implements IInventoryLEUser, IKineticRepair {
+public class ItemKineticArmor extends ItemArmorLC implements IInventoryLEUser, IKineticGear {
 	
 	public static final double protectionCost = 0.5;
 	public static final double protectionDamper = 5.0;

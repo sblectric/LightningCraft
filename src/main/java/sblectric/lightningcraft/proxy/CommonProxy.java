@@ -22,6 +22,7 @@ import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Log;
+import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.sounds.LCSoundEvents;
 import sblectric.lightningcraft.tiles.LCTileEntities;
 import sblectric.lightningcraft.worldgen.structure.LCStructures;
@@ -30,7 +31,7 @@ import sblectric.lightningcraft.worldgen.structure.LCStructures;
 public class CommonProxy {
 	
 	public void preInit(FMLPreInitializationEvent event) {
-		Log.logger.info("PreInitializing LightningCraft...");
+		Log.logger.info("PreInitializing " + RefStrings.NAME + "...");
 		LCText.setupFormatting();
 		LCConfig.loadConfig(event.getSuggestedConfigurationFile());
 		LCCreativeTabs.mainRegistry();
@@ -47,7 +48,7 @@ public class CommonProxy {
 	}
 	
 	public void onInit(FMLInitializationEvent event) {
-		Log.logger.info("Initializing LightningCraft...");
+		Log.logger.info("Initializing " + RefStrings.NAME + "...");
 		NetworkRegistry.INSTANCE.registerGuiHandler(LightningCraft.modInstance, new LCGuiHandler());
 		LCDimensions.mainRegistry();
 		LCStructures.mainRegistry();
@@ -59,7 +60,7 @@ public class CommonProxy {
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {
-		Log.logger.info("PostInitializing LightningCraft...");
+		Log.logger.info("PostInitializing " + RefStrings.NAME + "...");
 		LCModIntegration.postInit();
 	}
 

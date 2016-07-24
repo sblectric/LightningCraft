@@ -22,7 +22,7 @@ public class TileEntityChargingPlate extends TileEntityLightningUser {
 				
 				// check for a user
 				EntityPlayer user = WorldUtils.getClosestPlayer(worldObj, getX(), getY(), getZ(), 1.5);
-				if(user != null && user.inventory.hasItemStack(new ItemStack(LCItems.battery)) && this.tileCell.storedPower > 0) {
+				if(user != null && LCMisc.posInInventory(user, LCItems.battery) >= 0 && this.tileCell.storedPower > 0) {
 					int invPos = 0;
 					IntList avoid = new IntList();
 					while((invPos = LCMisc.posInInventory(user, LCItems.battery, avoid)) >= 0) {

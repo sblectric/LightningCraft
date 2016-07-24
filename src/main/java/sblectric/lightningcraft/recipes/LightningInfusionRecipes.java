@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.oredict.OreDictionary;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.Material;
@@ -203,19 +204,22 @@ public class LightningInfusionRecipes {
 		// mystic ingot
 		addRecipe(new ItemStack(LCItems.ingot, 2, Ingot.MYSTIC), 160, "ingotSkyfather", "nuggetNetherStar", demonBlood, ichor, demonBlood);
 		
-		// mystic tool recipes
-		addRecipe(new ItemStack(LCItems.mysticHammer), 360, LCItems.skyHammer, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticSword), 300, LCItems.skySword, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticPick), 240, LCItems.skyPick, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticAxe), 240, LCItems.skyAxe, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticShovel), 240, LCItems.skyShovel, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticHoe), 200, LCItems.skyHoe, LCMisc.makeArray(dust, 4));
-		
-		// mystic armor recipes
-		addRecipe(new ItemStack(LCItems.mysticHelm), 240, LCItems.skyHelm, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticChest), 360, LCItems.skyChest, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticLegs), 300, LCItems.skyLegs, LCMisc.makeArray(dust, 4));
-		addRecipe(new ItemStack(LCItems.mysticBoots), 240, LCItems.skyBoots, LCMisc.makeArray(dust, 4));
+		if(LCConfig.mysticGear) {
+			
+			// mystic tool recipes
+			addRecipe(new ItemStack(LCItems.mysticHammer), 360, LCItems.skyHammer, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticSword), 300, LCItems.skySword, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticPick), 240, LCItems.skyPick, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticAxe), 240, LCItems.skyAxe, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticShovel), 240, LCItems.skyShovel, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticHoe), 200, LCItems.skyHoe, LCMisc.makeArray(dust, 4));
+			
+			// mystic armor recipes
+			addRecipe(new ItemStack(LCItems.mysticHelm), 240, LCItems.skyHelm, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticChest), 360, LCItems.skyChest, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticLegs), 300, LCItems.skyLegs, LCMisc.makeArray(dust, 4));
+			addRecipe(new ItemStack(LCItems.mysticBoots), 240, LCItems.skyBoots, LCMisc.makeArray(dust, 4));
+		}
 	}
 	
 	/** Add an infusion recipe */

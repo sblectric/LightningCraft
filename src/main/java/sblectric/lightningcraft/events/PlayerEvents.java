@@ -19,13 +19,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.PortalUnderworld;
+import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.dimensions.LCDimensions;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.items.LCItems;
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
-import sblectric.lightningcraft.items.ifaces.IKineticRepair;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
+import sblectric.lightningcraft.items.ifaces.IKineticGear;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.InventoryLE;
@@ -151,9 +151,9 @@ public class PlayerEvents {
 		JointList<ItemStack> inv = new JointList<ItemStack>().join(player.inventory.mainInventory).join(player.inventory.armorInventory);
 		for(ItemStack stack : inv) {
 			if(stack != null) {
-				if(stack.getItem() instanceof IAutoRepair) {
+				if(LCConfig.autoRepair && stack.getItem() instanceof IMysticGear) {
 					doAutoRepair(player, stack, 1);
-				} else if(stack.getItem() instanceof IKineticRepair) {
+				} else if(stack.getItem() instanceof IKineticGear) {
 					doKineticRepair(player, stack, InventoryLE.repairSpeedModifier);
 				}
 			}
@@ -197,7 +197,7 @@ public class PlayerEvents {
 	
 	/** Show auto-repair tooltips */
 	private void showAutoRepairTooltip(ItemStack stack, List list) {
-		if(stack.getItem() instanceof IAutoRepair) {
+		if(stack.getItem() instanceof IMysticGear) {
 			list.add(1, LCText.getAutoRepairLore());
 		}
 	}

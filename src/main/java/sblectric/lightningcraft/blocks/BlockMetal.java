@@ -7,7 +7,8 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
-
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import sblectric.lightningcraft.items.blocks.ItemBlockMetal;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.util.JointList;
@@ -85,6 +86,12 @@ public class BlockMetal extends BlockMeta {
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return ((EnumType)state.getValue(type)).getID();
+	}
+	
+	// these metal blocks can now be used as a beacon base!
+	@Override
+	public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon) {
+		return true;
 	}
 	
 	@Override

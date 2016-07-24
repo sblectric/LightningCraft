@@ -2,18 +2,21 @@ package sblectric.lightningcraft.events;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.items.ItemSkyAxe;
 import sblectric.lightningcraft.items.ItemSkyPick;
 import sblectric.lightningcraft.items.ItemSkySpade;
-import sblectric.lightningcraft.items.ifaces.IAutoRepair;
+import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.network.MessageSpawnParticle;
 
@@ -22,18 +25,51 @@ public class ToolEvents {
 	
 	private static final Random random = new Random();
 	public static final int defBonus = 1;
+	public static final int mysticBonus = defBonus + 1;
+	
+	private ItemStack tool;
+	
+	/** Harvest the drops and call sub-events */
+	@SubscribeEvent
+	public void onHarvestDrops(HarvestDropsEvent e) {
+		tool = null; // always reset this
+		if(!e.getWorld().isRemote) {
+			if(!onBlockDropSmelt(e)) {
+				mysticFortuneIncrease(e);
+			}
+		}
+	}
+	
+	/** Apply a fortune increase to mystic tools */
+	private void mysticFortuneIncrease(HarvestDropsEvent e) {
+		if(tool != null && tool.getItem() instanceof IMysticGear) {
+			
+			// override vanilla fortune handling here
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, tool) + mysticBonus;
+            Block block = e.getState().getBlock();
+            if(!e.getWorld().restoringBlockSnapshots) {
+                for (ItemStack item : block.getDrops(e.getWorld(), e.getPos(), e.getState(), i)) {
+                    if (e.getWorld().rand.nextFloat() <= e.getDropChance()) {
+                        Block.spawnAsEntity(e.getWorld(), e.getPos(), item.copy());
+                    }
+                }
+            }
+			
+			// cancel the default drops
+			e.setDropChance(0);
+		}
+	}
 	
 	/** Auto-smelt blocks when using a skyfather tool */
-	@SubscribeEvent
-	public void onBlockDropSmelt(HarvestDropsEvent e) {
-		if(!e.getWorld().isRemote && e.getHarvester() != null) {
+	private boolean onBlockDropSmelt(HarvestDropsEvent e) {
+		if(e.getHarvester() != null && LCConfig.autoSmelt) {
 			int fortuneLevel = e.getFortuneLevel() + defBonus;
 			
 			// get the held item and make sure it isn't null!
 			// 1.1.2 fix
-			ItemStack tool = e.getHarvester().inventory.getCurrentItem();
+			tool = e.getHarvester().inventory.getCurrentItem();
 			if(e.getHarvester().inventory.getCurrentItem() == null) {
-				return;
+				return false;
 			}
 			
 			Item itool = tool.getItem();
@@ -50,7 +86,7 @@ public class ToolEvents {
 					int nItems;
 					int nParticles = 2;
 					if(fortuneLevel > 0 && !(result.getItem() instanceof ItemBlock)) {
-						nItems = 1 + random.nextInt(fortuneLevel + (itool instanceof IAutoRepair ? 1 : 0)); // only Mystic has Luck
+						nItems = 1 + random.nextInt(fortuneLevel + (itool instanceof IMysticGear ? 1 : 0)); // only Mystic has Luck
 					} else {
 						nItems = 1;
 					}
@@ -59,7 +95,8 @@ public class ToolEvents {
 						float f1 = random.nextFloat() * 0.6F + 0.1F;
 						float f2 = random.nextFloat() * 0.6F + 0.1F;
 						float f3 = 0.025F;
-						EntityItem eitem = new EntityItem(e.getWorld(), e.getPos().getX() + f, e.getPos().getY() + f1, e.getPos().getZ() + f2, result.copy());
+						EntityItem eitem = new EntityItem(e.getWorld(), 
+								e.getPos().getX() + f, e.getPos().getY() + f1, e.getPos().getZ() + f2, result.copy());
 						eitem.motionX = random.nextGaussian() * f3;
 						eitem.motionY = random.nextGaussian() * f3 + 0.2F;
 						eitem.motionZ = random.nextGaussian() * f3;
@@ -76,11 +113,13 @@ public class ToolEvents {
 					
 					// cancel the default drops
 					e.setDropChance(0);
+					return true;
 				}
 				
 			}
 			
 		}
+		return false;
 	}
 
 }

@@ -19,13 +19,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
-import sblectric.lightningcraft.items.ifaces.IKineticRepair;
+import sblectric.lightningcraft.items.ifaces.IKineticGear;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.InventoryLE;
 import sblectric.lightningcraft.util.InventoryLE.LECharge;
 
 /** The kinetic axe */
-public class ItemKineticAxe extends ItemAxeLC implements IInventoryLEUser, IKineticRepair {
+public class ItemKineticAxe extends ItemAxeLC implements IInventoryLEUser, IKineticGear {
 	
 	public static final double attackDamage = 9;
 
