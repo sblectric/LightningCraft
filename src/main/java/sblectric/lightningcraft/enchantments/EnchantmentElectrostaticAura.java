@@ -3,7 +3,6 @@ package sblectric.lightningcraft.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.util.ResourceLocation;
 
 /** The Electrostatic Aura enchantment */
 public class EnchantmentElectrostaticAura extends Enchantment {

@@ -2,10 +2,7 @@ package sblectric.lightningcraft.items;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item.ToolMaterial;
-
 import com.google.common.collect.Multimap;
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.util.SkyUtils;
 
 /** The Skyfather sword */

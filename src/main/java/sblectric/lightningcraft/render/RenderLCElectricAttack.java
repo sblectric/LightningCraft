@@ -2,7 +2,6 @@ package sblectric.lightningcraft.render;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 import sblectric.lightningcraft.entities.EntityLCElectricAttack;
@@ -13,6 +12,7 @@ public class RenderLCElectricAttack extends Render<EntityLCElectricAttack> {
 		super(renderManager);
 	}
 
+	@Override
 	public void doRender(EntityLCElectricAttack e, double x, double y, double z, float par8, float par9) {
 		// do nothing
 	}

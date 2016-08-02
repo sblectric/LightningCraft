@@ -3,7 +3,6 @@ package sblectric.lightningcraft.dimensions;
 import sblectric.lightningcraft.config.LCConfig;
 
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
 
 /** Dimension registry */

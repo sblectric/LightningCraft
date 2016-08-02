@@ -16,7 +16,7 @@ public class ParticleSpecialSword extends ParticleCrit {
 		super(world, x,y,z, velx,vely,velz);
 		this.particleScale = 2.75F;
 		this.setParticleTextureIndex(66);
-		this.setRBGColorF((float)rgb.getRed() / 255F, (float)rgb.getGreen() / 255F, (float)rgb.getBlue() / 255F);
+		this.setRBGColorF(rgb.getRed() / 255F, rgb.getGreen() / 255F, rgb.getBlue() / 255F);
 	}
 
 }

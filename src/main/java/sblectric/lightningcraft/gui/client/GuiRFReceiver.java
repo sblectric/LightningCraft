@@ -14,7 +14,6 @@ import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.server.ContainerRFReceiver;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
 import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
 
 /** The RF receiver GUI */

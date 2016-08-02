@@ -8,14 +8,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.IFurnace;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.entities.EntityLCLightningBolt;
 import sblectric.lightningcraft.util.Effect;
 
 /** The static generator */
-public class TileEntityStaticGenerator extends TileEntityLightningUser implements ISidedInventoryLC {
+public class TileEntityStaticGenerator extends TileEntityLightningItemHandler {
 	
 	private static final int[] slotsTop = new int[]{0};
 	

@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.server.ContainerEnchReallocator;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.RefStrings;

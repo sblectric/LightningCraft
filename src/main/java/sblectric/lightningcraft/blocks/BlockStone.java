@@ -1,6 +1,5 @@
 package sblectric.lightningcraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
 /** The class for all of the basic stone block variants in the mod */

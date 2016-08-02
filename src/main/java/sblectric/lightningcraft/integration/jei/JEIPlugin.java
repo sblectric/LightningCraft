@@ -28,29 +28,29 @@ public class JEIPlugin implements IModPlugin {
 		if(LCConfig.JEIIntegration) {
 			// register the categories
 			reg.addRecipeCategories(
-					new LightningInfusionRecipeCategory(reg.getJeiHelpers().getGuiHelper()),
-					new LightningCrusherRecipeCategory(reg.getJeiHelpers().getGuiHelper())
+					new LightningCrusherRecipeCategory(reg.getJeiHelpers().getGuiHelper()),
+					new LightningInfusionRecipeCategory(reg.getJeiHelpers().getGuiHelper())
 			);
 			
 			// and the handlers
 			reg.addRecipeHandlers(
-					new LightningInfusionRecipeHandler(),
-					new LightningCrusherRecipeHandler()
+					new LightningCrusherRecipeHandler(),
+					new LightningInfusionRecipeHandler()
 			);
 			
 			// add the recipes
-			reg.addRecipes(LightningInfusionRecipes.instance().getRecipeList());
 			reg.addRecipes(LightningCrusherRecipes.instance().getRecipeList());
+			reg.addRecipes(LightningInfusionRecipes.instance().getRecipeList());
 			
 			// add the recipe click areas
-			reg.addRecipeClickArea(GuiLightningInfuser.class, 75, 40, 24, 16, LightningInfusionRecipeCategory.UID);
-			reg.addRecipeClickArea(GuiLightningCrusher.class, 79, 34, 24, 16, LightningCrusherRecipeCategory.UID);
 			reg.addRecipeClickArea(GuiLightningFurnace.class, 79, 34, 24, 16, VanillaRecipeCategoryUid.SMELTING);
+			reg.addRecipeClickArea(GuiLightningCrusher.class, 79, 34, 24, 16, LightningCrusherRecipeCategory.UID);
+			reg.addRecipeClickArea(GuiLightningInfuser.class, 75, 40, 24, 16, LightningInfusionRecipeCategory.UID);
 			
 			// set the category icons
-			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningInfuser), LightningInfusionRecipeCategory.UID);
-			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningCrusher), LightningCrusherRecipeCategory.UID);
 			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningFurnace), VanillaRecipeCategoryUid.SMELTING);
+			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningCrusher), LightningCrusherRecipeCategory.UID);
+			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningInfuser), LightningInfusionRecipeCategory.UID);
 			
 			Log.logger.info("JEI integration complete.");
 		} else {

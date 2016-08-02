@@ -20,7 +20,8 @@ public class ItemAxeNotStupid extends ItemTool {
 		super(5.0F, -3.2F, mat, EFFECTIVE_ON);
 	}
 	
-    public Set<String> getToolClasses(ItemStack stack) {
+    @Override
+	public Set<String> getToolClasses(ItemStack stack) {
     	return ImmutableSet.of("axe");
     }
 

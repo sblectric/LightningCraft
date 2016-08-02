@@ -2,15 +2,10 @@ package sblectric.lightningcraft.items.blocks;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
 import sblectric.lightningcraft.ref.Metal.Rod;
 

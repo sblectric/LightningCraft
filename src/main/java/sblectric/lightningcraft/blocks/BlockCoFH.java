@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.integration.cofh.CoFH;
 import sblectric.lightningcraft.items.blocks.ItemBlockCoFH;
 

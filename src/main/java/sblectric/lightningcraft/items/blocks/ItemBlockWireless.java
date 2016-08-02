@@ -6,12 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.BlockWireless;
 import sblectric.lightningcraft.blocks.BlockWireless.WirelessSpecs;
-import sblectric.lightningcraft.ref.Metal.Ingot;
 
 /** The wireless block item */
 public class ItemBlockWireless extends ItemBlockMeta {

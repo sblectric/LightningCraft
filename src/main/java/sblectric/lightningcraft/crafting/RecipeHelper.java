@@ -3,8 +3,6 @@ package sblectric.lightningcraft.crafting;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;

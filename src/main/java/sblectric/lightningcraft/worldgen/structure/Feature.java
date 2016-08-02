@@ -20,7 +20,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
 import sblectric.lightningcraft.util.WeightedRandomChestContent;
-import sblectric.lightningcraft.util.WorldUtils;
 
 /** Structure superclass */
 public abstract class Feature extends StructureComponent {
@@ -182,7 +181,7 @@ public abstract class Feature extends StructureComponent {
 
 		// set its entity type
 		TileEntityMobSpawner tile = (TileEntityMobSpawner)world.getTileEntity(pos);
-		tile.getSpawnerBaseLogic().setEntityName((String)EntityList.CLASS_TO_NAME.get(entityClass));
+		tile.getSpawnerBaseLogic().setEntityName(EntityList.CLASS_TO_NAME.get(entityClass));
 	}
 
 	/** Find spawn position for the structure */

@@ -12,15 +12,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.gui.LCGuiHandler;
 import sblectric.lightningcraft.items.blocks.ItemBlockWireless;
 import sblectric.lightningcraft.main.LightningCraft;
-import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
 import sblectric.lightningcraft.tiles.TileEntityLightningTransmitter;
 

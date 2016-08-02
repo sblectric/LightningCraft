@@ -79,7 +79,7 @@ public class CombatEvents {
 		// regular weaponry: 0% chance, up to 10%
 		double init = w instanceof ItemChargedSword ? (w instanceof ItemHammer ? 0.5 : 0.15) : 0;
 		double var = w instanceof ItemChargedSword ? (w instanceof ItemHammer ? 0.5 : 0.3) : 0.1;
-		if(!user.isSneaking() && random.nextDouble() < (init + var * (double)j / (double)m)) {
+		if(!user.isSneaking() && random.nextDouble() < (init + var * j / m)) {
 			Effect.lightning(target, false);
 			weapon.damageItem(2, user);
 		}

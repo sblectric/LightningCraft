@@ -60,7 +60,7 @@ public class WorldUtils {
 
 		for (int i = 0; i < world.playerEntities.size(); ++i)
 		{
-			EntityPlayer entityplayer1 = (EntityPlayer)world.playerEntities.get(i);
+			EntityPlayer entityplayer1 = world.playerEntities.get(i);
 
 			if (EntitySelectors.NOT_SPECTATING.apply(entityplayer1))
 			{
@@ -98,7 +98,7 @@ public class WorldUtils {
 
 		for (int i = 0; i < world.playerEntities.size(); ++i)
 		{
-			EntityPlayer entityplayer1 = (EntityPlayer)world.playerEntities.get(i);
+			EntityPlayer entityplayer1 = world.playerEntities.get(i);
 
 			if (entityplayer1 != null && !excludePlayers.contains(entityplayer1.getUniqueID()) && !entityplayer1.capabilities.disableDamage && entityplayer1.isEntityAlive())
 			{
@@ -143,7 +143,7 @@ public class WorldUtils {
 
 		for (int i = 0; i < world.loadedEntityList.size(); ++i)
 		{
-			Entity entity1 = (Entity)world.loadedEntityList.get(i);
+			Entity entity1 = world.loadedEntityList.get(i);
 
 			if (entity1 != null && type.isInstance(entity1) && !entity1.isEntityInvulnerable(DamageSource.generic) && entity1.isEntityAlive())
 			{
@@ -300,7 +300,7 @@ public class WorldUtils {
 
 	/** gets an entity from UUID value */
 	public static Entity getEntityFromUUID(World world, UUID id) {
-		for (Entity e : (List<Entity>)world.loadedEntityList) {
+		for (Entity e : world.loadedEntityList) {
 			if (e.getPersistentID().toString().equals(id.toString())) {
 				return e;
 			}
@@ -332,7 +332,7 @@ public class WorldUtils {
 
 	/** gets an entity living base from UUID value */
 	public static EntityPlayer getEntityPlayerFromUUID(World world, UUID id) {
-		for (EntityPlayer e : (List<EntityPlayer>)world.playerEntities) {
+		for (EntityPlayer e : world.playerEntities) {
 			if (e.getPersistentID().toString().equals(id.toString())) {
 				return e;
 			}

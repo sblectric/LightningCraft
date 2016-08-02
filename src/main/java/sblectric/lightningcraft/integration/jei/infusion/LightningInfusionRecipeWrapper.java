@@ -1,9 +1,6 @@
 package sblectric.lightningcraft.integration.jei.infusion;
 
-import java.util.Collections;
 import java.util.List;
-
-import javax.annotation.Nonnull;
 
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -11,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes.LightningInfusionRecipe;
-import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.StackHelper;
 

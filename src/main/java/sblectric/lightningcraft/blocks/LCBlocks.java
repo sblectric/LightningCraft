@@ -1,28 +1,11 @@
 package sblectric.lightningcraft.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.creativetabs.LCCreativeTabs;
 import sblectric.lightningcraft.registry.IRegistryBlock;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.render.BlockColoring;
-import sblectric.lightningcraft.tiles.TileEntityBase;
-import sblectric.lightningcraft.tiles.TileEntityChargingPlate;
-import sblectric.lightningcraft.tiles.TileEntityEnchReallocator;
-import sblectric.lightningcraft.tiles.TileEntityLightningCannon;
-import sblectric.lightningcraft.tiles.TileEntityLightningCell;
-import sblectric.lightningcraft.tiles.TileEntityLightningCrusher;
-import sblectric.lightningcraft.tiles.TileEntityLightningFurnace;
-import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
-import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
-import sblectric.lightningcraft.tiles.TileEntityLightningTransmitter;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
-import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;
 import sblectric.lightningcraft.util.JointList;
 
 /** The block class. */

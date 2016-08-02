@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.server.ContainerLightningReceiver;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.RefStrings;
@@ -56,7 +55,7 @@ public class GuiLightningReceiver extends GuiContainer {
 			double deltaY = rx.txPos.getY() - rx.getY();
 			double deltaZ = rx.txPos.getZ() - rx.getZ();
 			String distance = LCText.df.format(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)) + "m";
-			String position = "x: " + (int)rx.txPos.getX() + ", y: " + (int)rx.txPos.getY() + ", z: " + (int)rx.txPos.getZ();
+			String position = "x: " + rx.txPos.getX() + ", y: " + rx.txPos.getY() + ", z: " + rx.txPos.getZ();
 			
 			this.fontRendererObj.drawString(storedPower, 151 - this.fontRendererObj.getStringWidth(storedPower), texty, 0x404040);
 			this.fontRendererObj.drawString(maxPower, 151 - this.fontRendererObj.getStringWidth(maxPower), texty + 10, 0x404040);

@@ -3,10 +3,6 @@ package sblectric.lightningcraft.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import sblectric.lightningcraft.items.LCItems;
 
 /** The Hand of Thor enchantment */
 public class EnchantmentHandOfThor extends Enchantment {

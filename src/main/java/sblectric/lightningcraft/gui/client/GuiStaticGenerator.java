@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.server.ContainerStaticGenerator;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;

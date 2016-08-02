@@ -2,9 +2,7 @@ package sblectric.lightningcraft.enchantments;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantment.Rarity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import sblectric.lightningcraft.config.LCConfig;
 
 /** Enchantment class */
 public class LCEnchantments {

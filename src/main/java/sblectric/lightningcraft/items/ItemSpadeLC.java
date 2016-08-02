@@ -1,14 +1,11 @@
 package sblectric.lightningcraft.items;
 
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.registry.IRegistryItem;
 import sblectric.lightningcraft.util.LCMisc;
 

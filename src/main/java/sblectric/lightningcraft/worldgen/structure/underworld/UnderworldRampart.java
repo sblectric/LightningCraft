@@ -73,6 +73,7 @@ public class UnderworldRampart extends Feature {
     }
     
     /** Water temple spawn mechanics */
+	@Override
 	protected boolean findSpawnPosition(World world, StructureBoundingBox box, int yoff)
     {
         if (this.structY >= 0) {

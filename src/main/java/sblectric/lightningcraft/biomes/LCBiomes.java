@@ -4,7 +4,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.dimensions.LCDimensions;
 
 public class LCBiomes {

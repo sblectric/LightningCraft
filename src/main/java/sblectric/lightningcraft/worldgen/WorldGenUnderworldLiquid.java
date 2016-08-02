@@ -24,7 +24,8 @@ public class WorldGenUnderworldLiquid extends WorldGenerator {
         this.cancel = cancel;
     }
 
-    public boolean generate(World world, Random rand, BlockPos pos) {
+    @Override
+	public boolean generate(World world, Random rand, BlockPos pos) {
         if (!WorldUtils.blockMatches(world, pos.up(), LCBlocks.stoneBlock, BlockStone.UNDER)) {
             return false;
         } else if (world.getBlockState(pos).getBlock().getMaterial(world.getBlockState(pos)) != Material.AIR && 

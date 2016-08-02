@@ -52,7 +52,7 @@ public class ContainerLightningFurnace extends ContainerLightningUser {
 	public void detectAndSendChanges(){
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.listeners.size(); ++i) {
-			IContainerListener craft = (IContainerListener) this.listeners.get(i);
+			IContainerListener craft = this.listeners.get(i);
 			craft.sendProgressBarUpdate(this, 0, this.tileFurnace.furnaceCookTime);
 			craft.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceBurnTime);
 			craft.sendProgressBarUpdate(this, 2, this.tileFurnace.currentBurnTime);
@@ -83,7 +83,7 @@ public class ContainerLightningFurnace extends ContainerLightningUser {
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
 		ItemStack itemstack = null;
-		Slot slot = (Slot)this.inventorySlots.get(par2);
+		Slot slot = this.inventorySlots.get(par2);
 
 		int OUTPUT = 1;
 		int INPUT = 0;

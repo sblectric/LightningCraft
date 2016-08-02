@@ -23,7 +23,8 @@ public class WorldGenIceShrub extends WorldGenTrees {
         this.iceMetadata = Blocks.PACKED_ICE.getDefaultState();
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position) {
+    @Override
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
     	IBlockState state;
         Block block;
         do {

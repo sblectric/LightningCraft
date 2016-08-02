@@ -79,7 +79,7 @@ public class LCAchievements {
 			getElectricium = addAchievement(RefStrings.MODID + ":getElectricium", "getElectricium", 4, 0, 
 					new ItemStack(LCItems.ingot, 1, Ingot.ELEC), swingGolfClub).registerStat(),
 			craftCell = addAchievement(RefStrings.MODID + ":craftCell", "craftCell", 6, 0, 
-					new ItemStack(LCBlocks.lightningCell, 1, MBlock.ELEC), getElectricium).registerStat(),
+					new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), getElectricium).registerStat(),
 			craftTerminal = addAchievement(RefStrings.MODID + ":craftTerminal", "craftTerminal", 6, -2, 
 					new ItemStack(LCBlocks.airTerminal, 1, Rod.IRON), craftCell).registerStat(),
 			craftFurnace = addAchievement(RefStrings.MODID + ":craftFurnace", "craftFurnace", 5, 3, 
@@ -119,7 +119,7 @@ public class LCAchievements {
 			mysticHammer = addAchievement(RefStrings.MODID + ":mysticHammer", "mysticHammer", 1, 8, 
 					hammer, infuseMystic).registerStat().setSpecial(),
 			perfectCell = addAchievement(RefStrings.MODID + ":perfectCell", "perfectCell", 4, 11, 
-					new ItemStack(LCBlocks.lightningCell, 1, MBlock.MYSTIC), infuseMystic).registerStat()
+					new ItemStack(LCBlocks.lightningCell, 1, Ingot.MYSTIC), infuseMystic).registerStat()
 		);
 	}
 	

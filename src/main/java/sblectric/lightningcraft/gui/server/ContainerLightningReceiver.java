@@ -64,7 +64,7 @@ public class ContainerLightningReceiver extends Container {
 	public void addListener(IContainerListener craft) {
 		super.addListener(craft);
 		int n = sendUpdate(craft, 0);
-		craft.sendProgressBarUpdate(this, n++, (int)this.rx.txPos.getY());
+		craft.sendProgressBarUpdate(this, n++, this.rx.txPos.getY());
 		craft.sendProgressBarUpdate(this, n++, this.rx.outOfRange ? 1 : 0);
 		craft.sendProgressBarUpdate(this, 100, (int)(this.rx.efficiency * 1000D));
 	}
@@ -73,9 +73,9 @@ public class ContainerLightningReceiver extends Container {
 	public void detectAndSendChanges(){
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.listeners.size(); i++) {
-			IContainerListener craft = (IContainerListener) this.listeners.get(i);
+			IContainerListener craft = this.listeners.get(i);
 			int n = sendUpdate(craft, 0);
-			craft.sendProgressBarUpdate(this, n++, (int)this.rx.txPos.getY());
+			craft.sendProgressBarUpdate(this, n++, this.rx.txPos.getY());
 			craft.sendProgressBarUpdate(this, n++, this.rx.outOfRange ? 1 : 0);
 		}
 	}
@@ -112,7 +112,7 @@ public class ContainerLightningReceiver extends Container {
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
 		ItemStack itemstack = null;
-		Slot slot = (Slot)this.inventorySlots.get(par2);
+		Slot slot = this.inventorySlots.get(par2);
 
 		int INPUT = -1;
 

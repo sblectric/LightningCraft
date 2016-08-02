@@ -1,7 +1,7 @@
 package sblectric.lightningcraft.items.blocks;
 
+import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.Metal.MBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -16,11 +16,11 @@ public class ItemBlockMetal extends ItemBlockMeta {
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
 		switch(stack.getItemDamage()) {
-		case MBlock.ELEC:
+		case Ingot.ELEC:
 			return EnumRarity.UNCOMMON;
-		case MBlock.SKY:
+		case Ingot.SKY:
 			return EnumRarity.RARE;
-		case MBlock.MYSTIC:
+		case Ingot.MYSTIC:
 			return EnumRarity.EPIC;
 		default:
 			return super.getRarity(stack);

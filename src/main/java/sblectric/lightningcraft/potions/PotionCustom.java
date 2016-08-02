@@ -1,9 +1,6 @@
 package sblectric.lightningcraft.potions;
 
 import net.minecraft.potion.Potion;
-import net.minecraft.util.ResourceLocation;
-
-import sblectric.lightningcraft.ref.RefStrings;
 
 /** Custom potion effect */
 public class PotionCustom extends Potion {

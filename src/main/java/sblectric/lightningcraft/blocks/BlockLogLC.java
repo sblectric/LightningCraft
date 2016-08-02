@@ -48,7 +48,7 @@ public class BlockLogLC extends BlockLog implements IRegistryBlock {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
+        switch (state.getValue(LOG_AXIS))
         {
             case X:
                 i |= 4;

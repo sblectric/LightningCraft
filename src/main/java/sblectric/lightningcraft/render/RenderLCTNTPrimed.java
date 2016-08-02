@@ -29,15 +29,16 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
      * (Render<T extends Entity>) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doe
      */
-    public void doRender(EntityLCTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
+    @Override
+	public void doRender(EntityLCTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y + 0.5F, (float)z);
 
-        if ((float)entity.fuse - partialTicks + 1.0F < 10.0F)
+        if (entity.fuse - partialTicks + 1.0F < 10.0F)
         {
-            float f = 1.0F - ((float)entity.fuse - partialTicks + 1.0F) / 10.0F;
+            float f = 1.0F - (entity.fuse - partialTicks + 1.0F) / 10.0F;
             f = MathHelper.clamp_float(f, 0.0F, 1.0F);
             f = f * f;
             f = f * f;
@@ -45,7 +46,7 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
             GlStateManager.scale(f1, f1, f1);
         }
 
-        float f2 = (1.0F - ((float)entity.fuse - partialTicks + 1.0F) / 100.0F) * 0.8F;
+        float f2 = (1.0F - (entity.fuse - partialTicks + 1.0F) / 100.0F) * 0.8F;
         this.bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
         blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getDefaultState(), entity.getBrightness(partialTicks));
@@ -76,7 +77,8 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(EntityLCTNTPrimed entity) {
+    @Override
+	protected ResourceLocation getEntityTexture(EntityLCTNTPrimed entity) {
     	return TextureMap.LOCATION_BLOCKS_TEXTURE;
     }
 }

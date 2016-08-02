@@ -6,7 +6,6 @@ import net.minecraft.block.BlockTNT;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
@@ -36,7 +35,7 @@ public class BlockUnderTNT extends BlockTNT implements IRegistryBlock {
         if (!worldIn.isRemote) {
             if(state.getValue(EXPLODE)) {
                 EntityLCTNTPrimed entitytntprimed = new EntityLCTNTPrimed(worldIn, 
-                		(double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter);
+                		pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
                 worldIn.spawnEntityInWorld(entitytntprimed);
                 worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
                 		SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -45,10 +44,11 @@ public class BlockUnderTNT extends BlockTNT implements IRegistryBlock {
     }
 	
 	/** Go boom when other things go boom */
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+    @Override
+	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isRemote) {
             EntityLCTNTPrimed entitytntprimed = new EntityLCTNTPrimed(worldIn, 
-            		(double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy());
+            		pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, explosionIn.getExplosivePlacedBy());
             entitytntprimed.fuse = worldIn.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
             worldIn.spawnEntityInWorld(entitytntprimed);
         }

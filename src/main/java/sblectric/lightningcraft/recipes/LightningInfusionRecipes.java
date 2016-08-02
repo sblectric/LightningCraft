@@ -7,9 +7,9 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.oredict.OreDictionary;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.LCBlocks;
@@ -17,7 +17,6 @@ import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.ref.Metal;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.Metal.MBlock;
 import sblectric.lightningcraft.util.JointList;
@@ -33,10 +32,10 @@ public class LightningInfusionRecipes {
 	/** A single infusion recipe */
 	public static class LightningInfusionRecipe {
 		
-		private ItemStack output;
-		private String infuse;
-		private List<String> items;
-		private int cost;
+		private final ItemStack output;
+		private final String infuse;
+		private final List<String> items;
+		private final int cost;
 		
 		/** A new infusion recipe with Items, Blocks, ItemStacks, or oreDict entries */
 		public LightningInfusionRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
@@ -98,8 +97,10 @@ public class LightningInfusionRecipes {
 		/** Gets the item to be infused as a list of possible ItemStack strings */
 		public List<String> getInfuseItemAsOre() {
 			JointList<String> list = new JointList();
-			for(ItemStack s : OreDictionary.getOres(infuse)) {
-				list.add(StackHelper.makeStringFromItemStack(s));
+			if(OreDictionary.doesOreNameExist(infuse)) {
+				for(ItemStack s : OreDictionary.getOres(infuse)) {
+					list.add(StackHelper.makeStringFromItemStack(s));
+				}
 			}
 			return list;
 		}
@@ -114,8 +115,10 @@ public class LightningInfusionRecipes {
 			JointList<List<String>> list = new JointList();
 			for(String name : items) {
 				JointList<String> list2 = new JointList();
-				for(ItemStack s : OreDictionary.getOres(name)) {
-					list2.add(StackHelper.makeStringFromItemStack(s));
+				if(OreDictionary.doesOreNameExist(name)) {
+					for(ItemStack s : OreDictionary.getOres(name)) {
+						list2.add(StackHelper.makeStringFromItemStack(s));
+					}
 				}
 				list.add(list2);
 			}
@@ -165,7 +168,7 @@ public class LightningInfusionRecipes {
 		
 		// electricium
 		addRecipe(new ItemStack(LCItems.ingot, 1, Ingot.ELEC), 30, "ingotIron", "ingotGold", "gemDiamond");
-		addRecipe(new ItemStack(LCBlocks.metalBlock, 1, MBlock.ELEC), 270, "blockIron", "blockGold", "blockDiamond");
+		addRecipe(new ItemStack(LCBlocks.metalBlock, 1, Ingot.ELEC), 270, "blockIron", "blockGold", "blockDiamond");
 		
 		// special swords
 		int spCost = 90;
@@ -196,10 +199,11 @@ public class LightningInfusionRecipes {
 			"dustDiamond", demonBlood, new ItemStack(LCItems.material, 1, Material.UNDER_MEAL), demonBlood);
 		
 		// potions
-		ItemStack normal = LCPotions.getPotionWithType(LCPotions.demonFriendNormal);
-		ItemStack extended = LCPotions.getPotionWithType(LCPotions.demonFriendExtended);
-		addRecipe(normal, 50, Items.POTIONITEM, demonBlood, Items.GOLDEN_CARROT, demonBlood, Items.GOLDEN_CARROT);
-		addRecipe(extended, 25, "potionDemonWarding", LCMisc.makeArray("dustRedstone", 4));
+		ItemStack mundane = LCPotions.getPotionWithType(PotionTypes.MUNDANE);
+		ItemStack normalDemon = LCPotions.getPotionWithType(LCPotions.demonFriendNormal);
+		ItemStack extendedDemon = LCPotions.getPotionWithType(LCPotions.demonFriendExtended);
+		addRecipe(normalDemon, 50, mundane, demonBlood, Items.GOLDEN_CARROT, demonBlood, Items.GOLDEN_CARROT);
+		addRecipe(extendedDemon, 25, normalDemon, LCMisc.makeArray("dustRedstone", 4));
 		
 		// mystic ingot
 		addRecipe(new ItemStack(LCItems.ingot, 2, Ingot.MYSTIC), 160, "ingotSkyfather", "nuggetNetherStar", demonBlood, ichor, demonBlood);
@@ -348,7 +352,7 @@ public class LightningInfusionRecipes {
 	}
 	
 	/** Gets the list of all infusion recipes */
-	public List<LightningInfusionRecipe> getRecipeList() {
+	public final List<LightningInfusionRecipe> getRecipeList() {
 		return recipes;
 	}
 	

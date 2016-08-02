@@ -12,13 +12,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.IFurnace;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** The enchantment reallocator tile entity */
-public class TileEntityEnchReallocator extends TileEntityLightningUser implements ISidedInventoryLC {
+public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 	
 	private static final int[] slotsTop = new int[]{0};
 	private static final int[] slotsBottom = new int[]{1};

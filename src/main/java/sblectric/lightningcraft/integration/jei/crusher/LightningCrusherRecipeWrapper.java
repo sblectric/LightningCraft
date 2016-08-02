@@ -6,13 +6,8 @@ import javax.annotation.Nonnull;
 
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import sblectric.lightningcraft.recipes.LightningCrusherRecipes.LightningCrusherRecipe;
-import sblectric.lightningcraft.tiles.TileEntityLightningCrusher;
 import sblectric.lightningcraft.util.JointList;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** The wrapper for crusher recipes */
 public class LightningCrusherRecipeWrapper extends BlankRecipeWrapper {

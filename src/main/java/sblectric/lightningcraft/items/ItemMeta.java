@@ -2,8 +2,6 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
@@ -13,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.JointList;
 
 /** An item with metadata */

@@ -4,8 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
-
 import sblectric.lightningcraft.ref.LCText;
 
 /** the ender sword class */

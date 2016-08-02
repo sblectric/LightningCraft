@@ -15,7 +15,7 @@ public class ShortSender {
 	
 	/** Reconstruct an int from two shorts */
 	public static int getInt(short lowShort, short highShort) {
-		return (int)(lowShort << 16) | (highShort & 0xFFFF);
+		return lowShort << 16 | (highShort & 0xFFFF);
 	}
 
 }

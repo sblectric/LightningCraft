@@ -10,10 +10,8 @@ import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
 import sblectric.lightningcraft.blocks.LCBlocks;
-import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.integration.cofh.CoFH;
 import sblectric.lightningcraft.items.LCItems;
-import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.recipes.LCFuelHandler;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.Dust;
@@ -39,7 +37,7 @@ public class LCCraftingManager {
 		// register this mod's items
 		
 		// register blocks
-		for(int meta = 0; meta < MBlock.count; meta++) {
+		for(int meta = 0; meta < Ingot.count; meta++) {
 			OreDictionary.registerOre(MBlock.getBlockFromMeta(meta), new ItemStack(LCBlocks.metalBlock, 1, meta));
 		}
 		
@@ -49,12 +47,12 @@ public class LCCraftingManager {
 		}
 		
 		// register nuggets
-		for(int meta = 0; meta < Nugget.count; meta++) {
+		for(int meta = 0; meta < Ingot.count; meta++) {
 			OreDictionary.registerOre(Nugget.getNuggetFromMeta(meta), new ItemStack(LCItems.nugget, 1, meta));
 		}
 		
 		// register dusts
-		for(int meta = 0; meta < Dust.count; meta++) {
+		for(int meta = 0; meta < Ingot.count; meta++) {
 			OreDictionary.registerOre(Dust.getDustFromMeta(meta), new ItemStack(LCItems.dust, 1, meta));
 		}
 		
@@ -64,7 +62,7 @@ public class LCCraftingManager {
 		}
 		
 		// register plates
-		for(int meta = 0; meta < Plate.count; meta++) {
+		for(int meta = 0; meta < Rod.count; meta++) {
 			OreDictionary.registerOre(Plate.getPlateFromMeta(meta), new ItemStack(LCItems.plate, 1, meta));
 		}
 		
@@ -85,10 +83,6 @@ public class LCCraftingManager {
 		OreDictionary.registerOre("dustDiamond", new ItemStack(LCItems.material, 1, Material.DIAMOND_DUST));
 		OreDictionary.registerOre("dustEmerald", new ItemStack(LCItems.material, 1, Material.EMERALD_DUST));
 		OreDictionary.registerOre("dustQuartz", new ItemStack(LCItems.material, 1, Material.QUARTZ_DUST));
-		
-		// potions
-		OreDictionary.registerOre("potionDemonWarding", LCPotions.getPotionWithType(LCPotions.demonFriendNormal));
-		OreDictionary.registerOre("potionDemonWardingExt", LCPotions.getPotionWithType(LCPotions.demonFriendExtended));
 	}
 	
 	/** Add crafting recipes */
@@ -112,8 +106,8 @@ public class LCCraftingManager {
 		}
 		
 		// plate recipes
-		for(int meta = 0; meta < Plate.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.plate, 3, meta), "XXX", 'X',Plate.getIngotFromMeta(meta));
+		for(int meta = 0; meta < Rod.count; meta++) {
+			RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.plate, 3, meta), "XXX", 'X',Rod.getIngotFromMeta(meta));
 		}
 		
 		// air terminal recipes
@@ -230,11 +224,11 @@ public class LCCraftingManager {
 				'A',Items.GOLDEN_BOOTS,  'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
 		
 		// cell recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, MBlock.ELEC), "XAX","IBI","XAX",
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), "XAX","IBI","XAX",
 				'B',"plateGold", 'X',"rodIron", 'I',"plateElectricium", 'A',"dustRedstone");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, MBlock.SKY), "XAX","IBI","XAX",
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), "XAX","IBI","XAX",
 				'B',new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), 'X',"rodGold", 'I',"plateSkyfather", 'A',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, MBlock.MYSTIC), "XAX","IBI","XAX",
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.MYSTIC), "XAX","IBI","XAX",
 				'B',new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), 'X',"rodSkyfather", 'I',"plateMystic", 'A',"plateElectricium");
 		
 		// cell upgrade
@@ -249,7 +243,7 @@ public class LCCraftingManager {
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningInfuser), "XCX","XAX","XIX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER), 'I',"plateGold", 'A',"rodElectricium", 'C',Items.COMPARATOR);
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.staticGenerator), "XCX","COC","XCX", 
-				'C',Items.COMPARATOR, 'X',Blocks.QUARTZ_BLOCK, 'O',new ItemStack(LCBlocks.lightningCell, 1, MBlock.ELEC));
+				'C',Items.COMPARATOR, 'X',Blocks.QUARTZ_BLOCK, 'O',new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.enchReallocator), "TCT","XAX","XEX",
 				'A',new ItemStack(LCItems.material, 1, Material.ENSORCELLED), 'E',Blocks.ENCHANTING_TABLE, 
 				'T',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), 'C',Items.COMPARATOR, 
@@ -310,7 +304,7 @@ public class LCCraftingManager {
 	/** Add smelting recipes */
 	private static void addSmeltingRecipes() {
 		// dust -> ingots
-		for(int meta = 0; meta < Dust.count; meta++) {
+		for(int meta = 0; meta < Ingot.count; meta++) {
 			GameRegistry.addSmelting(new ItemStack(LCItems.dust, 1, meta), new ItemStack(LCItems.ingot, 1, meta), 1.0F);
 		}
 		

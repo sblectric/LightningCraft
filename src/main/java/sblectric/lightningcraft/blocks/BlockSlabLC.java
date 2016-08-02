@@ -14,7 +14,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -23,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.items.blocks.ItemSlabLC;
 import sblectric.lightningcraft.registry.IRegistryBlock;
-import sblectric.lightningcraft.util.JointList;
 
 /** The half-slab block */
 public class BlockSlabLC extends BlockSlab implements IRegistryBlock {
@@ -154,7 +152,7 @@ public class BlockSlabLC extends BlockSlab implements IRegistryBlock {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		if(!this.isDouble() && (EnumBlockHalf)state.getValue(HALF) == EnumBlockHalf.TOP) {
+		if(!this.isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP) {
 			return 8 + state.getValue(VAR);
 		} else {
 			return state.getValue(VAR);

@@ -1,26 +1,17 @@
 package sblectric.lightningcraft.items;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.creativetabs.LCCreativeTabs;
-import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.ref.Metal.Dust;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.ref.Metal.Nugget;
-import sblectric.lightningcraft.ref.Metal.Plate;
-import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.registry.IRegistryItem;
 import sblectric.lightningcraft.registry.RegistryHelper;

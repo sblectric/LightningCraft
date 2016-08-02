@@ -44,7 +44,7 @@ public abstract class ContainerLightningUser extends Container {
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.listeners.size(); i++) {
-			IContainerListener craft = (IContainerListener) this.listeners.get(i);
+			IContainerListener craft = this.listeners.get(i);
 			int n = sendUpdate(craft, 1000);
 			craft.sendProgressBarUpdate(this, n++, (int)(this.tile.getEfficiency() * 1000D));
 		}

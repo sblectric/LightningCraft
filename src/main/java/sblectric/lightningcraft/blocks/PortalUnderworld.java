@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
@@ -188,7 +184,7 @@ public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock)
 	{
-		EnumFacing.Axis axis = (EnumFacing.Axis)state.getValue(AXIS);
+		EnumFacing.Axis axis = state.getValue(AXIS);
 
 		if (axis == EnumFacing.Axis.X)
 		{
@@ -212,25 +208,25 @@ public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
 	@Override
 	public void randomDisplayTick(IBlockState state, World worldIn, BlockPos pos, Random rand) {
 		if (rand.nextInt(100) == 0) {
-			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 
 					LCSoundEvents.portalUnderworld, SoundCategory.AMBIENT, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 
 		for (int i = 0; i < 4; ++i) {
-			double d0 = (double)((float)pos.getX() + rand.nextFloat());
-			double d1 = (double)((float)pos.getY() + rand.nextFloat());
-			double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-			double d3 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-			double d4 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
-			double d5 = ((double)rand.nextFloat() - 0.5D) * 0.5D;
+			double d0 = pos.getX() + rand.nextFloat();
+			double d1 = pos.getY() + rand.nextFloat();
+			double d2 = pos.getZ() + rand.nextFloat();
+			double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
+			double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
+			double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
 			int j = rand.nextInt(2) * 2 - 1;
 
 			if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
-				d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-				d3 = (double)(rand.nextFloat() * 2.0F * (float)j);
+				d0 = pos.getX() + 0.5D + 0.25D * j;
+				d3 = rand.nextFloat() * 2.0F * j;
 			} else {
-				d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)j;
-				d5 = (double)(rand.nextFloat() * 2.0F * (float)j);
+				d2 = pos.getZ() + 0.5D + 0.25D * j;
+				d5 = rand.nextFloat() * 2.0F * j;
 			}
 
 			LCParticles.spawnParticle("underPortal", d0, d1, d2, d3, d4, d5);

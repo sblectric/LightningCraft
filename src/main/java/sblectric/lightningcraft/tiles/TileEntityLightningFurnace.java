@@ -9,12 +9,11 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.IFurnace;
 import sblectric.lightningcraft.blocks.LCBlocks;
 
 /** The lightning furnace tile entity */
-public class TileEntityLightningFurnace extends TileEntityLightningUser implements ISidedInventoryLC {
+public class TileEntityLightningFurnace extends TileEntityLightningItemHandler {
 
 	private static final int[] slotsTop = new int[]{0};
 	private static final int[] slotsBottom = new int[]{1};

@@ -14,7 +14,7 @@ public class WeatherUtils {
 	/** gets a list of lightning bolts within a box */
 	public static List<EntityLightningBolt> getLightningBoltsWithinAABB(World world, AxisAlignedBB box) {
 		List<EntityLightningBolt> bolts = new LinkedList<EntityLightningBolt>();
-		for(Entity i : (List<Entity>) world.weatherEffects) {
+		for(Entity i : world.weatherEffects) {
 			if(i instanceof EntityLightningBolt) {
 				if(i.posX >= box.minX && i.posX <= box.maxX		&& i.posY >= box.minY && i.posY <= box.maxY		&& i.posZ >= box.minZ && i.posZ <= box.maxZ)
 					bolts.add((EntityLightningBolt) i);

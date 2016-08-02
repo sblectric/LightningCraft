@@ -14,7 +14,7 @@ public class ParticleElectricAttack extends ParticleRedstone {
 	/** A special electric particle with custom size and color */
 	public ParticleElectricAttack(World world, double x, double y, double z, float scale, Color rgb) {
 		super(world, x,y,z, scale, 0, 0, 0);
-        this.setRBGColorF((float)rgb.getRed() / 255F, (float)rgb.getGreen() / 255F, (float)rgb.getBlue() / 255F);
+        this.setRBGColorF(rgb.getRed() / 255F, rgb.getGreen() / 255F, rgb.getBlue() / 255F);
 	}
 
 }

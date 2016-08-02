@@ -60,7 +60,7 @@ public class ContainerLightningInfuser extends ContainerLightningUser {
 	public void detectAndSendChanges(){
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.listeners.size(); ++i) {
-			IContainerListener craft = (IContainerListener) this.listeners.get(i);
+			IContainerListener craft = this.listeners.get(i);
 			craft.sendProgressBarUpdate(this, 0, this.tileInfuser.infuserCookTime);
 			craft.sendProgressBarUpdate(this, 1, this.tileInfuser.infusionCost);
 		}
@@ -87,7 +87,7 @@ public class ContainerLightningInfuser extends ContainerLightningUser {
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
 		ItemStack itemstack = null;
-		Slot slot = (Slot)this.inventorySlots.get(par2);
+		Slot slot = this.inventorySlots.get(par2);
 		
 		LinkedList<Integer> INPUT = new LinkedList<Integer>();
 		

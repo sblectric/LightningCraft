@@ -11,13 +11,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
 
 /** Helps with ItemStack functionality */
@@ -25,6 +25,7 @@ public class StackHelper {
 
 	private static Map<String, Integer> oreMap = new HashMap();
 	private static Map<String, Integer> subMap = new HashMap();
+
 	public static Random rand = new Random();
 
 	/** Animate an ItemStack based on makeItemStackFromString (clientside only) */
@@ -39,7 +40,7 @@ public class StackHelper {
 		int oreIndex = 0;
 		int subIndex = 0;
 		ItemStack result;
-		
+
 		if(oreMap.containsKey(stackString))	oreIndex = oreMap.get(stackString);
 		if(change) {
 			if(ores > 0) {
@@ -69,70 +70,67 @@ public class StackHelper {
 		return result;
 	}
 
+	/** Returns true if the specified string corresponds to an oredict entry */
+	private static boolean isStringOreDict(String stackString) {
+		return OreDictionary.doesOreNameExist(stackString);
+	}
+
 	/** Creates a new ItemStack from the string acquired from makeStringFromItemStack or an oredict name, with an oredict index option */
 	public static ItemStack makeItemStackFromString(String stackString, int oreIndex) {
 		if(stackString == LightningInfusionRecipes.nullIdentifier) return null;
-		if(stackString.contains("@")) { // it's a stack
-			try {
-				String[] a = stackString.split("#");
-				int stackSize = Integer.parseInt(a[0]);
-				String[] b = a[1].split("@");
-				String name = b[0]; // get the registry name
-				int meta = Integer.parseInt(b[1]);
-				ItemStack output = GameRegistry.makeItemStack(name, meta, stackSize, null);
-				return output;
-			} catch(Exception e) {
-				return null; // parsing error
+		try { // try to load it as a regular NBT stack
+			if(!isStringOreDict(stackString)) {
+				return ItemStack.loadItemStackFromNBT(JsonToNBT.getTagFromJson(stackString));
+			} else {
+				throw new NBTException("OreDict exists");
 			}
-		} else { // it's an oredict value (maybe)
+		} catch(NBTException e) { // now try to get it as an oredict entry
 			List<ItemStack> list;
-			if(OreDictionary.doesOreNameExist(stackString) && oreIndex < (list = OreDictionary.getOres(stackString)).size()) {
+			if(isStringOreDict(stackString) && oreIndex < (list = OreDictionary.getOres(stackString)).size()) {
 				return list.get(oreIndex); // yep
 			} else {
 				return null; // guess not
 			}
 		}
 	}
-	
+
 	/** Creates a new ItemStack from the string acquired from makeStringFromItemStack or an oredict name */
 	public static ItemStack makeItemStackFromString(String stackString) {
 		return makeItemStackFromString(stackString, 0);
 	}
-	
+
 	/** Get metadata from a string version of an ItemStack */
 	public static int getMetaFromString(String stackString) {
-		if(stackString.contains("@")) {
-			String[] a = stackString.split("@");
-			return Integer.parseInt(a[1]);
+		if(!isStringOreDict(stackString)) {
+			ItemStack stack = makeItemStackFromString(stackString);
+			return stack != null ? stack.getItemDamage() : 0;
 		} else {
 			return -1; // oredict flag
 		}
 	}
-	
-	/** Strip a stack of its metadata information */
-	public static String stripMetaFromString(String stackString) {
-		if(stackString.contains("@")) {
-			String[] a = stackString.split("@");
-			return a[0];
-		} else {
-			return stackString;
-		}
-	}
-	
-	/** Change a string's metadata information */
+
+	/** Change a string's metadata information (assumes the stack is non-null) */
 	public static String changeStringMeta(String stackString, int newMeta) {
-		if(getMetaFromString(stackString) > -1) {
-			return stripMetaFromString(stackString) + "@" + newMeta;
-		} else {
-			return stackString;
-		}
+		try {
+			if(!isStringOreDict(stackString)) {
+				ItemStack stack = makeItemStackFromString(stackString);
+				stack.setItemDamage(newMeta);
+				return makeStringFromItemStack(stack);
+			}
+		} catch(NullPointerException e) {}
+		return stackString;
+	}
+
+	/** Strip a stack of its metadata information (just set it to zero) */
+	public static String stripMetaFromString(String stackString) {
+		return changeStringMeta(stackString, 0);
 	}
 
 	/** Turn an ItemStack or oredict name into a String */
 	public static String makeStringFromItemStack(Object stack) {
 		if(stack instanceof ItemStack) {
 			ItemStack s = (ItemStack)stack;
-			return s.stackSize + "#" + s.getItem().getRegistryName() + "@" + s.getItemDamage();
+			return s.writeToNBT(new NBTTagCompound()).toString();
 		} else if(stack instanceof String) {
 			return (String)stack;
 		} else {
@@ -168,12 +166,10 @@ public class StackHelper {
 			return false;
 		Item armor = stack.getItem();
 
-		if (!(armor == Items.LEATHER_BOOTS || armor == Items.LEATHER_LEGGINGS || armor == Items.LEATHER_CHESTPLATE || armor == Items.LEATHER_HELMET))
-		{
+		if (!(armor == Items.LEATHER_BOOTS || armor == Items.LEATHER_LEGGINGS || 
+				armor == Items.LEATHER_CHESTPLATE || armor == Items.LEATHER_HELMET)) {
 			return false;
-		}
-		else
-		{
+		} else {
 			NBTTagCompound nbttagcompound = stack.getTagCompound();
 			if(nbttagcompound == null) nbttagcompound = new NBTTagCompound();
 			NBTTagCompound disp = new NBTTagCompound();

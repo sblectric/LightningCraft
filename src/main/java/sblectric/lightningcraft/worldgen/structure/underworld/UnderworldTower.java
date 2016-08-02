@@ -72,6 +72,7 @@ public class UnderworldTower extends Feature {
 	}
 
 	/** Underworld tower spawn mechanics */
+	@Override
 	protected boolean findSpawnPosition(World world, StructureBoundingBox box, int yoff)
 	{
 		if (this.structY >= 0) {

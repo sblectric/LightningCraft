@@ -2,7 +2,6 @@ package sblectric.lightningcraft.tiles;
 
 import java.util.UUID;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;

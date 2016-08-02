@@ -179,7 +179,7 @@ public class PlayerEvents {
 
 	/** Repairs the stack with an LE cost */
 	private boolean doKineticRepair(EntityPlayer player, ItemStack stack, double speed) {
-		ItemStack battery = InventoryLE.getLESource((EntityPlayer)player, InventoryLE.energyUsage);
+		ItemStack battery = InventoryLE.getLESource(player, InventoryLE.energyUsage);
 		if(battery != null && doAutoRepair(player, stack, speed)) {
 			ItemBattery.addStoredPower(battery, -InventoryLE.energyUsage);
 			return true;

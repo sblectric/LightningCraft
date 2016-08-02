@@ -1,7 +1,5 @@
 package sblectric.lightningcraft.creativetabs;
 
-import net.minecraft.init.Items;
-
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.items.LCItems;
 

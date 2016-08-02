@@ -16,8 +16,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import sblectric.lightningcraft.util.WorldUtils;
-
 public class EntityLCLightningBolt extends EntityLightningBolt {
 
 	/** Declares which state the lightning bolt is in. Whether it's in the air, hit the ground, etc. */

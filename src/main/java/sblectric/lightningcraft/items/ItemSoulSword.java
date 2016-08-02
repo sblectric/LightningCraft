@@ -3,11 +3,9 @@ package sblectric.lightningcraft.items;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
 import sblectric.lightningcraft.ref.LCText;
-import sblectric.lightningcraft.util.SkyUtils;
 
 /** The soul sword class */
 public class ItemSoulSword extends ItemSpecialSword {
