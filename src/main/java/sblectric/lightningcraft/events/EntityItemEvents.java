@@ -1,14 +1,19 @@
 package sblectric.lightningcraft.events;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import sblectric.lightningcraft.entities.EntityLCItem;
+import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.recipes.LightningTransformRecipes;
+import sblectric.lightningcraft.ref.Material;
+import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.JointList;
 
 /** Handles EntityItem events */
@@ -24,9 +29,9 @@ public class EntityItemEvents {
 			JointList<ItemStack> input = new JointList().join(item.getEntityItem());
 			JointList<EntityItem> activeItems = new JointList().join(item);
 			
-			// now get nearby items within a 1 block radius
+			// now get nearby items within a 2 block radius
 			for(Entity t : world.loadedEntityList) {
-				if(!!t.isDead && t instanceof EntityItem && t != item && t.getDistanceToEntity(item) <= 1) {
+				if(!!t.isDead && t instanceof EntityItem && t != item && t.getDistanceToEntity(item) <= 2) {
 					EntityItem et = (EntityItem)t;
 					input.add(et.getEntityItem());
 					activeItems.add(et);
@@ -43,6 +48,17 @@ public class EntityItemEvents {
 			// spawn an invincible resulting item at that position
             EntityItem entityitem = new EntityLCItem(world, item.posX, item.posY, item.posZ, out);
             world.spawnEntityInWorld(entityitem);
+		}
+	}
+	
+	/** Spawn the lightning upgrade when an upgraded tile is broken */
+	@SubscribeEvent
+	public void onUpgradedTileBreak(BreakEvent e) {
+		if(!e.getWorld().isRemote) {
+			TileEntity t = e.getWorld().getTileEntity(e.getPos());
+			if(t != null && t instanceof ILightningUpgradable && ((ILightningUpgradable)t).isUpgraded()) {
+				Block.spawnAsEntity(e.getWorld(), e.getPos(), new ItemStack(LCItems.material, 1, Material.UPGRADE));
+			}
 		}
 	}
 

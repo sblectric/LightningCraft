@@ -64,7 +64,8 @@ public class LCParticles {
 		}
 	}
 	
-	/** add an effect to the renderer list */	
+	/** add an effect to the renderer list */
+	@SideOnly(Side.CLIENT)
 	private static void addEffect(Particle e) {
 		Minecraft.getMinecraft().effectRenderer.addEffect(e);
 	}

@@ -11,6 +11,8 @@ public class LCTileEntities {
 		GameRegistry.registerTileEntity(TileEntityLightningFurnace.class, "TileEntityLightningFurnace");
 		GameRegistry.registerTileEntity(TileEntityLightningCrusher.class, "TileEntityLightningCrusher");
 		GameRegistry.registerTileEntity(TileEntityLightningInfuser.class, "TileEntityLightningInfuser");
+		GameRegistry.registerTileEntity(TileEntityLightningBreaker.class, "TileEntityLightningBreaker");
+		GameRegistry.registerTileEntity(TileEntityLightningMiner.class, "TileEntityLightningMiner");
 		GameRegistry.registerTileEntity(TileEntityStaticGenerator.class, "TileEntityStaticGenerator");
 		GameRegistry.registerTileEntity(TileEntityChargingPlate.class, "TileEntityChargingPlate");
 		GameRegistry.registerTileEntity(TileEntityEnchReallocator.class, "TileEntityEnchReallocator");

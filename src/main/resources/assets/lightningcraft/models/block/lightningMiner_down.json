@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable_vertical",
+    "textures": {
+        "front": "blocks/gold_block",
+        "side": "lightningcraft:blocks/lightning_miner_side",
+		"down": "lightningcraft:blocks/lightning_miner_front"
+    }
+}

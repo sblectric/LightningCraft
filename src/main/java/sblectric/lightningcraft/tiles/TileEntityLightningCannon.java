@@ -31,6 +31,38 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 	private int currentTicks;
 	private double tileX, tileY, tileZ;
 	public EnumMode mode = EnumMode.DEFAULT;
+	
+	/** Operating mode */
+	public static enum EnumMode {
+		NONE(0, "Cannon Inactive"),
+		MOBS(1, "Hostile Mobs Only"),
+		ALL(2, "All Non-Player Entities");
+
+		private static EnumMode DEFAULT = NONE;
+		private int id;
+		private String name;
+
+		private EnumMode(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+
+		public String getName() {
+			return this.name;
+		}
+
+		public int getID() {
+			return this.id;
+		}
+
+		public static EnumMode assignMode(int id) {
+			for(EnumMode m : EnumMode.values()) {
+				if(m.id == id) return m;
+			}
+			return DEFAULT;
+		}
+
+	}
 
 	/** Set up the cannon */
 	public TileEntityLightningCannon() {
@@ -169,38 +201,6 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 		// operating mode
 		tagCompound.setInteger("operatingMode", this.mode.id);
 		return tagCompound;
-	}
-	
-	/** Operating mode */
-	public static enum EnumMode {
-		NONE(0, "Cannon Inactive"),
-		MOBS(1, "Hostile Mobs Only"),
-		ALL(2, "All Non-Player Entities");
-
-		private static EnumMode DEFAULT = NONE;
-		private int id;
-		private String name;
-
-		private EnumMode(int id, String name) {
-			this.id = id;
-			this.name = name;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		public int getID() {
-			return this.id;
-		}
-
-		public static EnumMode assignMode(int id) {
-			for(EnumMode m : EnumMode.values()) {
-				if(m.id == id) return m;
-			}
-			return DEFAULT;
-		}
-
 	}
 
 }

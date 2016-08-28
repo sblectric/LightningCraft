@@ -37,6 +37,9 @@ public class LCBlocks {
 	public static BlockLC lightningFurnace;
 	public static BlockLC lightningCrusher;
 	public static BlockLC lightningInfuser;
+	public static BlockLC lightningBreaker;
+	public static BlockLC lightningMiner;
+	public static BlockLC lightningConduit;
 	public static BlockLC staticGenerator;
 	public static BlockLC wirelessBlock;
 	public static BlockChargingPlate chargingPlate;
@@ -69,6 +72,8 @@ public class LCBlocks {
 			lightningFurnace = (BlockLC)new BlockLightningFurnace().setRegistryName("lightningFurnace").setCreativeTab(LCCreativeTabs.blocks),
 			lightningCrusher = (BlockLC)new BlockLightningCrusher().setRegistryName("lightningCrusher").setCreativeTab(LCCreativeTabs.blocks),
 			lightningInfuser = (BlockLC)new BlockLightningInfuser().setRegistryName("lightningInfuser").setCreativeTab(LCCreativeTabs.blocks),
+			lightningBreaker = (BlockLC)new BlockLightningBreaker().setRegistryName("lightningBreaker").setCreativeTab(LCCreativeTabs.blocks),
+			lightningMiner = (BlockLC)new BlockLightningMiner().setRegistryName("lightningMiner").setCreativeTab(LCCreativeTabs.blocks),
 			staticGenerator = (BlockLC)new BlockStaticGenerator().setRegistryName("staticGenerator").setCreativeTab(LCCreativeTabs.blocks),
 			wirelessBlock = (BlockLC)new BlockWireless().setRegistryName("wirelessBlock").setCreativeTab(LCCreativeTabs.blocks),
 			chargingPlate = (BlockChargingPlate)new BlockChargingPlate().setRegistryName("chargingPlate").setCreativeTab(LCCreativeTabs.blocks),

@@ -4,13 +4,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-
 import sblectric.lightningcraft.gui.client.GuiEnchReallocator;
 import sblectric.lightningcraft.gui.client.GuiLightningCannon;
 import sblectric.lightningcraft.gui.client.GuiLightningCell;
 import sblectric.lightningcraft.gui.client.GuiLightningCrusher;
 import sblectric.lightningcraft.gui.client.GuiLightningFurnace;
 import sblectric.lightningcraft.gui.client.GuiLightningInfuser;
+import sblectric.lightningcraft.gui.client.GuiLightningMiner;
 import sblectric.lightningcraft.gui.client.GuiLightningReceiver;
 import sblectric.lightningcraft.gui.client.GuiRFProvider;
 import sblectric.lightningcraft.gui.client.GuiRFReceiver;
@@ -21,6 +21,7 @@ import sblectric.lightningcraft.gui.server.ContainerLightningCell;
 import sblectric.lightningcraft.gui.server.ContainerLightningCrusher;
 import sblectric.lightningcraft.gui.server.ContainerLightningFurnace;
 import sblectric.lightningcraft.gui.server.ContainerLightningInfuser;
+import sblectric.lightningcraft.gui.server.ContainerLightningMiner;
 import sblectric.lightningcraft.gui.server.ContainerLightningReceiver;
 import sblectric.lightningcraft.gui.server.ContainerRFProvider;
 import sblectric.lightningcraft.gui.server.ContainerRFReceiver;
@@ -31,6 +32,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 import sblectric.lightningcraft.tiles.TileEntityLightningCrusher;
 import sblectric.lightningcraft.tiles.TileEntityLightningFurnace;
 import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
+import sblectric.lightningcraft.tiles.TileEntityLightningMiner;
 import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
 import sblectric.lightningcraft.tiles.TileEntityRFProvider;
 import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
@@ -48,6 +50,7 @@ public class LCGuiHandler implements IGuiHandler {
 	public static final int enchReallocatorGui = 5;
 	public static final int lightningRXGui = 6;
 	public static final int lightningCannonGui = 7;
+	public static final int lightningMinerGui = 8;
 	
 	public static final int lightningLEtoRFGui = 100;
 	public static final int lightningRFtoLEGui = 101;
@@ -81,6 +84,9 @@ public class LCGuiHandler implements IGuiHandler {
 		case lightningCannonGui: // Lightning Cannon
 			TileEntityLightningCannon tileCannon = (TileEntityLightningCannon) world.getTileEntity(pos);
 			return new ContainerLightningCannon(player.inventory, tileCannon);
+		case lightningMinerGui: // Lightning Miner
+			TileEntityLightningMiner tileMiner = (TileEntityLightningMiner) world.getTileEntity(pos);
+			return new ContainerLightningMiner(player.inventory, tileMiner);
 		case lightningLEtoRFGui: // RF Provider
 			TileEntityRFProvider tileLERF = (TileEntityRFProvider) world.getTileEntity(pos);
 			return new ContainerRFProvider(player.inventory, tileLERF);
@@ -121,6 +127,9 @@ public class LCGuiHandler implements IGuiHandler {
 		case lightningCannonGui: // Lightning Cannon
 			TileEntityLightningCannon tileCannon = (TileEntityLightningCannon) world.getTileEntity(pos);
 			return new GuiLightningCannon(player.inventory, tileCannon);
+		case lightningMinerGui: // Lightning Miner
+			TileEntityLightningMiner tileMiner = (TileEntityLightningMiner) world.getTileEntity(pos);
+			return new GuiLightningMiner(player.inventory, tileMiner);
 		case lightningLEtoRFGui: // RF Provider
 			TileEntityRFProvider tileLERF = (TileEntityRFProvider) world.getTileEntity(pos);
 			return new GuiRFProvider(player.inventory, tileLERF);

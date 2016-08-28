@@ -6,8 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import sblectric.lightningcraft.integration.cofh.CoFH;
+import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.items.blocks.ItemBlockCoFH;
 
 /** A block that uses RF in some way */
@@ -19,7 +18,7 @@ public abstract class BlockCoFH extends BlockContainerLC {
 	
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		if(CoFH.apiLoaded) { // only expose the block when the RF API exists
+		if(EnergyApiHelper.rfOrTeslaLoaded) { // only expose the block when the RF API exists
 			list.add(new ItemStack(item));
 		}
 	}

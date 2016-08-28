@@ -46,6 +46,7 @@ public class ContainerLightningCell extends Container {
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(cellPower));
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(maxPower));
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(maxPower));
+		craft.sendProgressBarUpdate(this, n++, this.tileLPCell.isUpgraded() ? 1 : 0);
 		return n;
 	}
 	
@@ -73,6 +74,7 @@ public class ContainerLightningCell extends Container {
 		if(par1 == 2) lowMax = (short)par2;
 		if(par1 == 3) highMax = (short)par2;
 		if(lowMax != null && highMax != null) tileLPCell.maxPower = ShortSender.getInt(lowMax, highMax);
+		if(par1 == 4) tileLPCell.setUpgraded(par2 > 0);
 	}
 
 	@Override

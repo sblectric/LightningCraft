@@ -1,4 +1,4 @@
-package sblectric.lightningcraft.blocks;
+package sblectric.lightningcraft.blocks.ifaces;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;

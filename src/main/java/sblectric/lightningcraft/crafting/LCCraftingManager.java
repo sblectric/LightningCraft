@@ -10,7 +10,7 @@ import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
 import sblectric.lightningcraft.blocks.LCBlocks;
-import sblectric.lightningcraft.integration.cofh.CoFH;
+import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.recipes.LCFuelHandler;
 import sblectric.lightningcraft.ref.Material;
@@ -232,8 +232,8 @@ public class LCCraftingManager {
 				'B',new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), 'X',"rodSkyfather", 'I',"plateMystic", 'A',"plateElectricium");
 		
 		// cell upgrade
-		ItemStack cellUpgrade = new ItemStack(LCItems.material, 1, Material.CELL_UPGRADE);
-		RecipeHelper.addShapedOreRecipe(cellUpgrade, " R ","RXR"," R ", 'X',"plateSkyfather", 'R',"dustRedstone");
+		ItemStack lUpgrade = new ItemStack(LCItems.material, 1, Material.UPGRADE);
+		RecipeHelper.addShapedOreRecipe(lUpgrade, " R ","RXR"," R ", 'X',"plateSkyfather", 'R',"dustRedstone");
 		
 		// other machine recipes
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningFurnace), "XCX","XAX","XIX",
@@ -242,6 +242,10 @@ public class LCCraftingManager {
 				'Z',Blocks.IRON_BARS, 'X',Blocks.OBSIDIAN, 'I',"plateElectricium", 'A',LCBlocks.lightningFurnace, 'C',Items.COMPARATOR);
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningInfuser), "XCX","XAX","XIX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER), 'I',"plateGold", 'A',"rodElectricium", 'C',Items.COMPARATOR);
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningBreaker), "XCX","GAG","XIX",
+				'X',"plateIron", 'G',"plateGold", 'I',Items.DIAMOND_PICKAXE, 'A',"blockIron", 'C',Items.COMPARATOR);
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningMiner), "XCX","GAG","XIX",
+				'X',"plateGold", 'G',"plateSkyfather", 'I',LCItems.elecPick, 'A',new ItemStack(LCBlocks.lightningBreaker), 'C',"plateElectricium");
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.staticGenerator), "XCX","COC","XCX", 
 				'C',Items.COMPARATOR, 'X',Blocks.QUARTZ_BLOCK, 'O',new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.enchReallocator), "TCT","XAX","XEX",
@@ -251,24 +255,24 @@ public class LCCraftingManager {
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 1), "ERE","ICI","ETE", 
 				'C',new ItemStack(LCItems.material, 1, Material.CANNON_CORE), 'I',"rodIron", 'E',"rodElectricium", 'T',Blocks.TNT, 'R',Items.COMPARATOR);
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 2), "EQE","ICI","EDE", 
-				'C',new ItemStack(LCBlocks.lightningCannon, 1, 1), 'I',"rodMystic", 'E',"rodSkyfather", 'Q',cellUpgrade, 'D',"dustMystic");
+				'C',new ItemStack(LCBlocks.lightningCannon, 1, 1), 'I',"rodMystic", 'E',"rodSkyfather", 'Q',lUpgrade, 'D',"dustMystic");
 		
 		// wireless recipes
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 0), " T ","XOX","XCX", 'C',"dustDiamond",
-				'X',"plateIron", 'O',cellUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
+				'X',"plateIron", 'O',lUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 1), " T ","XOX","XCX", 'C',Items.COMPARATOR,
 				'X',"rodIron", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 0), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.SKY));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 2), " T ","XOX","XCX", 'C',"plateElectricium",
 				'X',"blockIron", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 1), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.MYSTIC));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 3), " T ","XOX","XCX", 'C',"dustRedstone",
-				'X',"plateGold", 'O',cellUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
+				'X',"plateGold", 'O',lUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 4), " T ","XOX","XCX", 'C',Items.COMPARATOR,
 				'X',"rodGold", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 3), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.SKY));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 5), " T ","XOX","XCX", 'C',"blockRedstone",
 				'X',"blockGold", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 4), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.MYSTIC));
 		
 		// RF machines
-		if(CoFH.apiLoaded) {
+		if(EnergyApiHelper.rfOrTeslaLoaded) {
 			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.rfProvider), "BRB","CAC","BCB",
 					'B',"plateElectricium", 'A',"blockIron", 'R',Items.COMPARATOR, 'C',"plateIron");
 			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.rfReceiver), "BRB","CAC","BCB",
@@ -277,14 +281,14 @@ public class LCCraftingManager {
 		
 		// wireless markers
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.wirelessMarker, 1), " C ","EPE"," U ", 
-				'P',Items.PAPER, 'E',"dustElectricium", 'U',cellUpgrade, 'C',Items.COMPARATOR);
+				'P',Items.PAPER, 'E',"dustElectricium", 'U',lUpgrade, 'C',Items.COMPARATOR);
 		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.wirelessMarker, 1, 0), new ItemStack(LCItems.wirelessMarker, 1, 1));
 		
 		// battery recipes
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 0), "ICI","IBI","IRI", 
 				'B',"plateElectricium", 'I',"rodIron", 'R',"dustRedstone", 'C',Items.COMPARATOR);
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 1), "RUR","RBR","RIR", 
-				'B',new ItemStack(LCItems.battery, 1, 0), 'U',cellUpgrade, 'R',"dustRedstone", 'I',"rodElectricium");
+				'B',new ItemStack(LCItems.battery, 1, 0), 'U',lUpgrade, 'R',"dustRedstone", 'I',"rodElectricium");
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 2), "RUR","RBR","RIR", 
 				'B',new ItemStack(LCItems.battery, 1, 1), 'U',"ingotSkyfather", 'R',"blockRedstone", 'I',"blockElectricium");
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.chargingPlate), "RCR","RPR","RER", 'E',"plateElectricium", 

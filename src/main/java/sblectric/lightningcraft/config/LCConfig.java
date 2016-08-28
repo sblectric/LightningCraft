@@ -2,20 +2,29 @@ package sblectric.lightningcraft.config;
 
 import java.io.File;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Property;
-
-import sblectric.lightningcraft.integration.cofh.CoFH;
+import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.ref.Log;
 
 public class LCConfig {
 	
 	public static boolean portalEnabled;
 	public static int portalCooldown;
-	public static boolean demonSoldiersAlwaysNeutral, useVanillaGhastSounds;
+	public static boolean demonSoldiersAlwaysNeutral, demonSoldiersInNether;
+	public static boolean useVanillaGhastSounds;
+	
+	public static boolean upgradeEnabled;
+	public static String[] minerFillerBlocks;
+	public static int minerMaxRetries;
+	
 	public static boolean autoSmelt, autoRepair, mysticGear;
+	
 	public static int underworldDimensionID;
 	public static boolean JEIIntegration, RFIntegration;
 	public static int RFtoLEConversion;
+	public static boolean tinkersIntegration;
 	
 	/** Set config defaults */
 	private static void setDefaultValues() {
@@ -23,7 +32,15 @@ public class LCConfig {
 		portalEnabled = true;
 		portalCooldown = 200;
 		demonSoldiersAlwaysNeutral = false;
+		demonSoldiersInNether = true;
 		useVanillaGhastSounds = false;
+		
+		// machines
+		upgradeEnabled = true;
+		minerFillerBlocks = new String[]{Blocks.COBBLESTONE.getRegistryName().toString(), 
+										 Blocks.DIRT.getRegistryName().toString(), 
+										 Blocks.SAND.getRegistryName().toString()};
+		minerMaxRetries = 256;
 		
 		// tools
 		autoSmelt = true;
@@ -37,6 +54,7 @@ public class LCConfig {
 		JEIIntegration = true;
 		RFIntegration = true;
 		RFtoLEConversion = 50;
+		tinkersIntegration = true;
 	}
 	
 	/** Load the mod config */
@@ -46,34 +64,52 @@ public class LCConfig {
 		setDefaultValues();
 		config.load();
 		Property p;
+		String category;
 		
 		// General
-		portalEnabled = config.getBoolean("Portal Enabled", "General", portalEnabled, "Set to false to disable default portal creation.");
-		portalCooldown = config.getInt("Portal Cooldown Time", "General", portalCooldown, 
+		category = "General";
+		portalEnabled = config.getBoolean("Portal Enabled", category, portalEnabled, "Set to false to disable default portal creation.");
+		portalCooldown = config.getInt("Portal Cooldown Time", category, portalCooldown, 
 				"The cooldown time for the underworld portal. Increase if repeated teleporting occurs.");
-		demonSoldiersAlwaysNeutral = config.getBoolean("Wuss Mode", "General", demonSoldiersAlwaysNeutral,
+		demonSoldiersAlwaysNeutral = config.getBoolean("Wuss Mode", category, demonSoldiersAlwaysNeutral,
 				"Set to true if Demon Soldiers should only attack the player if they are attacked first");
-		useVanillaGhastSounds = config.getBoolean("Use Vanilla Ghast Sounds", "General", useVanillaGhastSounds,
+		demonSoldiersInNether = config.getBoolean("Demon Soldiers Spawn in Nether", category, demonSoldiersInNether,
+				"Set to false if Demon Soldiers should not spawn in the Nether");
+		useVanillaGhastSounds = config.getBoolean("Use Vanilla Ghast Sounds", category, useVanillaGhastSounds,
 				"Whether or not to use the vanilla ghast sounds for the Underghast instead of the provided ones");
 		
+		// Machines
+		category = "Machines";
+		upgradeEnabled = config.getBoolean("Enable Lightning Upgrading", category, upgradeEnabled, 
+				"If false, right clicking machines with the Lightning Upgrade will do nothing");
+		minerFillerBlocks = config.getStringList("Miner Filler Blocks", category, minerFillerBlocks,
+				"This is the list of blocks the miner considers filler. It will optionally use these to fill its mined area, and won't mine these blocks.");
+		minerMaxRetries = config.getInt("Max Miner Block Search Retries", category, minerMaxRetries, 
+				"The max amount of mining retries. Decrease if StackOverflowExceptions occur.");
+		
 		// Tools
-		autoSmelt = config.getBoolean("Enable Skyfather Autosmelting", "Tools and Armor", autoSmelt, 
+		category = "Tools and Armor";
+		autoSmelt = config.getBoolean("Enable Skyfather Autosmelting", category, autoSmelt, 
 				"Whether or not Skyfather and Mystic tools will auto-smelt mined blocks.");
-		autoRepair = config.getBoolean("Enable Mystic Auto-repair", "Tools and Armor", autoRepair, 
+		autoRepair = config.getBoolean("Enable Mystic Auto-repair", category, autoRepair, 
 				"Whether or not Mystic tools will auto-repair.");
-		mysticGear = config.getBoolean("Enable Mystic Gear", "Tools and Armor", autoRepair, 
+		mysticGear = config.getBoolean("Enable Mystic Gear", category, autoRepair, 
 				"If false, Mystic gear will not be able to be created.");
 		
 		// World Gen
-		underworldDimensionID = config.getInt("Underworld Dimension ID", "Worldgen", underworldDimensionID, 
+		category = "Worldgen";
+		underworldDimensionID = config.getInt("Underworld Dimension ID", category, underworldDimensionID, 
 				"The ID for the Underworld dimension");
 		
 		// Mod Integration
-		JEIIntegration = config.getBoolean("JEI integration", "Mod Integration", RFIntegration, "Enable JEI integration?");
-		RFIntegration = config.getBoolean("RF integration", "Mod Integration", RFIntegration, "Enable LE <-> RF conversion machines?");
-		if(!RFIntegration) CoFH.apiLoaded = false; // force unloaded condition
-		RFtoLEConversion = config.getInt("RF to LE conversion", "Mod Integration", RFtoLEConversion,
-				"This amount of RF is equal to 1 LE (for 1 LE -> x RF conversion). The reverse will be 10 times costlier.");
+		category = "Mod Integration";
+		JEIIntegration = config.getBoolean("JEI integration", category, JEIIntegration, "Enable JEI integration?");
+		RFIntegration = config.getBoolean("RF integration", category, RFIntegration, "Enable LE <-> RF / TESLA conversion machines?");
+		if(!RFIntegration) EnergyApiHelper.rfOrTeslaLoaded = false; // force unloaded condition
+		RFtoLEConversion = config.getInt("RF to LE conversion", category, RFtoLEConversion,
+				"This amount of RF / TESLA is equal to 1 LE (for 1 LE -> x RF conversion). The reverse will be 10 times costlier.");
+		tinkersIntegration = config.getBoolean("Tinker's Construct integration", category, tinkersIntegration,
+				"Enable smeltery support for electricium, skyfather, and mystic metals");
 		
 		// save the config if fields were missing
 		if(config.hasChanged()) config.save();

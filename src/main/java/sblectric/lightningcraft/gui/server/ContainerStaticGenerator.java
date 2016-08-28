@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;
 
 /** The lightning static generator container */
-public class ContainerStaticGenerator extends ContainerLightningUser {
+public class ContainerStaticGenerator extends ContainerLightningUser.Upgradable {
 	
 	private TileEntityStaticGenerator tileGenerator;
 	
@@ -39,8 +39,8 @@ public class ContainerStaticGenerator extends ContainerLightningUser {
 	}
 	
 	@Override
-	public void addListener(IContainerListener craft) {
-		super.addListener(craft);
+	public void sendInfo(IContainerListener craft) {
+		super.sendInfo(craft);
 		craft.sendProgressBarUpdate(this, 0, this.tileGenerator.generatorCookTime);
 		craft.sendProgressBarUpdate(this, 1, this.tileGenerator.generatorBurnTime);
 		craft.sendProgressBarUpdate(this, 2, this.tileGenerator.currentBurnTime);
@@ -48,34 +48,13 @@ public class ContainerStaticGenerator extends ContainerLightningUser {
 	}
 	
 	@Override
-	public void detectAndSendChanges(){
-		super.detectAndSendChanges();
-		for(int i = 0; i < this.listeners.size(); ++i) {
-			IContainerListener craft = this.listeners.get(i);
-			craft.sendProgressBarUpdate(this, 0, this.tileGenerator.generatorCookTime);
-			craft.sendProgressBarUpdate(this, 1, this.tileGenerator.generatorBurnTime);
-			craft.sendProgressBarUpdate(this, 2, this.tileGenerator.currentBurnTime);
-			craft.sendProgressBarUpdate(this, 3, (int)(this.tileGenerator.storedCharge * 10F));
-		}
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
-		super.updateProgressBar(par1, par2);
-		if(par1 == 0){
-			this.tileGenerator.generatorCookTime = par2;
-		}
-		if(par1 == 1){
-			this.tileGenerator.generatorBurnTime = par2;
-		}
-		if(par1 == 2){
-			this.tileGenerator.currentBurnTime = par2;
-		}
-		if(par1 == 3){
-			this.tileGenerator.storedCharge = par2 / 10D;
-		}
-		
+	public void getInfo(short par1, short par2) {
+		super.getInfo(par1, par2);
+		if(par1 == 0) this.tileGenerator.generatorCookTime = par2;
+		if(par1 == 1) this.tileGenerator.generatorBurnTime = par2;
+		if(par1 == 2) this.tileGenerator.currentBurnTime = par2;
+		if(par1 == 3) this.tileGenerator.storedCharge = par2 / 10D;
 	}
 	
 	@Override

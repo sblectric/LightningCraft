@@ -11,7 +11,6 @@ import cofh.api.energy.IEnergyReceiver;
 public class RFUtils {
 	
 	/** Provide and recieve adjacent energy */
-	@Optional.Method(modid = "CoFHAPI")
 	public static void handleAdjacentEnergy(TileEntityRF origin) {
 		TileEntity adjacent;
 		IEnergyReceiver receiver;

@@ -75,8 +75,10 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
         if (this.lightningState == 2)
         {
         	
-        	this.worldObj.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 3.0F, 2.8F + this.rand.nextFloat() * 0.2F);
-        	this.worldObj.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
+        	this.worldObj.playSound(null, posX, posY, posZ, 
+        			SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 3.0F, 2.8F + this.rand.nextFloat() * 0.2F);
+        	this.worldObj.playSound(null, posX, posY, posZ, 
+        			SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
         }
 
         --this.lightningState;
@@ -130,20 +132,4 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
             }
         }
     }
-
-    @Override
-	protected void entityInit() {}
-
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    @Override
-	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {}
-
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    @Override
-	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {}
-    
 }

@@ -2,21 +2,21 @@ package sblectric.lightningcraft.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.config.LCConfig;
-import sblectric.lightningcraft.util.RFStorage;
+import sblectric.lightningcraft.util.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
 
 /** The tile entity for LE -> RF conversion */
 @Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHAPI")
 public class TileEntityRFProvider extends TileEntityRF implements IEnergyProvider {
-	
+
 	public static final int maxStorage = 100000;
 	public static final int rfPerTick = 1024;
-	private RFStorage storage;
-	
+
 	public TileEntityRFProvider() {
-		storage = new RFStorage(maxStorage, 0, rfPerTick);
+		storage = new EnergyStorage(maxStorage, 0, rfPerTick);
 	}
 
 	@Override
@@ -38,10 +38,22 @@ public class TileEntityRFProvider extends TileEntityRF implements IEnergyProvide
 	}
 
 	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if(capability != null) {
+			if(capability == producerCap) {
+				return true;
+			} else if(capability == consumerCap) {
+				return false;
+			}
+		}
+		return super.hasCapability(capability, facing);
+	}
+
+	@Override
 	public int getEnergyStored(EnumFacing from) {
 		return storage.getEnergyStored();
 	}
-	
+
 	@Override
 	public void setEnergyStored(int energy) {
 		storage.setEnergyStored(energy);
@@ -63,13 +75,13 @@ public class TileEntityRFProvider extends TileEntityRF implements IEnergyProvide
 		if(!simulate) this.markDirty();
 		return storage.extractEnergy(toExtract, simulate);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound) {
 		super.readFromNBT(tagCompound);
 		storage.readFromNBT(tagCompound);
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
 		super.writeToNBT(tagCompound);

@@ -1,5 +1,6 @@
 package sblectric.lightningcraft.enchantments;
 
+import sblectric.lightningcraft.ref.RefStrings;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -9,7 +10,7 @@ public class EnchantmentHandOfThor extends Enchantment {
 
 	public EnchantmentHandOfThor(Rarity rarity) {
 		super(rarity, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
-		this.setName("handOfThor");
+		this.setName(RefStrings.MODID + ":handOfThor");
 	}
 	
 	@Override

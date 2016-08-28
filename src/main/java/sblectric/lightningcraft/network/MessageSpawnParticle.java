@@ -1,12 +1,12 @@
 package sblectric.lightningcraft.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
 import sblectric.lightningcraft.particles.LCParticles;
 import sblectric.lightningcraft.ref.RefMisc;
 
@@ -59,7 +59,7 @@ public class MessageSpawnParticle implements IMessage {
         @Override
         public IMessage onMessage(MessageSpawnParticle m, MessageContext ctx) {
         	if(RefMisc.DEBUG) System.out.println("Spawning particle");
-        	LCParticles.spawnParticle(m.name, m.x, m.y, m.z, m.vx, m.vy, m.vz);
+        	Minecraft.getMinecraft().addScheduledTask(() -> LCParticles.spawnParticle(m.name, m.x, m.y, m.z, m.vx, m.vy, m.vz));
             return null; // no response in this case
         }
 	}

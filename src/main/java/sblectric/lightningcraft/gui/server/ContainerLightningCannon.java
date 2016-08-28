@@ -8,7 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.tiles.TileEntityLightningCannon;
 import sblectric.lightningcraft.tiles.TileEntityLightningCannon.EnumMode;
 
@@ -44,29 +43,17 @@ public class ContainerLightningCannon extends ContainerLightningUser {
 		}
 		return true;
 	}
-
+	
+	/** Send the info to the client */
 	@Override
-	public void addListener(IContainerListener craft) {
-		super.addListener(craft);
+	public void sendInfo(IContainerListener craft) {
 		craft.sendProgressBarUpdate(this, 0, this.tileCannon.mode.getID());
 	}
 
 	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-		for(int i = 0; i < this.listeners.size(); i++) {
-			IContainerListener craft = this.listeners.get(i);
-			craft.sendProgressBarUpdate(this, 0, this.tileCannon.mode.getID());
-		}
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
-		super.updateProgressBar(par1, par2);
-		if(par1 == 0) {
-			this.tileCannon.mode = EnumMode.assignMode(par2);
-		}
+	public void getInfo(short par1, short par2) {
+		if(par1 == 0) this.tileCannon.mode = EnumMode.assignMode(par2);
 	}
 
 	@Override

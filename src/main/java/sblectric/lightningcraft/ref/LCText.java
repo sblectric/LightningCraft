@@ -21,12 +21,12 @@ public class LCText {
 	
 	/** Requires LE */
 	public static String getInventoryLEUserLore() {
-		return secSign + "e" + I18n.translateToLocal("lore.inventoryleuser");
+		return secSign + "e" + I18n.translateToLocal("lore." + RefStrings.MODID + ":inventoryleuser");
 	}
 	
 	/** Invincibility */
 	public static String getInvincibilityLore() {
-		return secSign + "f" + I18n.translateToLocal("lore.invincibility");
+		return secSign + "f" + I18n.translateToLocal("lore." + RefStrings.MODID + ":invincibility");
 	}	
 	
 	// ----------------------------------------------------------- //
@@ -35,52 +35,52 @@ public class LCText {
 	
 	/** Auto-Repair I */
 	public static String getAutoRepairLore() {
-		return secSign + "a" + I18n.translateToLocal("lore.autorepair") + " I";
+		return secSign + "a" + I18n.translateToLocal("lore." + RefStrings.MODID + ":autorepair") + " I";
 	}
 	
 	/** Auto-Repair II */
 	public static String getAutoRepair2Lore() {
-		return secSign + "a" + I18n.translateToLocal("lore.autorepair") + " II";
+		return secSign + "a" + I18n.translateToLocal("lore." + RefStrings.MODID + ":autorepair") + " II";
 	}
 	
 	/** Night Vision */
 	public static String getSkyHelmLore() {
-		return secSign + "f" + I18n.translateToLocal("lore.skyhelm");
+		return secSign + "f" + I18n.translateToLocal("lore." + RefStrings.MODID + ":skyhelm");
 	}
 	
 	/** Water Breathing */
 	public static String getMysticHelmLore() {
-		return secSign + "b" + I18n.translateToLocal("lore.mystichelm");
+		return secSign + "b" + I18n.translateToLocal("lore." + RefStrings.MODID + ":mystichelm");
 	}
 	
 	/** Resistance I */
 	public static String getSkyChestLore() {
-		return secSign + "4" + I18n.translateToLocal("lore.skychest");
+		return secSign + "4" + I18n.translateToLocal("lore." + RefStrings.MODID + ":skychest");
 	}
 	
 	/** Resistance II */
 	public static String getMysticChestLore() {
-		return secSign + "4" + I18n.translateToLocal("lore.mysticchest");
+		return secSign + "4" + I18n.translateToLocal("lore." + RefStrings.MODID + ":mysticchest");
 	}
 	
 	/** Fire Resistance */
 	public static String getSkyLegsLore() {
-		return secSign + "6" + I18n.translateToLocal("lore.skylegs");
+		return secSign + "6" + I18n.translateToLocal("lore." + RefStrings.MODID + ":skylegs");
 	}
 	
 	/** Sustenance */
 	public static String getMysticLegsLore() {
-		return secSign + "2" + I18n.translateToLocal("lore.mysticlegs");
+		return secSign + "2" + I18n.translateToLocal("lore." + RefStrings.MODID + ":mysticlegs");
 	}
 	
 	/** Travel I */
 	public static String getSkyBootsLore() {
-		return secSign + "e" + I18n.translateToLocal("lore.skyboots");
+		return secSign + "e" + I18n.translateToLocal("lore." + RefStrings.MODID + ":skyboots");
 	}
 	
 	/** Travel II */
 	public static String getMysticBootsLore() {
-		return secSign + "e" + I18n.translateToLocal("lore.mysticboots");
+		return secSign + "e" + I18n.translateToLocal("lore." + RefStrings.MODID + ":mysticboots");
 	}
 	
 	// ----------------------------------------------------------- //
@@ -89,27 +89,27 @@ public class LCText {
 	
 	/** Charged */
 	public static String getChargedLore() {
-		return secSign + "b" + I18n.translateToLocal("lore.charged");
+		return secSign + "b" + I18n.translateToLocal("lore." + RefStrings.MODID + ":charged");
 	}
 	
 	/** Summoning */
 	public static String getSummonerLore() {
-		return secSign + "e" + I18n.translateToLocal("lore.summoner");
+		return secSign + "e" + I18n.translateToLocal("lore." + RefStrings.MODID + ":summoner");
 	}
 	
 	/** Auto-Smelting */
 	public static String getAutoSmeltLore() {
-		return secSign + "c" + I18n.translateToLocal("lore.autosmelt");
+		return secSign + "c" + I18n.translateToLocal("lore." + RefStrings.MODID + ":autosmelt");
 	}
 	
 	/** Luck */
 	public static String getFortuneBonusLore() {
-		return secSign + "9" + I18n.translateToLocal("lore.fortunebonus");
+		return secSign + "9" + I18n.translateToLocal("lore." + RefStrings.MODID + ":fortunebonus");
 	}
 	
 	/** Quick Farm */
 	public static String getQuickFarmLore() {
-		return secSign + "2" + I18n.translateToLocal("lore.quickfarm");
+		return secSign + "2" + I18n.translateToLocal("lore." + RefStrings.MODID + ":quickfarm");
 	}
 	
 	// ----------------------------------------------------------- //
@@ -118,32 +118,32 @@ public class LCText {
 	
 	/** Soul Fracture */
 	public static String getSoulSwordLore() {
-		return secSign + "6" + I18n.translateToLocal("lore.soulsword");
+		return secSign + "6" + I18n.translateToLocal("lore." + RefStrings.MODID + ":soulsword");
 	}
 	
 	/** Grave Uprising */
 	public static String getZombieSwordLore() {
-		return secSign + "4" + I18n.translateToLocal("lore.zombiesword");
+		return secSign + "4" + I18n.translateToLocal("lore." + RefStrings.MODID + ":zombiesword");
 	}
 	
 	/** In the Wind */
 	public static String getFeatherSwordLore() {
-		return secSign + "e" + I18n.translateToLocal("lore.feathersword");
+		return secSign + "e" + I18n.translateToLocal("lore." + RefStrings.MODID + ":feathersword");
 	}
 	
 	/** Void Step */
 	public static String getEnderSwordLore() {
-		return secSign + "5" + I18n.translateToLocal("lore.endersword");
+		return secSign + "5" + I18n.translateToLocal("lore." + RefStrings.MODID + ":endersword");
 	}
 	
 	/** Eternal Flame */
 	public static String getBlazeSwordLore() {
-		return secSign + "c" + I18n.translateToLocal("lore.blazesword");
+		return secSign + "c" + I18n.translateToLocal("lore." + RefStrings.MODID + ":blazesword");
 	}
 	
 	/** Frozen Solid */
 	public static String getIceSwordLore() {
-		return secSign + "9" + I18n.translateToLocal("lore.icesword");
+		return secSign + "9" + I18n.translateToLocal("lore." + RefStrings.MODID + ":icesword");
 	}
 	
 	// ----------------------------------------------------------- //
@@ -152,17 +152,17 @@ public class LCText {
 	
 	/** It's oddly viscous... */
 	public static String getDemonBloodLore() {
-		return secSign + "4" + secSign + "o" + I18n.translateToLocal("lore.demonblood") + secSign + "r";
+		return secSign + "4" + secSign + "o" + I18n.translateToLocal("lore." + RefStrings.MODID + ":demonblood") + secSign + "r";
 	}
 	
 	/** The Nether isn't deep enough! */
 	public static String getUnderworldChargeLore() {
-		return secSign + "3" + secSign + "o" + I18n.translateToLocal("lore.underworldcharge") + secSign + "r";
+		return secSign + "3" + secSign + "o" + I18n.translateToLocal("lore." + RefStrings.MODID + ":underworldcharge") + secSign + "r";
 	}
 
 	/** Dimensional Punch */
 	public static String getHeavenSwordLore() {
-		return secSign + "d" + I18n.translateToLocal("lore.heavensword");
+		return secSign + "d" + I18n.translateToLocal("lore." + RefStrings.MODID + ":heavensword");
 	}
 	
 }

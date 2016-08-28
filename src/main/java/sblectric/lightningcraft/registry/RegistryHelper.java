@@ -37,7 +37,7 @@ public class RegistryHelper {
 		ItemBlock item;
 		
 		// register the block by itself first
-        GameRegistry.register(block.setUnlocalizedName(block.getRegistryName().getResourcePath()));
+        GameRegistry.register(block.setUnlocalizedName(block.getRegistryName().toString()));
         
 		// try to get the ItemBlock
         if(regBlock.getItemClass() != null) {
@@ -62,7 +62,7 @@ public class RegistryHelper {
 	/** Register the item correctly */
 	public static void registerItem(IRegistryItem regItem) {
 		Item item = (Item)regItem;
-		GameRegistry.register(item.setUnlocalizedName(item.getRegistryName().getResourcePath()));
+		GameRegistry.register(item.setUnlocalizedName(item.getRegistryName().toString()));
 	}
 	
 	/** Register the entity renderer */

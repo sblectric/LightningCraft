@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "lightningcraft:lightningBreaker_vertical", "x": 180 },
+        "facing=up":    { "model": "lightningcraft:lightningBreaker_vertical" },
+        "facing=north": { "model": "lightningcraft:lightningBreaker" },
+        "facing=south": { "model": "lightningcraft:lightningBreaker", "y": 180 },
+        "facing=west":  { "model": "lightningcraft:lightningBreaker", "y": 270 },
+        "facing=east":  { "model": "lightningcraft:lightningBreaker", "y": 90 }
+    }
+}

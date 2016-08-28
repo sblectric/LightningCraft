@@ -51,25 +51,6 @@ public class BlockLightningCell extends BlockContainerLCMeta {
 		return true;
 	}
 	
-	/** release any upgrades on block break */
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-		TileEntityLightningCell lpcell = (TileEntityLightningCell)world.getTileEntity(pos);
-		if(lpcell.isUpgraded) {
-			// release the upgrade
-			float f = this.random.nextFloat() * 0.6F + 0.1F;
-			float f1 = this.random.nextFloat() * 0.6F + 0.1F;
-			float f2 = this.random.nextFloat() * 0.6F + 0.1F;
-			float f3 = 0.025F;
-			EntityItem e = new EntityItem(world, pos.getX() + f, pos.getY() + f1, pos.getZ() + f2, new ItemStack(LCItems.material, 1, Material.CELL_UPGRADE));
-			e.motionX = this.random.nextGaussian() * f3;
-			e.motionY = this.random.nextGaussian() * f3 + 0.1F;
-			e.motionZ = this.random.nextGaussian() * f3;
-			world.spawnEntityInWorld(e);
-		}
-		super.breakBlock(world, pos, state);
-	}
-	
 	@Override
 	public Class getItemClass() {
 		return ItemBlockLightningCell.class;

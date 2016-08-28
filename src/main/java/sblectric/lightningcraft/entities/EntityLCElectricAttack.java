@@ -5,6 +5,7 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -13,8 +14,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.particles.LCParticles;
+import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.WorldUtils;
 
+/** The cannon fire */
 public class EntityLCElectricAttack extends EntityFireball {
 	
 	public double startX, startY, startZ;
@@ -40,7 +43,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 		this(world, x, y, z, 0, 0, 0);
 		
 		// calculate the future position of the entity
-		Vec3d result = WorldUtils.estimateEntityPosition(target, x, y, z, 0.75D);
+		Vec3d result = target != null ? WorldUtils.estimateEntityPosition(target, x, y, z, 0.75D) : null;
 		
 		double vx, vy, vz;
 		if(target != null) {
@@ -93,7 +96,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 	            if (mop.entityHit != null)
 	            {
 	            	// this lightning is strong enough to kill an unarmored player in one shot
-	                if (mop.entityHit.attackEntityFrom(DamageSource.causeMobDamage(null), 21.0F))
+	                if (mop.entityHit.attackEntityFrom(new EntityDamageSource(RefStrings.MODID + ":cannon", this), 21.0F))
 	                {
 	                	if(!mop.entityHit.isImmuneToFire()) mop.entityHit.setFire(2);
 	                	this.worldObj.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 6.0F, 2.0F);

@@ -72,6 +72,7 @@ public class StackHelper {
 
 	/** Returns true if the specified string corresponds to an oredict entry */
 	private static boolean isStringOreDict(String stackString) {
+		if(stackString == LightningInfusionRecipes.nullIdentifier) return false;
 		return OreDictionary.doesOreNameExist(stackString);
 	}
 
@@ -120,10 +121,27 @@ public class StackHelper {
 		} catch(NullPointerException e) {}
 		return stackString;
 	}
+	
+	/** Change a string's NBT information (assumes the stack is non-null) */
+	public static String changeStringNBT(String stackString, NBTTagCompound newTag) {
+		try {
+			if(!isStringOreDict(stackString)) {
+				ItemStack stack = makeItemStackFromString(stackString);
+				stack.setTagCompound(newTag);
+				return makeStringFromItemStack(stack);
+			}
+		} catch(NullPointerException e) {}
+		return stackString;
+	}
 
 	/** Strip a stack of its metadata information (just set it to zero) */
 	public static String stripMetaFromString(String stackString) {
 		return changeStringMeta(stackString, 0);
+	}
+	
+	/** Strip a stack of its NBT information (just set it to null) */
+	public static String stripNBTFromString(String stackString) {
+		return changeStringNBT(stackString, null);
 	}
 
 	/** Turn an ItemStack or oredict name into a String */
@@ -219,6 +237,26 @@ public class StackHelper {
 			return true;
 		}
 		return false;
+	}
+	
+	/** Returns true if the ItemStack has an oredict entry that starts with 'start' */
+	public static boolean oreDictNameStartsWith(ItemStack ore, String start) {
+		for(int i : OreDictionary.getOreIDs(ore)) {
+			if(OreDictionary.getOreName(i).startsWith(start)) return true;
+		}
+		return false;
+	}
+
+	/** Make an integer array based on the size of 'stacks' */
+	public static int[] makeIntArray(ItemStack[] stacks) {
+		return makeIntArray(stacks.length);
+	}
+	
+	/** Make an integer array based on a stack size */
+	public static int[] makeIntArray(int size) {
+		int[] ints = new int[size];
+		for(int i = 0; i < size; i++) ints[i] = i;
+		return ints;
 	}
 
 }

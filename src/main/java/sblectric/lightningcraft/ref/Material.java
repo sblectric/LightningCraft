@@ -11,7 +11,7 @@ public class Material {
 	public static final int DIAMOND_DUST = 1;
 	public static final int EMERALD_DUST = 2;
 	public static final int QUARTZ_DUST = 3;
-	public static final int CELL_UPGRADE = 4;
+	public static final int UPGRADE = 4;
 	public static final int DEMON_BLOOD = 5;
 	public static final int UNDER_CHARGE = 6;
 	public static final int UNDER_BONE = 7;

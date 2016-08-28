@@ -15,7 +15,6 @@ import sblectric.lightningcraft.tiles.TileEntityRF;
 public class ContainerRFProvider extends ContainerLightningUser {
 	
 	private TileEntityRF tileRF;
-	private int storedRF;
 	private Short low = null;
 	private Short high = null;
 	
@@ -38,38 +37,20 @@ public class ContainerRFProvider extends ContainerLightningUser {
 	}
 	
 	/** Send out the two shorts */
-	public void sendUpdate(IContainerListener craft) {
-		this.storedRF = this.tileRF.getEnergyStored(null);
+	@Override
+	public void sendInfo(IContainerListener craft) {
+		int storedRF = this.tileRF.getEnergyStored(null);
 		craft.sendProgressBarUpdate(this, 0, ShortSender.getLowShort(storedRF));
 		craft.sendProgressBarUpdate(this, 1, ShortSender.getHighShort(storedRF));
 	}
 	
 	@Override
-	public void addListener(IContainerListener craft) {
-		super.addListener(craft);
-		sendUpdate(craft);
-	}
-	
-	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-		for(int i = 0; i < this.listeners.size(); i++) {
-			IContainerListener craft = this.listeners.get(i);
-			
-			if(this.storedRF != this.tileRF.getEnergyStored(null)) {
-				sendUpdate(craft);
-			}
-		}
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
-		super.updateProgressBar(par1, par2);
-		if(par1 == 0) low = (short)par2;
-		if(par1 == 1) high = (short)par2;
+	public void getInfo(short par1, short par2) {
+		if(par1 == 0) low = par2;
+		if(par1 == 1) high = par2;
 		if(low != null && high != null) {
-			this.storedRF = ShortSender.getInt(low, high);
+			int storedRF = ShortSender.getInt(low, high);
 			this.tileRF.setEnergyStored(storedRF);
 		}
 	}

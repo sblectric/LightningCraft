@@ -1,5 +1,6 @@
 package sblectric.lightningcraft.enchantments;
 
+import sblectric.lightningcraft.ref.RefStrings;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -10,7 +11,7 @@ public class EnchantmentElectrostaticAura extends Enchantment {
 	public EnchantmentElectrostaticAura(Rarity rarity) {
 		super(rarity, EnumEnchantmentType.ARMOR, new EntityEquipmentSlot[]
 				{EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET});
-		this.setName("elecAura");
+		this.setName(RefStrings.MODID + ":elecAura");
 	}
 	
 	@Override

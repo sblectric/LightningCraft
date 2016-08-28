@@ -1,13 +1,13 @@
 package sblectric.lightningcraft.events;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.items.ItemBattery;
@@ -100,6 +100,11 @@ public class AchievementEvents {
 		}
 		
 		if(item == LCItems.ingot && meta == Ingot.SKY) {
+			// force unlock this one even without parents
+			if(e.player instanceof EntityPlayerMP) {
+				if(!((EntityPlayerMP)e.player).getStatFile().hasAchievementUnlocked(LCAchievements.infuseSkyfather))
+				((EntityPlayerMP)e.player).getStatFile().unlockAchievement(e.player, LCAchievements.infuseSkyfather, 1);
+			}
 			e.player.addStat(LCAchievements.infuseSkyfather, 1);
 		}
 		

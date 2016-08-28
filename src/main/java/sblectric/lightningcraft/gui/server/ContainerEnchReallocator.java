@@ -15,7 +15,7 @@ import sblectric.lightningcraft.tiles.TileEntityEnchReallocator;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** The enchantment reallocation station */
-public class ContainerEnchReallocator extends ContainerLightningUser {
+public class ContainerEnchReallocator extends ContainerLightningUser.Upgradable {
 	
 	private TileEntityEnchReallocator tileRealloc;
 	
@@ -45,8 +45,8 @@ public class ContainerEnchReallocator extends ContainerLightningUser {
 	}
 	
 	@Override
-	public void addListener(IContainerListener craft) {
-		super.addListener(craft);
+	public void sendInfo(IContainerListener craft) {
+		super.sendInfo(craft);
 		craft.sendProgressBarUpdate(this, 0, this.tileRealloc.reallocCookTime);
 		craft.sendProgressBarUpdate(this, 1, this.tileRealloc.lpCost);
 		craft.sendProgressBarUpdate(this, 2, this.tileRealloc.xpCost);
@@ -54,33 +54,13 @@ public class ContainerEnchReallocator extends ContainerLightningUser {
 	}
 	
 	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-		for(int i = 0; i < this.listeners.size(); ++i) {
-			IContainerListener craft = this.listeners.get(i);
-			craft.sendProgressBarUpdate(this, 0, this.tileRealloc.reallocCookTime);
-			craft.sendProgressBarUpdate(this, 1, this.tileRealloc.lpCost);
-			craft.sendProgressBarUpdate(this, 2, this.tileRealloc.xpCost);
-			craft.sendProgressBarUpdate(this, 3, this.tileRealloc.nTopEnchs);
-		}
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2){
-		super.updateProgressBar(par1, par2);
-		if(par1 == 0){
-			this.tileRealloc.reallocCookTime = par2;
-		}
-		if(par1 == 1){
-			this.tileRealloc.lpCost = par2;
-		}
-		if(par1 == 2){
-			this.tileRealloc.xpCost = par2;
-		}
-		if(par1 == 3) {
-			this.tileRealloc.nTopEnchs = par2;
-		}		
+	public void getInfo(short par1, short par2) {
+		super.getInfo(par1, par2);
+		if(par1 == 0) this.tileRealloc.reallocCookTime = par2;
+		if(par1 == 1) this.tileRealloc.lpCost = par2;
+		if(par1 == 2) this.tileRealloc.xpCost = par2;
+		if(par1 == 3) this.tileRealloc.nTopEnchs = par2;	
 	}
 	
 	@Override

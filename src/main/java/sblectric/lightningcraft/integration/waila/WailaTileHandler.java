@@ -13,10 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-
+import sblectric.lightningcraft.blocks.BlockContainerLC;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.registry.IRegistryBlock;
+import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 
 @Optional.Interface(iface = "mcp.mobius.waila.api.IWailaDataProvider", modid = "Waila")
 public class WailaTileHandler implements IWailaDataProvider {
@@ -40,6 +41,10 @@ public class WailaTileHandler implements IWailaDataProvider {
 	@Override
 	@Optional.Method(modid = "Waila")
 	public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+		if(accessor.getBlock() instanceof BlockContainerLC) {
+			return accessor.getBlock().getPickBlock(accessor.getBlockState(), accessor.getMOP(), 
+					accessor.getWorld(), accessor.getPosition(), accessor.getPlayer());
+		}
 		return accessor.getStack();
 	}
 
@@ -57,7 +62,10 @@ public class WailaTileHandler implements IWailaDataProvider {
 			itemStack.getItem().addInformation(itemStack, accessor.getPlayer(), currenttip, false);
 		} else {
 			currenttip.add("Capacity: " + maxPower + " LE");
-			if(accessor.getNBTData().getBoolean("isUpgraded")) currenttip.add("(Upgraded)");
+		}
+		TileEntity t;
+		if((t = accessor.getTileEntity()) != null && t instanceof ILightningUpgradable && ((ILightningUpgradable)t).isUpgraded()) {
+			currenttip.add("(Upgraded)");
 		}
 		return currenttip;
 	}

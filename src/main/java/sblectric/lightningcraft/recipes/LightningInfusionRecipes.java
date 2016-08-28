@@ -36,6 +36,7 @@ public class LightningInfusionRecipes {
 		private final String infuse;
 		private final List<String> items;
 		private final int cost;
+		private boolean nbtSensitive;
 		
 		/** A new infusion recipe with Items, Blocks, ItemStacks, or oreDict entries */
 		public LightningInfusionRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
@@ -125,6 +126,12 @@ public class LightningInfusionRecipes {
 			return list;
 		}
 		
+		/** Set the recipe to be NBT sensitive, i.e. potions */
+		public LightningInfusionRecipe setNBTSensitive() {
+			this.nbtSensitive = true;
+			return this;
+		}
+		
 	}
 	
 	/** The static instance */
@@ -195,15 +202,15 @@ public class LightningInfusionRecipes {
 		addRecipe(new ItemStack(LCItems.material, 1, Material.UNDER_CHARGE), 100, Items.FIRE_CHARGE, "dustDiamond", demonBlood, Blocks.OBSIDIAN);
 		
 		// ensorcelled core
-		addRecipe(new ItemStack(LCItems.material, 1, Material.ENSORCELLED), 250, new ItemStack(LCItems.material, 1, Material.CELL_UPGRADE), 
+		addRecipe(new ItemStack(LCItems.material, 1, Material.ENSORCELLED), 250, new ItemStack(LCItems.material, 1, Material.UPGRADE), 
 			"dustDiamond", demonBlood, new ItemStack(LCItems.material, 1, Material.UNDER_MEAL), demonBlood);
 		
 		// potions
 		ItemStack mundane = LCPotions.getPotionWithType(PotionTypes.MUNDANE);
 		ItemStack normalDemon = LCPotions.getPotionWithType(LCPotions.demonFriendNormal);
 		ItemStack extendedDemon = LCPotions.getPotionWithType(LCPotions.demonFriendExtended);
-		addRecipe(normalDemon, 50, mundane, demonBlood, Items.GOLDEN_CARROT, demonBlood, Items.GOLDEN_CARROT);
-		addRecipe(extendedDemon, 25, normalDemon, LCMisc.makeArray("dustRedstone", 4));
+		addRecipe(normalDemon, 50, mundane, demonBlood, Items.GOLDEN_CARROT, demonBlood, Items.GOLDEN_CARROT).setNBTSensitive();
+		addRecipe(extendedDemon, 25, normalDemon, LCMisc.makeArray("dustRedstone", 4)).setNBTSensitive();
 		
 		// mystic ingot
 		addRecipe(new ItemStack(LCItems.ingot, 2, Ingot.MYSTIC), 160, "ingotSkyfather", "nuggetNetherStar", demonBlood, ichor, demonBlood);
@@ -227,19 +234,26 @@ public class LightningInfusionRecipes {
 	}
 	
 	/** Add an infusion recipe */
-	public void addRecipe(LightningInfusionRecipe r) {
+	public LightningInfusionRecipe addRecipe(LightningInfusionRecipe r) {
 		recipes.add(r);
 		recipeIndex++;
+		return r;
 	}
 	
 	/** Adds a new infusion recipe with Items, Blocks, ItemStacks, or oreDict entries */
-	public void addRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
-		addRecipe(new LightningInfusionRecipe(output, cost, infuse, surrounding));
+	public LightningInfusionRecipe addRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
+		return addRecipe(new LightningInfusionRecipe(output, cost, infuse, surrounding));
 	}
 	
 	/** Helper method for hasBaseResult and such */
-	private boolean hasResult(ItemStack infuse, String item, List<String> itemOres) {
+	private boolean hasResult(ItemStack infuse, String item, List<String> itemOres, boolean nbtSensitive) {
 		String useItem = StackHelper.makeStringFromItemStack(infuse);
+		
+		// ignore NBT for the infused item?
+		if(!nbtSensitive) {
+			useItem = StackHelper.stripNBTFromString(useItem);
+			item = StackHelper.stripNBTFromString(item);
+		}
 		
 		// check the vanilla case and simple oredict case
 		if(item.equals(useItem) || itemOres.contains(useItem)) {
@@ -269,7 +283,7 @@ public class LightningInfusionRecipes {
 		if(infuse1 == null) return false;
 		ItemStack infuse = infuse1.copy(); infuse.stackSize = 1;
 		for(LightningInfusionRecipe recipe : recipes) {
-			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre())) return true;
+			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.nbtSensitive)) return true;
 		}
 		return false;
 	}
@@ -300,6 +314,7 @@ public class LightningInfusionRecipes {
 			List<String> itemList = new JointList();
 			List<List<String>> oreList = new JointList();
 			for(String item : recipe.getItems()) {
+				item = StackHelper.stripNBTFromString(item);
 				itemList.add(item);
 			}
 			for(List list : recipe.getItemsAsOres()) {
@@ -307,7 +322,7 @@ public class LightningInfusionRecipes {
 			}
 			
 			// now check to see if the infused item matches the recipe
-			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre())) {
+			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.nbtSensitive)) {
 				valid++;
 			}
 			
@@ -321,6 +336,7 @@ public class LightningInfusionRecipes {
 					stackString = StackHelper.makeStringFromItemStack(stack);
 				}
 				String modStackString = StackHelper.changeStringMeta(stackString, OreDictionary.WILDCARD_VALUE);
+				modStackString = StackHelper.stripNBTFromString(modStackString); // NBT-insensitive
 				if(itemList.contains(stackString)) {
 					itemList.remove(stackString);
 					valid++;

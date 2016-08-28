@@ -1,33 +1,39 @@
 package sblectric.lightningcraft.util;
 
+import net.darkhax.tesla.api.ITeslaConsumer;
+import net.darkhax.tesla.api.ITeslaHolder;
+import net.darkhax.tesla.api.ITeslaProducer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Optional;
-import cofh.api.energy.IEnergyStorage;
 
-/** Semi-custom implementation of energy storage */
-@Optional.Interface(iface = "cofh.api.energy.IEnergyStorage", modid = "CoFHAPI")
-public class RFStorage implements IEnergyStorage {
+/** Custom implementation of energy storage for RF and TESLA */
+@Optional.InterfaceList({
+		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaConsumer", modid = "tesla"),
+		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaProducer", modid = "tesla"),
+		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaHolder", modid = "tesla")
+})
+public class EnergyStorage implements ITeslaConsumer, ITeslaProducer, ITeslaHolder {
 
 	protected int energy;
 	protected int capacity;
 	protected int maxReceive;
 	protected int maxExtract;
 
-	public RFStorage(int capacity) {
+	public EnergyStorage(int capacity) {
 		this(capacity, capacity, capacity);
 	}
 
-	public RFStorage(int capacity, int maxTransfer) {
+	public EnergyStorage(int capacity, int maxTransfer) {
 		this(capacity, maxTransfer, maxTransfer);
 	}
 
-	public RFStorage(int capacity, int maxReceive, int maxExtract) {
+	public EnergyStorage(int capacity, int maxReceive, int maxExtract) {
 		this.capacity = capacity;
 		this.maxReceive = maxReceive;
 		this.maxExtract = maxExtract;
 	}
 
-	public RFStorage readFromNBT(NBTTagCompound nbt) {
+	public EnergyStorage readFromNBT(NBTTagCompound nbt) {
 		this.energy = nbt.getInteger("storedRF");
 
 		if (energy > capacity) {
@@ -44,7 +50,7 @@ public class RFStorage implements IEnergyStorage {
 		return nbt;
 	}
 
-	public RFStorage setCapacity(int capacity) {
+	public EnergyStorage setCapacity(int capacity) {
 		this.capacity = capacity;
 
 		if (energy > capacity) {
@@ -53,18 +59,18 @@ public class RFStorage implements IEnergyStorage {
 		return this;
 	}
 
-	public RFStorage setMaxTransfer(int maxTransfer) {
+	public EnergyStorage setMaxTransfer(int maxTransfer) {
 		setMaxReceive(maxTransfer);
 		setMaxExtract(maxTransfer);
 		return this;
 	}
 
-	public RFStorage setMaxReceive(int maxReceive) {
+	public EnergyStorage setMaxReceive(int maxReceive) {
 		this.maxReceive = maxReceive;
 		return this;
 	}
 
-	public RFStorage setMaxExtract(int maxExtract) {
+	public EnergyStorage setMaxExtract(int maxExtract) {
 		this.maxExtract = maxExtract;
 		return this;
 	}
@@ -109,8 +115,6 @@ public class RFStorage implements IEnergyStorage {
 		}
 	}
 
-	/* IEnergyStorage */
-	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
 		int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
 
@@ -120,7 +124,6 @@ public class RFStorage implements IEnergyStorage {
 		return energyReceived;
 	}
 
-	@Override
 	public int extractEnergy(int maxExtract, boolean simulate) {
 		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
 
@@ -130,14 +133,36 @@ public class RFStorage implements IEnergyStorage {
 		return energyExtracted;
 	}
 
-	@Override
 	public int getEnergyStored() {
 		return energy;
 	}
 
-	@Override
 	public int getMaxEnergyStored() {
 		return capacity;
+	}
+
+	// TESLA stuff from here
+	
+	@Override
+	public long getStoredPower() {
+		return energy;
+	}
+
+	@Override
+	public long getCapacity() {
+		return capacity;
+	}
+
+	@Override
+	public long takePower(long power, boolean simulated) {
+		if(power > (long)Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
+		return extractEnergy((int)power, simulated);
+	}
+
+	@Override
+	public long givePower(long power, boolean simulated) {
+		if(power > (long)Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
+		return receiveEnergy((int)power, simulated);
 	}
 
 }

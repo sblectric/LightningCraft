@@ -21,15 +21,19 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes.LightningInfusionRecipe;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.RefStrings;
+import sblectric.lightningcraft.tiles.TileEntityRFProvider;
+import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
 import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.LCMisc;
 import sblectric.lightningcraft.util.StackHelper;
 
-/** The Lightning Guide GUI! */
+/** The Lightning Guide GUI, yo */
 @SideOnly(Side.CLIENT)
 public class GuiLightningBook extends GuiScreen {
 	private final int bookImageHeight = 192;
@@ -85,7 +89,13 @@ public class GuiLightningBook extends GuiScreen {
 		pages.add(S + "lLightning Furnace" + S + "r - This is a furnace that uses LE instead of solid fuel to smelt items. A lightning furnace smelts items much quicker than a normal furnace, using one LE per 2 items burned.");
 		pages.add(S + "lLightning Crusher" + S + "r - This is a machine that pulverizes items. With it, you can crush gravel into sand, ores to powder, and much more! Great for ore processing and a handy tool in general.");
 		pages.add(S + "lLightning Infusion Table" + S + "r - The mighty Lightning Infusion Table takes the idea of using LE to create items to the next level. An item in the center slot gets infused with items in the outer slots along with some LE.");
+		pages.add(S + "lLightning Block Breaker" + S + "r - This machine simply uses LE to break the block directly in front of it. The breaker is placed in the same manner as pistons.");
+		pages.add(S + "lLightning Miner" + S + "r - This useful machine will mine blocks in its area. It has 6 modes of operation: 1x1 tunnel, 3x3 tunnel, ores only, logs only, and all blocks. The default range is a 16x16x16 cube in front of it, but it can be upgraded to 24x24x24.");
 		pages.add(S + "lElectrostatic Generator" + S + "r - This gives you a method of generating lightning, and by extension, LE by using blocks to generate a charge. When the charge is full (100C), lightning will strike. It does need a small amount of LE to run, though.");
+		if(EnergyApiHelper.rfOrTeslaLoaded) {
+			pages.add(S + "lLE to RF Export Bus" + S + "r - This machine takes LE and converts it to RF or Tesla so other mod's machines can make use of it. It transfers at a max rate of " + TileEntityRFProvider.rfPerTick + " RF/tick, where 1 LE yields " + LCConfig.RFtoLEConversion + " RF.");
+			pages.add(S + "lRF Lightning Generator" + S + "r - This machine takes RF or Tesla and uses it to generate lightning strikes. It transfers at a max rate of " + TileEntityRFReceiver.rfPerTick + " RF/tick, where " + LCConfig.RFtoLEConversion * 10 + " RF yields 1 LE.");
+		}
 		pages.add(S + "lWireless Power" + S + "r - Like Tesla, you've dreamt of wireless power. Today, you've discovered how to implement it. By creating a single transmitter from your core work area, you can add unlimited receivers nearby. To attune these receivers to the");
 		pages.add("transmitter, you must craft a Tx/Rx tag, right click on the transmitter, then shift right-click on the receiver. These tags are reusable, and can be crafted back into an empty tag if you wish to mark a different transmitter location.");
 		pages.add(S + "lEnchantment Reallocator" + S + "r - This can pull enchantments from an item and stick them on another. " + (level < 2 ? 
@@ -111,13 +121,12 @@ public class GuiLightningBook extends GuiScreen {
 		} else { // add skyfather shard stuff
 			pageLevel1 = pages.size();
 			pages.add("Your intuition was right. The Skyfather ingot is powerful indeed. You can make divine tools and armor out of this new material. Tools made this way have special properties, while both tools and armor automatically repair themselves.");
-			pages.add("You can also make LE cell upgrades by crafting a shard with four redstone.\nThe Skyfather Shard is useful, but the gods are taking notice of your mortal insolence. Demon Soldiers will now attack on sight.");
+			pages.add("You can also make Lightning Upgrades by crafting a shard with four redstone, which will improve various machinery upon right-clicking.\nThe Skyfather Shard is useful, but the gods are taking notice of your mortal insolence. Demon Soldiers will now attack on sight.");
+			if(level == 1) pages.add("If you were to kill these demons, legend has it you can use their blood to forge a portal to the Underworld...");
 			pages.add("Perhaps even Skyfather stuff can be upgraded...");
 		}
 
-		if(level == 1) {
-			pages.add("If you were to kill these demons, legend has it you can use their blood to forge a portal to the Underworld...");
-		} else if(level > 1) {
+		if(level > 1) {
 			pageLevel2 = pages.size();
 			pages.add("You've made your portal to the Underworld. What you see is a vast, dark, and damp cavern filled with spiders, demons, and more. It seems that it is so dark that night vision completely fails.");
 			pages.add("There are a few naturally generated structures that exist in this evil dimension.");

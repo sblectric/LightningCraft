@@ -14,6 +14,7 @@ import sblectric.lightningcraft.dimensions.LCDimensions;
 import sblectric.lightningcraft.enchantments.LCEnchantments;
 import sblectric.lightningcraft.entities.LCEntities;
 import sblectric.lightningcraft.events.LCEvents;
+import sblectric.lightningcraft.fluids.LCFluids;
 import sblectric.lightningcraft.gui.LCGuiHandler;
 import sblectric.lightningcraft.integration.LCModIntegration;
 import sblectric.lightningcraft.items.LCItems;
@@ -37,6 +38,7 @@ public class CommonProxy {
 		LCCreativeTabs.mainRegistry();
 		LCBlocks.mainRegistry();
 		LCItems.mainRegistry();
+		LCFluids.mainRegistry();
 		LCTileEntities.registerTileEntities();
 		LCEntities.mainRegistry();
 		LCPotions.mainRegistry();

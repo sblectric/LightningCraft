@@ -12,12 +12,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.blocks.IFurnace;
 import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.blocks.ifaces.IFurnace;
+import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** The enchantment reallocator tile entity */
-public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
+public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Upgradable {
 	
 	private static final int[] slotsTop = new int[]{0};
 	private static final int[] slotsBottom = new int[]{1};
@@ -25,11 +26,11 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 	
 	private static final int lpBurnTime = 200; // time / LP in ticks (time it takes for enchantment transfer)
 	
-	private ItemStack[] reallocItemStacks = new ItemStack[2]; // only two slots
 	public int reallocBurnTime;
 	public int reallocCookTime;
 	public int currentBurnTime;
-	private String reallocName;
+	
+	private boolean redo;
 	
 	public List<NBTTagCompound> topEnchs;
 	public int nTopEnchs;
@@ -39,119 +40,13 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 	public EntityPlayer player = null;
 	public boolean hasPlayer = false;
 	
-	@Override
-	public int getSizeInventory() {
-		return this.reallocItemStacks.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return this.reallocItemStacks[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int par1, int par2) {
-		if(this.reallocItemStacks[par1] != null) {
-			ItemStack itemstack;
-			if(this.reallocItemStacks[par1].stackSize <= par2){
-				itemstack = this.reallocItemStacks[par1];
-				this.reallocItemStacks[par1] = null;
-				return itemstack;
-			} else {
-				itemstack = this.reallocItemStacks[par1].splitStack(par2);
-				if(this.reallocItemStacks[par1].stackSize == 0){
-					this.reallocItemStacks[par1] = null;
-				}
-				return itemstack;
-			}
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int slot) {
-		if (this.reallocItemStacks[slot] != null) {
-			ItemStack itemstack = this.reallocItemStacks[slot];
-			this.reallocItemStacks[slot] = null;
-			return itemstack;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack itemstack) {
-		this.reallocItemStacks[slot] = itemstack;
-
-		if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
-			itemstack.stackSize = this.getInventoryStackLimit();
-		}
-
-	}
-
-	@Override
-	public String getName() {
-		return this.hasCustomName() ? this.reallocName : LCBlocks.enchReallocator.getLocalizedName();
-	}
-
-	@Override
-	public boolean hasCustomName() {
-		return this.reallocName != null && this.reallocName.length() > 0;
+	public TileEntityEnchReallocator() {
+		stacks = new ItemStack[2]; // only two slots
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
 		return 1; // one at a time m8
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound) {
-		super.readFromNBT(tagCompound);
-		NBTTagList tagList = tagCompound.getTagList("Items", 10);
-		this.reallocItemStacks = new ItemStack[this.getSizeInventory()];
-
-		for (int i = 0; i < tagList.tagCount(); ++i) {
-			NBTTagCompound tabCompound1 = tagList.getCompoundTagAt(i);
-			byte byte0 = tabCompound1.getByte("Slot");
-
-			if (byte0 >= 0 && byte0 < this.reallocItemStacks.length) {
-				this.reallocItemStacks[byte0] = ItemStack.loadItemStackFromNBT(tabCompound1);
-			}
-		}
-
-		this.reallocBurnTime = tagCompound.getShort("BurnTime");
-		this.reallocCookTime = tagCompound.getShort("CookTime");
-		this.currentBurnTime = lpBurnTime;
-
-		if (tagCompound.hasKey("CustomName", 8)) {
-			this.reallocName = tagCompound.getString("CustomName");
-		}
-		
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
-		super.writeToNBT(tagCompound);
-		tagCompound.setShort("BurnTime", (short) this.reallocBurnTime);
-		tagCompound.setShort("CookTime", (short) this.reallocBurnTime);
-		NBTTagList tagList = new NBTTagList();
-
-		for (int i = 0; i < this.reallocItemStacks.length; ++i) {
-			if (this.reallocItemStacks[i] != null) {
-				NBTTagCompound tagCompound1 = new NBTTagCompound();
-				tagCompound1.setByte("Slot", (byte) i);
-				this.reallocItemStacks[i].writeToNBT(tagCompound1);
-				tagList.appendTag(tagCompound1);
-			}
-		}
-
-		tagCompound.setTag("Items", tagList);
-
-		if (this.hasCustomName()) {
-			tagCompound.setString("CustomName", this.reallocName);
-		}
-		return tagCompound;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -216,6 +111,13 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 		if (dosave) {
 			this.markDirty();
 		}
+		
+		// run update twice a tick on upgrade
+		if(isUpgraded && !redo) {
+			redo = true;
+			update();
+		}
+		redo = false;
 	}
 
 	/** check if you can transfer enchantments from first item stack to second */
@@ -230,8 +132,8 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 		// quick exit
 		if(!this.hasLPCell()) return false;
 		
-		ItemStack top = this.reallocItemStacks[0];
-		ItemStack bottom = this.reallocItemStacks[1];
+		ItemStack top = this.stacks[0];
+		ItemStack bottom = this.stacks[1];
 		
 		List<NBTTagCompound> topEnchs = LCMisc.getEnchantments(top);
 		
@@ -261,26 +163,45 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler {
 			if(!this.player.capabilities.isCreativeMode) ((EntityPlayerMP)this.player).addExperienceLevel(-xpCost);
 			this.hasPlayer = false;
 			
-			int topCost = this.reallocItemStacks[0].getRepairCost();
-			int bottomCost = this.reallocItemStacks[1].getRepairCost();
+			int topCost = this.stacks[0].getRepairCost();
+			int bottomCost = this.stacks[1].getRepairCost();
 			
 			// remove all top item enchantments
-			if(this.reallocItemStacks[0].getItem() == Items.ENCHANTED_BOOK) {
-				this.reallocItemStacks[0] = new ItemStack(Items.BOOK, 1);
-			} else if(this.reallocItemStacks[0].getTagCompound().hasKey("ench")) {
-				this.reallocItemStacks[0].getTagCompound().removeTag("ench");
+			if(this.stacks[0].getItem() == Items.ENCHANTED_BOOK) {
+				this.stacks[0] = new ItemStack(Items.BOOK, 1);
+			} else if(this.stacks[0].getTagCompound().hasKey("ench")) {
+				this.stacks[0].getTagCompound().removeTag("ench");
 			}
-			this.reallocItemStacks[0].setRepairCost(topCost + 5);
+			this.stacks[0].setRepairCost(topCost + 5);
 			
 			// change the book type if needed
-			if(this.reallocItemStacks[1].getItem() == Items.BOOK) {
-				this.reallocItemStacks[1] = new ItemStack(Items.ENCHANTED_BOOK, 1);
+			if(this.stacks[1].getItem() == Items.BOOK) {
+				this.stacks[1] = new ItemStack(Items.ENCHANTED_BOOK, 1);
 			}
 			
 			// add the enchantments to the bottom item
-			LCMisc.addEnchantments(this.reallocItemStacks[1], this.topEnchs);
-			this.reallocItemStacks[1].setRepairCost(bottomCost + 5);
+			LCMisc.addEnchantments(this.stacks[1], this.topEnchs);
+			this.stacks[1].setRepairCost(bottomCost + 5);
 		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tagCompound) {
+		super.readFromNBT(tagCompound);
+
+		this.reallocBurnTime = tagCompound.getShort("BurnTime");
+		this.reallocCookTime = tagCompound.getShort("CookTime");
+		this.currentBurnTime = lpBurnTime;		
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+		super.writeToNBT(tagCompound);
+		
+		tagCompound.setShort("BurnTime", (short) this.reallocBurnTime);
+		tagCompound.setShort("CookTime", (short) this.reallocBurnTime);
+
+		return tagCompound;
 	}
 
 	@Override

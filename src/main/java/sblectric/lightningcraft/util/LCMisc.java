@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -12,8 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-
+import net.minecraft.util.math.BlockPos;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 
@@ -25,6 +27,15 @@ public class LCMisc {
 		Object[] array = new Object[amt];
 		Arrays.fill(array, obj);
 		return array;
+	}
+	
+	/** Gets an array of blocks from an array of full block registry names */
+	public static Block[] getBlocksFromRegs(String[] regList) {
+		Block[] blocks = new Block[regList.length];
+		for(int i = 0; i < regList.length; i++) {
+			blocks[i] = Block.REGISTRY.getObject(new ResourceLocation(regList[i]));
+		}
+		return blocks;
 	}
 	
 	/** Get the rarity from an ItemStack */

@@ -138,8 +138,8 @@ public class Effect {
         }
         
 		float pitch = 0.9F + random.nextFloat() * 0.2F;
-		world.playSound(null, x , y, z, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.AMBIENT, 1.0F, pitch);
-		if(sound2x) world.playSound(null, tx , ty, tz, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.AMBIENT, 1.0F, pitch);
+		world.playSound(null, x , y, z, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, pitch);
+		if(sound2x) world.playSound(null, tx , ty, tz, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, pitch);
         
     }
     

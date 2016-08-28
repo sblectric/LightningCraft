@@ -11,14 +11,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.blocks.PortalUnderworld;
+import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.network.LCNetwork;
+import sblectric.lightningcraft.network.MessageLightningUpgrade;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.tiles.TileEntityLightningCell;
+import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.Effect;
 
 /** The material class */
@@ -40,7 +44,7 @@ public class ItemMaterial extends ItemMeta {
 			break;
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
@@ -65,31 +69,32 @@ public class ItemMaterial extends ItemMeta {
 		}
 	}
 
-	/** Cell upgrading */
+	/** Right-click the item on a block */
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		switch(stack.getItemDamage()) {
+		
 		// Cell Upgrade usage
-		case Material.CELL_UPGRADE:
-			// check if the tile entity is correct
+		case Material.UPGRADE:
+			// upgrade an upgradable tile entity
 			TileEntity tile = world.getTileEntity(pos);
-			if(tile != null && tile instanceof TileEntityLightningCell) {
-				TileEntityLightningCell tlc = (TileEntityLightningCell)tile;
-				// upgrade time!
-				if(!tlc.isUpgraded) {
-					player.addStat(LCAchievements.upgradeCell, 1);
-					tlc.isUpgraded = true;
-					tlc.maxPower *= 1.5;
-					tlc.cellName += " (Upgr.)";
+			if(LCConfig.upgradeEnabled && tile != null && tile instanceof ILightningUpgradable && !((ILightningUpgradable)tile).isUpgraded()) {
+				EnumActionResult r = ((ILightningUpgradable)tile).onLightningUpgrade(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+				if(r == EnumActionResult.SUCCESS && !world.isRemote) {
+					--stack.stackSize; // transfer the upgrade to the tile entity on success
+					tile.markDirty();
 					
-					if(!world.isRemote) {
-						--stack.stackSize; // transfer it to the cell
-						return EnumActionResult.SUCCESS;
-					}
+					player.addStat(LCAchievements.upgradeMachine, 1); // give out the achievement
+					
+					// send a message to nearby clients to update the upgraded status
+					LCNetwork.net.sendToAllAround(new MessageLightningUpgrade(pos), 
+							new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 1024));
 				}
+				return r;
+			} else {
+				return EnumActionResult.FAIL;
 			}
-			return EnumActionResult.FAIL;
 
 		// Underworld Charge usage
 		case Material.UNDER_CHARGE:

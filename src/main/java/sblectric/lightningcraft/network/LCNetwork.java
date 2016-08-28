@@ -19,6 +19,7 @@ public class LCNetwork {
 	private static void registerNetwork() {
 		net = NetworkRegistry.INSTANCE.newSimpleChannel(RefStrings.SHORTNAME + ".net");
 		net.registerMessage(MessageSpawnParticle.Handler.class, MessageSpawnParticle.class, id++, Side.CLIENT);
+		net.registerMessage(MessageLightningUpgrade.Handler.class, MessageLightningUpgrade.class, id++, Side.CLIENT);
 	}
 
 }

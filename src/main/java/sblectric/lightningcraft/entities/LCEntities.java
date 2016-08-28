@@ -10,6 +10,7 @@ import net.minecraft.init.Biomes;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.main.LightningCraft;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.render.RenderDemonSoldier;
@@ -57,7 +58,7 @@ public class LCEntities {
 	
 	private static void addEntitySpawns() {
 		// demons can spawn occasionally in the Nether
-		EntityRegistry.addSpawn(EntityDemonSoldier.class, 18, 1, 3, EnumCreatureType.MONSTER, Biomes.HELL);
+		if(LCConfig.demonSoldiersInNether) EntityRegistry.addSpawn(EntityDemonSoldier.class, 18, 1, 3, EnumCreatureType.MONSTER, Biomes.HELL);
 	}
 
 	@SideOnly(Side.CLIENT)

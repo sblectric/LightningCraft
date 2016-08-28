@@ -2,10 +2,11 @@ package sblectric.lightningcraft.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.util.Effect;
-import sblectric.lightningcraft.util.RFStorage;
+import sblectric.lightningcraft.util.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
 
 /** The tile entity for RF -> LE conversion */
@@ -14,10 +15,9 @@ public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceive
 	
 	public static final int maxStorage = 100000;
 	public static final int rfPerTick = 512;
-	private RFStorage storage;
 	
 	public TileEntityRFReceiver() {
-		storage = new RFStorage(maxStorage, rfPerTick, 0);
+		storage = new EnergyStorage(maxStorage, rfPerTick, 0);
 	}
 
 	@Override
@@ -36,6 +36,18 @@ public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceive
 				this.markDirty();
 			}
 		}
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if(capability != null) {
+			if(capability == consumerCap) {
+				return true;
+			} else if(capability == producerCap) {
+				return false;
+			}
+		}
+		return super.hasCapability(capability, facing);
 	}
 
 	@Override

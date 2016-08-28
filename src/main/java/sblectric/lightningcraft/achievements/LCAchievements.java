@@ -53,7 +53,8 @@ public class LCAchievements {
 	public static Achievement infuseSpecialSword;
 	public static Achievement specialSwordKill;
 	public static Achievement infuseSkyfather;
-	public static Achievement upgradeCell;
+	public static Achievement upgradeMachine;
+	public static Achievement craftMiner;
 	public static Achievement craftWireless;
 	public static Achievement killDemon;
 	public static Achievement reachUnderworld;
@@ -98,12 +99,14 @@ public class LCAchievements {
 					Items.STONE_SWORD, craftInfuser).registerStat(),
 			specialSwordKill = addAchievement(RefStrings.MODID + ":specialSwordKill", "specialSwordKill", 12, 3, 
 					LCItems.blazeSword, infuseSpecialSword).registerStat(),
-			infuseSkyfather = addAchievement(RefStrings.MODID + ":infuseSkyfather", "infuseSkyfather", 8, 6, 
-					new ItemStack(LCItems.ingot, 1, Ingot.SKY), craftInfuser).registerStat(),
-			upgradeCell = addAchievement(RefStrings.MODID + ":upgradeCell", "upgradeCell", 10, 6, 
-					new ItemStack(LCItems.material, 1, Material.CELL_UPGRADE), infuseSkyfather).registerStat(),
-			craftWireless = addAchievement(RefStrings.MODID + ":craftWireless", "craftWireless", 12, 7, 
-					LCBlocks.wirelessBlock, upgradeCell).registerStat(),
+			infuseSkyfather = addAchievement(RefStrings.MODID + ":infuseSkyfather", "infuseSkyfather", 9, 6, 
+					new ItemStack(LCItems.ingot, 1, Ingot.SKY), craftInfuser).registerStat(), // semi-independent
+			upgradeMachine = addAchievement(RefStrings.MODID + ":upgradeCell", "upgradeCell", 11, 6, 
+					new ItemStack(LCItems.material, 1, Material.UPGRADE), infuseSkyfather).registerStat(),
+			craftMiner = addAchievement(RefStrings.MODID + ":craftMiner", "craftMiner", 11, 8, 
+					LCBlocks.lightningMiner, infuseSkyfather).registerStat(),
+			craftWireless = addAchievement(RefStrings.MODID + ":craftWireless", "craftWireless", 13, 7, 
+					LCBlocks.wirelessBlock, upgradeMachine).registerStat(),
 			killDemon = addAchievement(RefStrings.MODID + ":killDemon", "killDemon", 6, 7, 
 					new ItemStack(LCItems.material, 1, Material.DEMON_BLOOD), infuseSkyfather).registerStat(),
 			reachUnderworld = addAchievement(RefStrings.MODID + ":reachUnderworld", "reachUnderworld", 6, 9, 
@@ -125,7 +128,7 @@ public class LCAchievements {
 	
 	/** Add an achievement to the page and return it */
 	private static Achievement addAchievement(String ref, String name, int x, int y, ItemStack stack, Achievement parent) {
-		Achievement a = new Achievement(ref, name, x, y, stack, parent);
+		Achievement a = new Achievement(ref, ref, x, y, stack, parent);
 		lcAPage.getAchievements().add(a);
 		return a;
 	}

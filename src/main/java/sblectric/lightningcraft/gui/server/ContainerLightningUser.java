@@ -5,9 +5,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.gui.ShortSender;
 import sblectric.lightningcraft.tiles.TileEntityLightningUser;
+import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 
 /** The superclass for all lightning user containers */
 public abstract class ContainerLightningUser extends Container {
@@ -22,37 +22,45 @@ public abstract class ContainerLightningUser extends Container {
 		this.tile = tile;
 	}
 	
-	/** Send out the shorts */
-	public int sendUpdate(IContainerListener craft, int n) {
+	/** Send out the primary shorts */
+	public final int sendUpdate(IContainerListener craft, int n) {
 		int cellPower = (int)(this.tile.cellPower * 10D);
 		int maxPower = (int)this.tile.maxPower;
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(cellPower));
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(cellPower));
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(maxPower));
 		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(maxPower));
+		craft.sendProgressBarUpdate(this, n++, (int)(this.tile.getEfficiency() * 1000D));
 		return n;
 	}
+	
+	/** Send extra shorts to the client */
+	public abstract void sendInfo(IContainerListener craft);
+	
+	/** Get extra shorts that were sent with sendInfo */
+	@SideOnly(Side.CLIENT)
+	public abstract void getInfo(short short1, short short2);
 
 	@Override
-	public void addListener(IContainerListener craft) {
+	public final void addListener(IContainerListener craft) {
 		super.addListener(craft);
-		int n = sendUpdate(craft, 1000);
-		craft.sendProgressBarUpdate(this, n++, (int)(this.tile.getEfficiency() * 1000D));
+		sendUpdate(craft, 1000);
+		sendInfo(craft);
 	}
 
 	@Override
-	public void detectAndSendChanges() {
+	public final void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.listeners.size(); i++) {
 			IContainerListener craft = this.listeners.get(i);
-			int n = sendUpdate(craft, 1000);
-			craft.sendProgressBarUpdate(this, n++, (int)(this.tile.getEfficiency() * 1000D));
+			sendUpdate(craft, 1000);
+			sendInfo(craft);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
+	public final void updateProgressBar(int par1, int par2) {
 		if(par1 == 1000) lowStored = (short)par2;
 		if(par1 == 1001) highStored = (short)par2;
 		if(lowStored != null && highStored != null) tile.cellPower = ShortSender.getInt(lowStored, highStored) / 10D;
@@ -62,6 +70,30 @@ public abstract class ContainerLightningUser extends Container {
 		if(par1 == 1004) {
 			this.tile.setEfficiency(par2 / 1000D);
 		}
+		getInfo((short)par1, (short)par2);
+	}
+	
+	/** Upgradable Lightning tile container */
+	public static abstract class Upgradable extends ContainerLightningUser {
+		
+		private ILightningUpgradable tile;
+
+		protected Upgradable(InventoryPlayer player, ILightningUpgradable tile) {
+			super(player, (TileEntityLightningUser)tile);
+			this.tile = tile;
+		}
+		
+		@Override
+		public void sendInfo(IContainerListener craft) {
+			craft.sendProgressBarUpdate(this, 1500, tile.isUpgraded() ? 1 : 0);
+		}
+		
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void getInfo(short short1, short short2) {
+			if(short1 == 1500) tile.setUpgraded(short2 > 0);
+		}
+		
 	}
 	
 }
