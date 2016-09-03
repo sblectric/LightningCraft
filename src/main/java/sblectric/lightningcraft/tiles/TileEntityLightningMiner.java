@@ -128,7 +128,7 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 				} else if(mode == EnumMode.LOGS) {
 					if(block != null && Item.getItemFromBlock(block) != null) {
 						ItemStack stack = new ItemStack(block, 1, block.getMetaFromState(state));
-						if(StackHelper.oreDictNameStartsWith(stack, "logWood")) flag = true;
+						if(StackHelper.oreDictNameStartsWith(stack, "log")) flag = true;
 					}
 				// seeks only things that are also in its own inventory
 				} else if(mode == EnumMode.MATCHING) {

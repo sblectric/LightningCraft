@@ -17,6 +17,7 @@ import sblectric.lightningcraft.items.ItemSpecialSword;
 import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
 import sblectric.lightningcraft.ref.Metal.Ingot;
+import sblectric.lightningcraft.util.StackHelper;
 
 /** Events that give achievements */
 public class AchievementEvents {
@@ -31,7 +32,7 @@ public class AchievementEvents {
 		
 		// items
 		
-		if(item instanceof ItemMetalRod) {
+		if(StackHelper.oreDictNameEquals(output, "rodLC")) {
 			e.player.addStat(LCAchievements.craftRod, 1);
 		}
 		
@@ -69,6 +70,10 @@ public class AchievementEvents {
 			e.player.addStat(LCAchievements.craftInfuser, 1);
 		}
 		
+		if(block == LCBlocks.lightningMiner) {
+			e.player.addStat(LCAchievements.craftMiner, 1);
+		}
+		
 		if(block == LCBlocks.staticGenerator) {
 			e.player.addStat(LCAchievements.craftGenerator, 1);
 		}
@@ -88,18 +93,13 @@ public class AchievementEvents {
 	public void onInfuseThing(ItemSmeltedEvent e) {
 		ItemStack output = e.smelting;
 		Item item = output.getItem();
-		Block block = Block.getBlockFromItem(item);
 		int meta = output.getItemDamage();
 		
-		if(item == LCItems.ingot && meta == Ingot.ELEC) {
+		if(StackHelper.oreDictNameEquals(output, "ingotElectricium")) {
 			e.player.addStat(LCAchievements.getElectricium, 1);
 		}
 		
-		if(item instanceof ItemSpecialSword) {
-			e.player.addStat(LCAchievements.infuseSpecialSword, 1);
-		}
-		
-		if(item == LCItems.ingot && meta == Ingot.SKY) {
+		if(StackHelper.oreDictNameEquals(output, "ingotSkyfather")) {
 			// force unlock this one even without parents
 			if(e.player instanceof EntityPlayerMP) {
 				if(!((EntityPlayerMP)e.player).getStatFile().hasAchievementUnlocked(LCAchievements.infuseSkyfather))
@@ -108,8 +108,12 @@ public class AchievementEvents {
 			e.player.addStat(LCAchievements.infuseSkyfather, 1);
 		}
 		
-		if(item == LCItems.ingot && meta == Ingot.MYSTIC) {
+		if(StackHelper.oreDictNameEquals(output, "ingotMystic")) {
 			e.player.addStat(LCAchievements.infuseMystic, 1);
+		}
+		
+		if(item instanceof ItemSpecialSword) {
+			e.player.addStat(LCAchievements.infuseSpecialSword, 1);
 		}
 	}
 	
@@ -117,10 +121,8 @@ public class AchievementEvents {
 	@SubscribeEvent
 	public void onPickUpThing(ItemPickupEvent e) {
 		ItemStack got = e.pickedUp.getEntityItem();
-		Item item = got.getItem();
-		int meta = got.getItemDamage();
 		
-		if(item == LCItems.ingot && meta == Ingot.ELEC) {
+		if(StackHelper.oreDictNameEquals(got, "ingotElectricium")) {
 			e.player.addStat(LCAchievements.getElectricium, 1);
 		}
 		

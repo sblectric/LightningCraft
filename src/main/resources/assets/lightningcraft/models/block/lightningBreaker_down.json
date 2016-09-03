@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable_vertical",
+    "textures": {
+        "front": "blocks/iron_block",
+        "side": "lightningcraft:blocks/lightning_breaker_side",
+		"down": "lightningcraft:blocks/lightning_breaker_front"
+    }
+}

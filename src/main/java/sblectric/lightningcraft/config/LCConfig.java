@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Property;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.ref.Log;
+import sblectric.lightningcraft.ref.RefStrings;
 
 public class LCConfig {
 	
@@ -25,6 +26,7 @@ public class LCConfig {
 	public static boolean JEIIntegration, RFIntegration;
 	public static int RFtoLEConversion;
 	public static boolean tinkersIntegration;
+	public static boolean disableOtherRods;
 	
 	/** Set config defaults */
 	private static void setDefaultValues() {
@@ -55,6 +57,7 @@ public class LCConfig {
 		RFIntegration = true;
 		RFtoLEConversion = 50;
 		tinkersIntegration = true;
+		disableOtherRods = true;
 	}
 	
 	/** Load the mod config */
@@ -110,6 +113,8 @@ public class LCConfig {
 				"This amount of RF / TESLA is equal to 1 LE (for 1 LE -> x RF conversion). The reverse will be 10 times costlier.");
 		tinkersIntegration = config.getBoolean("Tinker's Construct integration", category, tinkersIntegration,
 				"Enable smeltery support for electricium, skyfather, and mystic metals");
+		disableOtherRods = config.getBoolean("Remove Other Mods' Rods", category, disableOtherRods,
+				"Will remove the crafting recipes of all other mods' rods that " + RefStrings.NAME + " has its own versions of.");
 		
 		// save the config if fields were missing
 		if(config.hasChanged()) config.save();

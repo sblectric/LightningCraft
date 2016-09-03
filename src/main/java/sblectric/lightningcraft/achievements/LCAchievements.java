@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
-
+import net.minecraftforge.oredict.OreDictionary;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.enchantments.LCEnchantments;

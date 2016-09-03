@@ -90,7 +90,7 @@ public class GuiLightningBook extends GuiScreen {
 		pages.add(S + "lLightning Crusher" + S + "r - This is a machine that pulverizes items. With it, you can crush gravel into sand, ores to powder, and much more! Great for ore processing and a handy tool in general.");
 		pages.add(S + "lLightning Infusion Table" + S + "r - The mighty Lightning Infusion Table takes the idea of using LE to create items to the next level. An item in the center slot gets infused with items in the outer slots along with some LE.");
 		pages.add(S + "lLightning Block Breaker" + S + "r - This machine simply uses LE to break the block directly in front of it. The breaker is placed in the same manner as pistons.");
-		pages.add(S + "lLightning Miner" + S + "r - This useful machine will mine blocks in its area. It has 6 modes of operation: 1x1 tunnel, 3x3 tunnel, ores only, logs only, and all blocks. The default range is a 16x16x16 cube in front of it, but it can be upgraded to 24x24x24.");
+		pages.add(S + "lLightning Miner" + S + "r - This useful machine will mine blocks in its area. It has 6 modes of operation: 1x1 tunnel, 3x3 tunnel, ores only, logs only, slot matching, and all blocks. The default range is a 16x16x16 cube in front of it, but it can be upgraded to 24x24x24.");
 		pages.add(S + "lElectrostatic Generator" + S + "r - This gives you a method of generating lightning, and by extension, LE by using blocks to generate a charge. When the charge is full (100C), lightning will strike. It does need a small amount of LE to run, though.");
 		if(EnergyApiHelper.rfOrTeslaLoaded) {
 			pages.add(S + "lLE to RF Export Bus" + S + "r - This machine takes LE and converts it to RF or Tesla so other mod's machines can make use of it. It transfers at a max rate of " + TileEntityRFProvider.rfPerTick + " RF/tick, where 1 LE yields " + LCConfig.RFtoLEConversion + " RF.");
@@ -183,7 +183,7 @@ public class GuiLightningBook extends GuiScreen {
 		buttonList.clear();
 		Keyboard.enableRepeatEvents(true);
 
-		buttonDone = new GuiButton(4, width / 2 - 49, 4 + bookImageHeight + (level + 1) * 24, 98, 20, I18n.format("gui.done", new Object[0]));
+		buttonDone = new GuiButton(4, width / 2 - 49, 4 + bookImageHeight + (level + 1) * 24, 98, 20, I18n.format("gui.done"));
 		level1Ref = new GuiButton(5, width / 2 - 80, 4 + bookImageHeight, 160, 20, "Skyfather Reference");
 		level2Ref = new GuiButton(6, width / 2 - 80, 28 + bookImageHeight, 160, 20, "Underworld Reference");
 		level3Ref = new GuiButton(7, width / 2 - 80, 52 + bookImageHeight, 160, 20, "Transcendental Reference");
@@ -240,7 +240,7 @@ public class GuiLightningBook extends GuiScreen {
 
 		// book pages
 		int widthOfString;
-		String stringPageIndicator = I18n.format("book.pageIndicator", new Object[] {Integer.valueOf(currPage + 1), bookTotalPages});
+		String stringPageIndicator = I18n.format("book.pageIndicator", Integer.valueOf(currPage + 1), bookTotalPages);
 		widthOfString = fontRendererObj.getStringWidth(stringPageIndicator);
 		fontRendererObj.drawString(stringPageIndicator, offsetFromScreenLeft - widthOfString + bookImageWidth - 44, 18, 0);
 		fontRendererObj.drawSplitString(pages.get(currPage), offsetFromScreenLeft + 36, 34, 116, 0);

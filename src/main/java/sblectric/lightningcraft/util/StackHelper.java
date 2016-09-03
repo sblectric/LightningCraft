@@ -246,6 +246,14 @@ public class StackHelper {
 		}
 		return false;
 	}
+	
+	/** Returns true if the ItemStack has an oredict entry that equals 'equals' */
+	public static boolean oreDictNameEquals(ItemStack ore, String equals) {
+		for(int i : OreDictionary.getOreIDs(ore)) {
+			if(OreDictionary.getOreName(i).equals(equals)) return true;
+		}
+		return false;
+	}
 
 	/** Make an integer array based on the size of 'stacks' */
 	public static int[] makeIntArray(ItemStack[] stacks) {

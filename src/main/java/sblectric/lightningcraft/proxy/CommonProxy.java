@@ -56,13 +56,14 @@ public class CommonProxy {
 		LCStructures.mainRegistry();
 		LCAchievements.mainRegistry();
 		LCEvents.mainRegistry();
-		LCCraftingManager.mainRegistry();
 		LCCreativeTabs.updateCreativeTabs();
+		LCCraftingManager.onInit();
 		LCModIntegration.onInit();
 	}
 	
 	public void postInit(FMLPostInitializationEvent event) {
 		Log.logger.info("PostInitializing " + RefStrings.NAME + "...");
+		LCCraftingManager.postInit();
 		LCModIntegration.postInit();
 	}
 

@@ -3,6 +3,7 @@ package sblectric.lightningcraft.crafting;
 import java.util.Iterator;
 import java.util.List;
 
+import sblectric.lightningcraft.util.StackHelper;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -24,19 +25,19 @@ public class RecipeHelper {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(result, recipe));
 	}
 	
-	/** Remove all recipes that give 'stackResult' */
+	/** Remove all recipes that give 'stackResult' (not amount-sensitive) */
 	public static void removeRecipes(ItemStack stackResult) {
 		List<IRecipe> allRecipes = CraftingManager.getInstance().getRecipeList();
 		Iterator<IRecipe> remover = allRecipes.iterator();
-		while(remover.hasNext()) {
+		while(remover.hasNext()) { 
 			IRecipe current = remover.next();
-			if(ItemStack.areItemStacksEqual(stackResult, current.getRecipeOutput())) {
+			if(StackHelper.areItemStacksEqualForCrafting(stackResult, current.getRecipeOutput())) {
 				remover.remove(); // get rid of it
 			}
 		}
 	}
 	
-	/** Remove all recipes that give 'stackResult' and can be crafted with 'inventory' */
+	/** Remove all recipes that give 'stackResult' and can be crafted with 'inventory' (amount-sensitive) */
 	public static void removeRecipes(ItemStack stackResult, ItemStack... inventory) {
 		List<IRecipe> allRecipes = CraftingManager.getInstance().getRecipeList();
 		Iterator<IRecipe> remover = allRecipes.iterator();

@@ -1,10 +1,15 @@
 package sblectric.lightningcraft.ref;
 
 import java.awt.Color;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 /** Some metal definitions */
 public class Metal {
-	
+
 	// metal names
 	public static final String NAME_IRON = "Iron";
 	public static final String NAME_STEEL = "Steel";
@@ -17,7 +22,22 @@ public class Metal {
 	public static final String NAME_SKY = "Skyfather";
 	public static final String NAME_MYSTIC = "Mystic";
 	private static final String NAME_DEFAULT = "[none]";
-	
+
+	/** Gets all valid metal names */
+	public static final List<String> getAllNames() {
+		ArrayList<String> names = new ArrayList();
+		try {
+			for(Field f : Metal.class.getFields()) {
+				if(f.getName().startsWith("NAME_")) {
+					names.add((String)f.get(null));
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return names;
+	}
+
 	// metal colors
 	public static final int COLOR_IRON = new Color(197,197,197).getRGB();
 	public static final int COLOR_STEEL = new Color(133,133,133).getRGB();
@@ -30,17 +50,17 @@ public class Metal {
 	public static final int COLOR_SKY = new Color(44,44,44).getRGB();
 	public static final int COLOR_MYSTIC = new Color(174,43,30).getRGB();
 	private static final int COLOR_DEFAULT = Color.WHITE.getRGB();
-	
+
 	/** Base metal definition */
 	private static class Base {}
-	
+
 	/** Ingot metadata definitions */
 	public static class Ingot extends Base {
 		public static final int count = 3;
 		public static final int ELEC = 0;
 		public static final int SKY = 1;
 		public static final int MYSTIC = 2;
-		
+
 		/** Get the metal's name from its metadata */
 		public static String getNameFromMeta(int meta) {
 			switch(meta) {
@@ -50,12 +70,12 @@ public class Metal {
 			default: return NAME_DEFAULT;
 			}
 		}
-		
+
 		/** Get the full oredict name */
 		public static String getIngotFromMeta(int meta) {
 			return "ingot" + getNameFromMeta(meta);
 		}
-		
+
 		/** Gets the metal color from its metadata */
 		public static int getColorFromMeta(int meta) {
 			switch(meta) {
@@ -66,7 +86,7 @@ public class Metal {
 			}
 		}
 	}
-	
+
 	/** Block metadata definitions */
 	public static class MBlock extends Ingot {
 		/** Get the full oredict name */
@@ -74,16 +94,16 @@ public class Metal {
 			return "block" + getNameFromMeta(meta);
 		}
 	}
-	
+
 	/** Nugget metadata definitions */
 	public static class Nugget extends Ingot {
-		
+
 		/** Get the full oredict name */
 		public static String getNuggetFromMeta(int meta) {
 			return "nugget" + getNameFromMeta(meta);
 		}
 	}
-	
+
 	/** Dust metadata definitions */
 	public static class Dust extends Ingot {
 		/** Get the full oredict name */
@@ -91,7 +111,7 @@ public class Metal {
 			return "dust" + getNameFromMeta(meta);
 		}
 	}
-	
+
 	/** Rod metadata definitions */
 	public static class Rod extends Base {
 		public static final int count = 10;
@@ -105,7 +125,7 @@ public class Metal {
 		public static final int ELEC = 7;
 		public static final int SKY = 8;
 		public static final int MYSTIC = 9;
-		
+
 		/** Get the metal's name from its metadata */
 		public static String getNameFromMeta(int meta) {
 			switch(meta) {
@@ -122,12 +142,12 @@ public class Metal {
 			default: return NAME_DEFAULT;
 			}
 		}
-		
+
 		/** Gets the oredict name of the ingot that makes this part */
 		public static String getIngotFromMeta(int meta) {
 			return "ingot" + getNameFromMeta(meta);
 		}
-		
+
 		/** Get the full oredict name */
 		public static String getRodFromMeta(int meta) {
 			return "rod" + getNameFromMeta(meta);
@@ -150,7 +170,7 @@ public class Metal {
 			}
 		}
 	}
-	
+
 	/** Plate metadata definitions */
 	public static class Plate extends Rod {
 		/** Get the full oredict name */
