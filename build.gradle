@@ -14,7 +14,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.5.1"
+version = "2.5.2"
 group= "com.sblectric.lightningcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "lightningcraft"
 
@@ -27,17 +27,17 @@ repositories {
 }
 
 minecraft {
-    version = "1.10.2-12.18.1.2011"
+    version = "1.10.2-12.18.1.2073"
     runDir = "run"
-	useDepAts = true
+    useDepAts = true
     mappings = "snapshot_20160518"
 }
 
 dependencies {
 	deobfCompile "mezz.jei:jei_1.10.2:3.7.8.234"
-    deobfCompile "slimeknights.mantle:Mantle:1.10-0.10.3.jenkins158"
-    deobfCompile "slimeknights:TConstruct:1.10-2.3.3a.jenkins289"
-	compile "net.darkhax.tesla:Tesla:1.10.2-1.2.1.41"
+    deobfCompile "slimeknights.mantle:Mantle:1.10.2-1.0.0.jenkins170"
+    deobfCompile "slimeknights:TConstruct:1.10.2-2.5.2.jenkins352"
+    compile "net.darkhax.tesla:Tesla:1.10.2-1.2.1.41"
 }
 
 processResources

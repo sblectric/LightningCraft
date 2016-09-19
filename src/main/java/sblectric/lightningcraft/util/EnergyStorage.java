@@ -155,13 +155,13 @@ public class EnergyStorage implements ITeslaConsumer, ITeslaProducer, ITeslaHold
 
 	@Override
 	public long takePower(long power, boolean simulated) {
-		if(power > (long)Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
+		if(power > Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
 		return extractEnergy((int)power, simulated);
 	}
 
 	@Override
 	public long givePower(long power, boolean simulated) {
-		if(power > (long)Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
+		if(power > Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
 		return receiveEnergy((int)power, simulated);
 	}
 

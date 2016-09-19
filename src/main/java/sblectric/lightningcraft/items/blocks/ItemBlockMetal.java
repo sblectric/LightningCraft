@@ -1,7 +1,6 @@
 package sblectric.lightningcraft.items.blocks;
 
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.ref.Metal.MBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;

@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraftforge.fml.common.FMLCommonHandler;
-
 /** Some metal definitions */
 public class Metal {
 

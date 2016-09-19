@@ -5,7 +5,6 @@ import net.darkhax.tesla.api.ITeslaProducer;
 import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.tiles.TileEntityRF;
 
 /** TESLA helper things */

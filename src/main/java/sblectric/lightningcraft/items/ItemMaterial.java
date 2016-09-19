@@ -21,7 +21,6 @@ import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.network.MessageLightningUpgrade;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.Effect;
 

@@ -18,7 +18,6 @@ import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.potions.LCPotions;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.ref.Metal.MBlock;
 import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.LCMisc;
 import sblectric.lightningcraft.util.StackHelper;

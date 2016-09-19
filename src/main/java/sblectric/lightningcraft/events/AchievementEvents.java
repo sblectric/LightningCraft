@@ -12,11 +12,8 @@ import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.items.ItemLightningGuide;
-import sblectric.lightningcraft.items.ItemMetalRod;
 import sblectric.lightningcraft.items.ItemSpecialSword;
-import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
-import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.util.StackHelper;
 
 /** Events that give achievements */

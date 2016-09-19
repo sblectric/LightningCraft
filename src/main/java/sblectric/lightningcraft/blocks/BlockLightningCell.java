@@ -1,7 +1,6 @@
 package sblectric.lightningcraft.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -12,10 +11,8 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import sblectric.lightningcraft.gui.LCGuiHandler;
-import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
 import sblectric.lightningcraft.main.LightningCraft;
-import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.MBlock;
 import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 

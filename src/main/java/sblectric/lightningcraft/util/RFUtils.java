@@ -2,7 +2,6 @@ package sblectric.lightningcraft.util;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.tiles.TileEntityRF;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;

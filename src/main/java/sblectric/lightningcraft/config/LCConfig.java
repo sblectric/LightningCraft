@@ -2,7 +2,6 @@ package sblectric.lightningcraft.config;
 
 import java.io.File;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Property;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;

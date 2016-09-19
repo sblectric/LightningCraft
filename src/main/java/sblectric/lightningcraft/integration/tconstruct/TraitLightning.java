@@ -2,7 +2,6 @@ package sblectric.lightningcraft.integration.tconstruct;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 import sblectric.lightningcraft.fluids.LCFluids;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.Effect;
