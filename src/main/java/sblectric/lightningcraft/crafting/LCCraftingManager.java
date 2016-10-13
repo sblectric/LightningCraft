@@ -139,6 +139,12 @@ public class LCCraftingManager {
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.THUNDER));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK_CHISELED));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY_2), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK));
+		
+		// thunderstone slab and stairs
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.THUNDER), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.thunderStairs, 4), "X  ","XX ","XXX",
@@ -149,6 +155,12 @@ public class LCCraftingManager {
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.DEMON));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY_2), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK));
+		
+		// demonstone slab and stairs
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.DEMON), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.demonStairs, 4), "X  ","XX ","XXX",
@@ -159,6 +171,12 @@ public class LCCraftingManager {
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.UNDER));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY_2), "XX","XX",
+				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK));
+		
+		// understone slab and stairs
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.UNDER), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underStairs, 4), "X  ","XX ","XXX",
@@ -170,7 +188,11 @@ public class LCCraftingManager {
 				'L',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AB","BA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER), 'B',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP));
-
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_2), "AA","AA",
+				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_3), "AA","AA",
+				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY_2));
+		
 		// corrupt walls
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wallBlock, 6), "BBB","BBB", 'B',LCBlocks.corruptStone);
 

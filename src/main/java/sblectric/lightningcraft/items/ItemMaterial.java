@@ -16,12 +16,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.blocks.PortalUnderworld;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.network.MessageLightningUpgrade;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.Effect;
 
 /** The material class */
@@ -78,8 +78,10 @@ public class ItemMaterial extends ItemMeta {
 		case Material.UPGRADE:
 			// upgrade an upgradable tile entity
 			TileEntity tile = world.getTileEntity(pos);
-			if(LCConfig.upgradeEnabled && tile != null && tile instanceof ILightningUpgradable && !((ILightningUpgradable)tile).isUpgraded()) {
-				EnumActionResult r = ((ILightningUpgradable)tile).onLightningUpgrade(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+			if(LCConfig.upgradeEnabled && tile != null && tile.hasCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null) && 
+					!tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).isUpgraded()) {
+				EnumActionResult r = tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null)
+						.onLightningUpgrade(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
 				if(r == EnumActionResult.SUCCESS && !world.isRemote) {
 					--stack.stackSize; // transfer the upgrade to the tile entity on success
 					tile.markDirty();

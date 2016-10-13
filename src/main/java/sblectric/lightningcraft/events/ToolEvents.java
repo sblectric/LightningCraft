@@ -12,11 +12,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import sblectric.lightningcraft.api.IMysticGear;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.items.ItemSkyAxe;
 import sblectric.lightningcraft.items.ItemSkyPick;
 import sblectric.lightningcraft.items.ItemSkySpade;
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.network.MessageSpawnParticle;
 

@@ -1,11 +1,10 @@
 package sblectric.lightningcraft.integration.jei;
 
+import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiRuntime;
-import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
-
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.client.GuiLightningCrusher;
@@ -15,12 +14,15 @@ import sblectric.lightningcraft.integration.jei.crusher.LightningCrusherRecipeCa
 import sblectric.lightningcraft.integration.jei.crusher.LightningCrusherRecipeHandler;
 import sblectric.lightningcraft.integration.jei.infusion.LightningInfusionRecipeCategory;
 import sblectric.lightningcraft.integration.jei.infusion.LightningInfusionRecipeHandler;
+import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.recipes.LightningCrusherRecipes;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
 import sblectric.lightningcraft.ref.Log;
+import sblectric.lightningcraft.ref.RefStrings;
+import sblectric.lightningcraft.ref.Metal.Ingot;
 
 @mezz.jei.api.JEIPlugin
-public class JEIPlugin implements IModPlugin {
+public class JEIPlugin extends BlankModPlugin {
 	
 	/** Register this mod plugin with the mod registry. */
 	@Override
@@ -51,6 +53,11 @@ public class JEIPlugin implements IModPlugin {
 			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningFurnace), VanillaRecipeCategoryUid.SMELTING);
 			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningCrusher), LightningCrusherRecipeCategory.UID);
 			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningInfuser), LightningInfusionRecipeCategory.UID);
+			
+			// add item descriptions
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.ELEC), RefStrings.MODID + ".electriciumInfo");
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.SKY), RefStrings.MODID + ".skyfatherInfo");
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.MYSTIC), RefStrings.MODID + ".mysticInfo");
 			
 			Log.logger.info("JEI integration complete.");
 		} else {

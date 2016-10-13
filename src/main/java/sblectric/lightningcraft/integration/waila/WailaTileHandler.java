@@ -13,11 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.blocks.BlockContainerLC;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
 import sblectric.lightningcraft.ref.Log;
-import sblectric.lightningcraft.registry.IRegistryBlock;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 
 @Optional.Interface(iface = "mcp.mobius.waila.api.IWailaDataProvider", modid = "Waila")
 public class WailaTileHandler implements IWailaDataProvider {
@@ -30,10 +30,10 @@ public class WailaTileHandler implements IWailaDataProvider {
 		WailaTileHandler instance = new WailaTileHandler();
 		
 		// register providers for all the blocks in the mod
-		register.registerStackProvider(instance, IRegistryBlock.class);
-		register.registerHeadProvider(instance, IRegistryBlock.class);
-		register.registerBodyProvider(instance, IRegistryBlock.class);
-		register.registerNBTProvider(instance, IRegistryBlock.class);
+		register.registerStackProvider(instance, ILightningCraftBlock.class);
+		register.registerHeadProvider(instance, ILightningCraftBlock.class);
+		register.registerBodyProvider(instance, ILightningCraftBlock.class);
+		register.registerNBTProvider(instance, ILightningCraftBlock.class);
 		
 		Log.logger.info("Waila integration complete.");
 	}
@@ -63,8 +63,9 @@ public class WailaTileHandler implements IWailaDataProvider {
 		} else {
 			currenttip.add("Capacity: " + maxPower + " LE");
 		}
-		TileEntity t;
-		if((t = accessor.getTileEntity()) != null && t instanceof ILightningUpgradable && ((ILightningUpgradable)t).isUpgraded()) {
+		TileEntity t = accessor.getTileEntity();
+		if(t != null && t.hasCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null) && 
+				t.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).isUpgraded()) {
 			currenttip.add("(Upgraded)");
 		}
 		return currenttip;

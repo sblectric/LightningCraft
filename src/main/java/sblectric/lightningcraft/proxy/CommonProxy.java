@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.biomes.LCBiomes;
 import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.crafting.LCCraftingManager;
 import sblectric.lightningcraft.creativetabs.LCCreativeTabs;
@@ -21,7 +22,6 @@ import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.main.LightningCraft;
 import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.potions.LCPotions;
-import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.sounds.LCSoundEvents;
@@ -33,19 +33,19 @@ public class CommonProxy {
 	
 	public void preInit(FMLPreInitializationEvent event) {
 		Log.logger.info("PreInitializing " + RefStrings.NAME + "...");
-		LCText.setupFormatting();
 		LCConfig.loadConfig(event.getSuggestedConfigurationFile());
 		LCCreativeTabs.mainRegistry();
 		LCBlocks.mainRegistry();
 		LCItems.mainRegistry();
 		LCFluids.mainRegistry();
-		LCTileEntities.registerTileEntities();
+		LCTileEntities.mainRegistry();
 		LCEntities.mainRegistry();
 		LCPotions.mainRegistry();
 		LCBiomes.mainRegistry();
 		LCEnchantments.mainRegistry();
 		LCSoundEvents.mainRegistry();
 		LCNetwork.mainRegistry();
+		LCCapabilities.mainRegistry();
 		LCModIntegration.preInit();
 	}
 	

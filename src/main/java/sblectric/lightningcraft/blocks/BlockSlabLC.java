@@ -20,13 +20,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.items.blocks.ItemSlabLC;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 
 /** The half-slab block */
-public class BlockSlabLC extends BlockSlab implements IRegistryBlock {
+public class BlockSlabLC extends BlockSlab implements ILightningCraftBlock {
 
-	public static final int nVariants = BlockStone.nVariants / 3 + 1;
+	public static final int nVariants = BlockStone.nTypes + 1;
 	public static final int THUNDER = 0;
 	public static final int DEMON = 1;
 	public static final int UNDER = 2;
@@ -48,46 +48,6 @@ public class BlockSlabLC extends BlockSlab implements IRegistryBlock {
 		this.setHardness(10);
 		this.setResistance(100);
 	}
-	
-//
-//	/** Different tools for different fools */
-//	@Override
-//	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
-//		ItemStack tool = player.getHeldItem(EnumHand.MAIN_HAND);
-//		switch(this.getMetaFromState(world.getBlockState(pos))) {
-//		case UNDER_PLANK:
-//			return true;
-//		default:
-//			return super.canHarvestBlock(world, pos, player);
-//		}
-//	}
-//	
-//	/** Different tools for different fools */
-//	@Override
-//	public String getHarvestTool(IBlockState state) {
-//		switch(this.getMetaFromState(state)) {
-//		case UNDER_PLANK:
-//			return "axe";
-//		default:
-//			return super.getHarvestTool(state);
-//		}
-//	}
-//	
-//	/** Different tools for different fools */
-//	@Override
-//	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
-//		switch(this.getMetaFromState(state)) {
-//		case UNDER_PLANK:
-//			float hardness = this.getBlockHardness(state, world, pos);
-//			if (hardness < 0.0F) {
-//				return 0.0F;
-//			}
-//			return player.getBreakSpeed(state, pos) / hardness / 30F;
-//		default:
-//			return super.getPlayerRelativeBlockHardness(state, player, world, pos);
-//		}
-//	}
-//
 	
 	@Override
 	public float getBlockHardness(IBlockState state, World world, BlockPos pos) {

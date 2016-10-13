@@ -1,6 +1,6 @@
 package sblectric.lightningcraft.items;
 
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
+import sblectric.lightningcraft.api.IMysticGear;
 
 /** A charged sword that will auto-repair */
 public class ItemMysticSword extends ItemSkySword implements IMysticGear {

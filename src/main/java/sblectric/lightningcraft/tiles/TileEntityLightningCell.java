@@ -15,24 +15,25 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.entities.EntityLCLightningBolt;
 import sblectric.lightningcraft.ref.Metal.Rod;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 import sblectric.lightningcraft.util.Effect;
 import sblectric.lightningcraft.util.WeatherUtils;
 import sblectric.lightningcraft.util.WorldUtils;
 
 /** The power cell tile entity */
-public class TileEntityLightningCell extends TileEntityBase implements ILightningUpgradable {
+public class TileEntityLightningCell extends TileEntityBase {
 
 	// public fields
 	public double storedPower;
 	public double maxPower;
 	public double efficiency;
 	public int cooldownTime;
-	public boolean isUpgraded;
 	public String cellName;
 
 	// private fields
@@ -118,25 +119,45 @@ public class TileEntityLightningCell extends TileEntityBase implements ILightnin
 		if(dosave) this.markDirty();
 
 	}
+	
+	// upgrade behavior
+	private BaseLightningUpgradable upgrade = new BaseLightningUpgradable() { // modified basic implementation
+		@Override
+		public EnumActionResult onLightningUpgrade(ItemStack stack, EntityPlayer player, World world, BlockPos pos, 
+				EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+			setUpgraded(true);
+			maxPower *= 1.5;
+			cellName += " (Upgr.)";
+			return EnumActionResult.SUCCESS; // on success, uses an upgrade
+		}
+	};
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if(capability == LCCapabilities.LIGHTNING_UPGRADABLE) {
+			return true;
+		} else {
+			return super.hasCapability(capability, facing);
+		}
+	}
 
-	// do the cell upgrade
 	@Override
-	public EnumActionResult onLightningUpgrade(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		isUpgraded = true;
-		maxPower *= 1.5;
-		cellName += " (Upgr.)";
-		return EnumActionResult.SUCCESS; // on success, uses an upgrade
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if(capability == LCCapabilities.LIGHTNING_UPGRADABLE) {
+			return (T)upgrade;
+		} else {
+			return super.getCapability(capability, facing);
+		}
 	}
-	
-	@Override
+
+	/** Is this cell upgraded? */
 	public boolean isUpgraded() {
-		return isUpgraded;
+		return upgrade.isUpgraded();
 	}
-	
-	@Override
+
+	/** Set the cell to an upgraded state */
 	public void setUpgraded(boolean upgraded) {
-		isUpgraded = upgraded;
+		upgrade.setUpgraded(upgraded);
 	}
 
 	@Override
@@ -145,9 +166,9 @@ public class TileEntityLightningCell extends TileEntityBase implements ILightnin
 		par1.setDouble("storedPower", this.storedPower);
 		par1.setDouble("maxPower", this.maxPower);
 		par1.setInteger("cooldownTime", this.cooldownTime);
-		par1.setBoolean("isUpgraded", this.isUpgraded);
 		par1.setBoolean("topTierCheck", this.didCheck);
 		par1.setString("customName", this.cellName);
+		upgrade.serializeNBT(par1);
 		return par1;
 	}
 
@@ -157,9 +178,9 @@ public class TileEntityLightningCell extends TileEntityBase implements ILightnin
 		this.storedPower = par1.getDouble("storedPower");
 		this.maxPower = par1.getDouble("maxPower");
 		this.cooldownTime = par1.getInteger("cooldownTime");
-		this.isUpgraded = par1.getBoolean("isUpgraded");
 		this.didCheck = par1.getBoolean("topTierCheck");
 		this.cellName = par1.getString("customName");
+		upgrade.deserializeNBT(par1);
 	}
 
 	/** checks to see if there is an air terminal on top (also sets the efficiency) */

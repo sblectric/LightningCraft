@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class LCTileEntities {
 	
 	/** Register the tile entities */
-	public static void registerTileEntities() {
+	public static void mainRegistry() {
 		GameRegistry.registerTileEntity(TileEntityLightningCell.class, "TileEntityLightningCell");
 		GameRegistry.registerTileEntity(TileEntityLightningFurnace.class, "TileEntityLightningFurnace");
 		GameRegistry.registerTileEntity(TileEntityLightningCrusher.class, "TileEntityLightningCrusher");

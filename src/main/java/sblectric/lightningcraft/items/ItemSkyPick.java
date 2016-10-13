@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.collect.Multimap;
 
+import sblectric.lightningcraft.api.IMysticGear;
 import sblectric.lightningcraft.config.LCConfig;
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.SkyUtils;
 

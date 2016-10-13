@@ -132,7 +132,7 @@ public class GuiLightningBook extends GuiScreen {
 			pages.add("There are a few naturally generated structures that exist in this evil dimension.");
 			pages.add(S + "lWater Temples" + S + "r - These seemingly serene temples spawn on the bottom ocean of the Underworld.");
 			pages.add(S + "lUnderworld Towers" + S + "r - These monolithic structures, found at nearly any height, are home to the Skeletal Guards. The top rooms have untold treasures. The guards drop their bones, which can be used to create high tier items.");
-			pages.add(S + "lStalactite Ramparts" + S + "r - These garrisons spawn on the top of the Underworld, with cannons aimed at anyone foolish enough to attempt to breach their walls. However, these structures also contain divine treasures.");
+			pages.add(S + "lStalactite Ramparts" + S + "r - These garrisons spawn on the top of the Underworld, with cannons aimed at anyone foolish enough to attempt to breach their walls. However, these structures also contain divine treasures, including the legendary Ichor.");
 			pages.add("Demons have been attacking you on sight for some time now. Well, you've made a potion that can do away with that. By infusing a mundane potion with 2 demon blood and a 2 golden carrots, you've crafted a brew that keeps these demons at bay.");
 			pages.add("If they're already chasing you down, it won't stop them, however, and it won't stop them from attacking you when you strike them. But it certainly is better than being attacked for like, no reason.");
 			pages.add("This potion can be brewed into splash and lingering varieties, as well as be used to make tipped arrows. Demons probably won't like being under the demon warding effect...");

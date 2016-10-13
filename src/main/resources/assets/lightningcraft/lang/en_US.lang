@@ -1,3 +1,5 @@
+# LightningCraft English localization file
+
 # creative tabs
 itemGroup.lcBlocks=LightningCraft Blocks
 itemGroup.lcItems=LightningCraft Items
@@ -36,6 +38,12 @@ tile.lightningcraft:stoneBlock_5.name=Chiseled Demonstone Bricks
 tile.lightningcraft:stoneBlock_6.name=Understone
 tile.lightningcraft:stoneBlock_7.name=Understone Bricks
 tile.lightningcraft:stoneBlock_8.name=Chiseled Understone Bricks
+tile.lightningcraft:stoneBlock_9.name=Fancy Thunderstone Bricks
+tile.lightningcraft:stoneBlock_10.name=Fancy Demonstone Bricks
+tile.lightningcraft:stoneBlock_11.name=Fancy Understone Bricks
+tile.lightningcraft:stoneBlock_12.name=Thunderstone Tiles
+tile.lightningcraft:stoneBlock_13.name=Demonstone Tiles
+tile.lightningcraft:stoneBlock_14.name=Understone Tiles
 tile.lightningcraft:woodLog.name=Underwood Log
 tile.lightningcraft:woodPlank.name=Underwood Planks
 tile.lightningcraft:slabBlock_0.name=Thunderstone Brick Slab
@@ -54,6 +62,8 @@ tile.lightningcraft:corruptStone.name=Corrupt Stone
 tile.lightningcraft:lightBlock_0.name=Underworld Lantern
 tile.lightningcraft:lightBlock_1.name=Underlamp
 tile.lightningcraft:lightBlock_2.name=Fancy Underlamp
+tile.lightningcraft:lightBlock_3.name=Fancy Underlamp
+tile.lightningcraft:lightBlock_4.name=Fancy Underlamp
 tile.lightningcraft:wallBlock.name=Corrupt Stone Wall
 tile.lightningcraft:oreBlock_0.name=Underworld Iron Ore
 tile.lightningcraft:oreBlock_1.name=Underworld Gold Ore
@@ -256,6 +266,9 @@ lore.lightningcraft:heavensword=Dimensional Punch
 # JEI stuff
 lightningcraft.infusionRecipeCategory=Lightning Infusion
 lightningcraft.crusherRecipeCategory=Lightning Crusher
+lightningcraft.electriciumInfo=Electricium is the most important metal in LightningCraft. Create it for the first time by striking an iron ingot, gold ingot, and diamond on the ground with lightning.
+lightningcraft.skyfatherInfo=Skyfather ingots are a tier above electricium ingots. They're pretty cool.
+lightningcraft.mysticInfo=Mystic ingots are made from godly essence and are the most powerful metal in LightningCraft.
 
 # achievements
 achievement.lightningcraft:craftRod=An Electrifying Start!
@@ -310,3 +323,5 @@ achievement.lightningcraft:mysticHammer=Divine Overkill
 achievement.lightningcraft:mysticHammer.desc=Strike a foe with a Mystic hammer enchanted with Sharpness V and Hand of Thor III.
 achievement.lightningcraft:perfectCell=Perfect Cell
 achievement.lightningcraft:perfectCell.desc=The ultimate bio-andr... I mean, the ultimate LE system with top-tier cell and terminal!
+
+# guide

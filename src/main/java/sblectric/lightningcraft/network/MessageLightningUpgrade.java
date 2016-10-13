@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.ref.RefMisc;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 
 /** Send a message from server to clients to let them know a nearby machine was upgraded */
 public class MessageLightningUpgrade implements IMessage {
@@ -60,8 +60,8 @@ public class MessageLightningUpgrade implements IMessage {
         public void handle(MessageLightningUpgrade m) {
         	World world = Minecraft.getMinecraft().theWorld;
         	TileEntity tile = world.getTileEntity(m.pos);
-        	if(tile != null && tile instanceof ILightningUpgradable) {
-        		((ILightningUpgradable)tile).setUpgraded(m.upgraded);
+        	if(tile != null && tile.hasCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null)) {
+        		tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).setUpgraded(m.upgraded);
         		if(RefMisc.DEBUG) System.out.println("Machine upgraded at " + m.pos);
         	}
         }

@@ -8,15 +8,17 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.entities.EntityLCTNTPrimed;
 
 /** GO BOOM NOW YALL */
 @SideOnly(Side.CLIENT)
 public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
+	
+	public static final IRenderFactory<EntityLCTNTPrimed> FACTORY = new Factory();
 	
     public RenderLCTNTPrimed(RenderManager renderManagerIn) {
         super(renderManagerIn);
@@ -81,4 +83,15 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
 	protected ResourceLocation getEntityTexture(EntityLCTNTPrimed entity) {
     	return TextureMap.LOCATION_BLOCKS_TEXTURE;
     }
+    
+	/** Its factory for registration */
+    private static class Factory implements IRenderFactory<EntityLCTNTPrimed> {
+
+		@Override
+		public Render<? super EntityLCTNTPrimed> createRenderFor(RenderManager manager) {
+			return new RenderLCTNTPrimed(manager);
+		}
+    	
+    }
+    
 }

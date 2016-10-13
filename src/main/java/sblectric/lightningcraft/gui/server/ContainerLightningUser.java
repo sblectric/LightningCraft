@@ -5,9 +5,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.gui.ShortSender;
 import sblectric.lightningcraft.tiles.TileEntityLightningUser;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
 
 /** The superclass for all lightning user containers */
 public abstract class ContainerLightningUser extends Container {
@@ -73,25 +73,25 @@ public abstract class ContainerLightningUser extends Container {
 		getInfo((short)par1, (short)par2);
 	}
 	
-	/** Upgradable Lightning tile container */
+	/** Upgradable Lightning tile container. TILE MUST HAVE THE LIGHTNING UPGRADABLE CAPABILITY! */
 	public static abstract class Upgradable extends ContainerLightningUser {
 		
-		private ILightningUpgradable tile;
-
-		protected Upgradable(InventoryPlayer player, ILightningUpgradable tile) {
-			super(player, (TileEntityLightningUser)tile);
+		private TileEntityLightningUser tile;
+		
+		protected Upgradable(InventoryPlayer player, TileEntityLightningUser tile) {
+			super(player, tile);
 			this.tile = tile;
 		}
-		
+
 		@Override
 		public void sendInfo(IContainerListener craft) {
-			craft.sendProgressBarUpdate(this, 1500, tile.isUpgraded() ? 1 : 0);
+			craft.sendProgressBarUpdate(this, 1500, tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).isUpgraded() ? 1 : 0);
 		}
 		
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void getInfo(short short1, short short2) {
-			if(short1 == 1500) tile.setUpgraded(short2 > 0);
+			if(short1 == 1500) tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).setUpgraded(short2 > 0);
 		}
 		
 	}

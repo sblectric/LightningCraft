@@ -5,11 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 
 /** A basic LightningCraft item. */
-public class ItemLC extends Item implements IRegistryItem {
+public class ItemLC extends Item implements ILightningCraftItem {
 	
 	private EnumRarity rarity;
 	

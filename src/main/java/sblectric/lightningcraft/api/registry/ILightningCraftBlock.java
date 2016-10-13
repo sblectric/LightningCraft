@@ -1,4 +1,4 @@
-package sblectric.lightningcraft.registry;
+package sblectric.lightningcraft.api.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Interface to help with block registration */
-public interface IRegistryBlock extends IRegistryBase {
+public interface ILightningCraftBlock extends ILightningCraftObject {
 	
 	/** Gets the block's item class to use when registering */
 	public default Class<? extends ItemBlock> getItemClass() {

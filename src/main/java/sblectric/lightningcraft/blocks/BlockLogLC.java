@@ -10,11 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import sblectric.lightningcraft.registry.IRegistryBlock;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 
 /** Class for LightningCraft wood blocks */
-public class BlockLogLC extends BlockLog implements IRegistryBlock {
+public class BlockLogLC extends BlockLog implements ILightningCraftBlock {
 	
 	// set the right default state (no sideways trees for me!)
 	public BlockLogLC() {

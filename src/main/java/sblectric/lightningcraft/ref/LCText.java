@@ -11,13 +11,13 @@ public class LCText {
 	public static final DecimalFormat af = new DecimalFormat("#.#");
 	
 	/** Set up formatting */
-	public static void setupFormatting() {
+	static {
 		af.setDecimalSeparatorAlwaysShown(false);
 	}
 	
 	// ----------------------------------------------------------- //
 	// --- MISC LORE --------------------------------------------- //
-	// ----------------------------------------------------------- //	
+	// ----------------------------------------------------------- //
 	
 	/** Requires LE */
 	public static String getInventoryLEUserLore() {

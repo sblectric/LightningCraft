@@ -15,13 +15,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
+import sblectric.lightningcraft.util.ISimpleLEUser;
 import sblectric.lightningcraft.util.InventoryLE;
 import sblectric.lightningcraft.util.InventoryLE.LECharge;
 
 /** Item magnets */
-public class ItemMagnet extends ItemMeta implements IInventoryLEUser {
+public class ItemMagnet extends ItemMeta implements ISimpleLEUser {
 	
 	public static final double lpPerItemPerTick = 0.1D;
 	public static final double t1Range = 8;

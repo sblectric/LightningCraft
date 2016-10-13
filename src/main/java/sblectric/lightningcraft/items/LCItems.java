@@ -10,10 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.creativetabs.LCCreativeTabs;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.registry.IRegistryItem;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.util.ArmorHelper;
 import sblectric.lightningcraft.util.JointList;
@@ -21,7 +21,7 @@ import sblectric.lightningcraft.util.JointList;
 public class LCItems {
 
 	/** The list of items to help with registration */
-	private static JointList<IRegistryItem> items;
+	private static JointList<ILightningCraftItem> items;
 
 	/** The main item registry */
 	public static void mainRegistry() {
@@ -236,7 +236,7 @@ public class LCItems {
 	/** Register the renderers */
 	@SideOnly(Side.CLIENT)
 	public static void registerRendering() {
-		for(IRegistryItem item : items) item.registerRender();
+		for(ILightningCraftItem item : items) item.registerRender();
 	}
 
 }

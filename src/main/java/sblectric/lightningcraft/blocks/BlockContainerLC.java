@@ -3,7 +3,6 @@ package sblectric.lightningcraft.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +15,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 /** Block container class */
-public abstract class BlockContainerLC extends BlockLC implements ITileEntityProvider {
+public abstract class BlockContainerLC extends BlockLC {
 	
 	/** The render type of this block container. */
 	protected EnumBlockRenderType renderType;
@@ -34,15 +33,20 @@ public abstract class BlockContainerLC extends BlockLC implements ITileEntityPro
 	public BlockContainerLC(Block parent, float hardness, float resistance) {
 		this(parent, hardness, resistance, EnumBlockRenderType.MODEL);
 	}
-
-	protected boolean isNextToCactusSide(World p_181086_1_, BlockPos p_181086_2_, EnumFacing p_181086_3_) {
-		return p_181086_1_.getBlockState(p_181086_2_.offset(p_181086_3_)).getBlock().getMaterial(p_181086_1_.getBlockState(p_181086_2_)) == Material.CACTUS;
+	
+	// it definitely has a tile entity
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
 	}
-
-	protected boolean isNextToCactus(World p_181087_1_, BlockPos p_181087_2_) {
-		return this.isNextToCactusSide(p_181087_1_, p_181087_2_, EnumFacing.NORTH) || this.isNextToCactusSide(p_181087_1_, p_181087_2_, EnumFacing.SOUTH) || 
-				this.isNextToCactusSide(p_181087_1_, p_181087_2_, EnumFacing.WEST) || this.isNextToCactusSide(p_181087_1_, p_181087_2_, EnumFacing.EAST);
+	
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		return createNewTileEntity(world, this.getMetaFromState(state));
 	}
+	
+	/** Create a new tile entity (wrapper method) */
+	public abstract TileEntity createNewTileEntity(World world, int meta);
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {

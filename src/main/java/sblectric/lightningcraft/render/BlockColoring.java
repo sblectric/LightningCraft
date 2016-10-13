@@ -10,11 +10,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
 import sblectric.lightningcraft.blocks.BlockWireless;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.Metal.Rod;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 
 /** Block coloring for the mod */
 @SideOnly(Side.CLIENT)
@@ -24,7 +24,7 @@ public class BlockColoring implements IBlockColor, IItemColor {
 	private static final BlockColoring instance = new BlockColoring();
 	
 	/** Register the block to be handled by this color handler */
-	public static void registerBlock(IRegistryBlock block) {
+	public static void registerBlock(ILightningCraftBlock block) {
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(instance, (Block)block);
 		if(block.getItemClass() != null) {
 			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(instance, (Block)block);

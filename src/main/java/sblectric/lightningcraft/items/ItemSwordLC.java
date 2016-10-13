@@ -5,12 +5,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** A basic LightningCraft sword */
-public class ItemSwordLC extends ItemSword implements IRegistryItem {
+public class ItemSwordLC extends ItemSword implements ILightningCraftItem {
 
 	private EnumRarity rarity;
 	private ToolMaterial mat;

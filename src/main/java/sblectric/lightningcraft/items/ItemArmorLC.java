@@ -6,14 +6,13 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.util.ArmorHelper;
 import sblectric.lightningcraft.util.LCMisc;
 import sblectric.lightningcraft.util.StackHelper;
 
 /** LightningCraft armor (basic) */
-public abstract class ItemArmorLC extends ItemArmor implements IRegistryItem {
+public abstract class ItemArmorLC extends ItemArmor implements ILightningCraftItem {
 	
 	private EnumRarity rarity;
 	private ArmorMaterial mat;

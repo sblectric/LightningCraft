@@ -1,11 +1,10 @@
 package sblectric.lightningcraft.blocks;
 
 import net.minecraft.block.Block;
-
-import sblectric.lightningcraft.registry.IRegistryBlock;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 
 /** A basic LightningCraft block. */
-public class BlockLC extends Block implements IRegistryBlock {
+public class BlockLC extends Block implements ILightningCraftBlock {
 
 	/** A basic LightningCraft block. */
 	public BlockLC(Block parent, float hardness, float resistance) {

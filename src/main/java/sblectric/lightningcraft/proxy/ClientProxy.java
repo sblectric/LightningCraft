@@ -17,13 +17,13 @@ public class ClientProxy extends CommonProxy {
 		LCBlocks.registerRendering();
 		LCItems.registerRendering();
 		LCFluids.registerRendering();
+		LCEntities.registerRendering();
 	}
 	
 	@Override
 	public void onInit(FMLInitializationEvent event) {
 		super.onInit(event);
 		LCBlocks.registerBlockColors();
-		LCEntities.registerRendering();
 	}
 	
 	@Override

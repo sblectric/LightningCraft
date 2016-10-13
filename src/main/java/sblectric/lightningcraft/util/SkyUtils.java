@@ -15,8 +15,8 @@ import net.minecraft.util.EnumHand;
 
 import com.google.common.collect.Multimap;
 import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.api.IMysticGear;
 import sblectric.lightningcraft.dimensions.LCDimensions;
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
 import sblectric.lightningcraft.potions.LCPotions;
 
 /** Helper methods related to Skyfather stuff */

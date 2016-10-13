@@ -9,9 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import sblectric.lightningcraft.items.ifaces.IInventoryLEUser;
 import sblectric.lightningcraft.ref.LCText;
+import sblectric.lightningcraft.util.ISimpleLEUser;
 
 /** A battery for holding inventory LE */
 public class ItemBattery extends ItemMeta {
@@ -24,7 +23,7 @@ public class ItemBattery extends ItemMeta {
 	public static final int nSubtypes = nIcons * nGrades;
 
 	public ItemBattery() {
-		super(nSubtypes, IInventoryLEUser.ILERarity);
+		super(nSubtypes, ISimpleLEUser.ILERarity);
 		this.setMaxStackSize(1); // only single battery per stack
 	}
 

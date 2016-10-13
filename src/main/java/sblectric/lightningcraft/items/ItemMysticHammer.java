@@ -1,6 +1,6 @@
 package sblectric.lightningcraft.items;
 
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
+import sblectric.lightningcraft.api.IMysticGear;
 
 /** A hammer that will auto-repair */
 public class ItemMysticHammer extends ItemSkyHammer implements IMysticGear {

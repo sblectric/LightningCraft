@@ -3,6 +3,7 @@ package sblectric.lightningcraft.integration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.integration.chisel.ChiselIntegration;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.integration.tconstruct.SmelteryIntegration;
 import sblectric.lightningcraft.integration.tconstruct.ToolIntegration;
@@ -33,6 +34,23 @@ public class LCModIntegration {
 			SmelteryIntegration.registerFluids();
 			ToolIntegration.mainRegistry();
 			Log.logger.info("Tinker's Construct integration complete.");
+		} else {
+			if(LCConfig.tinkersIntegration) {
+				Log.logger.info("Tinker's Construct not found, integration skipped.");
+			} else {
+				Log.logger.info("Tinker's Construct integration disabled.");
+			}
+		}
+		
+		// Chisel
+		if(Loader.isModLoaded("chisel") && LCConfig.chiselIntegration) {
+			ChiselIntegration.mainRegistry();
+		} else {
+			if(LCConfig.chiselIntegration) {
+				Log.logger.info("Chisel not found, integration skipped.");
+			} else {
+				Log.logger.info("Chisel integration disabled.");
+			}
 		}
 		
 		// Waila

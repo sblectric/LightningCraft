@@ -2,8 +2,8 @@ package sblectric.lightningcraft.blocks;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.creativetabs.LCCreativeTabs;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.render.BlockColoring;
 import sblectric.lightningcraft.util.JointList;
@@ -12,7 +12,7 @@ import sblectric.lightningcraft.util.JointList;
 public class LCBlocks {
 	
 	/** The list of blocks to help with registration */
-	private static JointList<IRegistryBlock> blocks;
+	private static JointList<ILightningCraftBlock> blocks;
 	
 	/** The main block registry */
 	public static void mainRegistry() {
@@ -98,7 +98,7 @@ public class LCBlocks {
 	/** Register the renderers */
 	@SideOnly(Side.CLIENT)
 	public static void registerRendering() {
-		for(IRegistryBlock block : blocks) {
+		for(ILightningCraftBlock block : blocks) {
 			if(block.getItemClass() != null) block.registerRender();
 		}
 	}
@@ -106,7 +106,7 @@ public class LCBlocks {
 	/** Register the block coloring */
 	@SideOnly(Side.CLIENT)
 	public static void registerBlockColors() {
-		for(IRegistryBlock block : blocks) BlockColoring.registerBlock(block);
+		for(ILightningCraftBlock block : blocks) BlockColoring.registerBlock(block);
 	}
 
 }

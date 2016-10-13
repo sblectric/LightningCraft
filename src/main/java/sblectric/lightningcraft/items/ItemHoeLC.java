@@ -5,12 +5,11 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** A basic LightningCraft hoe */
-public class ItemHoeLC extends ItemHoe implements IRegistryItem {
+public class ItemHoeLC extends ItemHoe implements ILightningCraftItem {
 	
 	private EnumRarity rarity;
 	private ToolMaterial mat;

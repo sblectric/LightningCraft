@@ -35,7 +35,7 @@ public class LCAchievements {
 		AchievementPage.registerAchievementPage(lcAPage);
 	}
 	
-	// 2.0
+	// 2.0+
 	public static Achievement craftRod;
 	public static Achievement craftGuide;
 	public static Achievement swingGolfClub;

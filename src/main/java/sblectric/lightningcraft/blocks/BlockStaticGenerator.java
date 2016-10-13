@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.blocks.ifaces.IFurnace;
+import sblectric.lightningcraft.api.IFurnace;
 import sblectric.lightningcraft.gui.LCGuiHandler;
 import sblectric.lightningcraft.items.blocks.ItemBlockRarity;
 import sblectric.lightningcraft.main.LightningCraft;

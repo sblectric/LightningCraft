@@ -1,4 +1,4 @@
-package sblectric.lightningcraft.registry;
+package sblectric.lightningcraft.api.registry;
 
 import java.util.Random;
 
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Interface to help with object registration */
-public interface IRegistryBase {
+public interface ILightningCraftObject {
 	
 	public static final Random random = new Random();
 	public static final EnumRarity DYNAMIC = null;

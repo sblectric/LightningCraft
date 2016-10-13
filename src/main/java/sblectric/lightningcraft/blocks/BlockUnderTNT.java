@@ -14,13 +14,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.entities.EntityLCTNTPrimed;
 import sblectric.lightningcraft.items.blocks.ItemBlockRarity;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 
 /** Underworld TNT (VERY short fuse and strong splosion) */
-public class BlockUnderTNT extends BlockTNT implements IRegistryBlock {
+public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
 	
 	public BlockUnderTNT() {
 		super();

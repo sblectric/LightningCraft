@@ -1,6 +1,6 @@
 package sblectric.lightningcraft.items;
 
-import sblectric.lightningcraft.items.ifaces.IMysticGear;
+import sblectric.lightningcraft.api.IMysticGear;
 
 /** The Mystic axe */
 public class ItemMysticAxe extends ItemSkyAxe implements IMysticGear {

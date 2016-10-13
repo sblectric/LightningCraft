@@ -26,6 +26,7 @@ public class LCConfig {
 	public static int RFtoLEConversion;
 	public static boolean tinkersIntegration;
 	public static boolean disableOtherRods;
+	public static boolean chiselIntegration, chiselCorruptStone;
 	
 	/** Set config defaults */
 	private static void setDefaultValues() {
@@ -57,6 +58,8 @@ public class LCConfig {
 		RFtoLEConversion = 50;
 		tinkersIntegration = true;
 		disableOtherRods = true;
+		chiselIntegration = true;
+		chiselCorruptStone = true;
 	}
 	
 	/** Load the mod config */
@@ -114,6 +117,10 @@ public class LCConfig {
 				"Enable smeltery support for electricium, skyfather, and mystic metals");
 		disableOtherRods = config.getBoolean("Remove Other Mods' Rods", category, disableOtherRods,
 				"Will remove the crafting recipes of all other mods' rods that " + RefStrings.NAME + " has its own versions of.");
+		chiselIntegration = config.getBoolean("Chisel integration", category, chiselIntegration,
+				"Enable support for chiseling several " + RefStrings.NAME + " block types");
+		chiselCorruptStone = config.getBoolean("Enable corrupt stone chiseling", category, chiselCorruptStone,
+				"Should one be able to chisel stone and stone bricks to corrupt stone? Will only apply if chisel integration is enabled.");
 		
 		// save the config if fields were missing
 		if(config.hasChanged()) config.save();

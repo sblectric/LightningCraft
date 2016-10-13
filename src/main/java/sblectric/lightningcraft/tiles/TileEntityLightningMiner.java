@@ -215,7 +215,7 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 
 	/** Get the effective range of the miner */
 	public int getEffectiveRange() {
-		return isUpgraded ? rangeUpgraded : rangeStock;
+		return isUpgraded() ? rangeUpgraded : rangeStock;
 	}
 	
 	/** Get the number of permitted retries */

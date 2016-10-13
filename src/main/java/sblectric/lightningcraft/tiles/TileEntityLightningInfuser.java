@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.blocks.ifaces.IFurnace;
+import sblectric.lightningcraft.api.IFurnace;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
 
 /** The lightning infusion table tile entity */
@@ -98,7 +98,7 @@ public class TileEntityLightningInfuser extends TileEntityLightningItemHandler.U
 		}
 		
 		// run update twice a tick on upgrade
-		if(isUpgraded && !redo) {
+		if(isUpgraded() && !redo) {
 			redo = true;
 			update();
 		}

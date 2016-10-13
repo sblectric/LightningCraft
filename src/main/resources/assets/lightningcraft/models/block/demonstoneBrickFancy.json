@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "lightningcraft:blocks/demonstone_bricks_fancy"
+    }
+}

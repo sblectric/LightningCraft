@@ -5,12 +5,11 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** A basic LightningCraft shovel */
-public class ItemSpadeLC extends ItemSpade implements IRegistryItem {
+public class ItemSpadeLC extends ItemSpade implements ILightningCraftItem {
 
 	private EnumRarity rarity;
 	private ToolMaterial mat;

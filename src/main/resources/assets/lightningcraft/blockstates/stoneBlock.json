@@ -9,8 +9,11 @@
 		"variant=6": { "model": "lightningcraft:understone" },
 		"variant=7": { "model": "lightningcraft:understoneBrick" },
 		"variant=8": { "model": "lightningcraft:understoneBrickChiseled" },
-		"variant=9": { "model": "lightningcraft:heavenstone" },
-		"variant=10": { "model": "lightningcraft:heavenstoneBrick" },
-		"variant=11": { "model": "lightningcraft:heavenstoneBrickChiseled" }
+		"variant=9": { "model": "lightningcraft:thunderstoneBrickFancy" },
+		"variant=10": { "model": "lightningcraft:demonstoneBrickFancy" },
+		"variant=11": { "model": "lightningcraft:understoneBrickFancy" },
+		"variant=12": { "model": "lightningcraft:thunderstoneBrickFancy2" },
+		"variant=13": { "model": "lightningcraft:demonstoneBrickFancy2" },
+		"variant=14": { "model": "lightningcraft:understoneBrickFancy2" }
     }
 }

@@ -4,12 +4,11 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.registry.IRegistryItem;
+import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** A basic LightningCraft axe */
-public class ItemAxeLC extends ItemAxeNotStupid implements IRegistryItem {
+public class ItemAxeLC extends ItemAxeNotStupid implements ILightningCraftItem {
 	
 	private EnumRarity rarity;
 	private ToolMaterial mat;

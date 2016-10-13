@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "lightningcraft:blocks/understone_bricks_fancy_2"
+    }
+}

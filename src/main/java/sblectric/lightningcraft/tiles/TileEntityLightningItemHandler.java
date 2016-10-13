@@ -1,18 +1,14 @@
 package sblectric.lightningcraft.tiles;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import sblectric.lightningcraft.tiles.ifaces.ILightningUpgradable;
+import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
+import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.tiles.ifaces.ISidedInventoryLC;
 
 /** Superclass for lightning users that have inventory slots */
@@ -129,43 +125,51 @@ public abstract class TileEntityLightningItemHandler extends TileEntityLightning
 	}
 	
 	/** The Lightning upgradable variant */
-	public static abstract class Upgradable extends TileEntityLightningItemHandler implements ILightningUpgradable {
+	public static abstract class Upgradable extends TileEntityLightningItemHandler {
 		
-		protected boolean isUpgraded;
+		private BaseLightningUpgradable upgrade = new BaseLightningUpgradable();
 		
 		@Override
-		public EnumActionResult onLightningUpgrade(ItemStack stack, EntityPlayer player, World world, BlockPos pos, 
-				EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-			isUpgraded = true;
-			return EnumActionResult.SUCCESS; // on success, uses an upgrade
+		public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+			if(capability == LCCapabilities.LIGHTNING_UPGRADABLE) {
+				return true;
+			} else {
+				return super.hasCapability(capability, facing);
+			}
 		}
 
 		@Override
+		public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+			if(capability == LCCapabilities.LIGHTNING_UPGRADABLE) {
+				return (T)upgrade;
+			} else {
+				return super.getCapability(capability, facing);
+			}
+		}
+
 		public boolean isUpgraded() {
-			return isUpgraded;
+			return upgrade.isUpgraded();
 		}
 		
-		@Override
 		public void setUpgraded(boolean upgraded) {
-			isUpgraded = upgraded;
+			upgrade.setUpgraded(upgraded);
 		}
 		
 		@Override
 		public void readFromNBT(NBTTagCompound tagCompound) {
 			super.readFromNBT(tagCompound);
-			this.isUpgraded = tagCompound.getBoolean("isUpgraded");
+			upgrade.deserializeNBT(tagCompound);
 		}
 		
 		@Override
 		public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
 			super.writeToNBT(tagCompound);
-			tagCompound.setBoolean("isUpgraded", this.isUpgraded);
-			return tagCompound;
+			return upgrade.serializeNBT(tagCompound);
 		}
 		
 		@Override
 		public String getName() {
-			return this.getBlockType().getLocalizedName() + (isUpgraded ? " (Upgr.)" : "");
+			return this.getBlockType().getLocalizedName() + (isUpgraded() ? " (Upgr.)" : "");
 		}
 
 		@Override

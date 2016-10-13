@@ -2,20 +2,18 @@ package sblectric.lightningcraft.entities;
 
 import java.awt.Color;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.main.LightningCraft;
-import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.render.RenderDemonSoldier;
 import sblectric.lightningcraft.render.RenderLCElectricAttack;
 import sblectric.lightningcraft.render.RenderLCTNTPrimed;
+import sblectric.lightningcraft.render.RenderLCZombie;
 import sblectric.lightningcraft.render.RenderUnderworldGhast;
 import sblectric.lightningcraft.render.RenderUnderworldSilverfish;
 import sblectric.lightningcraft.render.RenderUnderworldSkeleton;
@@ -63,19 +61,18 @@ public class LCEntities {
 
 	@SideOnly(Side.CLIENT)
 	public static void registerRendering() {
-		RenderManager mgr = Minecraft.getMinecraft().getRenderManager();
 		
 		// living
-		RegistryHelper.registerEntityRenderer(EntityLCZombie.class, new RenderZombie(mgr));
-		RegistryHelper.registerEntityRenderer(EntityDemonSoldier.class, new RenderDemonSoldier(mgr));
-		RegistryHelper.registerEntityRenderer(EntityUnderworldSlime.class, new RenderUnderworldSlime(mgr));
-		RegistryHelper.registerEntityRenderer(EntityUnderworldSkeleton.class, new RenderUnderworldSkeleton(mgr));
-		RegistryHelper.registerEntityRenderer(EntityUnderworldSilverfish.class, new RenderUnderworldSilverfish(mgr));
-		RegistryHelper.registerEntityRenderer(EntityUnderworldGhast.class, new RenderUnderworldGhast(mgr));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLCZombie.class, RenderLCZombie.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityDemonSoldier.class, RenderDemonSoldier.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldSlime.class, RenderUnderworldSlime.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldSkeleton.class, RenderUnderworldSkeleton.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldSilverfish.class, RenderUnderworldSilverfish.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldGhast.class, RenderUnderworldGhast.FACTORY);
 		
 		// non-living
-		RegistryHelper.registerEntityRenderer(EntityLCTNTPrimed.class, new RenderLCTNTPrimed(mgr));
-		RegistryHelper.registerEntityRenderer(EntityLCElectricAttack.class, new RenderLCElectricAttack(mgr));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLCTNTPrimed.class, RenderLCTNTPrimed.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityLCElectricAttack.class, RenderLCElectricAttack.FACTORY);
 	}
 
 }

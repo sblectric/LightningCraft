@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import sblectric.lightningcraft.recipes.LightningCrusherRecipes.LightningCrusherRecipe;
@@ -34,5 +35,8 @@ public class LightningCrusherRecipeWrapper extends BlankRecipeWrapper {
 	public List getOutputs() {
 		return new JointList().join(recipe.getOutput());
 	}
+
+	@Override
+	public void getIngredients(IIngredients ingredients) {}
 
 }

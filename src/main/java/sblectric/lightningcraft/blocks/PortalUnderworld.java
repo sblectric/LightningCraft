@@ -25,19 +25,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.dimensions.LCDimensions;
 import sblectric.lightningcraft.dimensions.TeleporterLC;
 import sblectric.lightningcraft.particles.LCParticles;
 import sblectric.lightningcraft.ref.Log;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 import sblectric.lightningcraft.sounds.LCSoundEvents;
 import sblectric.lightningcraft.util.WorldUtils;
 
 import com.google.common.cache.LoadingCache;
 
 /** The underworld portal block */
-public class PortalUnderworld extends BlockPortal implements IRegistryBlock {
+public class PortalUnderworld extends BlockPortal implements ILightningCraftBlock {
 	
 	/** Save the portal status for each player */
 	public static PortalStatus portalStatus = new PortalStatus();

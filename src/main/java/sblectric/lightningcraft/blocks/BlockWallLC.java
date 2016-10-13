@@ -12,12 +12,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.ref.RefMisc;
-import sblectric.lightningcraft.registry.IRegistryBlock;
 
 /** Class for walls */
-public class BlockWallLC extends BlockWall implements IRegistryBlock {
+public class BlockWallLC extends BlockWall implements ILightningCraftBlock {
 	
 	private boolean redoState = false;
 

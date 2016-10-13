@@ -1,26 +1,28 @@
 package sblectric.lightningcraft.render;
 
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSilverfish;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-
+import sblectric.lightningcraft.entities.EntityUnderworldSilverfish;
 import sblectric.lightningcraft.ref.RefStrings;
 
 /** Underworld Silverfish renderer */
 @SideOnly(Side.CLIENT)
 public class RenderUnderworldSilverfish extends RenderSilverfish {
 	
-	protected ResourceLocation texture;
+	public static final IRenderFactory<EntityUnderworldSilverfish> FACTORY = new Factory();
+	private static final ResourceLocation TEXTURE = new ResourceLocation(RefStrings.MODID, "textures/entities/underworld_silverfish.png");
 
 	public RenderUnderworldSilverfish(RenderManager rm) {
 		super(rm);
 		this.shadowSize = 0.6F;
-		setEntityTexture();
 	}
 	
 	@Override
@@ -28,13 +30,19 @@ public class RenderUnderworldSilverfish extends RenderSilverfish {
         GL11.glScalef(2.0F, 2.0F, 2.0F);
     }
 	
-	protected void setEntityTexture() {
-		texture = new ResourceLocation(RefStrings.MODID, "textures/entities/underworld_silverfish.png");
-    }
-	
 	@Override
     protected ResourceLocation getEntityTexture(EntitySilverfish e) {
-        return texture;
+        return TEXTURE;
+    }
+	
+	/** Its factory for registration */
+    private static class Factory implements IRenderFactory<EntityUnderworldSilverfish> {
+
+		@Override
+		public Render<? super EntityUnderworldSilverfish> createRenderFor(RenderManager manager) {
+			return new RenderUnderworldSilverfish(manager);
+		}
+    	
     }
 	
 }
