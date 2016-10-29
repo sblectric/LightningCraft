@@ -14,8 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
-import sblectric.lightningcraft.blocks.BlockContainerLC;
-import sblectric.lightningcraft.capabilities.LCCapabilities;
+import sblectric.lightningcraft.blocks.base.BlockContainerLC;
+import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
 import sblectric.lightningcraft.ref.Log;
 

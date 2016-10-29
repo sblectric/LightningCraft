@@ -3,6 +3,7 @@ package sblectric.lightningcraft.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** Stairs */
 public class BlockStairsLC extends BlockStairs implements ILightningCraftBlock {

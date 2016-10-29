@@ -8,8 +8,8 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.biomes.LCBiomes;
+import sblectric.lightningcraft.init.LCBiomes;
+import sblectric.lightningcraft.init.LCDimensions;
 
 /** The Underworld world provider */
 public class LCWorldProviderUnderworld extends WorldProvider {

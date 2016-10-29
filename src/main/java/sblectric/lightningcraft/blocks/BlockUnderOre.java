@@ -9,8 +9,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.blocks.base.BlockMeta;
+import sblectric.lightningcraft.init.LCAchievements;
 
 /** The class for all of the Underworld ore variants in the mod */
 public class BlockUnderOre extends BlockMeta {

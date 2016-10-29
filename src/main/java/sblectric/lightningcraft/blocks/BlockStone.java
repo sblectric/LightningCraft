@@ -1,6 +1,7 @@
 package sblectric.lightningcraft.blocks;
 
 import net.minecraft.init.Blocks;
+import sblectric.lightningcraft.blocks.base.BlockMeta;
 
 /** The class for all of the basic stone block variants in the mod */
 public class BlockStone extends BlockMeta {

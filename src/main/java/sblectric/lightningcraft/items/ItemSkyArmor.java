@@ -8,7 +8,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
+import sblectric.lightningcraft.init.LCItems;
+import sblectric.lightningcraft.items.base.ItemArmorLC;
 import sblectric.lightningcraft.ref.LCText;
 
 /** Skyfather armor */

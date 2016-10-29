@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.IKineticGear;
+import sblectric.lightningcraft.items.base.ItemArmorLC;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.ISimpleLEUser;
 import sblectric.lightningcraft.util.InventoryLE;

@@ -13,6 +13,7 @@ import com.google.common.collect.Multimap;
 
 import sblectric.lightningcraft.api.IMysticGear;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.items.base.ItemAxeLC;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.SkyUtils;
 

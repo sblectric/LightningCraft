@@ -4,9 +4,8 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureStart;
-
+import sblectric.lightningcraft.init.LCStructures;
 import sblectric.lightningcraft.ref.RefMisc;
-import sblectric.lightningcraft.worldgen.structure.LCStructures;
 import sblectric.lightningcraft.worldgen.structure.MapGenLCStructure;
 
 /** Templegen */

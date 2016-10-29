@@ -15,11 +15,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
+import sblectric.lightningcraft.LightningCraft;
+import sblectric.lightningcraft.blocks.base.BlockContainerLCMeta;
 import sblectric.lightningcraft.gui.LCGuiHandler;
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCannon;
-import sblectric.lightningcraft.main.LightningCraft;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.tiles.TileEntityLightningCannon;
 

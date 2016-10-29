@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.util.WorldUtils;
 
 /** Generate underworld liquid falls */

@@ -8,12 +8,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.api.IInventoryLEUser;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.items.ItemLightningGuide;
-import sblectric.lightningcraft.items.ItemSpecialSword;
+import sblectric.lightningcraft.items.base.ItemSpecialSword;
 import sblectric.lightningcraft.util.StackHelper;
 
 /** Events that give achievements */

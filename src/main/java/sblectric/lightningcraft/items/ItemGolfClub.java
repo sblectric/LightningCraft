@@ -10,8 +10,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCItems;
+import sblectric.lightningcraft.items.base.ItemLC;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.util.Effect;

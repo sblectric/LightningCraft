@@ -16,7 +16,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Multimap;
-import sblectric.lightningcraft.enchantments.LCEnchantments;
+
+import sblectric.lightningcraft.init.LCEnchantments;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.Effect;
 

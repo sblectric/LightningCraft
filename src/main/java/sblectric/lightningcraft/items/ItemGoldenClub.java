@@ -1,7 +1,7 @@
 package sblectric.lightningcraft.items;
 
 import net.minecraft.item.ItemStack;
-
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.util.StackHelper;
 

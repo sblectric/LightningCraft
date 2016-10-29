@@ -9,10 +9,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-
+import sblectric.lightningcraft.LightningCraft;
+import sblectric.lightningcraft.blocks.base.BlockContainerLCMeta;
 import sblectric.lightningcraft.gui.LCGuiHandler;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
-import sblectric.lightningcraft.main.LightningCraft;
 import sblectric.lightningcraft.ref.Metal.MBlock;
 import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 

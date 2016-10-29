@@ -2,7 +2,7 @@ package sblectric.lightningcraft.items;
 
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-
+import sblectric.lightningcraft.items.base.ItemMeta;
 import sblectric.lightningcraft.ref.Metal.Rod;
 
 /** Rods with increasing rarity */

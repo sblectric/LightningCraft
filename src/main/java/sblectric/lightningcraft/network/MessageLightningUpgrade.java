@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.capabilities.LCCapabilities;
+import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.ref.RefMisc;
 
 /** Send a message from server to clients to let them know a nearby machine was upgraded */

@@ -10,8 +10,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.gui.server.ContainerRFProvider;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.tiles.TileEntityRFProvider;
 

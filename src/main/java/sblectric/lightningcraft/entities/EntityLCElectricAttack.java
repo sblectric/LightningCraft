@@ -12,8 +12,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import sblectric.lightningcraft.blocks.LCBlocks;
-import sblectric.lightningcraft.particles.LCParticles;
+import sblectric.lightningcraft.init.LCBlocks;
+import sblectric.lightningcraft.init.LCParticles;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.WorldUtils;
 

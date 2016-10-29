@@ -12,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-
+import sblectric.lightningcraft.items.base.ItemHoeLC;
 import sblectric.lightningcraft.ref.LCText;
 
 /** The Skyfather hoe */

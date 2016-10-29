@@ -16,11 +16,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
-import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.entities.EntityLCLightningBolt;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.util.Effect;
 import sblectric.lightningcraft.util.WeatherUtils;
@@ -86,8 +86,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 
 			// random chance of lightning strike (1/100000 of a chance per tick)
 			// goes up to 1/1000 when it's storming
-			double chance;
-			chance = 1D/100000D;
+			double chance = 1D/100000D;
 			if(this.worldObj.isThundering()) chance = 1D/1000D;
 			if(random.nextDouble() <= chance && this.storedPower < this.maxPower - 100D * this.efficiency) {
 				Effect.lightningGen(this.worldObj, pos.up());

@@ -16,9 +16,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import sblectric.lightningcraft.achievements.LCAchievements;
-import sblectric.lightningcraft.gui.client.GuiLightningBook;
+import sblectric.lightningcraft.gui.client.GuiLightningGuide;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.items.base.ItemMeta;
 
 /** The lightning guide */
 public class ItemLightningGuide extends ItemMeta {
@@ -39,7 +39,7 @@ public class ItemLightningGuide extends ItemMeta {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		Minecraft.getMinecraft().displayGuiScreen(new GuiLightningBook(this.getDamage(stack)));
+		Minecraft.getMinecraft().displayGuiScreen(new GuiLightningGuide(this.getDamage(stack)));
 		return new ActionResult(EnumActionResult.SUCCESS, stack); // pass it through
 	}
 

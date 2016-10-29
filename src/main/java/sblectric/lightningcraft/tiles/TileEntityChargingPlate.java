@@ -2,9 +2,8 @@ package sblectric.lightningcraft.tiles;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.ItemBattery;
-import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.util.IntList;
 import sblectric.lightningcraft.util.LCMisc;
 import sblectric.lightningcraft.util.WorldUtils;

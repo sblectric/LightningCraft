@@ -6,8 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-
-import sblectric.lightningcraft.blocks.BlockCoFH;
+import sblectric.lightningcraft.blocks.base.BlockCoFH;
 
 /** An item of the BlockCoFH type */
 public class ItemBlockCoFH extends ItemBlockRarity {

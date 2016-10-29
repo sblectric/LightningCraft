@@ -1,9 +1,9 @@
 package sblectric.lightningcraft.integration.tconstruct;
 
-import sblectric.lightningcraft.fluids.LCFluids;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import sblectric.lightningcraft.init.LCFluids;
 
 /** Class for Tinker's Construct smeltery integration */
 public class SmelteryIntegration {

@@ -1,11 +1,10 @@
 package sblectric.lightningcraft.items.blocks;
 
-import sblectric.lightningcraft.blocks.LCBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** The slab item */
 public class ItemSlabLC extends ItemSlab {

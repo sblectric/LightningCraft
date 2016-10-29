@@ -11,8 +11,8 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCBlocks;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.RefMisc;
 import sblectric.lightningcraft.util.WeightedRandomChestContent;
 import sblectric.lightningcraft.util.WorldUtils;

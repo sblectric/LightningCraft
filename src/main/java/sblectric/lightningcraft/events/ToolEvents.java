@@ -14,10 +14,10 @@ import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import sblectric.lightningcraft.api.IMysticGear;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.init.LCNetwork;
 import sblectric.lightningcraft.items.ItemSkyAxe;
 import sblectric.lightningcraft.items.ItemSkyPick;
 import sblectric.lightningcraft.items.ItemSkySpade;
-import sblectric.lightningcraft.network.LCNetwork;
 import sblectric.lightningcraft.network.MessageSpawnParticle;
 
 /** Tool event handler */

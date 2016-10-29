@@ -1,6 +1,7 @@
 package sblectric.lightningcraft.blocks;
 
 import net.minecraft.init.Blocks;
+import sblectric.lightningcraft.blocks.base.BlockLC;
 
 /** Wooden planks */
 public class BlockPlankLC extends BlockLC {

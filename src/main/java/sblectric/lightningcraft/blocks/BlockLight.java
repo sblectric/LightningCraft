@@ -1,6 +1,7 @@
 package sblectric.lightningcraft.blocks;
 
 import net.minecraft.init.Blocks;
+import sblectric.lightningcraft.blocks.base.BlockMeta;
 
 /** The class for mod light source blocks */
 public class BlockLight extends BlockMeta {

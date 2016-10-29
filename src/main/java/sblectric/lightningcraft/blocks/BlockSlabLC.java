@@ -21,6 +21,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.blocks.ItemSlabLC;
 
 /** The half-slab block */

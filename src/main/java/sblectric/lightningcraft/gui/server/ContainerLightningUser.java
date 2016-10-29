@@ -5,8 +5,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.capabilities.LCCapabilities;
 import sblectric.lightningcraft.gui.ShortSender;
+import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.tiles.TileEntityLightningUser;
 
 /** The superclass for all lightning user containers */

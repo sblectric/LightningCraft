@@ -7,8 +7,7 @@ import java.util.Map.Entry;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.util.JointList;
 

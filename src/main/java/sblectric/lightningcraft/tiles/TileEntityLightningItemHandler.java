@@ -8,7 +8,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
-import sblectric.lightningcraft.capabilities.LCCapabilities;
+import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.tiles.ifaces.ISidedInventoryLC;
 
 /** Superclass for lightning users that have inventory slots */

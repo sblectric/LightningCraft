@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.events.PlayerEvents;
-import sblectric.lightningcraft.fluids.LCFluids;
+import sblectric.lightningcraft.init.LCFluids;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.SkyUtils;
 import slimeknights.tconstruct.library.traits.AbstractTrait;

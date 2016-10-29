@@ -11,8 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.util.StackHelper;
 

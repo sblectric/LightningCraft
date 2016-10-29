@@ -13,8 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.Log;
-import sblectric.lightningcraft.sounds.LCSoundEvents;
 
 /** The frightening Underworld ghast */
 public class EntityUnderworldGhast extends EntityGhast {

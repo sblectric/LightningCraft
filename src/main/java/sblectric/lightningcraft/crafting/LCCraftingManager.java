@@ -9,10 +9,10 @@ import sblectric.lightningcraft.blocks.BlockLight;
 import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
-import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.init.LCBlocks;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
-import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.recipes.LCFuelHandler;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal;
@@ -192,6 +192,8 @@ public class LCCraftingManager {
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY));
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_3), "AA","AA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY_2));
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AA","AA",
+				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY_3));
 		
 		// corrupt walls
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wallBlock, 6), "BBB","BBB", 'B',LCBlocks.corruptStone);
@@ -359,6 +361,7 @@ public class LCCraftingManager {
 					try {
 						if(LCConfig.disableOtherRods && !s.getItem().getRegistryName().getResourceDomain().equals(RefStrings.MODID)) {
 							RecipeHelper.removeRecipes(s);
+							continue; // don't add it to the valid metal types
 						}
 					} catch(Exception e) {}
 

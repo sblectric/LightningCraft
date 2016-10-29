@@ -7,8 +7,8 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.StructureStart;
 
 import sblectric.lightningcraft.entities.EntityUnderworldSkeleton;
+import sblectric.lightningcraft.init.LCStructures;
 import sblectric.lightningcraft.ref.RefMisc;
-import sblectric.lightningcraft.worldgen.structure.LCStructures;
 import sblectric.lightningcraft.worldgen.structure.MapGenLCStructure;
 
 /** Tower generation station */

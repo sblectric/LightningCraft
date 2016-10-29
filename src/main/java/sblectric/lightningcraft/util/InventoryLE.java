@@ -7,8 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.ItemBattery;
-import sblectric.lightningcraft.items.LCItems;
 import sblectric.lightningcraft.ref.LCText;
 
 public class InventoryLE {

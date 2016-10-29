@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** Generate Underworld lanterns */
 public class WorldGenUnderworldLight extends WorldGenerator {

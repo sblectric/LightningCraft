@@ -24,13 +24,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import sblectric.lightningcraft.achievements.LCAchievements;
 import sblectric.lightningcraft.config.LCConfig;
-import sblectric.lightningcraft.items.LCItems;
-import sblectric.lightningcraft.potions.LCPotions;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCItems;
+import sblectric.lightningcraft.init.LCPotions;
+import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.sounds.LCSoundEvents;
 import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.SkyUtils;
 

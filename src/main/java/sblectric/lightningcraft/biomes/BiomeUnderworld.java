@@ -6,10 +6,10 @@ import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.dimensions.LCDimensions;
 import sblectric.lightningcraft.entities.EntityDemonSoldier;
 import sblectric.lightningcraft.entities.EntityUnderworldGhast;
 import sblectric.lightningcraft.entities.EntityUnderworldSlime;
+import sblectric.lightningcraft.init.LCDimensions;
 
 /** The Underworld biome */
 public class BiomeUnderworld extends Biome {

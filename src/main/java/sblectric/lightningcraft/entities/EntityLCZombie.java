@@ -16,8 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
-import sblectric.lightningcraft.achievements.LCAchievements;
+import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.ref.RefMisc;
 import sblectric.lightningcraft.util.WorldUtils;
 

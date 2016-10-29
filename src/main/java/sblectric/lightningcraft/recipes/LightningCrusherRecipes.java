@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import sblectric.lightningcraft.blocks.BlockUnderOre;
-import sblectric.lightningcraft.blocks.LCBlocks;
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCBlocks;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.StackHelper;

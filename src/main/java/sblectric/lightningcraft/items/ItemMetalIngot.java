@@ -1,5 +1,6 @@
 package sblectric.lightningcraft.items;
 
+import sblectric.lightningcraft.items.base.ItemMeta;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 
 import net.minecraft.item.EnumRarity;

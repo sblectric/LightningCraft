@@ -21,7 +21,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.ref.RefMisc;
 import sblectric.lightningcraft.util.LCMisc;
 import sblectric.lightningcraft.util.WorldUtils;

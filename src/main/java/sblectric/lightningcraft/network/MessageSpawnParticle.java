@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import sblectric.lightningcraft.particles.LCParticles;
+import sblectric.lightningcraft.init.LCParticles;
 import sblectric.lightningcraft.ref.RefMisc;
 
 /** Send a message from server to client to spawn particles */

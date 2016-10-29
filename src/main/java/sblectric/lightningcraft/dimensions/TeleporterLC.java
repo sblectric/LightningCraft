@@ -22,7 +22,7 @@ import net.minecraft.world.WorldServer;
 
 import com.google.common.collect.Lists;
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** Mod teleporter class */
 public class TeleporterLC extends Teleporter {

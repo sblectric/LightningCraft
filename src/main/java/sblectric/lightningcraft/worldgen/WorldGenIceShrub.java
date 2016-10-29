@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** Generate ice shrubs in the Underworld */
 public class WorldGenIceShrub extends WorldGenTrees {

@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import sblectric.lightningcraft.items.base.ItemMeta;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.ISimpleLEUser;
 

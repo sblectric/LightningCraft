@@ -15,6 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.items.base.ItemMeta;
 import sblectric.lightningcraft.util.ISimpleLEUser;
 import sblectric.lightningcraft.util.InventoryLE;
 import sblectric.lightningcraft.util.InventoryLE.LECharge;

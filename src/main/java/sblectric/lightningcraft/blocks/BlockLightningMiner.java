@@ -11,8 +11,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import sblectric.lightningcraft.LightningCraft;
 import sblectric.lightningcraft.gui.LCGuiHandler;
-import sblectric.lightningcraft.main.LightningCraft;
 import sblectric.lightningcraft.tiles.TileEntityLightningMiner;
 
 /** The Lightning Miner (an upgraded breaker, basically) */

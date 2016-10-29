@@ -9,10 +9,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.dimensions.ChunkProviderUnderworld;
 import sblectric.lightningcraft.entities.EntityUnderworldSilverfish;
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCBlocks;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.RefMisc;

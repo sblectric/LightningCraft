@@ -14,10 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
 import com.google.common.collect.Multimap;
-import sblectric.lightningcraft.achievements.LCAchievements;
+
 import sblectric.lightningcraft.api.IMysticGear;
-import sblectric.lightningcraft.dimensions.LCDimensions;
-import sblectric.lightningcraft.potions.LCPotions;
+import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCDimensions;
+import sblectric.lightningcraft.init.LCPotions;
 
 /** Helper methods related to Skyfather stuff */
 public class SkyUtils {

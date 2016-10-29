@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 import sblectric.lightningcraft.entities.EntityLCLightningBolt;
-import sblectric.lightningcraft.network.LCNetwork;
+import sblectric.lightningcraft.init.LCNetwork;
+import sblectric.lightningcraft.init.LCParticles;
 import sblectric.lightningcraft.network.MessageSpawnParticle;
-import sblectric.lightningcraft.particles.LCParticles;
 
 public class Effect {
 	

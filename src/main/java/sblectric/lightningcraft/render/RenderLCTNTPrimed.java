@@ -11,8 +11,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.entities.EntityLCTNTPrimed;
+import sblectric.lightningcraft.init.LCBlocks;
 
 /** GO BOOM NOW YALL */
 @SideOnly(Side.CLIENT)

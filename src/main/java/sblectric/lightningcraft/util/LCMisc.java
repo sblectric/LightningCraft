@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import sblectric.lightningcraft.items.LCItems;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 
 /** Miscelleaneous helper methods */

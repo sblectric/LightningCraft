@@ -16,6 +16,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import sblectric.lightningcraft.api.IKineticGear;
+import sblectric.lightningcraft.items.base.ItemSwordLC;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.ISimpleLEUser;
 import sblectric.lightningcraft.util.InventoryLE;

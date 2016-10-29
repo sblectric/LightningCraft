@@ -2,8 +2,8 @@ package sblectric.lightningcraft.integration.chisel;
 
 import sblectric.lightningcraft.blocks.BlockLight;
 import sblectric.lightningcraft.blocks.BlockStone;
-import sblectric.lightningcraft.blocks.LCBlocks;
 import sblectric.lightningcraft.config.LCConfig;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.ref.Log;
 import team.chisel.api.carving.CarvingUtils;
 

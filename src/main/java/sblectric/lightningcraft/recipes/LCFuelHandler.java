@@ -1,8 +1,7 @@
 package sblectric.lightningcraft.recipes;
 
 import sblectric.lightningcraft.blocks.BlockSlabLC;
-import sblectric.lightningcraft.blocks.LCBlocks;
-
+import sblectric.lightningcraft.init.LCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

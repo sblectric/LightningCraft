@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
+import sblectric.lightningcraft.items.base.ItemSwordLC;
 import sblectric.lightningcraft.ref.LCText;
 
 /** A sword that has electrical properties */

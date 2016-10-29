@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.api.IMysticGear;
+import sblectric.lightningcraft.init.LCItems;
+import sblectric.lightningcraft.items.base.ItemArmorLC;
 import sblectric.lightningcraft.ref.LCText;
 
 /** Mystic armor */
