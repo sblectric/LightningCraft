@@ -42,7 +42,7 @@ public class ItemMysticArmor extends ItemArmorLC implements IMysticGear {
 		
 		if(!world.isRemote) {
 			if(itemStack.getItem() == LCItems.mysticHelm) {
-				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 250, -1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 25, -1, true, false));
 				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 25, 0, true, false));
 			} else if(itemStack.getItem() == LCItems.mysticChest) {
 				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 25, 1, true, false));
