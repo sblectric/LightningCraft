@@ -14,6 +14,7 @@ import sblectric.lightningcraft.entities.EntityDemonSoldier;
 import sblectric.lightningcraft.entities.EntityLCElectricAttack;
 import sblectric.lightningcraft.entities.EntityLCTNTPrimed;
 import sblectric.lightningcraft.entities.EntityLCZombie;
+import sblectric.lightningcraft.entities.EntityUnderworldCreeper;
 import sblectric.lightningcraft.entities.EntityUnderworldGhast;
 import sblectric.lightningcraft.entities.EntityUnderworldSilverfish;
 import sblectric.lightningcraft.entities.EntityUnderworldSkeleton;
@@ -22,6 +23,7 @@ import sblectric.lightningcraft.render.RenderDemonSoldier;
 import sblectric.lightningcraft.render.RenderLCElectricAttack;
 import sblectric.lightningcraft.render.RenderLCTNTPrimed;
 import sblectric.lightningcraft.render.RenderLCZombie;
+import sblectric.lightningcraft.render.RenderUnderworldCreeper;
 import sblectric.lightningcraft.render.RenderUnderworldGhast;
 import sblectric.lightningcraft.render.RenderUnderworldSilverfish;
 import sblectric.lightningcraft.render.RenderUnderworldSkeleton;
@@ -46,6 +48,7 @@ public class LCEntities {
 		EntityRegistry.registerModEntity(EntityUnderworldSkeleton.class, "underworldSkeleton", ++modEntityID, LightningCraft.modInstance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityUnderworldSilverfish.class, "underworldSilverfish", ++modEntityID, LightningCraft.modInstance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityUnderworldGhast.class, "underworldGhast", ++modEntityID, LightningCraft.modInstance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityUnderworldCreeper.class, "underworldCreeper", ++modEntityID, LightningCraft.modInstance, 80, 3, true);
 		
 		// non-living
 		modEntityID = 100;
@@ -60,6 +63,7 @@ public class LCEntities {
 		EntityRegistry.registerEgg(EntityUnderworldSkeleton.class, new Color(0, 97, 97).getRGB(), new Color(64, 211, 211).getRGB());
 		EntityRegistry.registerEgg(EntityUnderworldSilverfish.class, new Color(64, 0, 0).getRGB(), new Color(192, 32, 32).getRGB());
 		EntityRegistry.registerEgg(EntityUnderworldGhast.class, new Color(40, 40, 40).getRGB(), new Color(192, 192, 192).getRGB());
+		EntityRegistry.registerEgg(EntityUnderworldCreeper.class, new Color(0, 60, 80).getRGB(), new Color(64, 160, 175).getRGB());
 	}
 	
 	private static void addEntitySpawns() {
@@ -77,6 +81,7 @@ public class LCEntities {
 		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldSkeleton.class, RenderUnderworldSkeleton.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldSilverfish.class, RenderUnderworldSilverfish.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldGhast.class, RenderUnderworldGhast.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUnderworldCreeper.class, RenderUnderworldCreeper.FACTORY);
 		
 		// non-living
 		RenderingRegistry.registerEntityRenderingHandler(EntityLCTNTPrimed.class, RenderLCTNTPrimed.FACTORY);

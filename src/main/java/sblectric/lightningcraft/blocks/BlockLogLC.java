@@ -77,4 +77,9 @@ public class BlockLogLC extends BlockLog implements ILightningCraftBlock {
     	return createStackedBlock(world.getBlockState(pos));
     }
     
+    @Override
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+    	return createStackedBlock(world.getBlockState(pos));
+    }
+    
 }

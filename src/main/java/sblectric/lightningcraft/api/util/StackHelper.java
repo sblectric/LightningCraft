@@ -1,4 +1,4 @@
-package sblectric.lightningcraft.util;
+package sblectric.lightningcraft.api.util;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
+import sblectric.lightningcraft.api.recipes.LightningInfusionRecipe;
 
 /** Helps with ItemStack functionality */
 public class StackHelper {
@@ -72,13 +72,13 @@ public class StackHelper {
 
 	/** Returns true if the specified string corresponds to an oredict entry */
 	private static boolean isStringOreDict(String stackString) {
-		if(stackString == LightningInfusionRecipes.nullIdentifier) return false;
+		if(stackString == LightningInfusionRecipe.nullIdentifier) return false;
 		return OreDictionary.doesOreNameExist(stackString);
 	}
 
 	/** Creates a new ItemStack from the string acquired from makeStringFromItemStack or an oredict name, with an oredict index option */
 	public static ItemStack makeItemStackFromString(String stackString, int oreIndex) {
-		if(stackString == LightningInfusionRecipes.nullIdentifier) return null;
+		if(stackString == LightningInfusionRecipe.nullIdentifier) return null;
 		try { // try to load it as a regular NBT stack
 			if(!isStringOreDict(stackString)) {
 				return ItemStack.loadItemStackFromNBT(JsonToNBT.getTagFromJson(stackString));

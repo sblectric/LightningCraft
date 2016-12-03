@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,22 +20,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
+import sblectric.lightningcraft.api.recipes.LightningInfusionRecipe;
+import sblectric.lightningcraft.api.util.JointList;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
-import sblectric.lightningcraft.recipes.LightningInfusionRecipes.LightningInfusionRecipe;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.tiles.TileEntityRFProvider;
 import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.LCMisc;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** The Lightning Guide GUI, yo */
 @SideOnly(Side.CLIENT)
@@ -126,13 +125,14 @@ public class GuiLightningGuide extends GuiScreen {
 			pages.add("Perhaps even Skyfather stuff can be upgraded...");
 		}
 
-		if(level > 1) {
+		if(level > 1) { // Underworld
 			pageLevel2 = pages.size();
 			pages.add("You've made your portal to the Underworld. What you see is a vast, dark, and damp cavern filled with spiders, demons, and more. It seems that it is so dark that night vision completely fails.");
 			pages.add("There are a few naturally generated structures that exist in this evil dimension.");
 			pages.add(S + "lWater Temples" + S + "r - These seemingly serene temples spawn on the bottom ocean of the Underworld.");
 			pages.add(S + "lUnderworld Towers" + S + "r - These monolithic structures, found at nearly any height, are home to the Skeletal Guards. The top rooms have untold treasures. The guards drop their bones, which can be used to create high tier items.");
 			pages.add(S + "lStalactite Ramparts" + S + "r - These garrisons spawn on the top of the Underworld, with cannons aimed at anyone foolish enough to attempt to breach their walls. However, these structures also contain divine treasures, including the legendary Ichor.");
+			pages.add(S + "lMobs" + S + "r - Aside from the demons and previously mentioned mobs, Deadly Undercreeps and Underghasts also roam the dark expanses of the Underworld. They will drop Underpowder when killed, which can then be used to make extremely powerful TNT.");
 			pages.add("Demons have been attacking you on sight for some time now. Well, you've made a potion that can do away with that. By infusing a mundane potion with 2 demon blood and a 2 golden carrots, you've crafted a brew that keeps these demons at bay.");
 			pages.add("If they're already chasing you down, it won't stop them, however, and it won't stop them from attacking you when you strike them. But it certainly is better than being attacked for like, no reason.");
 			pages.add("This potion can be brewed into splash and lingering varieties, as well as be used to make tipped arrows. Demons probably won't like being under the demon warding effect...");

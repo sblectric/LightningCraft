@@ -3,6 +3,7 @@ package sblectric.lightningcraft.init;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
 import sblectric.lightningcraft.blocks.BlockChargingPlate;
 import sblectric.lightningcraft.blocks.BlockDoubleSlabLC;
@@ -25,6 +26,7 @@ import sblectric.lightningcraft.blocks.BlockStairsLC;
 import sblectric.lightningcraft.blocks.BlockStaticGenerator;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
+import sblectric.lightningcraft.blocks.BlockUnderSand;
 import sblectric.lightningcraft.blocks.BlockUnderTNT;
 import sblectric.lightningcraft.blocks.BlockWallLC;
 import sblectric.lightningcraft.blocks.BlockWeakStone;
@@ -33,7 +35,6 @@ import sblectric.lightningcraft.blocks.PortalUnderworld;
 import sblectric.lightningcraft.blocks.base.BlockLC;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.render.BlockColoring;
-import sblectric.lightningcraft.util.JointList;
 
 /** The block class. */
 public class LCBlocks {
@@ -72,6 +73,7 @@ public class LCBlocks {
 	public static BlockChargingPlate chargingPlate;
 	public static BlockLC enchReallocator;
 	public static PortalUnderworld underPortal;
+	public static BlockUnderSand underSand;
 	public static BlockLC corruptStone;
 	public static BlockWallLC wallBlock;
 	public static BlockLC lightBlock;
@@ -106,6 +108,7 @@ public class LCBlocks {
 			chargingPlate = (BlockChargingPlate)new BlockChargingPlate().setRegistryName("chargingPlate").setCreativeTab(LCCreativeTabs.blocks),
 			enchReallocator = (BlockLC)new BlockEnchReallocator().setRegistryName("enchReallocator").setCreativeTab(LCCreativeTabs.blocks),
 			underPortal = (PortalUnderworld)new PortalUnderworld().setRegistryName("underPortal"), // no creative tab for the portal
+			underSand = (BlockUnderSand)new BlockUnderSand().setRegistryName("underSand").setCreativeTab(LCCreativeTabs.blocks),
 			corruptStone = (BlockLC)new BlockWeakStone().setRegistryName("corruptStone").setCreativeTab(LCCreativeTabs.blocks),
 			wallBlock = (BlockWallLC)new BlockWallLC().setRegistryName("wallBlock").setCreativeTab(LCCreativeTabs.blocks),
 			lightBlock = (BlockLC)new BlockLight().setRegistryName("lightBlock").setCreativeTab(LCCreativeTabs.blocks),

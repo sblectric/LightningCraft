@@ -51,7 +51,7 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
         float f2 = (1.0F - (entity.fuse - partialTicks + 1.0F) / 100.0F) * 0.8F;
         this.bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getDefaultState(), entity.getBrightness(partialTicks));
+        blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getStateFromMeta(entity.variant), entity.getBrightness(partialTicks));
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
         if (entity.fuse / 5 % 2 == 0)
@@ -63,7 +63,7 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
             GlStateManager.color(1.0F, 1.0F, 1.0F, f2);
             GlStateManager.doPolygonOffset(-3.0F, -3.0F);
             GlStateManager.enablePolygonOffset();
-            blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getDefaultState(), 1.0F);
+            blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getStateFromMeta(entity.variant), 1.0F);
             GlStateManager.doPolygonOffset(0.0F, 0.0F);
             GlStateManager.disablePolygonOffset();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

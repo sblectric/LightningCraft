@@ -4,7 +4,7 @@ package sblectric.lightningcraft.ref;
 public class Material {
 	
 	// total amount
-	public static final int count = 12;
+	public static final int count = 15;
 	
 	// define each type
 	public static final int NETHER_NUGGET = 0;
@@ -19,5 +19,10 @@ public class Material {
 	public static final int ENSORCELLED = 9;
 	public static final int CANNON_CORE = 10;
 	public static final int ICHOR = 11;
+	
+	// some more stuff
+	public static final int UNDER_POWDER = 12;
+	public static final int UNDER_POWDER_2 = 13;
+	public static final int DIVINE_DUST = 14;
 
 }

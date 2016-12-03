@@ -1,5 +1,7 @@
 package sblectric.lightningcraft.util;
 
+import sblectric.lightningcraft.api.util.JointList;
+
 /** A more useful integer list */
 public class IntList extends JointList<Integer> {
 	

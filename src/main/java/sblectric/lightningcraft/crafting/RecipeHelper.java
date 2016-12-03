@@ -3,7 +3,6 @@ package sblectric.lightningcraft.crafting;
 import java.util.Iterator;
 import java.util.List;
 
-import sblectric.lightningcraft.util.StackHelper;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -11,6 +10,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import sblectric.lightningcraft.api.util.StackHelper;
 
 /** Helps with crafting recipe management */
 public class RecipeHelper {

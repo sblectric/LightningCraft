@@ -48,10 +48,10 @@ public class ItemMaterial extends ItemMeta {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack) {
-		int meta = stack.getItemDamage();
-		if(meta >= Material.ICHOR) {
+		int type = stack.getItemDamage();
+		if(type == Material.ICHOR || type == Material.DIVINE_DUST) {
 			return EnumRarity.EPIC;
-		} else if(meta >= Material.DEMON_BLOOD) {
+		} else if(type >= Material.DEMON_BLOOD) {
 			return EnumRarity.RARE;
 		} else {
 			return EnumRarity.COMMON;
@@ -62,7 +62,7 @@ public class ItemMaterial extends ItemMeta {
 	@Override
 	public boolean hasEffect(ItemStack stack) {
 		int i = stack.getItemDamage();
-		if(i == Material.NETHER_NUGGET || i == Material.ENSORCELLED || i == Material.ICHOR) {
+		if(i == Material.NETHER_NUGGET || i == Material.ENSORCELLED || i == Material.ICHOR || i == Material.DIVINE_DUST) {
 			return true;
 		} else {
 			return false;

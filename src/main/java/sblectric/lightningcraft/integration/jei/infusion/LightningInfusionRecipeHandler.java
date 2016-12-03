@@ -5,8 +5,7 @@ import java.util.Map;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
-
-import sblectric.lightningcraft.recipes.LightningInfusionRecipes.LightningInfusionRecipe;
+import sblectric.lightningcraft.api.recipes.LightningInfusionRecipe;
 
 /** The infusion recipe handler class */
 public class LightningInfusionRecipeHandler implements IRecipeHandler<LightningInfusionRecipe> {

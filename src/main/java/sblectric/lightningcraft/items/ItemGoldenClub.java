@@ -1,9 +1,9 @@
 package sblectric.lightningcraft.items;
 
 import net.minecraft.item.ItemStack;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Rod;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** The return of the golden club */
 public class ItemGoldenClub extends ItemGolfClub {

@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftItem;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.util.ArmorHelper;
 import sblectric.lightningcraft.util.LCMisc;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** LightningCraft armor (basic) */
 public abstract class ItemArmorLC extends ItemArmor implements ILightningCraftItem {

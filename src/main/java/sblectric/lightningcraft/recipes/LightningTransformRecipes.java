@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.util.JointList;
 
 /** A recipe type that takes input items, and produces a new output, this occurs when the item
  * is struck by lightning */

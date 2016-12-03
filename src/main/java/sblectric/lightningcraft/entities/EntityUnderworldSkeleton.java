@@ -11,12 +11,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import sblectric.lightningcraft.init.LCItems;
-import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.util.StackHelper;
+import sblectric.lightningcraft.api.util.StackHelper;
+import sblectric.lightningcraft.ref.RefStrings;
 
 /** The sp00ky underworld skeleton */
 public class EntityUnderworldSkeleton extends EntitySkeleton {
+	
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(RefStrings.MODID, "entities/underworld_skeleton");
 
 	public EntityUnderworldSkeleton(World world) {
 		super(world);
@@ -54,24 +55,10 @@ public class EntityUnderworldSkeleton extends EntitySkeleton {
         this.setItemStackToSlot(EntityEquipmentSlot.FEET, leather_boots);
     }
 	
-	/** Make sure to override the loot table to return null */
+	/** Underworld skeleton loot table */
 	@Override
     protected ResourceLocation getLootTable() {
-        return null;
-    }
-	
-	/** change the drops for this skeleton */
-	@Override
-    protected void dropFewItems(boolean playerKill, int looting) {
-        int j;
-        int k;
-
-        j = this.rand.nextInt(3 + looting);
-
-        for (k = 0; k < j; ++k)
-        {
-            this.entityDropItem(new ItemStack(LCItems.material, 1, Material.UNDER_BONE), 0);
-        }
+        return LOOT_TABLE;
     }
 
 }

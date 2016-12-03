@@ -1,16 +1,15 @@
 package sblectric.lightningcraft.recipes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import sblectric.lightningcraft.api.recipes.LightningInfusionRecipe;
+import sblectric.lightningcraft.api.util.JointList;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCBlocks;
@@ -18,120 +17,10 @@ import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.init.LCPotions;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.LCMisc;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** Infusion recipes rewritten from scratch */
 public class LightningInfusionRecipes {
-	
-	public static final String nullIdentifier = "NULL";
-	private static final int itemsNeeded = 4;
-	
-	/** A single infusion recipe */
-	public static class LightningInfusionRecipe {
-		
-		private final ItemStack output;
-		private final String infuse;
-		private final List<String> items;
-		private final int cost;
-		private boolean nbtSensitive;
-		
-		/** A new infusion recipe with Items, Blocks, ItemStacks, or oreDict entries */
-		public LightningInfusionRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
-			List items = new ArrayList(Arrays.asList(surrounding));
-			
-			// make sure the size is exact
-			if(items.size() > itemsNeeded) {
-				throw new IllegalArgumentException("There must be at most " + itemsNeeded + " surrounding items in an infusion recipe.");
-			}
-			while(items.size() < itemsNeeded) {
-				items.add(null); // pad the infusion recipe with nulls
-			}
-			
-			// set the output and cost
-			this.output = output;
-			this.cost = cost;
-			
-			// set the infused item
-			if(infuse == null) {
-				throw new IllegalArgumentException("The infused item cannot be null!");
-			} else if(infuse instanceof Block) {
-				this.infuse = StackHelper.makeStringFromItemStack(new ItemStack((Block)infuse));
-			} else if(infuse instanceof Item) {
-				this.infuse = StackHelper.makeStringFromItemStack(new ItemStack((Item)infuse));
-			} else {
-				this.infuse = StackHelper.makeStringFromItemStack(infuse);
-			}
-			
-			// set the surrounding items
-			this.items = new JointList();
-			for(Object o : items) {
-				if(o == null) {
-					this.items.add(nullIdentifier);
-				} else if(o instanceof Block) {
-					this.items.add(StackHelper.makeStringFromItemStack(new ItemStack((Block)o)));
-				} else if(o instanceof Item) {
-					this.items.add(StackHelper.makeStringFromItemStack(new ItemStack((Item)o)));
-				} else {
-					this.items.add(StackHelper.makeStringFromItemStack(o));
-				}
-			}
-		}
-		
-		/** Gets the ItemStack output of this recipe */
-		public ItemStack getOutput() {
-			return output;
-		}
-		
-		/** Gets the cost of this infusion */
-		public int getCost() {
-			return cost;
-		}
-		
-		/** Gets the item to be infused */
-		public String getInfuseItem() {
-			return infuse;
-		}
-		
-		/** Gets the item to be infused as a list of possible ItemStack strings */
-		public List<String> getInfuseItemAsOre() {
-			JointList<String> list = new JointList();
-			if(OreDictionary.doesOreNameExist(infuse)) {
-				for(ItemStack s : OreDictionary.getOres(infuse)) {
-					list.add(StackHelper.makeStringFromItemStack(s));
-				}
-			}
-			return list;
-		}
-		
-		/** Get the items around the item to be infused */
-		public List<String> getItems() {
-			return items;
-		}
-		
-		/** Get the items around the item to be infused as a list of list of possible ItemStack strings */
-		public List<List<String>> getItemsAsOres() {
-			JointList<List<String>> list = new JointList();
-			for(String name : items) {
-				JointList<String> list2 = new JointList();
-				if(OreDictionary.doesOreNameExist(name)) {
-					for(ItemStack s : OreDictionary.getOres(name)) {
-						list2.add(StackHelper.makeStringFromItemStack(s));
-					}
-				}
-				list.add(list2);
-			}
-			return list;
-		}
-		
-		/** Set the recipe to be NBT sensitive, i.e. potions */
-		public LightningInfusionRecipe setNBTSensitive() {
-			this.nbtSensitive = true;
-			return this;
-		}
-		
-	}
 	
 	/** The static instance */
 	private static LightningInfusionRecipes instance = new LightningInfusionRecipes();
@@ -199,10 +88,18 @@ public class LightningInfusionRecipes {
 		
 		// underworld charge
 		addRecipe(new ItemStack(LCItems.material, 1, Material.UNDER_CHARGE), 100, Items.FIRE_CHARGE, "dustDiamond", demonBlood, Blocks.OBSIDIAN);
+		addRecipe(new ItemStack(LCItems.material, 1, Material.UNDER_CHARGE), 40, Blocks.OBSIDIAN, 
+				demonBlood, new ItemStack(LCItems.material, 1, Material.UNDER_POWDER_2));
 		
 		// ensorcelled core
 		addRecipe(new ItemStack(LCItems.material, 1, Material.ENSORCELLED), 250, new ItemStack(LCItems.material, 1, Material.UPGRADE), 
-			"dustDiamond", demonBlood, new ItemStack(LCItems.material, 1, Material.UNDER_MEAL), demonBlood);
+				"dustDiamond", demonBlood, new ItemStack(LCItems.material, 1, Material.UNDER_MEAL), demonBlood);
+		
+		// underpowder
+		addRecipe(new ItemStack(LCItems.material, 4, Material.UNDER_POWDER_2), 50, "dustElectricium", 
+				LCMisc.makeArray(new ItemStack(LCItems.material, 1, Material.UNDER_POWDER), 4));
+		addRecipe(new ItemStack(LCItems.material, 4, Material.DIVINE_DUST), 100, "dustMystic", 
+				LCMisc.makeArray(new ItemStack(LCItems.material, 1, Material.UNDER_POWDER_2), 4));
 		
 		// potions
 		ItemStack mundane = LCPotions.getPotionWithType(PotionTypes.MUNDANE);
@@ -282,7 +179,7 @@ public class LightningInfusionRecipes {
 		if(infuse1 == null) return false;
 		ItemStack infuse = infuse1.copy(); infuse.stackSize = 1;
 		for(LightningInfusionRecipe recipe : recipes) {
-			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.nbtSensitive)) return true;
+			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.getNBTSensitive())) return true;
 		}
 		return false;
 	}
@@ -290,7 +187,7 @@ public class LightningInfusionRecipes {
 	/** Get the infusion result for a specified grid */
 	public ItemStack getInfusionResult(ItemStack infuse1, ItemStack... stacks1) {
 		// make sure the item grid is the correct size!
-		if(stacks1.length != itemsNeeded) return null;
+		if(stacks1.length != LightningInfusionRecipe.itemsNeeded) return null;
 		
 		// normalize the stack sizes to 1
 		ItemStack infuse = infuse1.copy(); infuse.stackSize = 1;
@@ -321,7 +218,7 @@ public class LightningInfusionRecipes {
 			}
 			
 			// now check to see if the infused item matches the recipe
-			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.nbtSensitive)) {
+			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.getNBTSensitive())) {
 				valid++;
 			}
 			
@@ -330,7 +227,7 @@ public class LightningInfusionRecipes {
 				String stackString;
 				List matchList;
 				if(stack == null) {
-					stackString = nullIdentifier;
+					stackString = LightningInfusionRecipe.nullIdentifier;
 				} else {
 					stackString = StackHelper.makeStringFromItemStack(stack);
 				}
@@ -352,7 +249,7 @@ public class LightningInfusionRecipes {
 			}
 			
 			// success
-			if(valid == 1 + itemsNeeded) {
+			if(valid == 1 + LightningInfusionRecipe.itemsNeeded) {
 				lastResultCost = recipe.getCost(); // store the cost
 				return recipe.getOutput().copy(); // return a copy of the stack
 			}

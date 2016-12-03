@@ -10,6 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.base.ItemLC;
@@ -17,7 +18,6 @@ import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.util.Effect;
 import sblectric.lightningcraft.util.SkyUtils;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** The golf club for summoning lightning. */
 public class ItemGolfClub extends ItemLC {

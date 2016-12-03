@@ -13,9 +13,9 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.ForgeEventFactory;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.util.LCMisc;
-import sblectric.lightningcraft.util.StackHelper;
 
 /** The Lightning miner tile entity */
 public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upgradable {

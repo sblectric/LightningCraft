@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.IKineticGear;
 import sblectric.lightningcraft.api.IMysticGear;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.PortalUnderworld;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCDimensions;
@@ -29,7 +30,6 @@ import sblectric.lightningcraft.init.LCPotions;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.util.InventoryLE;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.SkyUtils;
 
 /** Player events */

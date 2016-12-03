@@ -12,7 +12,7 @@ public class LCConfig {
 	
 	public static boolean portalEnabled;
 	public static int portalCooldown;
-	public static boolean demonSoldiersAlwaysNeutral, demonSoldiersInNether;
+	public static boolean demonSoldiersAlwaysNeutral, demonSoldiersInNether, demonSoldiersFullPower;
 	public static boolean useVanillaGhastSounds;
 	
 	public static boolean upgradeEnabled;
@@ -34,6 +34,7 @@ public class LCConfig {
 		portalEnabled = true;
 		portalCooldown = 200;
 		demonSoldiersAlwaysNeutral = false;
+		demonSoldiersFullPower = false;
 		demonSoldiersInNether = true;
 		useVanillaGhastSounds = false;
 		
@@ -80,6 +81,8 @@ public class LCConfig {
 				"Set to true if Demon Soldiers should only attack the player if they are attacked first");
 		demonSoldiersInNether = config.getBoolean("Demon Soldiers Spawn in Nether", category, demonSoldiersInNether,
 				"Set to false if Demon Soldiers should not spawn in the Nether");
+		demonSoldiersFullPower = config.getBoolean("Classic Demon Soldiers", category, demonSoldiersFullPower, 
+				"Set to true if Demon Soldiers should NOT be weaker outside of the Underworld");
 		useVanillaGhastSounds = config.getBoolean("Use Vanilla Ghast Sounds", category, useVanillaGhastSounds,
 				"Whether or not to use the vanilla ghast sounds for the Underghast instead of the provided ones");
 		

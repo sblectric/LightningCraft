@@ -7,9 +7,9 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import sblectric.lightningcraft.recipes.LightningInfusionRecipes.LightningInfusionRecipe;
-import sblectric.lightningcraft.util.JointList;
-import sblectric.lightningcraft.util.StackHelper;
+import sblectric.lightningcraft.api.recipes.LightningInfusionRecipe;
+import sblectric.lightningcraft.api.util.JointList;
+import sblectric.lightningcraft.api.util.StackHelper;
 
 /** The wrapper for infusion recipes */
 public class LightningInfusionRecipeWrapper extends BlankRecipeWrapper {

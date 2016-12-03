@@ -29,6 +29,11 @@ public class LCText {
 		return secSign + "f" + I18n.translateToLocal("lore." + RefStrings.MODID + ":invincibility");
 	}	
 	
+	/** Skyfather */
+	public static String getAngerGodsChatLore() {
+		return secSign + "c" + I18n.translateToLocal("lore." + RefStrings.MODID + ":angergods") + secSign + "r";
+	}
+	
 	// ----------------------------------------------------------- //
 	// --- ARMOR LORE -------------------------------------------- //
 	// ----------------------------------------------------------- //

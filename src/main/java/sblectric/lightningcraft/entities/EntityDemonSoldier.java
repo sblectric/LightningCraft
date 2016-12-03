@@ -20,24 +20,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCAchievements;
+import sblectric.lightningcraft.init.LCDimensions;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.init.LCPotions;
 import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.LCText;
-import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.util.JointList;
+import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.util.SkyUtils;
 
 /** The demon soldier entity */
 public class EntityDemonSoldier extends EntityMob {
 	
-	// fields
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(RefStrings.MODID, "entities/demon_soldier");
 	protected boolean isTough;
 	
 	/** make the demon */
@@ -82,9 +84,17 @@ public class EntityDemonSoldier extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.0D);
+        
+        // Demon Soldiers are only strong in the Underworld now (2.6.2)
+        if(this.dimension == LCDimensions.underworldID || LCConfig.demonSoldiersFullPower) {
+	        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
+	        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+	        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.0D);
+        } else { // otherwise, they're half as fast, less healthy and weaker
+        	this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+	        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
+	        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+        }
     }
 	
 	/** update the demon */
@@ -92,7 +102,7 @@ public class EntityDemonSoldier extends EntityMob {
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		
-		if(!this.worldObj.isRemote){
+		if(!this.worldObj.isRemote) {
 					
 			// find nearest insolent player
 			if(this.getAttackTarget() == null) {
@@ -217,26 +227,9 @@ public class EntityDemonSoldier extends EntityMob {
     	return LCSoundEvents.demonSoldierDeath;
     }
     
-    /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
-     * par2 - Level of Looting used to kill this mob.
-     */
     @Override
-	protected void dropFewItems(boolean playerkill, int looting) {
-        int j = this.rand.nextInt(3 + looting);
-        int k;
-
-        // common drops
-        for (k = 0; k < j; k++) {
-            this.dropItem(Items.BLAZE_POWDER, 1);
-        }
-
-        j = this.rand.nextInt(2 + looting);
-
-        for (k = 0; k < j; k++) {
-        	this.entityDropItem(new ItemStack(LCItems.material, 1, Material.DEMON_BLOOD), 0);
-        }
-        
+    protected ResourceLocation getLootTable() {
+        return LOOT_TABLE;
     }
     
     /** NBT Read */

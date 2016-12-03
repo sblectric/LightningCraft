@@ -7,8 +7,8 @@ import javax.annotation.Nonnull;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import sblectric.lightningcraft.recipes.LightningCrusherRecipes.LightningCrusherRecipe;
-import sblectric.lightningcraft.util.JointList;
+import sblectric.lightningcraft.api.recipes.LightningCrusherRecipe;
+import sblectric.lightningcraft.api.util.JointList;
 
 /** The wrapper for crusher recipes */
 public class LightningCrusherRecipeWrapper extends BlankRecipeWrapper {

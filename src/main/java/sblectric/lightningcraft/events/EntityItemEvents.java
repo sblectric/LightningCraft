@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.entities.EntityLCItem;
 import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.recipes.LightningTransformRecipes;
 import sblectric.lightningcraft.ref.Material;
-import sblectric.lightningcraft.util.JointList;
 
 /** Handles EntityItem events */
 public class EntityItemEvents {

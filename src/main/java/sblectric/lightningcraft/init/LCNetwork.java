@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import sblectric.lightningcraft.network.MessageLightningUpgrade;
 import sblectric.lightningcraft.network.MessageSpawnParticle;
-import sblectric.lightningcraft.network.MessageLightningUpgrade.Handler;
+import sblectric.lightningcraft.network.MessageSyncTNT;
 import sblectric.lightningcraft.ref.RefStrings;
 
 public class LCNetwork {
@@ -22,6 +22,7 @@ public class LCNetwork {
 		net = NetworkRegistry.INSTANCE.newSimpleChannel(RefStrings.SHORTNAME + ".net");
 		net.registerMessage(MessageSpawnParticle.Handler.class, MessageSpawnParticle.class, id++, Side.CLIENT);
 		net.registerMessage(MessageLightningUpgrade.Handler.class, MessageLightningUpgrade.class, id++, Side.CLIENT);
+		net.registerMessage(MessageSyncTNT.Handler.class, MessageSyncTNT.class, id++, Side.CLIENT);
 	}
 
 }

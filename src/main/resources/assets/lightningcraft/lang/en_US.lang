@@ -11,6 +11,7 @@ entity.lightningcraft.underworldSkeleton.name=Skeletal Guard
 entity.lightningcraft.underworldSlime.name=Underslime
 entity.lightningcraft.underworldSilverfish.name=Demonfish
 entity.lightningcraft.underworldGhast.name=Underghast
+entity.lightningcraft.underworldCreeper.name=Undercreep
 
 # death messages
 death.attack.lightningcraft:cannon=%1$s was blown away
@@ -69,6 +70,7 @@ tile.lightningcraft:oreBlock_0.name=Underworld Iron Ore
 tile.lightningcraft:oreBlock_1.name=Underworld Gold Ore
 tile.lightningcraft:oreBlock_2.name=Underworld Diamond Ore
 tile.lightningcraft:oreBlock_3.name=Underworld Emerald Ore
+tile.lightningcraft:underSand.name=Undersand
 tile.lightningcraft:airTerminal_0.name=Iron Air Terminal
 tile.lightningcraft:airTerminal_1.name=Steel Air Terminal
 tile.lightningcraft:airTerminal_2.name=Lead Air Terminal
@@ -97,7 +99,9 @@ tile.lightningcraft:wirelessBlock_5.name=LE Receiver (Tier 3)
 tile.lightningcraft:chargingPlate.name=Lightning Charging Plate
 tile.lightningcraft:enchReallocator.name=Enchantment Reallocator
 tile.lightningcraft:underPortal.name=Underworld Portal
-tile.lightningcraft:underTNT.name=Underworld TNT
+tile.lightningcraft:underTNT_0.name=Rampart TNT
+tile.lightningcraft:underTNT_1.name=Lightning TNT
+tile.lightningcraft:underTNT_2.name=Mystic TNT
 tile.lightningcraft:lightningCannon_0.name=Underworld Electrocannon
 tile.lightningcraft:lightningCannon_1.name=Lightning Cannon
 tile.lightningcraft:lightningCannon_2.name=Elite Lightning Cannon
@@ -151,6 +155,9 @@ item.lightningcraft:material_8.name=Guard's Bonemeal
 item.lightningcraft:material_9.name=Ensorcelled Core
 item.lightningcraft:material_10.name=Cannon Core
 item.lightningcraft:material_11.name=Ichor
+item.lightningcraft:material_12.name=Underpowder
+item.lightningcraft:material_13.name=Empowered Underpowder
+item.lightningcraft:material_14.name=Divine Underpowder
 item.lightningcraft:battery_0.name=Lightning Battery (Tier 1)
 item.lightningcraft:battery_1.name=Lightning Battery (Tier 2)
 item.lightningcraft:battery_2.name=Lightning Battery (Tier 3)
@@ -262,6 +269,7 @@ lore.lightningcraft:icesword=Frozen Solid
 lore.lightningcraft:demonblood=It's oddly viscous...
 lore.lightningcraft:underworldcharge=The Nether isn't deep enough!
 lore.lightningcraft:heavensword=Dimensional Punch
+lore.lightningcraft:angergods=Making Skyfather ingots has angered the gods... Demons will now be hostile towards you!
 
 # JEI stuff
 lightningcraft.infusionRecipeCategory=Lightning Infusion

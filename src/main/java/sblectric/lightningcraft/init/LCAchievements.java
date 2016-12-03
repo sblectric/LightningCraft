@@ -6,12 +6,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
 import sblectric.lightningcraft.ref.Material;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.util.JointList;
 
 /** The class for achievements */
 public class LCAchievements {

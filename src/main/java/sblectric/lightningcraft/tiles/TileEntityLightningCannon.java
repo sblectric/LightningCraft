@@ -12,9 +12,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.entities.EntityLCElectricAttack;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.WorldUtils;
 
 /** The Underworld cannon */

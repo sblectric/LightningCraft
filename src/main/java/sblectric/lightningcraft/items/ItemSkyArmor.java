@@ -37,15 +37,15 @@ public class ItemSkyArmor extends ItemArmorLC {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		
-		if(!world.isRemote) {
+		if(!world.isRemote && world.getTotalWorldTime() % 20 == 0) {
 			if(itemStack.getItem() == LCItems.skyHelm) {
-				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 250, -1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 300, -1, true, false));
 			} else if(itemStack.getItem() == LCItems.skyChest) {
-				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 25, 0, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 30, 0, true, false));
 			} else if(itemStack.getItem() == LCItems.skyLegs) {
-				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 25, -1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 30, -1, true, false));
 			} else if(itemStack.getItem() == LCItems.skyBoots) {
-				player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 25, 2, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 30, 2, true, false));
 				// movement speed handled in event handler
 			}
 		}

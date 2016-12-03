@@ -11,6 +11,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftItem;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.items.ItemBlazeSword;
 import sblectric.lightningcraft.items.ItemChargedSword;
@@ -62,7 +63,6 @@ import sblectric.lightningcraft.ref.Metal.Ingot;
 import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.registry.RegistryHelper;
 import sblectric.lightningcraft.util.ArmorHelper;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.ToolHelper;
 
 public class LCItems {

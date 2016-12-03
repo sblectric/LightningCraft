@@ -9,6 +9,7 @@ import sblectric.lightningcraft.blocks.BlockLight;
 import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.blocks.BlockUnderOre;
+import sblectric.lightningcraft.blocks.BlockUnderTNT;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.init.LCItems;
@@ -197,6 +198,12 @@ public class LCCraftingManager {
 		
 		// corrupt walls
 		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wallBlock, 6), "BBB","BBB", 'B',LCBlocks.corruptStone);
+		
+		// TNT
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.LIGHTNING), "GSG","SGS","GSG",
+				'G',new ItemStack(LCItems.material, 1, Material.UNDER_POWDER_2), 'S',LCBlocks.underSand);
+		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.MYSTIC), "GSG","TGT","GSG",
+				'G',new ItemStack(LCItems.material, 1, Material.DIVINE_DUST), 'S',new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.LIGHTNING), 'T',Blocks.TNT);
 
 		// wood
 		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCBlocks.woodPlank, 4), LCBlocks.woodLog);

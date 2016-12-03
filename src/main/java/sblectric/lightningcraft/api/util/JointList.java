@@ -1,4 +1,4 @@
-package sblectric.lightningcraft.util;
+package sblectric.lightningcraft.api.util;
 
 import java.util.LinkedList;
 

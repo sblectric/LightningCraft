@@ -4,20 +4,31 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
 import sblectric.lightningcraft.api.IInventoryLEUser;
+import sblectric.lightningcraft.api.util.StackHelper;
 import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.items.ItemLightningGuide;
 import sblectric.lightningcraft.items.base.ItemSpecialSword;
-import sblectric.lightningcraft.util.StackHelper;
+import sblectric.lightningcraft.ref.LCText;
 
 /** Events that give achievements */
 public class AchievementEvents {
+	
+	/** When stuff happens */
+	@SubscribeEvent
+	public void onGetAchievement(AchievementEvent e) {
+		if(!e.getEntity().getEntityWorld().isRemote && e.getAchievement() == LCAchievements.infuseSkyfather) {
+			e.getEntityPlayer().addChatMessage(new TextComponentString(LCText.getAngerGodsChatLore()));
+		}
+	}
 	
 	/** Crafting achievements */
 	@SubscribeEvent

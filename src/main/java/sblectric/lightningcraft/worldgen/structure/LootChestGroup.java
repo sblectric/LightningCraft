@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.nbt.NBTTagCompound;
-
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.util.IntList;
-import sblectric.lightningcraft.util.JointList;
 import sblectric.lightningcraft.util.WeightedRandomChestContent;
 
 /** Class that defines a number of loot chests for a structure */

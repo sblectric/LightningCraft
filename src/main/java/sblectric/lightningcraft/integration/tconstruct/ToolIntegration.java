@@ -4,12 +4,12 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCFluids;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.util.JointList;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;

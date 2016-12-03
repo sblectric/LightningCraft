@@ -40,17 +40,17 @@ public class ItemMysticArmor extends ItemArmorLC implements IMysticGear {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		
-		if(!world.isRemote) {
+		if(!world.isRemote && world.getTotalWorldTime() % 20 == 0) {
 			if(itemStack.getItem() == LCItems.mysticHelm) {
-				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 250, -1, true, false));
-				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 25, 0, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 300, -1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 60, 0, true, false));
 			} else if(itemStack.getItem() == LCItems.mysticChest) {
-				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 25, 1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 30, 1, true, false));
 			} else if(itemStack.getItem() == LCItems.mysticLegs) {
-				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 25, -1, true, false));
-				player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 25, 0, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 30, -1, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.SATURATION, 30, 0, true, false));
 			} else if(itemStack.getItem() == LCItems.mysticBoots) {
-				player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 25, 3, true, false));
+				player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 30, 3, true, false));
 				// movement speed handled in event handler
 			}
 		}

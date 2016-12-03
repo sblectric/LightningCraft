@@ -5,8 +5,7 @@ import java.util.Map;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
-
-import sblectric.lightningcraft.recipes.LightningCrusherRecipes.LightningCrusherRecipe;
+import sblectric.lightningcraft.api.recipes.LightningCrusherRecipe;
 
 /** The crusher recipe handler class */
 public class LightningCrusherRecipeHandler implements IRecipeHandler<LightningCrusherRecipe> {

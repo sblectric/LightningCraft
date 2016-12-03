@@ -9,10 +9,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.base.BlockMeta;
 import sblectric.lightningcraft.items.blocks.ItemBlockMetal;
 import sblectric.lightningcraft.ref.Metal.Ingot;
-import sblectric.lightningcraft.util.JointList;
 
 /** A metal block */
 public class BlockMetal extends BlockMeta {

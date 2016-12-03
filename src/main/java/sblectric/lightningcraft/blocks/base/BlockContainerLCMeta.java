@@ -21,9 +21,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.items.blocks.ItemBlockMeta;
 import sblectric.lightningcraft.ref.RefMisc;
-import sblectric.lightningcraft.util.JointList;
 
 /** Block container class, with metadata */
 public abstract class BlockContainerLCMeta extends BlockContainerLC {

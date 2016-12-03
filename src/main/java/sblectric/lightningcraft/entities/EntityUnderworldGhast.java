@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -15,9 +16,12 @@ import net.minecraft.world.World;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.Log;
+import sblectric.lightningcraft.ref.RefStrings;
 
 /** The frightening Underworld ghast */
 public class EntityUnderworldGhast extends EntityGhast {
+	
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(RefStrings.MODID, "entities/underworld_ghast");
 
 	public EntityUnderworldGhast(World worldIn) {
 		super(worldIn);
@@ -56,6 +60,12 @@ public class EntityUnderworldGhast extends EntityGhast {
 	public int getFireballStrength() {
 		return super.getFireballStrength() * 2;
 	}
+	
+	/** Underworld ghast loot table */
+	@Override
+    protected ResourceLocation getLootTable() {
+        return LOOT_TABLE;
+    }
 
 	@Override
 	protected SoundEvent getAmbientSound() {

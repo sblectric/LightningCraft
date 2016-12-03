@@ -5,16 +5,9 @@ import java.lang.reflect.Constructor;
 import com.google.common.collect.ObjectArrays;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.api.registry.ILightningCraftItem;
 import sblectric.lightningcraft.ref.Log;

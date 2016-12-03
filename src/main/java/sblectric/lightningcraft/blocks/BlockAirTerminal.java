@@ -10,10 +10,10 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.base.BlockMeta;
 import sblectric.lightningcraft.items.blocks.ItemBlockAirTerminal;
 import sblectric.lightningcraft.ref.Metal.Rod;
-import sblectric.lightningcraft.util.JointList;
 
 /** The air terminal class */
 public class BlockAirTerminal extends BlockMeta {
