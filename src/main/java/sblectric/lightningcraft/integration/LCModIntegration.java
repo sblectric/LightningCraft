@@ -13,7 +13,21 @@ import sblectric.lightningcraft.ref.Log;
 /** Class for integration with other mods */
 public class LCModIntegration {
 
-	public static void preInit() {}
+	public static void preInit() {
+		
+		// Tinker's Construct
+		if(Loader.isModLoaded("tconstruct") && LCConfig.tinkersIntegration) {
+			SmelteryIntegration.registerFluids();
+			ToolIntegration.mainRegistry();
+			Log.logger.info("Tinker's Construct integration complete.");
+		} else {
+			if(LCConfig.tinkersIntegration) {
+				Log.logger.info("Tinker's Construct not found, integration skipped.");
+			} else {
+				Log.logger.info("Tinker's Construct integration disabled.");
+			}
+		}
+	}
 	
 	public static void onInit() {
 		
@@ -26,19 +40,6 @@ public class LCModIntegration {
 				Log.logger.info("CoFH RF API or TESLA not found.");
 			} else {
 				Log.logger.info("RF and TESLA disabled in config.");
-			}
-		}
-		
-		// Tinker's Construct
-		if(Loader.isModLoaded("tconstruct") && LCConfig.tinkersIntegration) {
-			SmelteryIntegration.registerFluids();
-			ToolIntegration.mainRegistry();
-			Log.logger.info("Tinker's Construct integration complete.");
-		} else {
-			if(LCConfig.tinkersIntegration) {
-				Log.logger.info("Tinker's Construct not found, integration skipped.");
-			} else {
-				Log.logger.info("Tinker's Construct integration disabled.");
 			}
 		}
 		

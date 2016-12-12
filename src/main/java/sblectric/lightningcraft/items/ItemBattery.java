@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import sblectric.lightningcraft.api.IInventoryLEUser;
 import sblectric.lightningcraft.items.base.ItemMeta;
 import sblectric.lightningcraft.ref.LCText;
-import sblectric.lightningcraft.util.ISimpleLEUser;
 
 /** A battery for holding inventory LE */
 public class ItemBattery extends ItemMeta {
