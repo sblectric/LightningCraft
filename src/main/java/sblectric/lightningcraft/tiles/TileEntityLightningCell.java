@@ -35,15 +35,20 @@ public class TileEntityLightningCell extends TileEntityBase {
 	public double efficiency;
 	public int cooldownTime;
 	public String cellName;
+	public boolean creative;
 
 	// private fields
 	private boolean topTierTerminal = false;
 	private boolean didCheck = false;
 
 	/** The power cell tile entity */
-	public TileEntityLightningCell(double mp, String name) {
+	public TileEntityLightningCell(double mp, String name, boolean creative) {
 		this.maxPower = mp;
 		this.cellName = name;
+		if(creative) {
+			this.creative = creative;
+			this.storedPower = this.maxPower;
+		}
 	}
 
 	public TileEntityLightningCell() {}
@@ -65,6 +70,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 		// normalize stored power
 		if(this.storedPower > this.maxPower) this.storedPower = this.maxPower;
 		if(this.storedPower < 0) this.storedPower = 0;
+		if(this.creative) this.storedPower = this.maxPower;
 
 		// top tier achievement
 		if(this.didCheck == false && this.maxPower == 30000 && this.topTierTerminal) {
@@ -167,6 +173,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 		par1.setInteger("cooldownTime", this.cooldownTime);
 		par1.setBoolean("topTierCheck", this.didCheck);
 		par1.setString("customName", this.cellName);
+		par1.setBoolean("isCreative", this.creative);
 		upgrade.serializeNBT(par1);
 		return par1;
 	}
@@ -179,6 +186,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 		this.cooldownTime = par1.getInteger("cooldownTime");
 		this.didCheck = par1.getBoolean("topTierCheck");
 		this.cellName = par1.getString("customName");
+		this.creative = par1.getBoolean("isCreative");
 		upgrade.deserializeNBT(par1);
 	}
 

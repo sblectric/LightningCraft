@@ -6,19 +6,20 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
 import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.tiles.ifaces.ISidedInventoryLC;
+import sblectric.lightningcraft.util.LCMisc;
 
 /** Superclass for lightning users that have inventory slots */
 public abstract class TileEntityLightningItemHandler extends TileEntityLightningUser implements ISidedInventoryLC {
 	
-	protected InvWrapper itemCapability;
+	protected SidedInvWrapper[] itemCapabilities;
 	protected ItemStack[] stacks;
 
 	public TileEntityLightningItemHandler() {
-		itemCapability = new InvWrapper(this);
+		itemCapabilities = LCMisc.makeInvWrapper(this);
 		stacks = new ItemStack[0]; // zero size by default
 	}
 
@@ -83,7 +84,7 @@ public abstract class TileEntityLightningItemHandler extends TileEntityLightning
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return (T)itemCapability;
+			return (T)itemCapabilities[facing.getIndex()];
 		} else {
 			return super.getCapability(capability, facing);
 		}

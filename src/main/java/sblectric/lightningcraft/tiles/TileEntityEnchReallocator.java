@@ -17,9 +17,12 @@ import sblectric.lightningcraft.util.LCMisc;
 /** The enchantment reallocator tile entity */
 public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Upgradable {
 	
-	private static final int[] slotsTop = new int[]{0};
-	private static final int[] slotsBottom = new int[]{1};
-	private static final int[] slotsSides = new int[]{1};
+	private static final int top = 0;
+	private static final int bottom = 1;
+	
+	private static final int[] slotsTop = new int[]{top};
+	private static final int[] slotsBottom = new int[]{bottom};
+	private static final int[] slotsSides = new int[]{top, bottom};
 	
 	private static final int lpBurnTime = 200; // time / LP in ticks (time it takes for enchantment transfer)
 	
@@ -208,18 +211,17 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing facing) {
-		int par1 = facing.getIndex();
-		return par1 == 0 ? slotsBottom : (par1 == 1 ? slotsSides : slotsTop);
+		return facing == EnumFacing.DOWN ? slotsBottom : (facing == EnumFacing.UP ? slotsTop : slotsSides);
 	}
 
 	@Override
-	public boolean canInsertItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return this.isItemValidForSlot(par1, itemstack);
+	public boolean canInsertItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return this.isItemValidForSlot(slot, itemstack);
 	}
 
 	@Override
-	public boolean canExtractItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return facing.getIndex() != 0 || par1 == 1 || itemstack.getItem() == Items.BUCKET;
+	public boolean canExtractItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return true;
 	}
 	
 }

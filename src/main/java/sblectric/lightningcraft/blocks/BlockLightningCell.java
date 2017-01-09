@@ -20,7 +20,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 /** The lightning cell */
 public class BlockLightningCell extends BlockContainerLCMeta {
 	
-	public static final int nCells = MBlock.count;
+	public static final int nCells = 4;
 	
 	/** The maximum power this lightning cell can hold. */
 	private double[] maxPower;
@@ -28,12 +28,12 @@ public class BlockLightningCell extends BlockContainerLCMeta {
 	/** The lightning cell */
 	public BlockLightningCell() {
 		super(LCBlocks.metalBlock, nCells, 6.5f, 40.0f);
-		maxPower = new double[]{1000, 5000, 20000};
+		maxPower = new double[]{1000, 5000, 20000, 100000};
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityLightningCell(maxPower[meta % nCells], I18n.translateToLocal(getUnlocalizedName() + "_" + meta + ".name"));
+		return new TileEntityLightningCell(maxPower[meta % nCells], I18n.translateToLocal(getUnlocalizedName() + "_" + meta + ".name"), meta % nCells >= 3);
 	}
 	
 	/** Get the max power for a specific blockstate */

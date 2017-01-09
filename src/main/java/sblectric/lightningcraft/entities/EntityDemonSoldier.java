@@ -147,9 +147,11 @@ public class EntityDemonSoldier extends EntityMob {
 			// foolish you
 			if(this.getHealth() > 0 && p != null && p instanceof EntityPlayerMP && 
 					this.getAttackTarget() != p && !((EntityPlayerMP)p).capabilities.disableDamage) {
-				((EntityPlayerMP)p).addChatMessage(new TextComponentString(
-						"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oWhat a fool." + LCText.secSign + "r"));
-				this.setAttackTarget((EntityPlayerMP)p); // switch it up
+				try {
+					((EntityPlayerMP)p).addChatMessage(new TextComponentString(
+							"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oWhat a fool." + LCText.secSign + "r"));
+					this.setAttackTarget((EntityPlayerMP)p); // switch it up
+				} catch(Exception e) {} // avoid crashes with fake players
 			}
 			
 			// kill the demon for an achievement

@@ -166,8 +166,8 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack itemstack) {
-		return true;
+	public boolean isItemValidForSlot(int par1, ItemStack stack) {
+		return stack != null && stack.getItem() instanceof ItemBlock;
 	}
 
 	@Override
@@ -182,7 +182,7 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 
 	@Override
 	public boolean canExtractItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return true;
+		return false;
 	}
 	
 }

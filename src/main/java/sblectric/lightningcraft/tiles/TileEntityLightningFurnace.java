@@ -12,10 +12,13 @@ import sblectric.lightningcraft.api.IFurnace;
 
 /** The lightning furnace tile entity */
 public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.Upgradable {
+	
+	private static final int top = 0;
+	private static final int bottom = 1;
 
-	private static final int[] slotsTop = new int[]{0};
-	private static final int[] slotsBottom = new int[]{1};
-	private static final int[] slotsSides = new int[]{0};
+	private static final int[] slotsTop = new int[]{top};
+	private static final int[] slotsBottom = new int[]{bottom};
+	private static final int[] slotsSides = new int[]{top};
 
 	private static final int burnTime = 80; // time / LE in ticks (two items cook in this period)
 
@@ -144,24 +147,23 @@ public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.U
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack itemstack) {
-		return par1 == 1 ? false : true;
+	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
+		return slot != bottom;
 	}
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing facing) {
-		int par1 = facing.getIndex();
-		return par1 == 0 ? slotsBottom : (par1 == 1 ? slotsSides : slotsTop);
+		return facing == EnumFacing.UP ? slotsTop : (facing == EnumFacing.DOWN ? slotsBottom : slotsSides);
 	}
 
 	@Override
-	public boolean canInsertItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return this.isItemValidForSlot(par1, itemstack);
+	public boolean canInsertItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return this.isItemValidForSlot(slot, itemstack);
 	}
 
 	@Override
-	public boolean canExtractItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return facing.getIndex() != 0 || par1 == 1 || itemstack.getItem() == Items.BUCKET;
+	public boolean canExtractItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return slot == bottom;
 	}
 	
 	@Override

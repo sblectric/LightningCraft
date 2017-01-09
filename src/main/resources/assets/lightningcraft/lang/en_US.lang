@@ -84,6 +84,7 @@ tile.lightningcraft:airTerminal_9.name=Mystic Air Terminal
 tile.lightningcraft:lightningCell_0.name=Lightning Energy Cell
 tile.lightningcraft:lightningCell_1.name=Advanced Lightning Cell
 tile.lightningcraft:lightningCell_2.name=Mystic Lightning Cell
+tile.lightningcraft:lightningCell_3.name=Creative Lightning Cell
 tile.lightningcraft:lightningFurnace.name=Lightning Furnace
 tile.lightningcraft:lightningCrusher.name=Lightning Crusher
 tile.lightningcraft:lightningInfuser.name=Lightning Infusion Table

@@ -7,6 +7,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,11 +16,21 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 
 /** Miscelleaneous helper methods */
 public class LCMisc {
+	
+	/** Create six inventory wrappers for each inventory */
+	public static SidedInvWrapper[] makeInvWrapper(ISidedInventory inv) {
+		SidedInvWrapper[] wrapper = new SidedInvWrapper[6];
+		for(int i = 0; i < 6; i++) {
+			wrapper[i] = new SidedInvWrapper(inv, EnumFacing.getFront(i));
+		}
+		return wrapper;
+	}
 	
 	/** Make an array of an object and an amount */
 	public static Object[] makeArray(Object obj, int amt) {

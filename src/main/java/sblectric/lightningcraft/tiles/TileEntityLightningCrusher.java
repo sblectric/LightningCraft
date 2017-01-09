@@ -12,10 +12,13 @@ import sblectric.lightningcraft.recipes.LightningCrusherRecipes;
 
 /** The lightning crusher tile entity */
 public class TileEntityLightningCrusher extends TileEntityLightningItemHandler.Upgradable {
+	
+	private static final int top = 0;
+	private static final int bottom = 1;
 
-	private static final int[] slotsTop = new int[]{0};
-	private static final int[] slotsBottom = new int[]{1};
-	private static final int[] slotsSides = new int[]{0};
+	private static final int[] slotsTop = new int[]{top};
+	private static final int[] slotsBottom = new int[]{bottom};
+	private static final int[] slotsSides = new int[]{top};
 
 	public static final int burnTime = 160; // time / LE in ticks (two items crush in this period)
 	public static final double energyUsage = 5;
@@ -138,31 +141,30 @@ public class TileEntityLightningCrusher extends TileEntityLightningItemHandler.U
 
 			--this.stacks[0].stackSize;
 
-			if(this.stacks[0].stackSize <= 0){
+			if(this.stacks[0].stackSize <= 0) {
 				this.stacks[0] = null;
 			}
 		}
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack itemstack) {
-		return par1 == 1 ? false : true;
+	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
+		return slot != bottom;
 	}
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing facing) {
-		int par1 = facing.getIndex();
-		return par1 == 0 ? slotsBottom : (par1 == 1 ? slotsSides : slotsTop);
+		return facing == EnumFacing.DOWN ? slotsBottom : (facing == EnumFacing.UP ? slotsTop : slotsSides);
 	}
 
 	@Override
-	public boolean canInsertItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return this.isItemValidForSlot(par1, itemstack);
+	public boolean canInsertItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return this.isItemValidForSlot(slot, itemstack);
 	}
 
 	@Override
-	public boolean canExtractItem(int par1, ItemStack itemstack, EnumFacing facing) {
-		return facing.getIndex() != 0 || par1 == 1 || itemstack.getItem() == Items.BUCKET;
+	public boolean canExtractItem(int slot, ItemStack itemstack, EnumFacing facing) {
+		return slot == bottom;
 	}
 	
 	@Override
