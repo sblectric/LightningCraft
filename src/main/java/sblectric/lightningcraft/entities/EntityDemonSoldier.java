@@ -109,9 +109,11 @@ public class EntityDemonSoldier extends EntityMob {
 				EntityPlayer p = (EntityPlayer)this.findPlayerToAttack();
 				
 				if(p != null) {
-					this.setAttackTarget(p);
-					p.addChatMessage(new TextComponentString(
-							"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oYou will pay for your insolence." + LCText.secSign + "r"));
+					try {
+						this.setAttackTarget(p);
+						p.addChatMessage(new TextComponentString(
+								"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oYou will pay for your insolence." + LCText.secSign + "r"));
+					} catch(Exception e) {}
 				}
 			} else {
 				// return to being pleasant if the player enters non-survival
