@@ -1,4 +1,4 @@
-##LightningCraft
+## LightningCraft
 
 It is said only the very brave or the very stupid mess with one of the most dangerous forces of nature.
 For one to harness such raw power, one would need very specialized tools and machines.
