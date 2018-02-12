@@ -139,7 +139,7 @@ public class EntityUnderworldGhast extends EntityGhast {
 			double d0 = 64.0D;
 
 			if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < d0 * d0 && this.parentEntity.canEntityBeSeen(entitylivingbase)) {
-				World world = this.parentEntity.worldObj;
+				World world = this.parentEntity.world;
 				++this.attackTimer;
 
 				if (this.attackTimer == 10) {
@@ -164,7 +164,7 @@ public class EntityUnderworldGhast extends EntityGhast {
 					entitylargefireball.posX = this.parentEntity.posX + vec3d.xCoord * d1;
 					entitylargefireball.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.zCoord * d1;
-					world.spawnEntityInWorld(entitylargefireball);
+					world.spawnEntity(entitylargefireball);
 					this.attackTimer = -30;
 				}
 			} else if (this.attackTimer > 0) {

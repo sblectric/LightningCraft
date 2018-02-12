@@ -59,7 +59,7 @@ public class EntityUnderworldSlime extends EntityMagmaCube {
 
     @Override
 	protected EntitySlime createInstance() {
-        return new EntityUnderworldSlime(this.worldObj);
+        return new EntityUnderworldSlime(this.world);
     }
     
 	/** The Underworld Slime loot table */

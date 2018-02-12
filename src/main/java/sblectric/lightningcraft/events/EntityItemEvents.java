@@ -22,7 +22,7 @@ public class EntityItemEvents {
 	/** Special handler for when an EntityItem is struck by lightning */
 	@SubscribeEvent
 	public void onEntityItemStruckByLightning(EntityStruckByLightningEvent e) {
-		World world = e.getEntity().worldObj;
+		World world = e.getEntity().world;
 		if(!world.isRemote && !e.getEntity().isDead && e.getEntity() instanceof EntityItem) {
 			// get the EntityItem struck
 			EntityItem item = (EntityItem)e.getEntity();
@@ -40,14 +40,14 @@ public class EntityItemEvents {
 
 			// get the output of the transformation
 			ItemStack out = LightningTransformRecipes.instance().getTransformResult(input);
-			if(out == null) return; // abort processing here if there's no output
+			if(out.isEmpty()) return; // abort processing here if there's no output
 
 			// now remove the items
 			for(EntityItem ent : activeItems) ent.setDead();
 
 			// spawn an invincible resulting item at that position
 			EntityItem entityitem = new EntityLCItem(world, item.posX, item.posY, item.posZ, out);
-			world.spawnEntityInWorld(entityitem);
+			world.spawnEntity(entityitem);
 		}
 	}
 

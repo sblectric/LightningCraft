@@ -23,7 +23,7 @@ public class LCBiomes {
 	private static void registerBiomes() {
 		// underworld
 		GameRegistry.register(underworld.setRegistryName(LCDimensions.underworldName));
-		BiomeDictionary.registerBiomeType(underworld, Type.SPOOKY);
+		BiomeDictionary.addTypes(underworld, Type.SPOOKY);
 	}
 	
 }

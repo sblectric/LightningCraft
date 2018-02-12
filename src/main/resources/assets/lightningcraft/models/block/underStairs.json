@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lightningcraft:blocks/understone_bricks",
-        "top": "lightningcraft:blocks/understone_bricks",
-        "side": "lightningcraft:blocks/understone_bricks"
-    }
-}

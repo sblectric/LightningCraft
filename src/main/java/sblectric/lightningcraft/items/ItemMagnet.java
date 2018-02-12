@@ -45,20 +45,20 @@ public class ItemMagnet extends ItemMeta implements ISimpleLEUser {
 	
 	/** Start using it! */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
     	player.setActiveHand(hand);
-    	return new ActionResult(EnumActionResult.SUCCESS, stack);
+    	return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
     
     /** get the range of the magnet */
 	public static double getRange(ItemStack stack) {
-		return stack == null ? 0 : (stack.getItemDamage() + 1) * t1Range;
+		return stack.isEmpty() ? 0 : (stack.getItemDamage() + 1) * t1Range;
 	}
     
     /** Main usage method */
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-    	World world = player.worldObj;
+    	World world = player.world;
     	if(!world.isRemote) {
     		
     		// draw items within a certain range towards the player
@@ -72,7 +72,7 @@ public class ItemMagnet extends ItemMeta implements ISimpleLEUser {
     			
     			// check for available LP
     			ItemStack battery;
-    			if((battery = getLESource((EntityPlayer)player, lpPerItemPerTick)) == null) {
+    			if((battery = getLESource((EntityPlayer)player, lpPerItemPerTick)).isEmpty()) {
     				break; // out of LP, no more magnetism
     			} else {
     				ItemBattery.addStoredPower(battery, -lpPerItemPerTick);
@@ -81,7 +81,7 @@ public class ItemMagnet extends ItemMeta implements ISimpleLEUser {
     			double dx = player.posX - item.posX;
     			double dy = player.posY - item.posY;
     			double dz = player.posZ - item.posZ;
-    			double dm = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+    			double dm = MathHelper.sqrt(dx * dx + dy * dy + dz * dz);
     			double vel = 0.3D;
     			
     			item.motionX = vel * dx / dm;

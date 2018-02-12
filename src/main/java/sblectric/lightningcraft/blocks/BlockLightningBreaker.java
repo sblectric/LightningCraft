@@ -1,6 +1,7 @@
 package sblectric.lightningcraft.blocks;
 
-import net.minecraft.block.BlockPistonBase;
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -16,8 +17,6 @@ import net.minecraft.world.World;
 import sblectric.lightningcraft.blocks.base.BlockContainerLC;
 import sblectric.lightningcraft.items.blocks.ItemBlockRarity;
 import sblectric.lightningcraft.tiles.TileEntityLightningBreaker;
-
-import com.google.common.base.Predicate;
 
 /** The Lightning Block Breaker */
 public class BlockLightningBreaker extends BlockContainerLC {
@@ -55,15 +54,15 @@ public class BlockLightningBreaker extends BlockContainerLC {
 		return state.getValue(dir).getIndex();
 	}
 	
-	@Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		int rotation = BlockPistonBase.getFacingFromEntity(pos, placer).ordinal();
-        return this.getStateFromMeta(rotation);
-    }
+//	@Override
+//    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+//		int rotation = BlockPistonBase.getFacingFromEntity(pos, placer).ordinal();
+//        return this.getStateFromMeta(rotation);
+//    }
 
 	@Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack) {
-        int rotation = BlockPistonBase.getFacingFromEntity(pos, player).ordinal();
+        int rotation = EnumFacing.getDirectionFromEntityLiving(pos, player).ordinal();
         world.setBlockState(pos, this.getStateFromMeta(rotation), 2);
         super.onBlockPlacedBy(world, pos, state, player, stack);
     }

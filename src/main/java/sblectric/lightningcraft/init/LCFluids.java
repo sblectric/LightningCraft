@@ -48,9 +48,9 @@ public class LCFluids {
 		moltenSkyfather = createFluid("skyfather", 2000, 10000, 900, 12, new Color(52, 52, 52).getRGB());
 		moltenMystic = createFluid("mystic", 2000, 10000, 1000, 12, new Color(180, 0, 0).getRGB());
 		
-		moltenBlockElectricium = registerFluidBlock(moltenElectricium, "moltenElectricium");
-		moltenBlockSkyfather = registerFluidBlock(moltenSkyfather, "moltenSkyfather");
-		moltenBlockMystic = registerFluidBlock(moltenMystic, "moltenMystic");
+		moltenBlockElectricium = registerFluidBlock(moltenElectricium, "molten_electricium");
+		moltenBlockSkyfather = registerFluidBlock(moltenSkyfather, "molten_skyfather");
+		moltenBlockMystic = registerFluidBlock(moltenMystic, "molten_mystic");
 	}
 	
 	/** Create a fluid with the given properties */

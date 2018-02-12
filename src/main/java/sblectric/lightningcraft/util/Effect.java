@@ -69,7 +69,7 @@ public class Effect {
 	/** lightning summon code! (within +/-10 blocks Y) */
 	public static boolean lightning(Entity entity, boolean isRandom, double range)
 	{
-		if(!entity.worldObj.isRemote) {
+		if(!entity.world.isRemote) {
 			double xoff;
 			double zoff;
 			if(isRandom) {
@@ -80,7 +80,7 @@ public class Effect {
 				zoff = 0;
 			}
 			
-			 World world = entity.worldObj;
+			 World world = entity.world;
 			 double x = entity.posX + xoff;
 			 double z = entity.posZ + zoff;
 			 double y;

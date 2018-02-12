@@ -37,23 +37,23 @@ public class GuiRFReceiver extends GuiContainer {
 		int texty = 36;
 		
 		String string = LCBlocks.rfReceiver.getLocalizedName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 		
 		Gui.drawRect(25, 17, 25 + (int) (((float)tileRF.getEnergyStored(null)/(float)TileEntityRFReceiver.maxStorage) * width), 17 + height, 0xffffffff);
 		
-		this.fontRendererObj.drawString("Stored RF:", 24, texty, 4210752);
-		this.fontRendererObj.drawString("Capacity:", 24, texty + 10, 4210752);
-		this.fontRendererObj.drawString("Cell Energy:", 24, texty + 20, 4210752);
+		this.fontRenderer.drawString("Stored RF:", 24, texty, 4210752);
+		this.fontRenderer.drawString("Capacity:", 24, texty + 10, 4210752);
+		this.fontRenderer.drawString("Cell Energy:", 24, texty + 20, 4210752);
 		String storedPower = tileRF.getEnergyStored(null) + " RF";
 		String maxPower = TileEntityRFReceiver.maxStorage + " RF";
 		String storedLE = (int)tileRF.cellPower + " LE";
 		
 		int color = 4210752;
 		if(tileRF.getEnergyStored(null) > LCConfig.RFtoLEConversion * 10 * 100) color = 0x00C000;
-		this.fontRendererObj.drawString(storedPower, 151 - this.fontRendererObj.getStringWidth(storedPower), texty, color);
-		this.fontRendererObj.drawString(maxPower, 151 - this.fontRendererObj.getStringWidth(maxPower), texty + 10, 4210752);
-		this.fontRendererObj.drawString(storedLE, 151 - this.fontRendererObj.getStringWidth(storedLE), texty + 20, 4210752);
+		this.fontRenderer.drawString(storedPower, 151 - this.fontRenderer.getStringWidth(storedPower), texty, color);
+		this.fontRenderer.drawString(maxPower, 151 - this.fontRenderer.getStringWidth(maxPower), texty + 10, 4210752);
+		this.fontRenderer.drawString(storedLE, 151 - this.fontRenderer.getStringWidth(storedLE), texty + 20, 4210752);
 	}
 
 	@Override

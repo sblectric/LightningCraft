@@ -28,7 +28,7 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 	private boolean redo;
 	
 	public TileEntityStaticGenerator() {
-		stacks = new ItemStack[1]; // one slot
+		setSizeInventory(1); // one slot
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -58,7 +58,7 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 			--this.generatorBurnTime;
 		}
 		
-		if (this.worldObj.isRemote) {
+		if (this.world.isRemote) {
 			// nothing client-only
 		} else {
 			if (this.generatorBurnTime == 0 && this.canGenerate()) {
@@ -84,8 +84,8 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 			// Update the burning state
 			if (burning != this.generatorCookTime > 0) {
 				dosave = true;
-				IBlockState state = worldObj.getBlockState(pos);
-				((IFurnace)state.getBlock()).setBurning(state, worldObj, pos, this.generatorCookTime > 0);
+				IBlockState state = world.getBlockState(pos);
+				((IFurnace)state.getBlock()).setBurning(state, world, pos, this.generatorCookTime > 0);
 			}
 			
 		}
@@ -107,9 +107,9 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 		// quick exit (can't generate on a remote power source)
 		if(!this.hasLPCell() || this.isRemotelyPowered()) return false;
 		
-		if (this.stacks[0] != null) {
+		if (!this.getStack(0).isEmpty()) {
 			if(this.tileCell.storedPower < 0.5) return false;
-			if(this.stacks[0].getItem() instanceof ItemBlock) return true;
+			if(this.getStack(0).getItem() instanceof ItemBlock) return true;
 		}
 		return false;
 	}
@@ -129,16 +129,16 @@ public class TileEntityStaticGenerator extends TileEntityLightningItemHandler.Up
 			
 			// it's full, spawn in lightning!
 			if(this.storedCharge >= 100 && this.cellPower < this.maxPower - 100D * this.tileCell.efficiency) {
-				Effect.lightningGen(this.worldObj, this.tileCell.getPos().up());
+				Effect.lightningGen(this.world, this.tileCell.getPos().up());
 				this.storedCharge = 0; // equalize the charge
 			}
 			
 			// remove the item
-			if(stacks[0] != null) {
-				--this.stacks[0].stackSize;
+			if(!getStack(0).isEmpty()) {
+				this.getStack(0).setCount(this.getStack(0).getCount() - 1);
 				
-				if(this.stacks[0].stackSize <= 0){
-					this.stacks[0] = null;
+				if(this.getStack(0).getCount() <= 0){
+					this.setStack(0, ItemStack.EMPTY);
 				}
 			}
 		}

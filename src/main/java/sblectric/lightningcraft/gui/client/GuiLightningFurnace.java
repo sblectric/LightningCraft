@@ -36,8 +36,8 @@ public class GuiLightningFurnace extends GuiContainer {
 		int texty = 61;
 		
 		String string = this.tileFurnace.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 
 		// draw the LP bar (avoid null pointer exceptions too!)
 		if(tileFurnace.cellPower == 0) {
@@ -46,7 +46,7 @@ public class GuiLightningFurnace extends GuiContainer {
 			width = (int)(tileFurnace.cellPower/tileFurnace.maxPower * width);
 		}
 		Gui.drawRect(47, 53, 47 + width, 53 + height, 0xffffffff);
-		this.fontRendererObj.drawString(tileFurnace.cellPower + " LE", 46, texty, 4210752);
+		this.fontRenderer.drawString(tileFurnace.cellPower + " LE", 46, texty, 4210752);
 		
 	}
 

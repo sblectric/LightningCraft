@@ -27,12 +27,12 @@ public class LCPotions {
 	private static void registerPotions() {
 		
 		// register the demon friend potion with two types
-		demonFriend = new PotionCustom("demonFriend", false, new Color(255,255,0).getRGB()).setPotionName("potion.demonFriend");
+		demonFriend = new PotionCustom("demon_warding", false, new Color(255,255,0).getRGB()).setPotionName("potion.demon_warding");
 		GameRegistry.register(demonFriend);
 		demonFriendNormal = new PotionType(new PotionEffect(demonFriend, demonFriendTicks));
 		demonFriendExtended = new PotionType(new PotionEffect(demonFriend, demonFriendExtTicks));
-		GameRegistry.register(demonFriendNormal.setRegistryName("demonFriendNormal"));
-		GameRegistry.register(demonFriendExtended.setRegistryName("demonFriendExtended"));
+		GameRegistry.register(demonFriendNormal.setRegistryName("demon_warding_normal"));
+		GameRegistry.register(demonFriendExtended.setRegistryName("demon_warding_extended"));
 	}
 	
 	/** Get a potion with a potion type */

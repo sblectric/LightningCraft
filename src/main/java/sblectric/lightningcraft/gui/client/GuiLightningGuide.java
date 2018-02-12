@@ -241,9 +241,9 @@ public class GuiLightningGuide extends GuiScreen {
 		// book pages
 		int widthOfString;
 		String stringPageIndicator = I18n.format("book.pageIndicator", Integer.valueOf(currPage + 1), bookTotalPages);
-		widthOfString = fontRendererObj.getStringWidth(stringPageIndicator);
-		fontRendererObj.drawString(stringPageIndicator, offsetFromScreenLeft - widthOfString + bookImageWidth - 44, 18, 0);
-		fontRendererObj.drawSplitString(pages.get(currPage), offsetFromScreenLeft + 36, 34, 116, 0);
+		widthOfString = fontRenderer.getStringWidth(stringPageIndicator);
+		fontRenderer.drawString(stringPageIndicator, offsetFromScreenLeft - widthOfString + bookImageWidth - 44, 18, 0);
+		fontRenderer.drawSplitString(pages.get(currPage), offsetFromScreenLeft + 36, 34, 116, 0);
 
 		// draw the superimplementation
 		super.drawScreen(mouseX, mouseY, p_73863_3_);
@@ -344,8 +344,8 @@ public class GuiLightningGuide extends GuiScreen {
 			}
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-			String stackSize = stack.stackSize > 1 ? "" + stack.stackSize : "";
-			itemRender.renderItemOverlayIntoGUI(fontRendererObj, stack, x, y, stackSize);
+			String stackSize = stack.getCount() > 1 ? "" + stack.getCount() : "";
+			itemRender.renderItemOverlayIntoGUI(fontRenderer, stack, x, y, stackSize);
 			RenderHelper.disableStandardItemLighting();
 		}
 	}
@@ -390,7 +390,7 @@ public class GuiLightningGuide extends GuiScreen {
 		public void drawPage(int bookX, int bookY) {
 
 			// show the needed LE
-			book.fontRendererObj.drawSplitString(cost + " LE needed for this infusion", bookX + 36, 120, 116, 0);
+			book.fontRenderer.drawSplitString(cost + " LE needed for this infusion", bookX + 36, 120, 116, 0);
 
 			// some offset
 			int xoff = 3;
@@ -440,7 +440,7 @@ public class GuiLightningGuide extends GuiScreen {
 					recTicks = 0;
 				}
 				ItemStack itemStack = StackHelper.animateItemStackFromString(ingredients.get(itemRotate[i]), change);
-				if(itemStack == null) continue; // skip null items
+				if(itemStack.isEmpty()) continue; // skip null items
 				displayStack[i] = itemStack;
 				if(displayStack[i].getMaxDamage() > 0) displayStack[i].setItemDamage(Math.min(displayStack[i].getMaxDamage(), dispDamage));
 				book.drawItemStack(displayStack[i], (int)ingredientBoxes.get(i).minX, (int)ingredientBoxes.get(i).minY);

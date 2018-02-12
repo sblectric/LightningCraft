@@ -2,6 +2,8 @@ package sblectric.lightningcraft.recipes;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -107,7 +109,7 @@ public class LightningCrusherRecipes {
 					if(m.length() >= 5 && m.substring(0, 4).equals("dust") && m.substring(4, m.length()).equals(type)) {
 						try { // watch out for entries with no ItemStacks
 							ItemStack result = OreDictionary.getOres(m).get(0).copy(); // the first result will be the output
-							if(ore) result.stackSize = 2; // ores give double
+							if(ore) result.setCount(2); // ores give double
 							addRecipe(result, n); // add the recipe
 						} catch(Exception e) {}
 					}
@@ -131,17 +133,17 @@ public class LightningCrusherRecipes {
 	}
 	
 	/** Add a recipe */
-	public void addRecipe(ItemStack out, Object in) {
+	public void addRecipe(@Nonnull ItemStack out, Object in) {
 		addRecipe(new LightningCrusherRecipe(out, in));
 	}
 	
 	/** Add a recipe */
-	public void addRecipe(ItemStack out, Object in, ItemStack... excluding) {
+	public void addRecipe(@Nonnull ItemStack out, Object in, @Nonnull ItemStack... excluding) {
 		addRecipe(new LightningCrusherRecipe(out, in, excluding));
 	}
 	
 	/** Get the crushing result for an input */
-	public ItemStack getCrushingResult(ItemStack input) {
+	public @Nonnull ItemStack getCrushingResult(@Nonnull ItemStack input) {
 		for(LightningCrusherRecipe r : recipes) {
 			for(ItemStack s : r.getInput()) {
 				if(StackHelper.areItemStacksEqualForCrafting(s, input)) {
@@ -149,7 +151,7 @@ public class LightningCrusherRecipes {
 				}
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 	/** Gets the list of all crusher recipes */

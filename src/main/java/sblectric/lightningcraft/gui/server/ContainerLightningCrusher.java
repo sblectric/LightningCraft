@@ -1,5 +1,7 @@
 package sblectric.lightningcraft.gui.server;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
@@ -8,7 +10,6 @@ import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import sblectric.lightningcraft.recipes.LightningCrusherRecipes;
 import sblectric.lightningcraft.tiles.TileEntityLightningCrusher;
 
@@ -65,7 +66,7 @@ public class ContainerLightningCrusher extends ContainerLightningUser.Upgradable
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 
 		int OUTPUT = 1;
@@ -83,7 +84,7 @@ public class ContainerLightningCrusher extends ContainerLightningUser.Upgradable
 				// so the last slot in the inventory won't get checked if you don't add 1
 				if (!this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+36+1, true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
@@ -97,7 +98,7 @@ public class ContainerLightningCrusher extends ContainerLightningUser.Upgradable
 					// try to place in either Input slot; add 1 to final input slot because mergeItemStack uses < index
 					if (!this.mergeItemStack(itemstack1, INPUT, INPUT+1, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				// item in player's inventory, but not in action bar
@@ -106,36 +107,36 @@ public class ContainerLightningCrusher extends ContainerLightningUser.Upgradable
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, OUTPUT+28, OUTPUT+37, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				// item in action bar - place in player inventory
 				else if (par2 >= OUTPUT+28 && par2 < OUTPUT+37 && !this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+28, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			// In one of the infuser slots; try to place in player inventory / action bar
 			else if (!this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+37, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getCount() == 0)
 			{
-				slot.putStack((ItemStack)null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getCount() == itemstack.getCount())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 		return itemstack;
 	}

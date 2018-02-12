@@ -68,18 +68,18 @@ public class BlockLogLC extends BlockLog implements ILightningCraftBlock {
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state) {
+    protected ItemStack getSilkTouchDrop(IBlockState state) {
         return new ItemStack(Item.getItemFromBlock(this));
     }
     
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-    	return createStackedBlock(world.getBlockState(pos));
+    	return getSilkTouchDrop(world.getBlockState(pos));
     }
     
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-    	return createStackedBlock(world.getBlockState(pos));
+    	return getSilkTouchDrop(world.getBlockState(pos));
     }
     
 }

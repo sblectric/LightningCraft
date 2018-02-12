@@ -19,7 +19,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
 /** The category for infusion recipes */
 public class LightningInfusionRecipeCategory extends BlankRecipeCategory {
 	
-	public static final String UID = RefStrings.MODID + ".infusionRecipeCategory";
+	public static final String UID = RefStrings.MODID + ".infusion_recipe_category";
 	public static final String NAME = I18n.translateToLocal(UID);
 	private static final int INFUSE = 0;
 	private static final int[] SURROUND = {1, 2, 3, 4};
@@ -51,7 +51,7 @@ public class LightningInfusionRecipeCategory extends BlankRecipeCategory {
 	}
 	
 	@Override
-	public void drawAnimations(Minecraft minecraft) {
+	public void drawExtras(Minecraft minecraft) {
 		arrow.draw(minecraft, 68, 20);
 	}
 
@@ -71,7 +71,7 @@ public class LightningInfusionRecipeCategory extends BlankRecipeCategory {
 			for(int i = 0; i < SURROUND.length; i++) {
 				stacks.set(SURROUND[i], lirWrapper.getSurroundingItems().get(i));
 			}
-			stacks.set(OUTPUT, (ItemStack)recipeWrapper.getOutputs().get(0));
+			stacks.set(OUTPUT, (ItemStack)lirWrapper.getOutputs().get(0));
 		}
 	}
 

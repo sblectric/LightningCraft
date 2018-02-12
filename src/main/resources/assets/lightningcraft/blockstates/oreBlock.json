@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "variant=0": { "model": "lightningcraft:underworldIronOre" },
-		"variant=1": { "model": "lightningcraft:underworldGoldOre" },
-		"variant=2": { "model": "lightningcraft:underworldDiamondOre" },
-		"variant=3": { "model": "lightningcraft:underworldEmeraldOre" }
-    }
-}

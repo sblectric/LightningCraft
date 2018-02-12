@@ -3,6 +3,8 @@ package sblectric.lightningcraft.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -43,16 +45,16 @@ public class ArmorHelper {
 	private static Map<ArmorMaterial, ItemStack> matMap = new HashMap();
 	
 	/** Set an armor material's repair stack */
-	public static void setRepairStack(ArmorMaterial mat, ItemStack repair) {
+	public static void setRepairStack(ArmorMaterial mat, @Nonnull ItemStack repair) {
 		matMap.put(mat, repair);
 	}
 	
 	/** Get an armor material's repair stack */
-	public static ItemStack getRepairStack(ArmorMaterial mat) {
+	public static @Nonnull ItemStack getRepairStack(ArmorMaterial mat) {
 		if(matMap.containsKey(mat)) {
 			return matMap.get(mat);
 		} else {
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 	
@@ -60,10 +62,14 @@ public class ArmorHelper {
 	public static boolean entityHasFullArmor(EntityLivingBase user, Class<? extends ItemArmor> type) {
 		boolean flag = false;
 		if(user != null) {
-			flag = user.getItemStackFromSlot(EntityEquipmentSlot.HEAD) != null && user.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem().getClass() == type;
-			flag &= user.getItemStackFromSlot(EntityEquipmentSlot.CHEST) != null && user.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem().getClass() == type;
-			flag &= user.getItemStackFromSlot(EntityEquipmentSlot.LEGS) != null && user.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem().getClass() == type;
-			flag &= user.getItemStackFromSlot(EntityEquipmentSlot.FEET) != null && user.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem().getClass() == type;
+			flag = !user.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isEmpty() && 
+					user.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem().getClass() == type;
+			flag &= !user.getItemStackFromSlot(EntityEquipmentSlot.CHEST).isEmpty() && 
+					user.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem().getClass() == type;
+			flag &= !user.getItemStackFromSlot(EntityEquipmentSlot.LEGS).isEmpty() && 
+					user.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem().getClass() == type;
+			flag &= !user.getItemStackFromSlot(EntityEquipmentSlot.FEET).isEmpty() && 
+					user.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem().getClass() == type;
 		}
 		return flag;
 	}

@@ -24,7 +24,7 @@ public class TraitRepair extends AbstractTrait {
 			int damage = tool.getItemDamage();
 
 			if(damage > 0) {
-				if(entity.ticksExisted % MathHelper.floor_double(PlayerEvents.repairTime) == 0) {
+				if(entity.ticksExisted % MathHelper.floor(PlayerEvents.repairTime) == 0) {
 					tool.setItemDamage(damage - 1);
 				}
 			}

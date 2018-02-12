@@ -30,7 +30,7 @@ public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.U
 	
 	/** The lightning furnace tile entity */
 	public TileEntityLightningFurnace() {
-		stacks = new ItemStack[2]; // only two slots
+		setSizeInventory(2); // only two slots
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -62,7 +62,7 @@ public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.U
 			--this.furnaceBurnTime;
 		}
 
-		if(this.worldObj.isRemote) {
+		if(this.world.isRemote) {
 			// nothing really clientside here
 		} else {
 			// stoke the flames
@@ -91,8 +91,8 @@ public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.U
 			// Update the burning state
 			if (burning != this.furnaceBurnTime > 0) {
 				dosave = true;
-				IBlockState state = worldObj.getBlockState(pos);
-				((IFurnace)state.getBlock()).setBurning(state, worldObj, pos, this.furnaceBurnTime > 0);
+				IBlockState state = world.getBlockState(pos);
+				((IFurnace)state.getBlock()).setBurning(state, world, pos, this.furnaceBurnTime > 0);
 			}
 
 		}
@@ -115,33 +115,33 @@ public class TileEntityLightningFurnace extends TileEntityLightningItemHandler.U
 		// quick exit
 		if(!this.hasLPCell() || !this.canDrawCellPower(1)) return false;
 
-		if (this.stacks[0] == null) {
+		if (this.getStack(0).isEmpty()) {
 			return false;
 		} else {
-			ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.stacks[0]);
-			if (itemstack == null) return false;
-			if (this.stacks[1] == null) return true;
-			if (!this.stacks[1].isItemEqual(itemstack)) return false;
-			int result = stacks[1].stackSize + itemstack.stackSize;
-			return result <= getInventoryStackLimit() && result <= this.stacks[1].getMaxStackSize();
+			ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStack(0));
+			if (itemstack.isEmpty()) return false;
+			if (this.getStack(1).isEmpty()) return true;
+			if (!this.getStack(1).isItemEqual(itemstack)) return false;
+			int result = getStack(1).getCount() + itemstack.getCount();
+			return result <= getInventoryStackLimit() && result <= this.getStack(1).getMaxStackSize();
 		}
 	}
 
 	/** Smelt the item */
 	private void smeltItem() {
 		if (this.canSmelt()) {
-			ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.stacks[0]);
+			ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStack(0));
 
-			if (this.stacks[1] == null) {
-				this.stacks[1] = itemstack.copy();
-			} else if (this.stacks[1].getItem() == itemstack.getItem()) {
-				this.stacks[1].stackSize += itemstack.stackSize;
+			if (this.getStack(1).isEmpty()) {
+				this.setStack(1, itemstack.copy());
+			} else if (this.getStack(1).getItem() == itemstack.getItem()) {
+				this.getStack(1).setCount(this.getStack(1).getCount() + itemstack.getCount());
 			}
 
-			--this.stacks[0].stackSize;
+			this.getStack(0).setCount(this.getStack(0).getCount() - 1);
 
-			if(this.stacks[0].stackSize <= 0){
-				this.stacks[0] = null;
+			if(this.getStack(0).getCount() <= 0) {
+				this.setStack(0, ItemStack.EMPTY);
 			}
 		}
 	}

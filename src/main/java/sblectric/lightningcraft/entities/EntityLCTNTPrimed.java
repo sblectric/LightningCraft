@@ -2,6 +2,7 @@ package sblectric.lightningcraft.entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -67,13 +68,13 @@ public class EntityLCTNTPrimed extends Entity {
 		int i = 3;
 		if(variant == BlockUnderTNT.MYSTIC) {
 			for(int j = -i; j <= i; j += i) {
-				this.worldObj.createExplosion(this, this.posX - i, this.posY + j, this.posZ - i, f, true);
-				this.worldObj.createExplosion(this, this.posX + i, this.posY + j, this.posZ - i, f, true);
-				this.worldObj.createExplosion(this, this.posX + i, this.posY + j, this.posZ + i, f, true);
-				this.worldObj.createExplosion(this, this.posX - i, this.posY + j, this.posZ + i, f, true);
+				this.world.createExplosion(this, this.posX - i, this.posY + j, this.posZ - i, f, true);
+				this.world.createExplosion(this, this.posX + i, this.posY + j, this.posZ - i, f, true);
+				this.world.createExplosion(this, this.posX + i, this.posY + j, this.posZ + i, f, true);
+				this.world.createExplosion(this, this.posX - i, this.posY + j, this.posZ + i, f, true);
 			}
 		} else {
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
+			this.world.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
 		}
 	}
 
@@ -82,7 +83,7 @@ public class EntityLCTNTPrimed extends Entity {
 	 */
 	@Override
 	public void onUpdate() {
-		if(!worldObj.isRemote && !firstTick) {
+		if(!world.isRemote && !firstTick) {
 			LCNetwork.net.sendToAllAround(new MessageSyncTNT(this), 
 					new TargetPoint(this.dimension, this.posX, this.posY, this.posZ, 1024));
 			firstTick = true;
@@ -92,7 +93,7 @@ public class EntityLCTNTPrimed extends Entity {
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 		this.motionY -= 0.03999999910593033D;
-		this.moveEntity(this.motionX, this.motionY, this.motionZ);
+		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= 0.9800000190734863D;
@@ -108,14 +109,14 @@ public class EntityLCTNTPrimed extends Entity {
 		{
 			this.setDead();
 
-			if (!this.worldObj.isRemote)
+			if (!this.world.isRemote)
 			{
 				this.explode();
 			}
 		}
 		else
 		{
-			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
 		}
 	}
 

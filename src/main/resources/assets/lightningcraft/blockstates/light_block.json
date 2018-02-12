@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "variant=0": { "model": "lightningcraft:underworld_light" },
+		"variant=1": { "model": "lightningcraft:underworld_lamp" },
+		"variant=2": { "model": "lightningcraft:underworld_lamp_fancy" },
+		"variant=3": { "model": "lightningcraft:underworld_lamp_fancy_2" },
+		"variant=4": { "model": "lightningcraft:underworld_lamp_fancy_3" }
+    }
+}

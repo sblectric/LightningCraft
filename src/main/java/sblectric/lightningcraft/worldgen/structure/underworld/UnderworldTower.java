@@ -80,8 +80,8 @@ public class UnderworldTower extends Feature {
 			return true;
 		} else {
 			int failed = 0;
-			int x = this.getBoundingBox().getCenter().getX();
-			int z = this.getBoundingBox().getCenter().getZ();
+			int x = WorldUtils.getStructureCenter(this.boundingBox).getX();
+			int z = WorldUtils.getStructureCenter(this.boundingBox).getZ();
 			if(RefMisc.DEBUG) System.out.println("Spawn check initiated at  ("+x+","+z+")");
 			IntList yPoints = new IntList();
 

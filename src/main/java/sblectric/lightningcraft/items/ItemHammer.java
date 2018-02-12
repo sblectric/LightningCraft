@@ -41,12 +41,13 @@ public class ItemHammer extends ItemChargedSword {
 	
 	// set the item in use (only in main hand, though!)
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(hand == EnumHand.MAIN_HAND) {
 			player.setActiveHand(hand);
+			ItemStack stack = player.getHeldItem(hand);
 	        return new ActionResult(EnumActionResult.SUCCESS, stack);
 		} else {
-			return super.onItemRightClick(stack, world, player, hand);
+			return super.onItemRightClick(world, player, hand);
 		}
 	}
 
@@ -80,8 +81,8 @@ public class ItemHammer extends ItemChargedSword {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName()); // clear the attack speed
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), 
+			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getName()); // clear the attack speed
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), 
 					new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
 		}
 

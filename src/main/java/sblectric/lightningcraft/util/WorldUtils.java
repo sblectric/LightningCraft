@@ -16,8 +16,10 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 /** World helper class */
 public class WorldUtils {
@@ -52,6 +54,11 @@ public class WorldUtils {
 			}
 		}
 	}
+	
+	/** Gets the center of a structure */
+    public static Vec3i getStructureCenter(StructureBoundingBox box) {
+        return new BlockPos(box.minX + (box.maxX - box.minX + 1) / 2, box.minY + (box.maxY - box.minY + 1) / 2, box.minZ + (box.maxZ - box.minZ + 1) / 2);
+    }
 
 	/** Get the closest player to a point in the world */
 	public static EntityPlayer getClosestPlayer(World world, double x, double y, double z, double distance) {
@@ -145,7 +152,7 @@ public class WorldUtils {
 		{
 			Entity entity1 = world.loadedEntityList.get(i);
 
-			if (entity1 != null && type.isInstance(entity1) && !entity1.isEntityInvulnerable(DamageSource.generic) && entity1.isEntityAlive())
+			if (entity1 != null && type.isInstance(entity1) && !entity1.isEntityInvulnerable(DamageSource.GENERIC) && entity1.isEntityAlive())
 			{
 				// ignore the excludes
 				boolean skip = false;
@@ -352,13 +359,13 @@ public class WorldUtils {
 		// get corresponding position
 		double x = player.posX - MathHelper.sin(angle) * dist;
 		double z = player.posZ + MathHelper.cos(angle) * dist;
-		Integer y = getOpenSurface(player.worldObj, (int)x, (int)z, (int)player.posY, 10, true);
+		Integer y = getOpenSurface(player.world, (int)x, (int)z, (int)player.posY, 10, true);
 		if(y == null) return false;
 
 		// spawning
-		if(player.worldObj.getCombinedLight(new BlockPos((int)x, y, (int)z), 0) <= 7) {
+		if(player.world.getCombinedLight(new BlockPos((int)x, y, (int)z), 0) <= 7) {
 			mob.setPositionAndUpdate(x, y, z);
-			return player.worldObj.spawnEntityInWorld(mob);
+			return player.world.spawnEntity(mob);
 		}
 
 		return false;

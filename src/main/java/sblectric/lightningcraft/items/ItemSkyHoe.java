@@ -29,18 +29,19 @@ public class ItemSkyHoe extends ItemHoeLC {
 	
 	/** hoe three blocks in a row, centered on the block you're hoeing */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 
 		// when sneaking, this hoe acts normal
 		if(player.isSneaking()) {
-			return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+			return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 		}
 
 		// get the direction
 		int xMode = 1;
 		int zMode = 0;
-		int direction = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+		int direction = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		if(direction == 0 || direction == 2) {
 			xMode = 0;
 			zMode = 1;
@@ -55,7 +56,7 @@ public class ItemSkyHoe extends ItemHoeLC {
 				if(i == 0) {
 					return EnumActionResult.FAIL;
 				} else { // on failure of quick farm, revert to normal functionality
-					return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+					return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 				}
 			}
 		}
@@ -65,13 +66,13 @@ public class ItemSkyHoe extends ItemHoeLC {
 		if(world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
 			for(int i = -2; i <= 2; i++) {
 				for(int j = -2; j <= 2; j++) {
-					flag |= super.onItemUse(stack, player, world, pos.add(i, 0, j), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS;
+					flag |= super.onItemUse(player, world, pos.add(i, 0, j), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS;
 				}
 			}
 		// 1x3 mode
 		} else {
 			for(int i = -1; i <= 1; i++) {
-				flag |= super.onItemUse(stack, player, world, pos.add(i * xMode, 0, i * zMode), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS;
+				flag |= super.onItemUse(player, world, pos.add(i * xMode, 0, i * zMode), hand, facing, hitX, hitY, hitZ) == EnumActionResult.SUCCESS;
 			}
 		}
 		return flag ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;

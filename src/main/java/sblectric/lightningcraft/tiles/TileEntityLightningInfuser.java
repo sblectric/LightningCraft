@@ -35,7 +35,7 @@ public class TileEntityLightningInfuser extends TileEntityLightningItemHandler.U
 	
 	/** The lightning infusion table tile entity */
 	public TileEntityLightningInfuser() {
-		stacks = new ItemStack[6]; // six slots
+		setSizeInventory(6); // six slots
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -67,7 +67,7 @@ public class TileEntityLightningInfuser extends TileEntityLightningItemHandler.U
 			--this.infuserBurnTime;
 		}
 		
-		if (this.worldObj.isRemote) {
+		if (this.world.isRemote) {
 			// nothing client-only
 		} else {
 			if (this.infuserBurnTime == 0 && this.canInfuse()) {
@@ -94,8 +94,8 @@ public class TileEntityLightningInfuser extends TileEntityLightningItemHandler.U
 			// Update the burning state
 			if (burning != this.infuserCookTime > 0) {
 				dosave = true;
-				IBlockState state = worldObj.getBlockState(pos);
-				((IFurnace)state.getBlock()).setBurning(state, worldObj, pos, this.infuserCookTime > 0);
+				IBlockState state = world.getBlockState(pos);
+				((IFurnace)state.getBlock()).setBurning(state, world, pos, this.infuserCookTime > 0);
 			}
 			
 		}
@@ -119,44 +119,44 @@ public class TileEntityLightningInfuser extends TileEntityLightningItemHandler.U
 		this.infusionCost = 0;
 		if(!this.hasLPCell()) return false;
 		
-		if (this.stacks[0] == null) {
+		if (this.getStack(0).isEmpty()) {
 			return false;
 		} else {
-			ItemStack itemstack = LightningInfusionRecipes.instance().getInfusionResult(this.stacks[0], 
-					this.stacks[1], this.stacks[2], this.stacks[3], this.stacks[4]);
+			ItemStack itemstack = LightningInfusionRecipes.instance().getInfusionResult(this.getStack(0), 
+					this.getStack(1), this.getStack(2), this.getStack(3), this.getStack(4));
 			this.infusionCost = LightningInfusionRecipes.instance().getLastResultCost();
-			if (itemstack == null) return false;
+			if (itemstack.isEmpty()) return false;
 			if(this.infusionCost <= 0) return false;
 			if(!this.canDrawCellPower(this.infusionCost)) return false;
-			if (this.stacks[5] == null) return true;
-			if (!this.stacks[5].isItemEqual(itemstack)) return false;
-			int result = stacks[5].stackSize + itemstack.stackSize;
-			return result <= getInventoryStackLimit() && result <= this.stacks[5].getMaxStackSize();
+			if (this.getStack(5).isEmpty()) return true;
+			if (!this.getStack(5).isItemEqual(itemstack)) return false;
+			int result = getStack(5).getCount() + itemstack.getCount();
+			return result <= getInventoryStackLimit() && result <= this.getStack(5).getMaxStackSize();
 		}
 	}
 
 	/** Perform the infusion */
 	private void infuseItem() {
 		if (this.canInfuse()) {
-			ItemStack itemstack = LightningInfusionRecipes.instance().getInfusionResult(this.stacks[0], 
-					this.stacks[1], this.stacks[2], this.stacks[3], this.stacks[4]);
+			ItemStack itemstack = LightningInfusionRecipes.instance().getInfusionResult(this.getStack(0), 
+					this.getStack(1), this.getStack(2), this.getStack(3), this.getStack(4));
 			int cost = LightningInfusionRecipes.instance().getLastResultCost();
 			
 			// take away the power!
 			this.drawCellPower(cost);
 			
-			if (this.stacks[5] == null) {
-				this.stacks[5] = itemstack.copy();
-			} else if (this.stacks[5].getItem() == itemstack.getItem()) {
-				this.stacks[5].stackSize += itemstack.stackSize;
+			if (this.getStack(5).isEmpty()) {
+				this.setStack(5, itemstack.copy());
+			} else if (this.getStack(5).getItem() == itemstack.getItem()) {
+				this.getStack(5).setCount(this.getStack(5).getCount() + itemstack.getCount());
 			}
 			
 			for(int i = 0; i < 5; i++) {
-				if(stacks[i] != null) {
-					--this.stacks[i].stackSize;
+				if(!getStack(i).isEmpty()) {
+					this.getStack(i).setCount(this.getStack(i).getCount() - 1);
 					
-					if(this.stacks[i].stackSize <= 0){
-						this.stacks[i] = null;
+					if(this.getStack(i).getCount() <= 0){
+						this.setStack(i, ItemStack.EMPTY);
 					}
 				}
 			

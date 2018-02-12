@@ -86,8 +86,8 @@ public class EntityLCZombie extends EntityZombie {
 		}
 		
 		// try to get entities
-		if(this.target == null)	this.target = this.targetID != null ? WorldUtils.getEntityLivingBaseFromUUID(worldObj, targetID, isTargetPlayer) : null;
-		if(this.owner == null)	this.owner = this.ownerID != null ? WorldUtils.getEntityLivingBaseFromUUID(worldObj, ownerID, isOwnerPlayer): null;
+		if(this.target == null)	this.target = this.targetID != null ? WorldUtils.getEntityLivingBaseFromUUID(world, targetID, isTargetPlayer) : null;
+		if(this.owner == null)	this.owner = this.ownerID != null ? WorldUtils.getEntityLivingBaseFromUUID(world, ownerID, isOwnerPlayer): null;
 		
 		// set read state
 		if(this.target == null && this.owner == null) {
@@ -119,7 +119,7 @@ public class EntityLCZombie extends EntityZombie {
 	public void onUpdate() {
 		super.onUpdate();
 		
-		if(!this.worldObj.isRemote) {
+		if(!this.world.isRemote) {
 			
 			// read in new data
 			if((loadstate == stateREADNBT || loadstate == stateTRIED) && target == null || owner == null) this.getData();
@@ -151,7 +151,7 @@ public class EntityLCZombie extends EntityZombie {
 	/** Attacking mobs */
 	@Override
 	public boolean attackEntityAsMob(Entity victim) {
-		if(!victim.worldObj.isRemote) {
+		if(!victim.world.isRemote) {
 			if(victim instanceof EntityLivingBase) {
 				// make sure to make the victim drop stuff as if it were a player kill
 				// via reflection

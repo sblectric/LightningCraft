@@ -87,7 +87,7 @@ public class ContainerEnchReallocator extends ContainerLightningUser.Upgradable 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 		
 		LinkedList<Integer> INPUT = new LinkedList<Integer>();
@@ -109,7 +109,7 @@ public class ContainerEnchReallocator extends ContainerLightningUser.Upgradable 
 					// try to place in either Input slot; add 1 to final input slot because mergeItemStack uses < index
 					if (!this.mergeItemStack(itemstack1, INPUT.get(0), INPUT.get(0)+1, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				
@@ -117,7 +117,7 @@ public class ContainerEnchReallocator extends ContainerLightningUser.Upgradable 
 					// try to place in either Input slot; add 1 to final input slot because mergeItemStack uses < index
 					if (!this.mergeItemStack(itemstack1, INPUT.get(1), INPUT.get(1)+1, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				
@@ -127,36 +127,36 @@ public class ContainerEnchReallocator extends ContainerLightningUser.Upgradable 
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, OUTPUT+28, OUTPUT+37, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				// item in action bar - place in player inventory
 				else if (par2 >= OUTPUT+28 && par2 < OUTPUT+37 && !this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+28, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			// In one of the infuser slots; try to place in player inventory / action bar
 			else if (!this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+37, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getCount() == 0)
 			{
-				slot.putStack((ItemStack)null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getCount() == itemstack.getCount())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 		return itemstack;
 	}

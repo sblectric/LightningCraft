@@ -32,9 +32,10 @@ public class ItemWirelessMarker extends ItemLC {
 
 	/** Save a transmitter location and give it to a reciever */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		TileEntity tile = world.getTileEntity(pos);
+		ItemStack stack = player.getHeldItem(hand);
 
 		// make the tag compound if none exists
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());

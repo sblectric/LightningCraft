@@ -25,13 +25,13 @@ public class LCSoundEvents {
 	
 	/** Add the sound events needed */
 	private static void registerSounds() {
-		demonSoldierIdle = registerSound("mob.demonSoldier.idle");
-		demonSoldierHurt = registerSound("mob.demonSoldier.hurt");
-		demonSoldierDeath = registerSound("mob.demonSoldier.death");
-		underworldGhastMoan = registerSound("mob.underworldGhast.moan");
-		underworldGhastWarn = registerSound("mob.underworldGhast.warn");
-		underworldGhastHurt = registerSound("mob.underworldGhast.hurt");
-		underworldGhastDeath = registerSound("mob.underworldGhast.death");
+		demonSoldierIdle = registerSound("mob.demon_soldier.idle");
+		demonSoldierHurt = registerSound("mob.demon_soldier.hurt");
+		demonSoldierDeath = registerSound("mob.demon_soldier.death");
+		underworldGhastMoan = registerSound("mob.underworld_ghast.moan");
+		underworldGhastWarn = registerSound("mob.underworld_ghast.warn");
+		underworldGhastHurt = registerSound("mob.underworld_ghast.hurt");
+		underworldGhastDeath = registerSound("mob.underworld_ghast.death");
 		portalUnderworld = registerSound("portal.underworld");
 	}
 

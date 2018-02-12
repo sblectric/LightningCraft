@@ -31,7 +31,7 @@ public class TileEntityLightningReceiver extends TileEntityBase {
 	/** Tx & Rx logic */
 	@Override
 	public void update() {
-		if(!worldObj.isRemote) {
+		if(!world.isRemote) {
 			
 			// look for the transmitter
 			TileEntity tile;
@@ -42,7 +42,7 @@ public class TileEntityLightningReceiver extends TileEntityBase {
 			this.outOfRange = false;
 			
 			// check if it exists at its coordinates
-			if(txY >= 0 && (tile = worldObj.getTileEntity(txPos)) != null && tile instanceof TileEntityLightningTransmitter) {
+			if(txY >= 0 && (tile = world.getTileEntity(txPos)) != null && tile instanceof TileEntityLightningTransmitter) {
 				tx = (TileEntityLightningTransmitter)tile;
 				double distanceSq = tx.getDistanceSq(getX(), getY(), getZ());
 				if(distanceSq <= tx.range * tx.range) {

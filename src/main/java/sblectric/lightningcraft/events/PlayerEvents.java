@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.IKineticGear;
 import sblectric.lightningcraft.api.IMysticGear;
+import sblectric.lightningcraft.api.IPotionEffectProvider;
 import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.blocks.PortalUnderworld;
 import sblectric.lightningcraft.config.LCConfig;
@@ -48,7 +50,7 @@ public class PlayerEvents {
 			EntityPlayer player = (EntityPlayer)e.getEntity();
 			
 			// serverside things
-			if (!player.worldObj.isRemote) {
+			if (!player.world.isRemote) {
 				EntityPlayerMP mp = (EntityPlayerMP)player;
 				
 				// repair tools and armor
@@ -70,7 +72,7 @@ public class PlayerEvents {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onPlayerRenderTick(RenderTickEvent e) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer; if(player == null) return;
+		EntityPlayer player = Minecraft.getMinecraft().player; if(player == null) return;
 		
 		// handle potion rendering
 		handleClientPotionEffects(player);
@@ -80,7 +82,7 @@ public class PlayerEvents {
 	private void handleClientPotionEffects(EntityPlayer player) {
 		// night vision doesn't work in the Underworld
 		if(player.dimension == LCDimensions.underworldID) {
-			if(player.isPotionActive(MobEffects.NIGHT_VISION)) { 
+			if(player.isPotionActive(MobEffects.NIGHT_VISION)) {
 				player.removeActivePotionEffect(MobEffects.NIGHT_VISION);
 			}
 		}
@@ -88,6 +90,20 @@ public class PlayerEvents {
 	
 	/** Handle serverside potion events */
 	private void handleServerPotionEffects(EntityPlayer player) {
+		
+		// get player inventory and check for IPotionEffectProviders
+		for(int i = 0; i < player.inventory.getSizeInventory(); i++) {
+			ItemStack s = player.inventory.getStackInSlot(i);
+			if(!s.isEmpty() && s.getItem() instanceof IPotionEffectProvider) {
+				IPotionEffectProvider item = (IPotionEffectProvider)s.getItem();
+				if(item.canApplyEffect(s, player, i)) {
+					for(PotionEffect e : item.getEffects(s, player, i)) {
+						player.addPotionEffect(e);
+					}
+				}
+			}
+		}
+		
 		// night vision doesn't work in the Underworld
 		if(player.dimension == LCDimensions.underworldID) {
 			if(player.isPotionActive(MobEffects.NIGHT_VISION)) {
@@ -166,7 +182,7 @@ public class PlayerEvents {
 			int damage = stack.getItemDamage();
 
 			if(damage > 0) {
-				if(player.ticksExisted % MathHelper.floor_double(repairTime / speed) == 0) {
+				if(player.ticksExisted % MathHelper.floor(repairTime / speed) == 0) {
 					stack.setItemDamage(damage - 1);
 					return true;
 				}

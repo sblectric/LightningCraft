@@ -102,16 +102,18 @@ public class EntityDemonSoldier extends EntityMob {
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		
-		if(!this.worldObj.isRemote) {
+		if(!this.world.isRemote) {
 					
 			// find nearest insolent player
 			if(this.getAttackTarget() == null) {
 				EntityPlayer p = (EntityPlayer)this.findPlayerToAttack();
 				
 				if(p != null) {
-					this.setAttackTarget(p);
-					p.addChatMessage(new TextComponentString(
-							"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oYou will pay for your insolence." + LCText.secSign + "r"));
+					try {
+						this.setAttackTarget(p);
+						p.sendMessage(new TextComponentString(
+								"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oYou will pay for your insolence." + LCText.secSign + "r"));
+					} catch(Exception e) {}
 				}
 			} else {
 				// return to being pleasant if the player enters non-survival
@@ -123,14 +125,14 @@ public class EntityDemonSoldier extends EntityMob {
 			// get hurt when under the Demon Warding effect, and lose the target (once per two seconds)
 			if(this.ticksExisted % 40 == 0 && this.getActivePotionEffect(LCPotions.demonFriend) != null) {
 				this.setAttackTarget(null);
-				this.attackEntityFrom(DamageSource.magic, 0.5F);
+				this.attackEntityFrom(DamageSource.MAGIC, 0.5F);
 			}
 			
 		}
 	}
 	
     protected Entity findPlayerToAttack() {
-    	EntityPlayerMP p = (EntityPlayerMP)this.worldObj.getClosestPlayerToEntity(this, 16.0D);
+    	EntityPlayerMP p = (EntityPlayerMP)this.world.getClosestPlayerToEntity(this, 16.0D);
         return p != null && !LCConfig.demonSoldiersAlwaysNeutral && !p.capabilities.disableDamage && this.canEntityBeSeen(p)
         		&& SkyUtils.isPlayerInsolent(p) ? p : null;
     }
@@ -141,14 +143,14 @@ public class EntityDemonSoldier extends EntityMob {
 	@Override
     public boolean attackEntityFrom(DamageSource source, float damage) {
 		boolean flag = super.attackEntityFrom(source, damage);
-		if(!this.worldObj.isRemote) {
+		if(!this.world.isRemote) {
 			Entity p = source.getEntity();
 			
 			// foolish you
 			if(this.getHealth() > 0 && p != null && p instanceof EntityPlayerMP && 
 					this.getAttackTarget() != p && !((EntityPlayerMP)p).capabilities.disableDamage) {
 				try {
-					((EntityPlayerMP)p).addChatMessage(new TextComponentString(
+					((EntityPlayerMP)p).sendMessage(new TextComponentString(
 							"[Demon Soldier] " + LCText.secSign + "4" + LCText.secSign + "oWhat a fool." + LCText.secSign + "r"));
 					this.setAttackTarget((EntityPlayerMP)p); // switch it up
 				} catch(Exception e) {} // avoid crashes with fake players

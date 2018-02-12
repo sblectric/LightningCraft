@@ -1,12 +1,11 @@
 package sblectric.lightningcraft.items.base;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,7 +40,7 @@ public class ItemMeta extends ItemLC {
 	}
 	
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List sub) {
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList sub) {
 		for(int meta = 0; meta < nSubItems; meta++) {
 			sub.add(new ItemStack(item, 1, meta));
 		}

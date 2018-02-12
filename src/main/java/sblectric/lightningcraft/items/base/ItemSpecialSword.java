@@ -25,8 +25,8 @@ public abstract class ItemSpecialSword extends ItemSwordLC {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName()); // clear the attack speed
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), 
+			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getName()); // clear the attack speed
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), 
 					new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
 		}
 

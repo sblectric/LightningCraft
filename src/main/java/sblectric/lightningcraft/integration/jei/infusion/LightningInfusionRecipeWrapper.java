@@ -21,7 +21,6 @@ public class LightningInfusionRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	/** Get ALL the inputs */
-	@Override
 	public List getInputs() {
 		return new JointList<List<ItemStack>>().join(getInfuseItem()).join(getSurroundingItems());
 	}
@@ -30,7 +29,7 @@ public class LightningInfusionRecipeWrapper extends BlankRecipeWrapper {
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		String need = recipe.getCost() + " LE needed";
-		minecraft.fontRendererObj.drawString(need, 100 - minecraft.fontRendererObj.getStringWidth(need) / 2, 48, 4210752);
+		minecraft.fontRenderer.drawString(need, 100 - minecraft.fontRenderer.getStringWidth(need) / 2, 48, 4210752);
 	}
 	
 	/** Get the infuse item */
@@ -62,12 +61,14 @@ public class LightningInfusionRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	/** Get the output as a singleton list */
-	@Override
 	public List getOutputs() {
 		return new JointList().join(recipe.getOutput());
 	}
 
 	@Override
-	public void getIngredients(IIngredients ingredients) {}
+	public void getIngredients(IIngredients ingredients) {
+		ingredients.setInputLists(ItemStack.class, getInputs());
+		ingredients.setOutputs(ItemStack.class, getOutputs());
+	}
 
 }

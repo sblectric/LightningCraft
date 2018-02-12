@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lightningcraft:blocks/static_generator_top",
-        "front": "lightningcraft:blocks/static_generator_side",
-        "side": "lightningcraft:blocks/static_generator_side"
-    }
-}

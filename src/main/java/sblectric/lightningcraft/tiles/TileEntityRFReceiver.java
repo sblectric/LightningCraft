@@ -24,14 +24,14 @@ public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceive
 	public void update() {
 		super.update();
 		// if it has a direct cell connection, empty the internal buffer
-		if(!worldObj.isRemote && this.hasLPCell() && !this.isRemotelyPowered()) {
+		if(!world.isRemote && this.hasLPCell() && !this.isRemotelyPowered()) {
 			// (default: 500 RF -> 1 LE with no terminal losses)
 			// powering the block turns off the transfer
 			// attempt this every 5 seconds
-			if(worldObj.getTotalWorldTime() % 100 == 0 && !worldObj.isBlockPowered(pos) && 
+			if(world.getTotalWorldTime() % 100 == 0 && !world.isBlockPowered(pos) && 
 					storage.getEnergyStored() >= LCConfig.RFtoLEConversion * 10 * 100 && 
 					this.cellPower < this.maxPower - 100D * this.tileCell.efficiency) { // 100 LE (50000RF) at a time
-				Effect.lightningGen(this.worldObj, this.tileCell.getPos().up());
+				Effect.lightningGen(this.world, this.tileCell.getPos().up());
 				storage.modifyEnergyStored(-LCConfig.RFtoLEConversion * 10 * 100);
 				this.markDirty();
 			}

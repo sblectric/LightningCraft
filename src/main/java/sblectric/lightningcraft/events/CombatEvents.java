@@ -44,7 +44,7 @@ public class CombatEvents {
 	/** Handle living hurt events */
 	@SubscribeEvent
 	public void onLivingHurt(LivingHurtEvent event) {
-		if(event.getEntity() instanceof EntityLivingBase && !event.getEntity().worldObj.isRemote) {
+		if(event.getEntity() instanceof EntityLivingBase && !event.getEntity().world.isRemote) {
 			handleLightningSwordStrike(event);
 			handleSpecialStrike(event);
 			handleElecAuraHurt(event);
@@ -59,7 +59,7 @@ public class CombatEvents {
 		EntityLivingBase user = null;
 		if(event.getSource().getEntity() instanceof EntityLivingBase) user = (EntityLivingBase)event.getSource().getEntity();
 		if(user == null) return;
-		ItemStack weapon = user.getHeldItem(EnumHand.MAIN_HAND); if(weapon == null) return;
+		ItemStack weapon = user.getHeldItem(EnumHand.MAIN_HAND); if(weapon.isEmpty()) return;
 
 		// Hand of Thor enchantment
 		int j = EnchantmentHelper.getEnchantmentLevel(LCEnchantments.handOfThor, weapon);
@@ -68,7 +68,7 @@ public class CombatEvents {
 		
 		// divine overkill achievement
 		int s = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, weapon);
-		if(!user.worldObj.isRemote && user instanceof EntityPlayer && j == 3 && s == 5) {
+		if(!user.world.isRemote && user instanceof EntityPlayer && j == 3 && s == 5) {
 			((EntityPlayer)user).addStat(LCAchievements.mysticHammer, 1);
 		}
 
@@ -154,7 +154,7 @@ public class CombatEvents {
 	public void handleSpecialStrike(LivingHurtEvent event) {
 		// definitions
 		EntityLivingBase target = (EntityLivingBase)event.getEntity();
-		World world = target.worldObj;
+		World world = target.world;
 		Entity src = event.getSource().getEntity();
 		float nextHealth = target.getHealth() - event.getAmount();
 
@@ -192,7 +192,7 @@ public class CombatEvents {
 					// summon a zombie to attack the entity you attacked
 					EntityZombie zombie = new EntityLCZombie(world, target, user);
 					zombie.setPosition(target.posX + random.nextFloat() - 0.5F, target.posY, target.posZ + random.nextFloat() - 0.5F);
-					world.spawnEntityInWorld(zombie);
+					world.spawnEntity(zombie);
 					zombie.playLivingSound();
 
 				// Winged Sword

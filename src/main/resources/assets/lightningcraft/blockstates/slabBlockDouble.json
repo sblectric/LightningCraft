@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "variant=0": { "model": "lightningcraft:thunderstoneBrick" },
-		"variant=1": { "model": "lightningcraft:demonstoneBrick" },
-		"variant=2": { "model": "lightningcraft:understoneBrick" },
-        "variant=3": { "model": "lightningcraft:underworldPlanks" }
-    }
-}

@@ -48,7 +48,7 @@ public class MessageSyncTNT implements IMessage {
         
         /** Do the sync */
         public void handle(MessageSyncTNT m) {
-        	EntityLCTNTPrimed t = (EntityLCTNTPrimed)Minecraft.getMinecraft().theWorld.getEntityByID(m.uid);
+        	EntityLCTNTPrimed t = (EntityLCTNTPrimed)Minecraft.getMinecraft().world.getEntityByID(m.uid);
         	t.variant = m.variant;
         }
         

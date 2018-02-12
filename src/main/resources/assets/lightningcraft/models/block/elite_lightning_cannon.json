@@ -1,0 +1,8 @@
+{
+    "parent": "lightningcraft:block/underworld_cannon",
+    "textures": {
+        "0": "lightningcraft:blocks/mystic_block",
+        "1": "lightningcraft:blocks/lightning_cannon",
+        "particle": "lightningcraft:blocks/lightning_cannon"
+    }
+}

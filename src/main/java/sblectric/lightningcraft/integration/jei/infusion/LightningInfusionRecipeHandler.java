@@ -16,15 +16,10 @@ public class LightningInfusionRecipeHandler implements IRecipeHandler<LightningI
 	public Class<LightningInfusionRecipe> getRecipeClass() {
 		return LightningInfusionRecipe.class;
 	}
-
-	@Override
-	public String getRecipeCategoryUid() {
-		return LightningInfusionRecipeCategory.UID;
-	}
 	
 	@Override
 	public String getRecipeCategoryUid(LightningInfusionRecipe recipe) {
-		return getRecipeCategoryUid();
+		return LightningInfusionRecipeCategory.UID;
 	}
 
 	public LightningInfusionRecipeWrapper wrapUpdate(LightningInfusionRecipe recipe) {

@@ -2,12 +2,15 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.api.IInventoryLEUser;
 import sblectric.lightningcraft.items.base.ItemMeta;
@@ -31,7 +34,7 @@ public class ItemBattery extends ItemMeta {
 	/** Like a meta-item, but subtypes are hidden except for empty and fully charged
 	 *  and metadata is not used */
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList list) {
 		for(int i = 0; i < nGrades; i++) {
 			// item stacks
 			ItemStack empty = new ItemStack(item, 1, i);
@@ -51,18 +54,18 @@ public class ItemBattery extends ItemMeta {
 	
 	/** fix strange duplication glitches */
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
-		if(stack.stackSize < 1) stack = null;
+	public void onUpdate(@Nonnull ItemStack stack, World world, Entity entity, int par4, boolean par5) {
+		if(stack.getCount() < 1) stack = ItemStack.EMPTY;
 	}
 
 	/** Get the stored power in the item */
-	public static double getStoredPower(ItemStack stack) {
-		return stack == null || !stack.hasTagCompound() ? 0 : stack.getTagCompound().getDouble("StoredEnergy");
+	public static double getStoredPower(@Nonnull ItemStack stack) {
+		return stack.isEmpty() || !stack.hasTagCompound() ? 0 : stack.getTagCompound().getDouble("StoredEnergy");
 	}
 
 	/** Set the stored power in the item */
-	public static boolean setStoredPower(ItemStack stack, double power) {
-		if(stack != null) {
+	public static boolean setStoredPower(@Nonnull ItemStack stack, double power) {
+		if(!stack.isEmpty()) {
 			if(!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 			stack.getTagCompound().setDouble("StoredEnergy", power);
 			return true;
@@ -72,18 +75,18 @@ public class ItemBattery extends ItemMeta {
 	}
 
 	/** Modify the stored power in the item */
-	public static boolean addStoredPower(ItemStack stack, double add) {
+	public static boolean addStoredPower(@Nonnull ItemStack stack, double add) {
 		return setStoredPower(stack, getStoredPower(stack) + add);
 	}
 
 	/** Max power the batteries hold */
-	public static double getMaxPower(ItemStack stack) {
+	public static double getMaxPower(@Nonnull ItemStack stack) {
 		return 50D * (stack.getItemDamage() + 1D);
 	}
 
 	/** Show current charge */
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	public void addInformation(@Nonnull ItemStack stack, EntityPlayer player, List list, boolean par4) {
 		double power = getStoredPower(stack);
 		double maxpower = getMaxPower(stack);
 		int charge = (int) (100D * (power / maxpower));

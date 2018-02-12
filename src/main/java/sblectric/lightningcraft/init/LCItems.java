@@ -118,10 +118,10 @@ public class LCItems {
 		iceMat = EnumHelper.addToolMaterial("Ice", 1, 100, 4.0F, 0.5F, 10);
 
 		// armor
-		elecArmor = ArmorHelper.addArmorMaterial("Electricium", RefStrings.MODID + ":elecArmor", 40, new int[]{3, 6, 8, 4}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2F);
-		skyArmor = ArmorHelper.addArmorMaterial("Skyfather", RefStrings.MODID + ":skyArmor", 50, new int[]{3, 7, 8, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F);
-		mysticArmor = ArmorHelper.addArmorMaterial("Mystic", RefStrings.MODID + ":mysticArmor", 60, new int[]{4, 7, 8, 4}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3F);
-		kineticArmor = ArmorHelper.addArmorMaterial("Kinetic", RefStrings.MODID + ":kineticArmor", 4, new int[]{1, 3, 5, 2}, 1, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0F);
+		elecArmor = ArmorHelper.addArmorMaterial("Electricium", RefStrings.MODID + ":elec_armor", 40, new int[]{3, 6, 8, 4}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2F);
+		skyArmor = ArmorHelper.addArmorMaterial("Skyfather", RefStrings.MODID + ":sky_armor", 50, new int[]{3, 7, 8, 4}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.5F);
+		mysticArmor = ArmorHelper.addArmorMaterial("Mystic", RefStrings.MODID + ":mystic_armor", 60, new int[]{4, 7, 8, 4}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3F);
+		kineticArmor = ArmorHelper.addArmorMaterial("Kinetic", RefStrings.MODID + ":kinetic_armor", 4, new int[]{1, 3, 5, 2}, 1, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0F);
 	}
 	
 	/** Finish up material initialization */
@@ -191,8 +191,8 @@ public class LCItems {
 		items.join(
 			// basic items
 			guide = (ItemLC)new ItemLightningGuide().setRegistryName("guide").setCreativeTab(LCCreativeTabs.items),
-			golfClub = (ItemLC)new ItemGolfClub().setRegistryName("golfClub").setCreativeTab(LCCreativeTabs.items),
-			golfClubGold = (ItemLC)new ItemGoldenClub().setRegistryName("golfClubGold").setCreativeTab(LCCreativeTabs.items),
+			golfClub = (ItemLC)new ItemGolfClub().setRegistryName("golf_club").setCreativeTab(LCCreativeTabs.items),
+			golfClubGold = (ItemLC)new ItemGoldenClub().setRegistryName("golf_club_gold").setCreativeTab(LCCreativeTabs.items),
 			ingot = (ItemLC)new ItemMetalIngot().setRegistryName("ingot").setCreativeTab(LCCreativeTabs.items),
 			nugget = (ItemLC)new ItemMetalNugget().setRegistryName("nugget").setCreativeTab(LCCreativeTabs.items),
 			dust = (ItemLC)new ItemMetalDust().setRegistryName("dust").setCreativeTab(LCCreativeTabs.items),
@@ -200,78 +200,78 @@ public class LCItems {
 			plate = (ItemLC)new ItemMetalPlate().setRegistryName("plate").setCreativeTab(LCCreativeTabs.items),
 			material = (ItemLC)new ItemMaterial().setRegistryName("material").setCreativeTab(LCCreativeTabs.items),
 			battery = (ItemLC)new ItemBattery().setRegistryName("battery").setCreativeTab(LCCreativeTabs.items),
-			itemMagnet = (ItemLC)new ItemMagnet().setRegistryName("itemMagnet").setCreativeTab(LCCreativeTabs.items),
-			wirelessMarker = (ItemLC)new ItemWirelessMarker().setRegistryName("wirelessMarker").setCreativeTab(LCCreativeTabs.items),
+			itemMagnet = (ItemLC)new ItemMagnet().setRegistryName("item_magnet").setCreativeTab(LCCreativeTabs.items),
+			wirelessMarker = (ItemLC)new ItemWirelessMarker().setRegistryName("wireless_marker").setCreativeTab(LCCreativeTabs.items),
 			
 			// electricium tools
-			elecHammer = (ItemSwordLC)new ItemHammer(elecHammerMat).setRegistryName("elecHammer").setCreativeTab(LCCreativeTabs.items),
-			elecSword = (ItemSwordLC)new ItemChargedSword(elecMat).setRegistryName("elecSword").setCreativeTab(LCCreativeTabs.items),
-			elecPick = (ItemPickaxeLC)new ItemPickaxeLC(elecMat).setRegistryName("elecPick").setCreativeTab(LCCreativeTabs.items),
-			elecAxe = (ItemAxeLC)new ItemAxeLC(elecMat).setRegistryName("elecAxe").setCreativeTab(LCCreativeTabs.items),
-			elecShovel = (ItemSpadeLC)new ItemSpadeLC(elecMat).setRegistryName("elecShovel").setCreativeTab(LCCreativeTabs.items),
-			elecHoe = (ItemHoeLC)new ItemHoeLC(elecMat).setRegistryName("elecHoe").setCreativeTab(LCCreativeTabs.items),
+			elecHammer = (ItemSwordLC)new ItemHammer(elecHammerMat).setRegistryName("elec_hammer").setCreativeTab(LCCreativeTabs.items),
+			elecSword = (ItemSwordLC)new ItemChargedSword(elecMat).setRegistryName("elec_sword").setCreativeTab(LCCreativeTabs.items),
+			elecPick = (ItemPickaxeLC)new ItemPickaxeLC(elecMat).setRegistryName("elec_pick").setCreativeTab(LCCreativeTabs.items),
+			elecAxe = (ItemAxeLC)new ItemAxeLC(elecMat).setRegistryName("elec_axe").setCreativeTab(LCCreativeTabs.items),
+			elecShovel = (ItemSpadeLC)new ItemSpadeLC(elecMat).setRegistryName("elec_shovel").setCreativeTab(LCCreativeTabs.items),
+			elecHoe = (ItemHoeLC)new ItemHoeLC(elecMat).setRegistryName("elec_hoe").setCreativeTab(LCCreativeTabs.items),
 			
 			// electricium armor
-			elecHelm = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.HEAD).setRegistryName("elecHelm").setCreativeTab(LCCreativeTabs.items),
-			elecChest = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.CHEST).setRegistryName("elecChest").setCreativeTab(LCCreativeTabs.items),
-			elecLegs = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.LEGS).setRegistryName("elecLegs").setCreativeTab(LCCreativeTabs.items),
-			elecBoots = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.FEET).setRegistryName("elecBoots").setCreativeTab(LCCreativeTabs.items),
+			elecHelm = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.HEAD).setRegistryName("elec_helm").setCreativeTab(LCCreativeTabs.items),
+			elecChest = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.CHEST).setRegistryName("elec_chest").setCreativeTab(LCCreativeTabs.items),
+			elecLegs = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.LEGS).setRegistryName("elec_legs").setCreativeTab(LCCreativeTabs.items),
+			elecBoots = (ItemArmorLC)new ItemElecArmor(elecArmor, EntityEquipmentSlot.FEET).setRegistryName("elec_boots").setCreativeTab(LCCreativeTabs.items),
 			
 			// special swords
-			soulSword = (ItemSwordLC)new ItemSoulSword(soulMat).setRegistryName("soulSword").setCreativeTab(LCCreativeTabs.items),
-			zombieSword = (ItemSwordLC)new ItemZombieSword(zombieMat).setRegistryName("zombieSword").setCreativeTab(LCCreativeTabs.items),
-			featherSword = (ItemSwordLC)new ItemFeatherSword(featherMat).setRegistryName("featherSword").setCreativeTab(LCCreativeTabs.items),
-			enderSword = (ItemSwordLC)new ItemEnderSword(enderMat).setRegistryName("enderSword").setCreativeTab(LCCreativeTabs.items),
-			blazeSword = (ItemSwordLC)new ItemBlazeSword(blazeMat).setRegistryName("blazeSword").setCreativeTab(LCCreativeTabs.items),
-			iceSword = (ItemSwordLC)new ItemIceSword(iceMat).setRegistryName("iceSword").setCreativeTab(LCCreativeTabs.items),
+			soulSword = (ItemSwordLC)new ItemSoulSword(soulMat).setRegistryName("soul_sword").setCreativeTab(LCCreativeTabs.items),
+			zombieSword = (ItemSwordLC)new ItemZombieSword(zombieMat).setRegistryName("zombie_sword").setCreativeTab(LCCreativeTabs.items),
+			featherSword = (ItemSwordLC)new ItemFeatherSword(featherMat).setRegistryName("feather_sword").setCreativeTab(LCCreativeTabs.items),
+			enderSword = (ItemSwordLC)new ItemEnderSword(enderMat).setRegistryName("ender_sword").setCreativeTab(LCCreativeTabs.items),
+			blazeSword = (ItemSwordLC)new ItemBlazeSword(blazeMat).setRegistryName("blaze_sword").setCreativeTab(LCCreativeTabs.items),
+			iceSword = (ItemSwordLC)new ItemIceSword(iceMat).setRegistryName("ice_sword").setCreativeTab(LCCreativeTabs.items),
 			
 			// skyfather tools
-			skyHammer = (ItemSwordLC)new ItemSkyHammer(skyHammerMat).setRegistryName("skyHammer").setCreativeTab(LCCreativeTabs.items),
-			skySword = (ItemSwordLC)new ItemSkySword(skyMat).setRegistryName("skySword").setCreativeTab(LCCreativeTabs.items),
-			skyPick = (ItemPickaxeLC)new ItemSkyPick(skyMat).setRegistryName("skyPick").setCreativeTab(LCCreativeTabs.items),
-			skyAxe = (ItemAxeLC)new ItemSkyAxe(skyMat).setRegistryName("skyAxe").setCreativeTab(LCCreativeTabs.items),
-			skyShovel = (ItemSpadeLC)new ItemSkySpade(skyMat).setRegistryName("skyShovel").setCreativeTab(LCCreativeTabs.items),
-			skyHoe = (ItemHoeLC)new ItemSkyHoe(skyMat).setRegistryName("skyHoe").setCreativeTab(LCCreativeTabs.items),
+			skyHammer = (ItemSwordLC)new ItemSkyHammer(skyHammerMat).setRegistryName("sky_hammer").setCreativeTab(LCCreativeTabs.items),
+			skySword = (ItemSwordLC)new ItemSkySword(skyMat).setRegistryName("sky_sword").setCreativeTab(LCCreativeTabs.items),
+			skyPick = (ItemPickaxeLC)new ItemSkyPick(skyMat).setRegistryName("sky_pick").setCreativeTab(LCCreativeTabs.items),
+			skyAxe = (ItemAxeLC)new ItemSkyAxe(skyMat).setRegistryName("sky_axe").setCreativeTab(LCCreativeTabs.items),
+			skyShovel = (ItemSpadeLC)new ItemSkySpade(skyMat).setRegistryName("sky_shovel").setCreativeTab(LCCreativeTabs.items),
+			skyHoe = (ItemHoeLC)new ItemSkyHoe(skyMat).setRegistryName("sky_hoe").setCreativeTab(LCCreativeTabs.items),
 			
 			// skyfather armor
-			skyHelm = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.HEAD).setRegistryName("skyHelm").setCreativeTab(LCCreativeTabs.items),
-			skyChest = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.CHEST).setRegistryName("skyChest").setCreativeTab(LCCreativeTabs.items),
-			skyLegs = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.LEGS).setRegistryName("skyLegs").setCreativeTab(LCCreativeTabs.items),
-			skyBoots = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.FEET).setRegistryName("skyBoots").setCreativeTab(LCCreativeTabs.items),
+			skyHelm = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.HEAD).setRegistryName("sky_helm").setCreativeTab(LCCreativeTabs.items),
+			skyChest = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.CHEST).setRegistryName("sky_chest").setCreativeTab(LCCreativeTabs.items),
+			skyLegs = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.LEGS).setRegistryName("sky_legs").setCreativeTab(LCCreativeTabs.items),
+			skyBoots = (ItemArmorLC)new ItemSkyArmor(skyArmor, EntityEquipmentSlot.FEET).setRegistryName("sky_boots").setCreativeTab(LCCreativeTabs.items),
 			
 			// kinetic tools
-			kineticSword = (ItemSwordLC)new ItemKineticSword(kineticMat).setRegistryName("kineticSword").setCreativeTab(LCCreativeTabs.items),
-			kineticPick = (ItemPickaxeLC)new ItemKineticPick(kineticMat).setRegistryName("kineticPick").setCreativeTab(LCCreativeTabs.items),
-			kineticAxe = (ItemAxeLC)new ItemKineticAxe(kineticMat).setRegistryName("kineticAxe").setCreativeTab(LCCreativeTabs.items),
-			kineticShovel = (ItemSpadeLC)new ItemKineticSpade(kineticMat).setRegistryName("kineticShovel").setCreativeTab(LCCreativeTabs.items),
+			kineticSword = (ItemSwordLC)new ItemKineticSword(kineticMat).setRegistryName("kinetic_sword").setCreativeTab(LCCreativeTabs.items),
+			kineticPick = (ItemPickaxeLC)new ItemKineticPick(kineticMat).setRegistryName("kinetic_pick").setCreativeTab(LCCreativeTabs.items),
+			kineticAxe = (ItemAxeLC)new ItemKineticAxe(kineticMat).setRegistryName("kinetic_axe").setCreativeTab(LCCreativeTabs.items),
+			kineticShovel = (ItemSpadeLC)new ItemKineticSpade(kineticMat).setRegistryName("kinetic_shovel").setCreativeTab(LCCreativeTabs.items),
 			
 			// kinetic armor
 			kineticHelm = (ItemArmorLC)new ItemKineticArmor(kineticArmor, EntityEquipmentSlot.HEAD).
-					setRegistryName("kineticHelm").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("kinetic_helm").setCreativeTab(LCCreativeTabs.items),
 			kineticChest = (ItemArmorLC)new ItemKineticArmor(kineticArmor, EntityEquipmentSlot.CHEST).
-					setRegistryName("kineticChest").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("kinetic_chest").setCreativeTab(LCCreativeTabs.items),
 			kineticLegs = (ItemArmorLC)new ItemKineticArmor(kineticArmor, EntityEquipmentSlot.LEGS).
-					setRegistryName("kineticLegs").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("kinetic_legs").setCreativeTab(LCCreativeTabs.items),
 			kineticBoots = (ItemArmorLC)new ItemKineticArmor(kineticArmor, EntityEquipmentSlot.FEET).
-					setRegistryName("kineticBoots").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("kinetic_boots").setCreativeTab(LCCreativeTabs.items),
 			
 			// mystic tools
-			mysticHammer = (ItemSwordLC)new ItemMysticHammer(mysticHammerMat).setRegistryName("mysticHammer").setCreativeTab(LCCreativeTabs.items),
-			mysticSword = (ItemSwordLC)new ItemMysticSword(mysticMat).setRegistryName("mysticSword").setCreativeTab(LCCreativeTabs.items),
-			mysticPick = (ItemPickaxeLC)new ItemMysticPick(mysticMat).setRegistryName("mysticPick").setCreativeTab(LCCreativeTabs.items),
-			mysticAxe = (ItemAxeLC)new ItemMysticAxe(mysticMat).setRegistryName("mysticAxe").setCreativeTab(LCCreativeTabs.items),
-			mysticShovel = (ItemSpadeLC)new ItemMysticSpade(mysticMat).setRegistryName("mysticShovel").setCreativeTab(LCCreativeTabs.items),
-			mysticHoe = (ItemHoeLC)new ItemMysticHoe(mysticMat).setRegistryName("mysticHoe").setCreativeTab(LCCreativeTabs.items),
+			mysticHammer = (ItemSwordLC)new ItemMysticHammer(mysticHammerMat).setRegistryName("mystic_hammer").setCreativeTab(LCCreativeTabs.items),
+			mysticSword = (ItemSwordLC)new ItemMysticSword(mysticMat).setRegistryName("mystic_sword").setCreativeTab(LCCreativeTabs.items),
+			mysticPick = (ItemPickaxeLC)new ItemMysticPick(mysticMat).setRegistryName("mystic_pick").setCreativeTab(LCCreativeTabs.items),
+			mysticAxe = (ItemAxeLC)new ItemMysticAxe(mysticMat).setRegistryName("mystic_axe").setCreativeTab(LCCreativeTabs.items),
+			mysticShovel = (ItemSpadeLC)new ItemMysticSpade(mysticMat).setRegistryName("mystic_shovel").setCreativeTab(LCCreativeTabs.items),
+			mysticHoe = (ItemHoeLC)new ItemMysticHoe(mysticMat).setRegistryName("mystic_hoe").setCreativeTab(LCCreativeTabs.items),
 			
 			// mystic armor
 			mysticHelm = (ItemArmorLC)new ItemMysticArmor(mysticArmor, EntityEquipmentSlot.HEAD).
-					setRegistryName("mysticHelm").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("mystic_helm").setCreativeTab(LCCreativeTabs.items),
 			mysticChest = (ItemArmorLC)new ItemMysticArmor(mysticArmor, EntityEquipmentSlot.CHEST).
-					setRegistryName("mysticChest").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("mystic_chest").setCreativeTab(LCCreativeTabs.items),
 			mysticLegs = (ItemArmorLC)new ItemMysticArmor(mysticArmor, EntityEquipmentSlot.LEGS).
-					setRegistryName("mysticLegs").setCreativeTab(LCCreativeTabs.items),
+					setRegistryName("mystic_legs").setCreativeTab(LCCreativeTabs.items),
 			mysticBoots = (ItemArmorLC)new ItemMysticArmor(mysticArmor, EntityEquipmentSlot.FEET).
-					setRegistryName("mysticBoots").setCreativeTab(LCCreativeTabs.items)
+					setRegistryName("mystic_boots").setCreativeTab(LCCreativeTabs.items)
 		);
 	}
 

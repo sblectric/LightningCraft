@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "lightningcraft:under_portal_ew" },
+        "axis=x": { "model": "lightningcraft:under_portal_ns" }
+    }
+}

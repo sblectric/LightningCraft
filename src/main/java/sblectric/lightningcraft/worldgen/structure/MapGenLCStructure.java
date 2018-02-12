@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 
 import sblectric.lightningcraft.ref.RefMisc;
@@ -51,7 +52,7 @@ public abstract class MapGenLCStructure extends MapGenStructure {
 
         int i1 = x / this.maxDistanceBetweenStructures;
         int j1 = z / this.maxDistanceBetweenStructures;
-        Random random = this.worldObj.setRandomSeed(i1, j1, this.seedDistance);
+        Random random = this.world.setRandomSeed(i1, j1, this.seedDistance);
         i1 *= this.maxDistanceBetweenStructures;
         j1 *= this.maxDistanceBetweenStructures;
         i1 += random.nextInt(this.maxDistanceBetweenStructures - this.minDistanceBetweenStructures);
@@ -65,6 +66,11 @@ public abstract class MapGenLCStructure extends MapGenStructure {
         }
     }
 	
+	@Override
+	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_) {
+		return null;
+	}
+	
 	/** Wrapper */
 	public boolean hasStructureAt(BlockPos pos) {
 		return isInsideStructure(pos);
@@ -72,7 +78,7 @@ public abstract class MapGenLCStructure extends MapGenStructure {
 	
 	/** more safety */
 	public boolean canAccessWorld() {
-		return this.worldObj != null;
+		return this.world != null;
 	}
 
     /** Added for safety */

@@ -1,0 +1,8 @@
+{
+    "parent": "lightningcraft:block/lightning_receiver",
+	"textures": {
+        "0": "lightningcraft:blocks/transmitter_side",
+        "1": "blocks/iron_block",
+		"particle": "lightningcraft:blocks/transmitter_side"
+    }
+}

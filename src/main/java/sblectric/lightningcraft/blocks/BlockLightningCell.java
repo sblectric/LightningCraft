@@ -2,7 +2,6 @@ package sblectric.lightningcraft.blocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -14,7 +13,6 @@ import sblectric.lightningcraft.blocks.base.BlockContainerLCMeta;
 import sblectric.lightningcraft.gui.LCGuiHandler;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.blocks.ItemBlockLightningCell;
-import sblectric.lightningcraft.ref.Metal.MBlock;
 import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 
 /** The lightning cell */
@@ -44,7 +42,7 @@ public class BlockLightningCell extends BlockContainerLCMeta {
 	/** Activate this block */
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, 
-			EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		player.openGui(LightningCraft.modInstance, LCGuiHandler.lightningCellGui, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

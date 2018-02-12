@@ -1,7 +1,5 @@
 package sblectric.lightningcraft.items;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -13,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,14 +30,15 @@ public class ItemLightningGuide extends ItemMeta {
 	/** Only show the first book in GUIs */
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List sub) {
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList sub) {
 		sub.add(new ItemStack(item));
 	}
 
 	/** show the book GUI */
 	@SideOnly(Side.CLIENT)
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		ItemStack stack = player.getHeldItem(hand);
 		Minecraft.getMinecraft().displayGuiScreen(new GuiLightningGuide(this.getDamage(stack)));
 		return new ActionResult(EnumActionResult.SUCCESS, stack); // pass it through
 	}

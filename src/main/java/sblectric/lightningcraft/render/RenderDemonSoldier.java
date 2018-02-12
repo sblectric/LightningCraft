@@ -21,7 +21,7 @@ public class RenderDemonSoldier extends RenderBiped<EntityDemonSoldier> {
 	private static final ResourceLocation TEXTURE = new ResourceLocation(RefStrings.MODID, "textures/entities/demon_soldier.png");
 	
 	public RenderDemonSoldier(RenderManager rm) {
-		super(rm, new ModelBiped(), 0.5F, 1.0F); // use the player model
+		super(rm, new ModelBiped(), 0.5F); // use the player model
 		this.addLayer(new LayerHeldItem(this));
         this.addLayer(new LayerBipedArmor(this));
 	}

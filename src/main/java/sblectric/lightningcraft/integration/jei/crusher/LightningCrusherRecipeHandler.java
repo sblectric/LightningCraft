@@ -18,14 +18,8 @@ public class LightningCrusherRecipeHandler implements IRecipeHandler<LightningCr
 	}
 
 	@Override
-	public String getRecipeCategoryUid() {
+	public String getRecipeCategoryUid(LightningCrusherRecipe r) {
 		return LightningCrusherRecipeCategory.UID;
-	}
-	
-
-	@Override
-	public String getRecipeCategoryUid(LightningCrusherRecipe recipe) {
-		return getRecipeCategoryUid();
 	}
 
 	@Override

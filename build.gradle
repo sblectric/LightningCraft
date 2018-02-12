@@ -1,5 +1,3 @@
-
-// For those who want the bleeding edge
 buildscript {
     repositories {
         jcenter()
@@ -14,7 +12,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.7.2"
+version = "2.8.4"
 group= "com.sblectric.lightningcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "lightningcraft"
 
@@ -22,24 +20,23 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    maven { url "http://dvs1.progwml6.com/files/maven" }
+	maven { url "http://dvs1.progwml6.com/files/maven" }
 	maven { url 'http://maven.epoxide.xyz' }
 	maven { url 'http://maven.k-4u.nl' }
 }
 
 minecraft {
-    version = "1.10.2-12.18.3.2185"
-    runDir = "run"
-    useDepAts = true
-    mappings = "snapshot_20160518"
+	version = "1.11.2-13.20.0.2298"
+	runDir = "run"
+	useDepAts = true
+	mappings = "snapshot_20170401"
 }
 
 dependencies {
-	deobfCompile "mezz.jei:jei_1.10.2:3.13.6.389"
-    deobfCompile "slimeknights.mantle:Mantle:1.10.2-1.1.3.199"
-    deobfCompile "slimeknights:TConstruct:1.10.2-2.6.1.464"
-    compile "net.darkhax.tesla:Tesla:1.10.2-1.2.1.50"
-    deobfCompile "com.github.mcjty:compatlayer:1.10-0.1.6"
+	deobfCompile "mezz.jei:jei_1.11.2:4.2.2.220"
+	deobfCompile "slimeknights.mantle:Mantle:1.11.2-1.2.0.27"
+	deobfCompile "slimeknights:TConstruct:1.11.2-2.7.0.10"
+	deobfCompile "net.darkhax.tesla:Tesla:1.11-1.3.0.51"
 }
 
 processResources

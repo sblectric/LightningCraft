@@ -279,7 +279,7 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 		this.dimRNG.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer p = new ChunkPrimer();
 		IBlockState[] ablock = new IBlockState[chunkHeight * 256];
-		Biome[] abiomegenbase = this.worldObj.getBiomeProvider().loadBlockGeneratorData(null, x * 16, z * 16, 16, 16);
+		Biome[] abiomegenbase = this.worldObj.getBiomeProvider().getBiomes(null, x * 16, z * 16, 16, 16);
 		this.initBlocks(x, z, ablock);
 		this.replaceBiomeBlocks(x, z, ablock, abiomegenbase);
 		WorldUtils.primeChunk(p, ablock);
@@ -554,14 +554,14 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 				this.genUnderworldWaterTemple.canAccessWorld() && this.genUnderworldRampart.canAccessWorld();
 
 		if(canAccessWorld) {
-			Biome biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
+			Biome biomegenbase = this.worldObj.getBiome(pos);
 			return biomegenbase.getSpawnableList(creatureType);
 		}
 		return null;
 	}
 
 	@Override
-	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
+	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean par4) {
 		return null;
 	}
 
@@ -576,4 +576,5 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 	public boolean generateStructures(Chunk chunkIn, int x, int z) {
 		return false;
 	}
+	
 }

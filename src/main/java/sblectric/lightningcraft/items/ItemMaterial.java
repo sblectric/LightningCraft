@@ -71,8 +71,9 @@ public class ItemMaterial extends ItemMeta {
 
 	/** Right-click the item on a block */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 		switch(stack.getItemDamage()) {
 		
 		// Cell Upgrade usage
@@ -84,7 +85,7 @@ public class ItemMaterial extends ItemMeta {
 				EnumActionResult r = tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null)
 						.onLightningUpgrade(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
 				if(r == EnumActionResult.SUCCESS && !world.isRemote) {
-					--stack.stackSize; // transfer the upgrade to the tile entity on success
+					stack.setCount(stack.getCount() - 1); // transfer the upgrade to the tile entity on success
 					tile.markDirty();
 					
 					player.addStat(LCAchievements.upgradeMachine, 1); // give out the achievement
@@ -103,16 +104,16 @@ public class ItemMaterial extends ItemMeta {
 
 			if(!world.isRemote) {
 				if(PortalUnderworld.ignitePortal(world, pos.up())) {
-					if(player.capabilities.isCreativeMode == false) stack.stackSize--;
+					if(player.capabilities.isCreativeMode == false) stack.setCount(stack.getCount() - 1);
 					Effect.lightning(world, pos.getX(), pos.getY() + 1, pos.getZ());
-					if(stack.stackSize <= 0) stack = null;
+					if(stack.getCount() <= 0) stack = ItemStack.EMPTY;
 				}
 			}
 			return EnumActionResult.SUCCESS;
 
 		// Default usage
 		default:
-			return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+			return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 		}
 	}
 

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "lightningcraft:underwood_log" },
+        "axis=z":   { "model": "lightningcraft:underwood_log_side" },
+        "axis=x":   { "model": "lightningcraft:underwood_log_side", "y": 90 },
+        "axis=none": { "model": "lightningcraft:underwood_log_bark" }
+    }
+}

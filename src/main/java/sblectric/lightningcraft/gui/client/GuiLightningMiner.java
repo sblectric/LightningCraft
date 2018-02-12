@@ -62,15 +62,15 @@ public class GuiLightningMiner extends GuiContainer {
 		
 		// titles
 		String string = this.tile.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
 		
 		// operating mode
-		this.fontRendererObj.drawString("Operating Mode", modeButtonX, modeBtn.yPosition - 9 - this.guiTop, 4210752);
+		this.fontRenderer.drawString("Operating Mode", modeButtonX, modeBtn.yPosition - 9 - this.guiTop, 4210752);
 		modeBtn.displayString = tile.mode.getName();
 		
 		// replace blocks?
-		this.fontRendererObj.drawString("Replace Blocks?", replaceButtonX, replaceBtn.yPosition - 9 - this.guiTop, 4210752);
+		this.fontRenderer.drawString("Replace Blocks?", replaceButtonX, replaceBtn.yPosition - 9 - this.guiTop, 4210752);
 		replaceBtn.displayString = tile.replaceBlocks ? "Yes" : "No";
 
 		// LP status
@@ -90,8 +90,8 @@ public class GuiLightningMiner extends GuiContainer {
 		if(tile.cellPower < power || tile.cellPower == 0) colorLP = 0xC00000;
 		
 		// draw the needs of the operation
-		this.fontRendererObj.drawString(needLP, this.xSize - this.fontRendererObj.getStringWidth(needLP) - 8, 85, colorLP);
-		this.fontRendererObj.drawString(have, this.xSize - this.fontRendererObj.getStringWidth(have) - 8, 95, colorLP);
+		this.fontRenderer.drawString(needLP, this.xSize - this.fontRenderer.getStringWidth(needLP) - 8, 85, colorLP);
+		this.fontRenderer.drawString(have, this.xSize - this.fontRenderer.getStringWidth(have) - 8, 95, colorLP);
 	}
 
 	@Override

@@ -36,15 +36,16 @@ public class ItemGolfClub extends ItemLC {
 
 	/** Summon lightning when swung */
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(!world.isRemote && hand == EnumHand.MAIN_HAND) {
+			ItemStack stack = player.getHeldItem(hand);
 			SkyUtils.damageStack(2, stack, player, EntityEquipmentSlot.MAINHAND, true);
 			Effect.lightning(player, false);
 
 			// golf club achievement
 			player.addStat(LCAchievements.swingGolfClub, 1);
 		}
-		return super.onItemRightClick(stack, world, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

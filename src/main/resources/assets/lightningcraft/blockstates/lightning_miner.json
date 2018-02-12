@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "lightningcraft:lightning_miner_down" },
+        "facing=up":    { "model": "lightningcraft:lightning_miner_up" },
+        "facing=north": { "model": "lightningcraft:lightning_miner" },
+        "facing=south": { "model": "lightningcraft:lightning_miner", "y": 180 },
+        "facing=west":  { "model": "lightningcraft:lightning_miner", "y": 270 },
+        "facing=east":  { "model": "lightningcraft:lightning_miner", "y": 90 }
+    }
+}

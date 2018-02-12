@@ -2,6 +2,8 @@ package sblectric.lightningcraft.recipes;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -137,12 +139,12 @@ public class LightningInfusionRecipes {
 	}
 	
 	/** Adds a new infusion recipe with Items, Blocks, ItemStacks, or oreDict entries */
-	public LightningInfusionRecipe addRecipe(ItemStack output, int cost, Object infuse, Object... surrounding) {
+	public LightningInfusionRecipe addRecipe(@Nonnull ItemStack output, int cost, Object infuse, Object... surrounding) {
 		return addRecipe(new LightningInfusionRecipe(output, cost, infuse, surrounding));
 	}
 	
 	/** Helper method for hasBaseResult and such */
-	private boolean hasResult(ItemStack infuse, String item, List<String> itemOres, boolean nbtSensitive) {
+	private boolean hasResult(@Nonnull ItemStack infuse, String item, List<String> itemOres, boolean nbtSensitive) {
 		String useItem = StackHelper.makeStringFromItemStack(infuse);
 		
 		// ignore NBT for the infused item?
@@ -175,9 +177,9 @@ public class LightningInfusionRecipes {
 	}
 	
 	/** Is there any infusion recipe which takes the specified infusion item? */
-	public boolean hasBaseResult(ItemStack infuse1) {
-		if(infuse1 == null) return false;
-		ItemStack infuse = infuse1.copy(); infuse.stackSize = 1;
+	public boolean hasBaseResult(@Nonnull ItemStack infuse1) {
+		if(infuse1.isEmpty()) return false;
+		ItemStack infuse = infuse1.copy(); infuse.setCount(1);
 		for(LightningInfusionRecipe recipe : recipes) {
 			if(hasResult(infuse, recipe.getInfuseItem(), recipe.getInfuseItemAsOre(), recipe.getNBTSensitive())) return true;
 		}
@@ -185,19 +187,19 @@ public class LightningInfusionRecipes {
 	}
 	
 	/** Get the infusion result for a specified grid */
-	public ItemStack getInfusionResult(ItemStack infuse1, ItemStack... stacks1) {
+	public @Nonnull ItemStack getInfusionResult(@Nonnull ItemStack infuse1, @Nonnull ItemStack... stacks1) {
 		// make sure the item grid is the correct size!
-		if(stacks1.length != LightningInfusionRecipe.itemsNeeded) return null;
+		if(stacks1.length != LightningInfusionRecipe.itemsNeeded) return ItemStack.EMPTY;
 		
 		// normalize the stack sizes to 1
-		ItemStack infuse = infuse1.copy(); infuse.stackSize = 1;
+		ItemStack infuse = infuse1.copy(); infuse.setCount(1);
 		List<ItemStack> stacks = new JointList();
 		for(int s = 0; s < stacks1.length; s++) {
-			if(stacks1[s] != null) {
-				ItemStack current = stacks1[s].copy(); current.stackSize = 1;
+			if(!stacks1[s].isEmpty()) {
+				ItemStack current = stacks1[s].copy(); current.setCount(1);
 				stacks.add(current);
 			} else {
-				stacks.add(null);
+				stacks.add(ItemStack.EMPTY);
 			}
 		}
 		
@@ -226,7 +228,7 @@ public class LightningInfusionRecipes {
 			for(ItemStack stack : stacks) {
 				String stackString;
 				List matchList;
-				if(stack == null) {
+				if(stack.isEmpty()) {
 					stackString = LightningInfusionRecipe.nullIdentifier;
 				} else {
 					stackString = StackHelper.makeStringFromItemStack(stack);
@@ -255,7 +257,7 @@ public class LightningInfusionRecipes {
 			}
 		}
 		lastResultCost = -2;
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 	/** Gets the infusion cost for the last result acquired */

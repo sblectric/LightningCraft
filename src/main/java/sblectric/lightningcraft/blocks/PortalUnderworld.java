@@ -1,9 +1,11 @@
 package sblectric.lightningcraft.blocks;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import com.google.common.cache.LoadingCache;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
@@ -19,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -34,8 +37,6 @@ import sblectric.lightningcraft.init.LCParticles;
 import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.util.WorldUtils;
-
-import com.google.common.cache.LoadingCache;
 
 /** The underworld portal block */
 public class PortalUnderworld extends BlockPortal implements ILightningCraftBlock {
@@ -66,7 +67,7 @@ public class PortalUnderworld extends BlockPortal implements ILightningCraftBloc
 	/** No blocks to show */
 	@Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {}
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList list) {}
 
 	/** No updates for this block */
 	@Override
@@ -183,7 +184,7 @@ public class PortalUnderworld extends BlockPortal implements ILightningCraftBloc
 	 * Called when a neighboring block changes.
 	 */
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		EnumFacing.Axis axis = state.getValue(AXIS);
 

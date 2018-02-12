@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import sblectric.lightningcraft.api.recipes.LightningCrusherRecipe;
 import sblectric.lightningcraft.api.util.JointList;
 
@@ -26,17 +27,18 @@ public class LightningCrusherRecipeWrapper extends BlankRecipeWrapper {
 		minecraft.currentScreen.drawTexturedModalRect(0, 36, 64, 6, 27, 8);
 	}
 
-	@Override
 	public List getInputs() {
 		return new JointList().join(recipe.getInput());
 	}
 
-	@Override
 	public List getOutputs() {
 		return new JointList().join(recipe.getOutput());
 	}
 
 	@Override
-	public void getIngredients(IIngredients ingredients) {}
+	public void getIngredients(IIngredients ingredients) {
+		ingredients.setInputs(ItemStack.class, getInputs());
+		ingredients.setOutputs(ItemStack.class, getOutputs());
+	}
 
 }

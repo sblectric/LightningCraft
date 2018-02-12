@@ -6,12 +6,16 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 /** The Electrostatic Aura enchantment */
-public class EnchantmentElectrostaticAura extends Enchantment {
+public class EnchantmentElectrostaticAura extends LCEnchantment {
 
 	public EnchantmentElectrostaticAura(Rarity rarity) {
 		super(rarity, EnumEnchantmentType.ARMOR, new EntityEquipmentSlot[]
 				{EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET});
-		this.setName(RefStrings.MODID + ":elecAura");
+	}
+	
+	@Override
+	public String getUnlocalizedName() {
+		return "elec_aura";
 	}
 	
 	@Override

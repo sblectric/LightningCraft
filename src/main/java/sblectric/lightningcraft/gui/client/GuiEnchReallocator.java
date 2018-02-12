@@ -63,7 +63,8 @@ public class GuiEnchReallocator extends GuiContainer {
 			buttonAction.displayString = "Start";
 		}
 		
-		if(tileRealloc.cellPower < tileRealloc.lpCost || tileRealloc.cellPower == 0 || mc.thePlayer.experienceLevel < tileRealloc.xpCost || tileRealloc.lpCost <= 0 || tileRealloc.nTopEnchs <= 0) {
+		if(tileRealloc.cellPower < tileRealloc.lpCost || tileRealloc.cellPower == 0 || 
+				mc.player.experienceLevel < tileRealloc.xpCost || tileRealloc.lpCost <= 0 || tileRealloc.nTopEnchs <= 0) {
 			buttonAction.visible = false;
 		} else {
 			buttonAction.visible = true;
@@ -74,8 +75,8 @@ public class GuiEnchReallocator extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
 		String string = this.tileRealloc.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 
 		// LP status
 		int colorLP = 4210752;
@@ -104,21 +105,21 @@ public class GuiEnchReallocator extends GuiContainer {
 		}
 		
 		if(tileRealloc.cellPower < power || tileRealloc.cellPower == 0) colorLP = 0xC00000;
-		if(mc.thePlayer.experienceLevel < tileRealloc.xpCost) colorXP = 0xC00000;
+		if(mc.player.experienceLevel < tileRealloc.xpCost) colorXP = 0xC00000;
 		
 		// draw the active enchantments
-		this.fontRendererObj.drawString(enchs, 60, 20, 4210752);
-		this.fontRendererObj.drawString(enchs2, 60, 30, 4210752);
+		this.fontRenderer.drawString(enchs, 60, 20, 4210752);
+		this.fontRenderer.drawString(enchs2, 60, 30, 4210752);
 		
 		// draw the needs of the operation
-		this.fontRendererObj.drawString(needXP, 60, 50, colorXP);
-		this.fontRendererObj.drawString(needLP, 60, 60, colorLP);
-		this.fontRendererObj.drawString(have, 60, 70, colorLP);
+		this.fontRenderer.drawString(needXP, 60, 50, colorXP);
+		this.fontRenderer.drawString(needLP, 60, 60, colorLP);
+		this.fontRenderer.drawString(have, 60, 70, colorLP);
 		
 		// just update the player currently using it
-		if(tileRealloc.player != this.mc.thePlayer) {
+		if(tileRealloc.player != this.mc.player) {
 			this.mc.playerController.sendEnchantPacket(this.inventorySlots.windowId, 0);
-			tileRealloc.player = this.mc.thePlayer;
+			tileRealloc.player = this.mc.player;
 		}
 	}
 

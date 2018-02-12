@@ -35,7 +35,7 @@ public abstract class TileEntityRF extends TileEntityLightningUser {
 	/** Check for adjacent IEnergyHandlers and get energy to / from them as needed */
 	@Override
 	public void update() {
-		if(!worldObj.isRemote) {
+		if(!world.isRemote) {
 			if(EnergyApiHelper.rfLoaded) RFUtils.handleAdjacentEnergy(this);
 			if(EnergyApiHelper.teslaLoaded) TeslaUtils.tryPushEnergy(this);
 		}

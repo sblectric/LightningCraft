@@ -23,11 +23,11 @@ public class TileEntityRFProvider extends TileEntityRF implements IEnergyProvide
 	public void update() {
 		super.update();
 		// if it has a cell, fill the internal buffer
-		if(!worldObj.isRemote && this.hasLPCell()) {
+		if(!world.isRemote && this.hasLPCell()) {
 			// at a rate of 1 LE / tick, and the set conversion factor
 			// (default: 1 LE -> 50 RF with no wireless losses)
 			// powering the block turns off the transfer
-			if(!worldObj.isBlockPowered(pos) && 
+			if(!world.isBlockPowered(pos) && 
 					storage.getEnergyStored() <= storage.getMaxEnergyStored() - LCConfig.RFtoLEConversion && 
 					this.canDrawCellPower(1)) {
 				this.drawCellPower(1);

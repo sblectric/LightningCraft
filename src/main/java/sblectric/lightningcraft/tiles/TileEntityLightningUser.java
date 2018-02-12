@@ -13,7 +13,7 @@ public abstract class TileEntityLightningUser extends TileEntityBase {
 	
 	/** make sure the machine has a power cell to draw from */
 	protected boolean hasLPCell() {
-		if(worldObj == null) return false;
+		if(world == null) return false;
 		
 		TileEntity tile;
 		
@@ -23,7 +23,7 @@ public abstract class TileEntityLightningUser extends TileEntityBase {
 				for(int z = getZ() - 1; z <= getZ() + 1; z++) {
 					
 					if(!(x == getX() && y == getY() && z == getZ())) {
-						tile = this.worldObj.getTileEntity(new BlockPos(x, y, z));
+						tile = this.world.getTileEntity(new BlockPos(x, y, z));
 						
 						// it matches!
 						if(tile != null && tile instanceof TileEntityLightningCell) {
@@ -46,7 +46,7 @@ public abstract class TileEntityLightningUser extends TileEntityBase {
 					for(int z = getZ() - 1; z <= getZ() + 1; z++) {
 						
 						if(!(x == getX() && y == getY() && z == getZ())) {
-							tile = this.worldObj.getTileEntity(new BlockPos(x, y, z));
+							tile = this.world.getTileEntity(new BlockPos(x, y, z));
 							
 							// it matches!
 							if(tile != null && tile instanceof TileEntityLightningReceiver) {

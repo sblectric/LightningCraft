@@ -55,7 +55,7 @@ public class LCModIntegration {
 		}
 		
 		// Waila
-		FMLInterModComms.sendMessage("Waila", "register", WailaTileHandler.callbackRegister);
+		FMLInterModComms.sendMessage("waila", "register", WailaTileHandler.callbackRegister);
 		
 	}
 	

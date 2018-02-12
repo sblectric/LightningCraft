@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import sblectric.lightningcraft.api.util.JointList;
@@ -35,15 +37,15 @@ public class LightningTransformRecipes {
 				new JointList().join(new ItemStack(Items.IRON_INGOT)).join(new ItemStack(Items.GOLD_INGOT)).join(new ItemStack(Items.DIAMOND)));
 	}
 	
-	public void addRecipe(ItemStack output, List<ItemStack> input) {
+	public void addRecipe(@Nonnull ItemStack output, List<ItemStack> input) {
 		recipeList.put(input, output);
 	}
 	
 	/** Get the transformation of the input item stacks */
-	public ItemStack getTransformResult(List<ItemStack> input) {
+	public @Nonnull ItemStack getTransformResult(List<ItemStack> input) {
 		int matches = 0;
 		List comp = null;
-		ItemStack result = null;
+		ItemStack result = ItemStack.EMPTY;
 		for(Entry<List<ItemStack>, ItemStack> entry : recipeList.entrySet()) {
 			for(ItemStack rIn : entry.getKey()) {
 				for(ItemStack iIn : input) {
@@ -58,7 +60,7 @@ public class LightningTransformRecipes {
 		if(matches == input.size() && matches == comp.size()) {
 			return result.copy(); // don't alter this stack!
 		} else {
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
