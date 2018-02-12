@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "lightningcraft:blocks/thunderstone_bricks",
-        "top": "lightningcraft:blocks/thunderstone_bricks",
-        "side": "lightningcraft:blocks/thunderstone_bricks"
-    }
-}

@@ -1,33 +1,33 @@
 {
-    "mob.demonSoldier.idle":
+    "mob.demon_soldier.idle":
     {
         "category": "hostile",
         "sounds":
         [
             "lightningcraft:mob/demon_soldier/idle"
         ],
-		"subtitle": "subtitle.mob.demonSoldier.idle"
+		"subtitle": "subtitle.mob.demon_soldier.idle"
     },
-    "mob.demonSoldier.hurt":
+    "mob.demon_soldier.hurt":
     {
         "category": "hostile",
         "sounds":
         [
             "lightningcraft:mob/demon_soldier/hurt"
         ],
-		"subtitle": "subtitle.mob.demonSoldier.hurt"
+		"subtitle": "subtitle.mob.demon_soldier.hurt"
     },
-    "mob.demonSoldier.death":
+    "mob.demon_soldier.death":
     {
         "category": "hostile",
         "sounds":
         [
             "lightningcraft:mob/demon_soldier/death"
         ],
-		"subtitle": "subtitle.mob.demonSoldier.death"
+		"subtitle": "subtitle.mob.demon_soldier.death"
     },
 	
-	"mob.underworldGhast.moan":
+	"mob.underworld_ghast.moan":
     {
         "category": "hostile",
         "sounds":
@@ -36,18 +36,18 @@
 			"lightningcraft:mob/underworld_ghast/moan_2",
 			"lightningcraft:mob/underworld_ghast/moan_3"
         ],
-		"subtitle": "subtitle.mob.underworldGhast.moan"
+		"subtitle": "subtitle.mob.underworld_ghast.moan"
     },
-	"mob.underworldGhast.warn":
+	"mob.underworld_ghast.warn":
     {
         "category": "hostile",
         "sounds":
         [
             "lightningcraft:mob/underworld_ghast/warn"
         ],
-		"subtitle": "subtitle.mob.underworldGhast.warn"
+		"subtitle": "subtitle.mob.underworld_ghast.warn"
     },
-	"mob.underworldGhast.hurt":
+	"mob.underworld_ghast.hurt":
     {
         "category": "hostile",
         "sounds":
@@ -55,16 +55,16 @@
             "lightningcraft:mob/underworld_ghast/hurt_1",
 			"lightningcraft:mob/underworld_ghast/hurt_2"
         ],
-		"subtitle": "subtitle.mob.underworldGhast.hurt"
+		"subtitle": "subtitle.mob.underworld_ghast.hurt"
     },
-	"mob.underworldGhast.death":
+	"mob.underworld_ghast.death":
     {
         "category": "hostile",
         "sounds":
         [
             "lightningcraft:mob/underworld_ghast/death"
         ],
-		"subtitle": "subtitle.mob.underworldGhast.death"
+		"subtitle": "subtitle.mob.underworld_ghast.death"
     },
 	
 	"portal.underworld":

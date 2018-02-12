@@ -41,7 +41,7 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
         if (entity.fuse - partialTicks + 1.0F < 10.0F)
         {
             float f = 1.0F - (entity.fuse - partialTicks + 1.0F) / 10.0F;
-            f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+            f = MathHelper.clamp(f, 0.0F, 1.0F);
             f = f * f;
             f = f * f;
             float f1 = 1.0F + f * 0.3F;
@@ -51,7 +51,7 @@ public class RenderLCTNTPrimed extends Render<EntityLCTNTPrimed> {
         float f2 = (1.0F - (entity.fuse - partialTicks + 1.0F) / 100.0F) * 0.8F;
         this.bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getStateFromMeta(entity.variant), entity.getBrightness(partialTicks));
+        blockrendererdispatcher.renderBlockBrightness(LCBlocks.underTNT.getStateFromMeta(entity.variant), entity.getBrightness());
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
         if (entity.fuse / 5 % 2 == 0)

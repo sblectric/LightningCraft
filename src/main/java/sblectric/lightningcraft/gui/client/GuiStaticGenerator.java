@@ -16,7 +16,7 @@ import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;
 
 /** The static generator GUI */
 @SideOnly(Side.CLIENT)
-public class GuiStaticGenerator extends GuiContainer {
+public class GuiStaticGenerator extends GuiContainerLC {
 	
 	private static final ResourceLocation generatorGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpstaticgenerator.png");
 	private TileEntityStaticGenerator tileGenerator;
@@ -36,8 +36,8 @@ public class GuiStaticGenerator extends GuiContainer {
 		int texty2 = (61 - 53) + 40;
 		
 		String string = this.tileGenerator.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 
 		// draw the LE bar (avoid null pointer exceptions too!)
 		if(tileGenerator.cellPower == 0) {
@@ -46,7 +46,7 @@ public class GuiStaticGenerator extends GuiContainer {
 			width = (int)((tileGenerator.cellPower/tileGenerator.maxPower) * width);
 		}
 		Gui.drawRect(47, 53, 47 + width, 53 + height, 0xffffffff);
-		this.fontRendererObj.drawString(tileGenerator.cellPower + " LE", 46, texty, 4210752);
+		this.fontRenderer.drawString(tileGenerator.cellPower + " LE", 46, texty, 4210752);
 		
 		// draw the stored charge bar
 		width = 34;
@@ -56,12 +56,12 @@ public class GuiStaticGenerator extends GuiContainer {
 			width = (int)((tileGenerator.storedCharge/100D) * width);
 		}
 		Gui.drawRect(112, 40, 112 + width, 40 + height, 0xffffffff);
-		this.fontRendererObj.drawString(tileGenerator.storedCharge + " C", 111, texty2, 4210752);
+		this.fontRenderer.drawString(tileGenerator.storedCharge + " C", 111, texty2, 4210752);
 		
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+	protected void drawBackground() {
 		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        this.mc.getTextureManager().bindTexture(generatorGuiTextures);
 	        int k = (this.width - this.xSize) / 2;

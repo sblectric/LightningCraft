@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -15,6 +17,7 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -30,7 +33,7 @@ public class StackHelper {
 
 	/** Animate an ItemStack based on makeItemStackFromString (clientside only) */
 	@SideOnly(Side.CLIENT)
-	public static ItemStack animateItemStackFromString(String stackString, boolean change) {
+	public static @Nonnull ItemStack animateItemStackFromString(String stackString, boolean change) {
 		int ores;
 		if(OreDictionary.doesOreNameExist(stackString)) {
 			ores = OreDictionary.getOres(stackString).size();
@@ -52,10 +55,10 @@ public class StackHelper {
 		}
 
 		ItemStack primary = makeItemStackFromString(stackString, oreIndex);
-		if(primary == null) return null;
+		if(primary.isEmpty()) return ItemStack.EMPTY;
 
-		List<ItemStack> subItems = new JointList();
-		primary.getItem().getSubItems(primary.getItem(), null, subItems);
+		NonNullList<ItemStack> subItems = NonNullList.create();
+		primary.getItem().getSubItems(null, subItems);
 
 		if(subMap.containsKey(stackString))	subIndex = subMap.get(stackString);
 		if(primary.getItemDamage() == OreDictionary.WILDCARD_VALUE && !subItems.isEmpty()) {
@@ -77,26 +80,26 @@ public class StackHelper {
 	}
 
 	/** Creates a new ItemStack from the string acquired from makeStringFromItemStack or an oredict name, with an oredict index option */
-	public static ItemStack makeItemStackFromString(String stackString, int oreIndex) {
-		if(stackString == LightningInfusionRecipe.nullIdentifier) return null;
+	public static @Nonnull ItemStack makeItemStackFromString(String stackString, int oreIndex) {
+		if(stackString == LightningInfusionRecipe.nullIdentifier) return ItemStack.EMPTY;
 		try { // try to load it as a regular NBT stack
 			if(!isStringOreDict(stackString)) {
-				return ItemStack.loadItemStackFromNBT(JsonToNBT.getTagFromJson(stackString));
+				return new ItemStack(JsonToNBT.getTagFromJson(stackString));
 			} else {
-				throw new NBTException("OreDict exists");
+				throw new NBTException("OreDict exists", "", 0);
 			}
 		} catch(NBTException e) { // now try to get it as an oredict entry
 			List<ItemStack> list;
 			if(isStringOreDict(stackString) && oreIndex < (list = OreDictionary.getOres(stackString)).size()) {
 				return list.get(oreIndex); // yep
 			} else {
-				return null; // guess not
+				return ItemStack.EMPTY; // guess not
 			}
 		}
 	}
 
 	/** Creates a new ItemStack from the string acquired from makeStringFromItemStack or an oredict name */
-	public static ItemStack makeItemStackFromString(String stackString) {
+	public static @Nonnull ItemStack makeItemStackFromString(String stackString) {
 		return makeItemStackFromString(stackString, 0);
 	}
 
@@ -104,7 +107,7 @@ public class StackHelper {
 	public static int getMetaFromString(String stackString) {
 		if(!isStringOreDict(stackString)) {
 			ItemStack stack = makeItemStackFromString(stackString);
-			return stack != null ? stack.getItemDamage() : 0;
+			return !stack.isEmpty() ? stack.getItemDamage() : 0;
 		} else {
 			return -1; // oredict flag
 		}
@@ -145,7 +148,7 @@ public class StackHelper {
 	}
 
 	/** Turn an ItemStack or oredict name into a String */
-	public static String makeStringFromItemStack(Object stack) {
+	public static String makeStringFromItemStack(@Nonnull Object stack) {
 		if(stack instanceof ItemStack) {
 			ItemStack s = (ItemStack)stack;
 			return s.writeToNBT(new NBTTagCompound()).toString();
@@ -157,13 +160,13 @@ public class StackHelper {
 	}
 
 	/** An unlimited type of areItemStacksEqual for crafting recipes (non-amount sensitive, cannot be null) */
-	public static boolean areItemStacksEqualForCrafting(ItemStack... stacks) {
+	public static boolean areItemStacksEqualForCrafting(@Nonnull ItemStack... stacks) {
 		ItemStack comp = stacks[0];
-		if(comp == null) return false;
-		ItemStack comp1 = comp.copy(); comp1.stackSize = 1;
+		if(comp.isEmpty()) return false;
+		ItemStack comp1 = comp.copy(); comp1.setCount(1);
 		for(int n = 1; n < stacks.length; n++) {
-			if(stacks[n] == null) return false;
-			ItemStack comp2 = stacks[n].copy(); comp2.stackSize = 1;
+			if(stacks[n].isEmpty()) return false;
+			ItemStack comp2 = stacks[n].copy(); comp2.setCount(1);
 			if(!ItemStack.areItemStacksEqual(comp1, comp2)) { // try regular and oredict
 				if(comp1.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
 					comp2.setItemDamage(OreDictionary.WILDCARD_VALUE);
@@ -179,7 +182,7 @@ public class StackHelper {
 	/**
 	 * Sets the color for the specified armor ItemStack.
 	 */
-	public static boolean setStackColor(ItemStack stack, Color color) {
+	public static boolean setStackColor(@Nonnull ItemStack stack, Color color) {
 		if(!(stack.getItem() instanceof ItemArmor))
 			return false;
 		Item armor = stack.getItem();
@@ -199,10 +202,10 @@ public class StackHelper {
 	}
 
 	/** Gets the enchantments that exist on a specified item stack */
-	public static List<NBTTagCompound> getEnchantments(ItemStack s) {
+	public static List<NBTTagCompound> getEnchantments(@Nonnull ItemStack s) {
 		List enchList = new ArrayList<NBTTagCompound>();
 
-		if(s != null && s.hasTagCompound()) {
+		if(!s.isEmpty() && s.hasTagCompound()) {
 			NBTTagList enchants;
 			String ench = s.getItem() == Items.ENCHANTED_BOOK ? "StoredEnchantments" : "ench";
 			enchants = (NBTTagList) s.getTagCompound().getTag(ench);
@@ -219,8 +222,8 @@ public class StackHelper {
 	}
 
 	/** Adds a list of enchantments to a specified item stack */
-	public static boolean addEnchantments(ItemStack s, List<NBTTagCompound> enchList) {
-		if(s != null) {
+	public static boolean addEnchantments(@Nonnull ItemStack s, List<NBTTagCompound> enchList) {
+		if(!s.isEmpty()) {
 			String ench = s.getItem() == Items.ENCHANTED_BOOK ? "StoredEnchantments" : "ench";
 			if(!s.hasTagCompound()) s.setTagCompound(new NBTTagCompound());
 			NBTTagList currentEnchants = (NBTTagList) s.getTagCompound().getTag(ench);
@@ -240,7 +243,7 @@ public class StackHelper {
 	}
 	
 	/** Returns true if the ItemStack has an oredict entry that starts with 'start' */
-	public static boolean oreDictNameStartsWith(ItemStack ore, String start) {
+	public static boolean oreDictNameStartsWith(@Nonnull ItemStack ore, String start) {
 		for(int i : OreDictionary.getOreIDs(ore)) {
 			if(OreDictionary.getOreName(i).startsWith(start)) return true;
 		}
@@ -248,7 +251,7 @@ public class StackHelper {
 	}
 	
 	/** Returns true if the ItemStack has an oredict entry that equals 'equals' */
-	public static boolean oreDictNameEquals(ItemStack ore, String equals) {
+	public static boolean oreDictNameEquals(@Nonnull ItemStack ore, String equals) {
 		for(int i : OreDictionary.getOreIDs(ore)) {
 			if(OreDictionary.getOreName(i).equals(equals)) return true;
 		}
@@ -256,7 +259,7 @@ public class StackHelper {
 	}
 
 	/** Make an integer array based on the size of 'stacks' */
-	public static int[] makeIntArray(ItemStack[] stacks) {
+	public static int[] makeIntArray(@Nonnull ItemStack[] stacks) {
 		return makeIntArray(stacks.length);
 	}
 	

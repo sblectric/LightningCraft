@@ -7,7 +7,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -46,12 +45,12 @@ public class BlockLightningCannon extends BlockContainerLCMeta {
 	/** Activate this block */
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, 
-			EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if(getMetaFromState(state) > 0) {
 			player.openGui(LightningCraft.modInstance, LCGuiHandler.lightningCannonGui, world, pos.getX(), pos.getY(), pos.getZ());
 			return true;
 		} else {
-			return super.onBlockActivated(world, pos, state, player, hand, s, side, hitX, hitY, hitZ);
+			return super.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
 		}
 	}
 	

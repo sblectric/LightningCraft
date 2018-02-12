@@ -2,6 +2,8 @@ package sblectric.lightningcraft.integration;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.integration.chisel.ChiselIntegration;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
@@ -13,7 +15,9 @@ import sblectric.lightningcraft.ref.Log;
 /** Class for integration with other mods */
 public class LCModIntegration {
 
-	public static void preInit() {
+	public static void preInit() {}
+	
+	public static void afterFluids() {
 		
 		// Tinker's Construct
 		if(Loader.isModLoaded("tconstruct") && LCConfig.tinkersIntegration) {
@@ -30,7 +34,7 @@ public class LCModIntegration {
 	}
 	
 	public static void onInit() {
-		
+
 		// Energy APIs
 		if(EnergyApiHelper.rfOrTeslaLoaded) {
 			if(EnergyApiHelper.rfLoaded) Log.logger.info("CoFH RF API found, compatibility enabled");
@@ -55,7 +59,7 @@ public class LCModIntegration {
 		}
 		
 		// Waila
-		FMLInterModComms.sendMessage("Waila", "register", WailaTileHandler.callbackRegister);
+		FMLInterModComms.sendMessage("waila", "register", WailaTileHandler.callbackRegister);
 		
 	}
 	

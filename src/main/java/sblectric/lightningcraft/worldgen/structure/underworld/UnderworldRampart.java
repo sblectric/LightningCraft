@@ -84,8 +84,8 @@ public class UnderworldRampart extends Feature {
         	
         	// get ready
         	Integer s1, s2, s3, s4, middle;
-        	int xCenter = this.boundingBox.getCenter().getX();
-        	int zCenter = this.boundingBox.getCenter().getZ();
+        	int xCenter = WorldUtils.getStructureCenter(this.boundingBox).getX();
+        	int zCenter = WorldUtils.getStructureCenter(this.boundingBox).getZ();
         	
         	// load extra chunks
         	ChunkProviderUnderworld.rampartLoadingExtraChunks = true;

@@ -58,7 +58,7 @@ public class MessageLightningUpgrade implements IMessage {
         /** Actually perform the upgrade client-side */
         @SideOnly(Side.CLIENT)
         public void handle(MessageLightningUpgrade m) {
-        	World world = Minecraft.getMinecraft().theWorld;
+        	World world = Minecraft.getMinecraft().world;
         	TileEntity tile = world.getTileEntity(m.pos);
         	if(tile != null && tile.hasCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null)) {
         		tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).setUpgraded(m.upgraded);

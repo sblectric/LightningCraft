@@ -3,9 +3,12 @@ package sblectric.lightningcraft.items.blocks;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
 import sblectric.lightningcraft.ref.Metal.Rod;
 
@@ -21,7 +24,8 @@ public class ItemBlockAirTerminal extends ItemBlockMeta {
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		list.add("Efficiency: " + (int)(block.getEfficiency(block.getStateFromMeta(stack.getItemDamage())) * 100D) + "%");
 	}
 	

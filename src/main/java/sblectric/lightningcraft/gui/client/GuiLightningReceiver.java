@@ -17,7 +17,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
 
 /** The lightning energy receiver GUI */
 @SideOnly(Side.CLIENT)
-public class GuiLightningReceiver extends GuiContainer {
+public class GuiLightningReceiver extends GuiContainerLC {
 	
 	private static final ResourceLocation lpRXGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpreceiver.png");
 	private TileEntityLightningReceiver rx;
@@ -37,16 +37,16 @@ public class GuiLightningReceiver extends GuiContainer {
 		int texty = 36;
 		
 		String string = rx.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 0x404040);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 0x404040);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 0x404040);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 0x404040);
 
 		if(rx.efficiency > -1) {
 			Gui.drawRect(25, 17, 25 + (int) (rx.storedPower/rx.maxPower * width), 17 + height, 0xffffffff);
 			
-			this.fontRendererObj.drawString("Linked LE:", 24, texty, 0x404040);
-			this.fontRendererObj.drawString("Capacity:", 24, texty + 10, 0x404040);
-			this.fontRendererObj.drawString("Efficiency:", 24, texty + 20, 0x404040);
-			this.fontRendererObj.drawString("Tx Distance: ", 24, texty + 30, 0x404040);
+			this.fontRenderer.drawString("Linked LE:", 24, texty, 0x404040);
+			this.fontRenderer.drawString("Capacity:", 24, texty + 10, 0x404040);
+			this.fontRenderer.drawString("Efficiency:", 24, texty + 20, 0x404040);
+			this.fontRenderer.drawString("Tx Distance: ", 24, texty + 30, 0x404040);
 
 			String storedPower = rx.storedPower + " LE";
 			String maxPower = (int)rx.maxPower + " LE";
@@ -57,20 +57,20 @@ public class GuiLightningReceiver extends GuiContainer {
 			String distance = LCText.df.format(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)) + "m";
 			String position = "x: " + rx.txPos.getX() + ", y: " + rx.txPos.getY() + ", z: " + rx.txPos.getZ();
 			
-			this.fontRendererObj.drawString(storedPower, 151 - this.fontRendererObj.getStringWidth(storedPower), texty, 0x404040);
-			this.fontRendererObj.drawString(maxPower, 151 - this.fontRendererObj.getStringWidth(maxPower), texty + 10, 0x404040);
-			this.fontRendererObj.drawString(efficiency, 151 - this.fontRendererObj.getStringWidth(efficiency), texty + 20, 0x404040);
-			this.fontRendererObj.drawString(distance, 151 - this.fontRendererObj.getStringWidth(distance), texty + 30, 0x404040);
-			this.fontRendererObj.drawString(position, 151 - this.fontRendererObj.getStringWidth(position), texty + 40, 0x606060);
+			this.fontRenderer.drawString(storedPower, 151 - this.fontRenderer.getStringWidth(storedPower), texty, 0x404040);
+			this.fontRenderer.drawString(maxPower, 151 - this.fontRenderer.getStringWidth(maxPower), texty + 10, 0x404040);
+			this.fontRenderer.drawString(efficiency, 151 - this.fontRenderer.getStringWidth(efficiency), texty + 20, 0x404040);
+			this.fontRenderer.drawString(distance, 151 - this.fontRenderer.getStringWidth(distance), texty + 30, 0x404040);
+			this.fontRenderer.drawString(position, 151 - this.fontRenderer.getStringWidth(position), texty + 40, 0x606060);
 		} else if(rx.outOfRange) {
-			this.fontRendererObj.drawString("Transmitter Out of Range", 24, texty, 0xC00000);
+			this.fontRenderer.drawString("Transmitter Out of Range", 24, texty, 0xC00000);
 		} else {
-			this.fontRendererObj.drawString("No Valid Transmitter Found", 24, texty, 0xC00000);
+			this.fontRenderer.drawString("No Valid Transmitter Found", 24, texty, 0xC00000);
 		}
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+	protected void drawBackground() {
 		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        this.mc.getTextureManager().bindTexture(lpRXGuiTextures);
 	        int k = (this.width - this.xSize) / 2;

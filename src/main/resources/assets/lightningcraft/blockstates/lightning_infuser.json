@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "active=false": { "model": "lightningcraft:lightning_infuser" },
+		"active=true": { "model": "lightningcraft:lightning_infuser" }
+    }
+}

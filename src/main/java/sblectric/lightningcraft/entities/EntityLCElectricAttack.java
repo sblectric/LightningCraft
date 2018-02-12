@@ -47,16 +47,16 @@ public class EntityLCElectricAttack extends EntityFireball {
 		
 		double vx, vy, vz;
 		if(target != null) {
-			vx = result.xCoord - x;
-			vy = result.yCoord + 1 - y;
-			vz = result.zCoord - z;
+			vx = result.x - x;
+			vy = result.y + 1 - y;
+			vz = result.z - z;
 		} else {
 			vx = 1.0;
 			vy = 1.0;
 			vz = 1.0;
 		}
 		
-        double d6 = MathHelper.sqrt_double(vx * vx + vy * vy + vz * vz);
+        double d6 = MathHelper.sqrt(vx * vx + vy * vy + vz * vz);
         this.accelerationX = vx / d6 * 0.125D;
         this.accelerationY = vy / d6 * 0.125D;
         this.accelerationZ = vz / d6 * 0.125D;
@@ -69,7 +69,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 		super.onUpdate();
 		this.extinguish();
 		
-		if(this.worldObj.isRemote) { // client stuff
+		if(this.world.isRemote) { // client stuff
 			double d = 0.2125;
 			double xoff = 0;
 			double yoff = 0;
@@ -90,7 +90,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 	@Override
 	protected void onImpact(RayTraceResult mop) {
 		
-		 if (!this.worldObj.isRemote)
+		 if (!this.world.isRemote)
 	        {
 			 
 	            if (mop.entityHit != null)
@@ -99,7 +99,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 	                if (mop.entityHit.attackEntityFrom(new EntityDamageSource(RefStrings.MODID + ":cannon", this), 21.0F))
 	                {
 	                	if(!mop.entityHit.isImmuneToFire()) mop.entityHit.setFire(2);
-	                	this.worldObj.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 6.0F, 2.0F);
+	                	this.world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 6.0F, 2.0F);
 	                }
 	            }
 	            else
@@ -108,7 +108,7 @@ public class EntityLCElectricAttack extends EntityFireball {
 	                int i, j, k = i = j = 0;
 	                
 	                // ignore the cannon itself
-				 	if(this.worldObj.getBlockState(pos).getBlock() == LCBlocks.lightningCannon) {
+				 	if(this.world.getBlockState(pos).getBlock() == LCBlocks.lightningCannon) {
 				 		return;
 				 	}
 
@@ -135,13 +135,13 @@ public class EntityLCElectricAttack extends EntityFireball {
 	                
 	                pos = pos.add(i, j, k);
 
-	                if (this.worldObj.isAirBlock(pos))
+	                if (this.world.isAirBlock(pos))
 	                {
-	                    this.worldObj.setBlockState(pos, Blocks.FIRE.getDefaultState());
+	                    this.world.setBlockState(pos, Blocks.FIRE.getDefaultState());
 	                }
 	            }
 	            
-	            this.worldObj.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 6.0F, 2.0F);
+	            this.world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 6.0F, 2.0F);
 	            this.setDead();
 	        }
 	}

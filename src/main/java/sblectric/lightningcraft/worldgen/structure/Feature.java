@@ -18,7 +18,7 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-
+import net.minecraft.world.gen.structure.template.TemplateManager;
 import sblectric.lightningcraft.util.WeightedRandomChestContent;
 
 /** Structure superclass */
@@ -77,7 +77,7 @@ public abstract class Feature extends StructureComponent {
 	}
 
 	@Override
-	protected void readStructureFromNBT(NBTTagCompound tag)
+	protected void readStructureFromNBT(NBTTagCompound tag, TemplateManager mgr)
 	{
 		this.scatteredFeatureSizeX = tag.getInteger("Width");
 		this.scatteredFeatureSizeY = tag.getInteger("Height");
@@ -181,7 +181,7 @@ public abstract class Feature extends StructureComponent {
 
 		// set its entity type
 		TileEntityMobSpawner tile = (TileEntityMobSpawner)world.getTileEntity(pos);
-		tile.getSpawnerBaseLogic().setEntityName(EntityList.CLASS_TO_NAME.get(entityClass));
+		tile.getSpawnerBaseLogic().setEntityId(EntityList.getKey(entityClass));//.CLASS_TO_NAME.get(entityClass));
 	}
 
 	/** Find spawn position for the structure */

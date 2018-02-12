@@ -32,7 +32,7 @@ public class LCParticles {
 	/** Spawns both vanilla and LightningCraft particle effects */
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticle(String name, double x, double y, double z, double vx, double vy, double vz) {
-		World world = Minecraft.getMinecraft().theWorld;
+		World world = Minecraft.getMinecraft().world;
 		
 		// special sword particles
 		if(name.equals("soulSteal")) {

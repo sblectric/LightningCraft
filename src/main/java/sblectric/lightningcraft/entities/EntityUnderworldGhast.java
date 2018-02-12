@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -77,11 +78,11 @@ public class EntityUnderworldGhast extends EntityGhast {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound() {
+	protected SoundEvent getHurtSound(DamageSource src) {
 		if(!LCConfig.useVanillaGhastSounds) {
 			return LCSoundEvents.underworldGhastHurt;
 		} else {
-			return super.getHurtSound();
+			return super.getHurtSound(src);
 		}
 	}
 
@@ -138,8 +139,8 @@ public class EntityUnderworldGhast extends EntityGhast {
 			EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
 			double d0 = 64.0D;
 
-			if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < d0 * d0 && this.parentEntity.canEntityBeSeen(entitylivingbase)) {
-				World world = this.parentEntity.worldObj;
+			if (entitylivingbase.getDistanceSq(this.parentEntity) < d0 * d0 && this.parentEntity.canEntityBeSeen(entitylivingbase)) {
+				World world = this.parentEntity.world;
 				++this.attackTimer;
 
 				if (this.attackTimer == 10) {
@@ -154,17 +155,17 @@ public class EntityUnderworldGhast extends EntityGhast {
 				if (this.attackTimer == 20) {
 					double d1 = 4.0D;
 					Vec3d vec3d = this.parentEntity.getLook(1.0F);
-					double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.xCoord * d1);
+					double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * d1);
 					double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - 
 							(0.5D + this.parentEntity.posY + this.parentEntity.height / 2.0F);
-					double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.zCoord * d1);
+					double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * d1);
 					world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
 					EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);
 					entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
-					entitylargefireball.posX = this.parentEntity.posX + vec3d.xCoord * d1;
+					entitylargefireball.posX = this.parentEntity.posX + vec3d.x * d1;
 					entitylargefireball.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
-					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.zCoord * d1;
-					world.spawnEntityInWorld(entitylargefireball);
+					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * d1;
+					world.spawnEntity(entitylargefireball);
 					this.attackTimer = -30;
 				}
 			} else if (this.attackTimer > 0) {

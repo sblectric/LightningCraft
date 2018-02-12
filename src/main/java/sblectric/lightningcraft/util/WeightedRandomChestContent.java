@@ -18,10 +18,10 @@ public class WeightedRandomChestContent extends WeightedRandom.Item
     /** The maximum stack size of generated item. */
     public int maxStackSize;
 
-    public WeightedRandomChestContent(Item p_i45311_1_, int p_i45311_2_, int minimumChance, int maximumChance, int itemWeightIn)
+    public WeightedRandomChestContent(Item item, int meta, int minimumChance, int maximumChance, int itemWeightIn)
     {
         super(itemWeightIn);
-        this.theItemId = new ItemStack(p_i45311_1_, 1, p_i45311_2_);
+        this.theItemId = new ItemStack(item, 1, meta);
         this.minStackSize = minimumChance;
         this.maxStackSize = maximumChance;
     }
@@ -31,21 +31,21 @@ public class WeightedRandomChestContent extends WeightedRandom.Item
     {
         for (int i = 0; i < max; ++i)
         {
-            WeightedRandomChestContent weightedrandomchestcontent = WeightedRandom.getRandomItem(random, listIn);
-            int j = weightedrandomchestcontent.minStackSize + random.nextInt(weightedrandomchestcontent.maxStackSize - weightedrandomchestcontent.minStackSize + 1);
+            WeightedRandomChestContent wrcc = WeightedRandom.getRandomItem(random, listIn);
+            int j = wrcc.minStackSize + random.nextInt(wrcc.maxStackSize - wrcc.minStackSize + 1);
 
-            if (weightedrandomchestcontent.theItemId.getMaxStackSize() >= j)
+            if (wrcc.theItemId.getMaxStackSize() >= j)
             {
-                ItemStack itemstack1 = weightedrandomchestcontent.theItemId.copy();
-                itemstack1.stackSize = j;
+                ItemStack itemstack1 = wrcc.theItemId.copy();
+                itemstack1.setCount(j);
                 dispenser.setInventorySlotContents(random.nextInt(dispenser.getSizeInventory()), itemstack1);
             }
             else
             {
                 for (int k = 0; k < j; ++k)
                 {
-                    ItemStack itemstack = weightedrandomchestcontent.theItemId.copy();
-                    itemstack.stackSize = 1;
+                    ItemStack itemstack = wrcc.theItemId.copy();
+                    itemstack.setCount(1);
                     dispenser.setInventorySlotContents(random.nextInt(dispenser.getSizeInventory()), itemstack);
                 }
             }

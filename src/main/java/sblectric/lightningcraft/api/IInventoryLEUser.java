@@ -1,5 +1,7 @@
 package sblectric.lightningcraft.api;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -22,6 +24,6 @@ public interface IInventoryLEUser {
 	public boolean hasLESource(EntityPlayer invOwner);
 	
 	/** get the LE source */
-	public ItemStack getLESource(EntityPlayer invOwner, double leNeeded);
+	public @Nonnull ItemStack getLESource(EntityPlayer invOwner, double leNeeded);
 
 }

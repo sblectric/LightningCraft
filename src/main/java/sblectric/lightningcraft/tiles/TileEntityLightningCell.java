@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
@@ -19,12 +18,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import sblectric.lightningcraft.api.capabilities.implementation.BaseLightningUpgradable;
 import sblectric.lightningcraft.blocks.BlockAirTerminal;
 import sblectric.lightningcraft.entities.EntityLCLightningBolt;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.ref.Metal.Rod;
 import sblectric.lightningcraft.util.Effect;
 import sblectric.lightningcraft.util.WeatherUtils;
-import sblectric.lightningcraft.util.WorldUtils;
 
 /** The power cell tile entity */
 public class TileEntityLightningCell extends TileEntityBase {
@@ -60,7 +57,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 		boolean dosave = false;
 
 		// clientside first
-		if (worldObj.isRemote) {
+		if (world.isRemote) {
 			isAirTerminalPresent(); // update efficiency info
 			return;
 		}
@@ -73,13 +70,13 @@ public class TileEntityLightningCell extends TileEntityBase {
 		if(this.creative) this.storedPower = this.maxPower;
 
 		// top tier achievement
-		if(this.didCheck == false && this.maxPower == 30000 && this.topTierTerminal) {
-			EntityPlayerMP player = (EntityPlayerMP)WorldUtils.getClosestPlayer(worldObj, getX(), getY(), getZ(), 16);
-			if(player != null && player.getStatFile().canUnlockAchievement(LCAchievements.perfectCell)) {
-				player.addStat(LCAchievements.perfectCell, 1);
-				this.didCheck = true;
-			}
-		}
+//		if(this.didCheck == false && this.maxPower == 30000 && this.topTierTerminal) {
+//			EntityPlayerMP player = (EntityPlayerMP)WorldUtils.getClosestPlayer(world, getX(), getY(), getZ(), 16);
+//			if(player != null && player.getStatFile().canUnlockAchievement(LCAchievements.perfectCell)) {
+//				player.addStat(LCAchievements.perfectCell, 1);
+//				this.didCheck = true;
+//			}
+//		}
 
 		// cooldown time
 		if(this.cooldownTime > 0) { 
@@ -93,15 +90,15 @@ public class TileEntityLightningCell extends TileEntityBase {
 			// random chance of lightning strike (1/100000 of a chance per tick)
 			// goes up to 1/1000 when it's storming
 			double chance = 1D/100000D;
-			if(this.worldObj.isThundering()) chance = 1D/1000D;
+			if(this.world.isThundering()) chance = 1D/1000D;
 			if(random.nextDouble() <= chance && this.storedPower < this.maxPower - 100D * this.efficiency) {
-				Effect.lightningGen(this.worldObj, pos.up());
+				Effect.lightningGen(this.world, pos.up());
 			}
 
 			// get lightning strikes near it (internal / external source)
 			// near = within 5 block radius XZ / 3 block radius Y
 			AxisAlignedBB box = new AxisAlignedBB(this.getX() - 5, this.getY() - 2, this.getZ() - 5, this.getX() + 5, this.getY() + 4, this.getZ() + 5);
-			List<EntityLightningBolt> bolts = WeatherUtils.getLightningBoltsWithinAABB(this.worldObj, box);
+			List<EntityLightningBolt> bolts = WeatherUtils.getLightningBoltsWithinAABB(this.world, box);
 
 			// lightning has struck the air terminal, now charge the lightning cell!
 			// then comes the 2 second cooldown
@@ -111,7 +108,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 				// remove the entities from the world (don't charge multiple cells!!!)
 				for(EntityLightningBolt bolt : bolts) {
 					if(bolt.isDead) return; // stop executing the function now!
-					this.worldObj.removeEntity(bolt);
+					this.world.removeEntity(bolt);
 				}
 
 				this.storedPower += 100D * this.efficiency;
@@ -194,7 +191,7 @@ public class TileEntityLightningCell extends TileEntityBase {
 	public boolean isAirTerminalPresent() {
 		// get the block above
 		this.topTierTerminal = false;
-		IBlockState state = this.worldObj.getBlockState(getPos().up());
+		IBlockState state = this.world.getBlockState(getPos().up());
 		Block test = state.getBlock();
 		int meta = test.getMetaFromState(state);
 		boolean flag;

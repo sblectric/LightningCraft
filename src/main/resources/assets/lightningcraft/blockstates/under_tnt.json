@@ -1,0 +1,40 @@
+{
+    "variants": {
+        "explode=false,variant=0": [
+            { "model": "lightningcraft:under_tnt" },
+            { "model": "lightningcraft:under_tnt", "y": 90 },
+            { "model": "lightningcraft:under_tnt", "y": 180 },
+            { "model": "lightningcraft:under_tnt", "y": 270 }
+        ],
+		"explode=true,variant=0": [
+            { "model": "lightningcraft:under_tnt" },
+            { "model": "lightningcraft:under_tnt", "y": 90 },
+            { "model": "lightningcraft:under_tnt", "y": 180 },
+            { "model": "lightningcraft:under_tnt", "y": 270 }
+        ],
+		"explode=false,variant=1": [
+            { "model": "lightningcraft:lightning_tnt" },
+            { "model": "lightningcraft:lightning_tnt", "y": 90 },
+            { "model": "lightningcraft:lightning_tnt", "y": 180 },
+            { "model": "lightningcraft:lightning_tnt", "y": 270 }
+        ],
+		"explode=true,variant=1": [
+            { "model": "lightningcraft:lightning_tnt" },
+            { "model": "lightningcraft:lightning_tnt", "y": 90 },
+            { "model": "lightningcraft:lightning_tnt", "y": 180 },
+            { "model": "lightningcraft:lightning_tnt", "y": 270 }
+        ],
+		"explode=false,variant=2": [
+            { "model": "lightningcraft:mystic_tnt" },
+            { "model": "lightningcraft:mystic_tnt", "y": 90 },
+            { "model": "lightningcraft:mystic_tnt", "y": 180 },
+            { "model": "lightningcraft:mystic_tnt", "y": 270 }
+        ],
+		"explode=true,variant=2": [
+            { "model": "lightningcraft:mystic_tnt" },
+            { "model": "lightningcraft:mystic_tnt", "y": 90 },
+            { "model": "lightningcraft:mystic_tnt", "y": 180 },
+            { "model": "lightningcraft:mystic_tnt", "y": 270 }
+        ]
+    }
+}

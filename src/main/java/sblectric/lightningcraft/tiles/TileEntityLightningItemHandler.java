@@ -1,5 +1,7 @@
 package sblectric.lightningcraft.tiles;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -16,59 +18,80 @@ import sblectric.lightningcraft.util.LCMisc;
 public abstract class TileEntityLightningItemHandler extends TileEntityLightningUser implements ISidedInventoryLC {
 	
 	protected SidedInvWrapper[] itemCapabilities;
-	protected ItemStack[] stacks;
+	private ItemStack[] stacks;
 
 	public TileEntityLightningItemHandler() {
 		itemCapabilities = LCMisc.makeInvWrapper(this);
 		stacks = new ItemStack[0]; // zero size by default
+	}
+	
+	/** Set the size of the inventory, avoiding null ItemStacks */
+	public void setSizeInventory(int size) {
+		stacks = new ItemStack[size];
+		for(int i = 0; i < size; i++) {
+			stacks[i] = ItemStack.EMPTY;
+		}
 	}
 
 	@Override
 	public int getSizeInventory() {
 		return stacks.length;
 	}
+	
+	/** Get the specified stack */
+	public @Nonnull ItemStack getStack(int index) {
+		if(index >= stacks.length) return ItemStack.EMPTY;
+		return stacks[index];
+	}
+	
+	/** Set the specified stack */
+	public boolean setStack(int index, @Nonnull ItemStack stack) {
+		if(index >= stacks.length) return false;
+		stacks[index] = stack;
+		return true;
+	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot) {
+	public @Nonnull ItemStack getStackInSlot(int slot) {
 		return stacks[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int par1, int par2) {
-		if(stacks[par1] != null) {
+	public @Nonnull ItemStack decrStackSize(int par1, int par2) {
+		if(!stacks[par1].isEmpty()) {
 			ItemStack itemstack;
-			if(stacks[par1].stackSize <= par2) {
+			if(stacks[par1].getCount() <= par2) {
 				itemstack = stacks[par1];
-				stacks[par1] = null;
+				stacks[par1] = ItemStack.EMPTY;
 				return itemstack;
 			} else {
 				itemstack = stacks[par1].splitStack(par2);
-				if(stacks[par1].stackSize == 0) {
-					stacks[par1] = null;
+				if(stacks[par1].getCount() == 0) {
+					stacks[par1] = ItemStack.EMPTY;
 				}
 				return itemstack;
 			}
 		} else {
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int slot) {
-		if (stacks[slot] != null) {
+	public @Nonnull ItemStack removeStackFromSlot(int slot) {
+		if (!stacks[slot].isEmpty()) {
 			ItemStack itemstack = stacks[slot];
-			stacks[slot] = null;
+			stacks[slot] = ItemStack.EMPTY;
 			return itemstack;
 		} else {
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack itemstack) {
+	public void setInventorySlotContents(int slot, @Nonnull ItemStack itemstack) {
 		stacks[slot] = itemstack;
-		if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
-			itemstack.stackSize = this.getInventoryStackLimit();
+		if(!itemstack.isEmpty() && itemstack.getCount() > this.getInventoryStackLimit()) {
+			itemstack.setCount(this.getInventoryStackLimit());
 		}
 	}
 
@@ -94,14 +117,14 @@ public abstract class TileEntityLightningItemHandler extends TileEntityLightning
 	public void readFromNBT(NBTTagCompound tagCompound) {
 		super.readFromNBT(tagCompound);
 		NBTTagList tagList = tagCompound.getTagList("Items", 10);
-		this.stacks = new ItemStack[this.getSizeInventory()];
+		setSizeInventory(this.getSizeInventory()); // refresh the stacks on load
 
 		for (int i = 0; i < tagList.tagCount(); ++i) {
 			NBTTagCompound slotTag = tagList.getCompoundTagAt(i);
 			byte slot = slotTag.getByte("Slot");
 
 			if (slot >= 0 && slot < this.stacks.length) {
-				this.stacks[slot] = ItemStack.loadItemStackFromNBT(slotTag);
+				this.stacks[slot] = new ItemStack(slotTag);
 			}
 		}
 	}
@@ -112,7 +135,7 @@ public abstract class TileEntityLightningItemHandler extends TileEntityLightning
 		NBTTagList tagList = new NBTTagList();
 
 		for (int i = 0; i < this.stacks.length; ++i) {
-			if(this.stacks[i] != null) {
+			if(!this.stacks[i].isEmpty()) {
 				NBTTagCompound slotTag = new NBTTagCompound();
 				slotTag.setByte("Slot", (byte)i);
 				this.stacks[i].writeToNBT(slotTag);

@@ -2,6 +2,7 @@ package sblectric.lightningcraft.worldgen.structure.underworld;
 
 import java.util.Random;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.StructureStart;
@@ -29,7 +30,7 @@ public class MapGenUnderworldRampart extends MapGenLCStructure {
 	/** Get the start of the structure */
 	@Override
 	protected StructureStart getStructureStart(int x, int z) {
-		return new MapGenUnderworldRampart.Start(this.worldObj, this.rand, x, z);
+		return new MapGenUnderworldRampart.Start(this.world, this.rand, x, z);
 	}
 	
 	public static class Start extends StructureStart {

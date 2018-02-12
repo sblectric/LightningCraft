@@ -55,11 +55,11 @@ public class TeleporterLC extends Teleporter {
 	public boolean placeInExistingPortal(Entity entityIn, float rotationYaw) {
 		int i = 128;
 		double d0 = -1.0D;
-		int j = MathHelper.floor_double(entityIn.posX);
-		int k = MathHelper.floor_double(entityIn.posZ);
+		int j = MathHelper.floor(entityIn.posX);
+		int k = MathHelper.floor(entityIn.posZ);
 		boolean flag = true;
 		BlockPos blockpos = BlockPos.ORIGIN;
-		long l = ChunkPos.chunkXZ2Int(j, k);
+		long l = ChunkPos.asLong(j, k);
 
 		if (this.destinationCoordinateCache.containsKey(l)) {
 			PortalPosition ppos = this.destinationCoordinateCache.get(l);
@@ -132,9 +132,9 @@ public class TeleporterLC extends Teleporter {
 	public boolean makePortal(Entity ent) {
 		int i = 16;
 		double d0 = -1.0D;
-		int j = MathHelper.floor_double(ent.posX);
-		int k = MathHelper.floor_double(ent.posY);
-		int l = MathHelper.floor_double(ent.posZ);
+		int j = MathHelper.floor(ent.posX);
+		int k = MathHelper.floor(ent.posY);
+		int l = MathHelper.floor(ent.posZ);
 		int i1 = j;
 		int j1 = k;
 		int k1 = l;
@@ -284,7 +284,7 @@ public class TeleporterLC extends Teleporter {
 
 		if (d0 < 0.0D)
 		{
-			j1 = MathHelper.clamp_int(j1, 70, this.worldServerInstance.getActualHeight() - 10);
+			j1 = MathHelper.clamp(j1, 70, this.worldServerInstance.getActualHeight() - 10);
 			k2 = j1;
 
 			for (int j7 = -1; j7 <= 1; ++j7)
@@ -329,7 +329,7 @@ public class TeleporterLC extends Teleporter {
 					int i12 = k2 + i10;
 					int l12 = k6 + (i9 - 1) * i3;
 					BlockPos blockpos = new BlockPos(i11, i12, l12);
-					this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock());
+					this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock(), false);
 				}
 			}
 		}

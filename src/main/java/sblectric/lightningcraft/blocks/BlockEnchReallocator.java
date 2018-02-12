@@ -54,7 +54,7 @@ public class BlockEnchReallocator extends BlockContainerLC implements IFurnace {
 	/** Activate this block */
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, 
-			EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		player.openGui(LightningCraft.modInstance, LCGuiHandler.enchReallocatorGui, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

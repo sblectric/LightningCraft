@@ -2,7 +2,11 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,10 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-
 import sblectric.lightningcraft.api.IKineticGear;
 import sblectric.lightningcraft.items.base.ItemAxeLC;
 import sblectric.lightningcraft.ref.LCText;
@@ -51,15 +51,15 @@ public class ItemKineticAxe extends ItemAxeLC implements ISimpleLEUser, IKinetic
 	
 	/** Override standard axe efficiency */
 	@Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
-		float base = super.getStrVsBlock(stack, state);
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+		float base = super.getDestroySpeed(stack, state);
 		return InventoryLE.getEfficiency(stack, base);
 	}
 	
 	/** Take power away when breaking blocks */
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState block, BlockPos pos, EntityLivingBase user) {
-		float base = super.getStrVsBlock(stack, world.getBlockState(pos));
+		float base = super.getDestroySpeed(stack, world.getBlockState(pos));
 		InventoryLE.onBlockBreak(stack, (EntityPlayer)user, base);
 		return super.onBlockDestroyed(stack, world, block, pos, user);
 	}
@@ -72,9 +72,10 @@ public class ItemKineticAxe extends ItemAxeLC implements ISimpleLEUser, IKinetic
 
 	/** item lore */
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		LECharge charge = new LECharge();
-		boolean charged = InventoryLE.addInformation(stack, player, list, par4, charge);
+		boolean charged = InventoryLE.addInformation(stack, world, list, flag, charge);
 		double damage = 0;
 
 		// add more lore if there exists an LP source that isn't empty

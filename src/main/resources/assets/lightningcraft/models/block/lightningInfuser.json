@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lightningcraft:blocks/lightning_infuser_top",
-        "front": "lightningcraft:blocks/lightning_infuser_side",
-        "side": "lightningcraft:blocks/lightning_infuser_side"
-    }
-}

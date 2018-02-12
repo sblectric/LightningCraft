@@ -19,7 +19,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningCannon;
 
 /** The Lightning Cannon gui */
 @SideOnly(Side.CLIENT)
-public class GuiLightningCannon extends GuiContainer {
+public class GuiLightningCannon extends GuiContainerLC {
 	
 	private static final ResourceLocation cannonGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpcannon.png");
 	private TileEntityLightningCannon tileCannon;
@@ -62,11 +62,11 @@ public class GuiLightningCannon extends GuiContainer {
 		
 		// titles
 		String string = new ItemStack(LCBlocks.lightningCannon, 1, tileCannon.getBlockMetadata()).getDisplayName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 		
 		// operating mode
-		this.fontRendererObj.drawString("Operating Mode", buttonActionX, 24, 4210752);
+		this.fontRenderer.drawString("Operating Mode", buttonActionX, 24, 4210752);
 		buttonAction.displayString = tileCannon.mode.getName();
 		
 		// available LP
@@ -75,12 +75,12 @@ public class GuiLightningCannon extends GuiContainer {
 		String need = LCText.df.format(power) + " LE needed";
 		String have = tileCannon.cellPower + " LE available";
 		if(tileCannon.cellPower < power) color = 0xC00000;
-		if(power != Double.NaN) this.fontRendererObj.drawString(need, 10, 70, color);
-		this.fontRendererObj.drawString(have, 10, 80, color);
+		if(power != Double.NaN) this.fontRenderer.drawString(need, 10, 70, color);
+		this.fontRenderer.drawString(have, 10, 80, color);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+	protected void drawBackground() {
 		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        this.mc.getTextureManager().bindTexture(cannonGuiTextures);
 	        int k = (this.width - this.xSize) / 2;

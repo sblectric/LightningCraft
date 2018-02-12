@@ -26,7 +26,7 @@ public class MapGenUnderworldWaterTemple extends MapGenLCStructure {
 	/** Get the start of the structure */
 	@Override
 	protected StructureStart getStructureStart(int x, int z) {
-		return new MapGenUnderworldWaterTemple.Start(this.worldObj, this.rand, x, z);
+		return new MapGenUnderworldWaterTemple.Start(this.world, this.rand, x, z);
 	}
 	
 	public static class Start extends StructureStart {

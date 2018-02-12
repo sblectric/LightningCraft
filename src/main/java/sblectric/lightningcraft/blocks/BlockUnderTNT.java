@@ -1,6 +1,5 @@
 package sblectric.lightningcraft.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockTNT;
@@ -16,13 +15,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
@@ -31,6 +30,7 @@ import sblectric.lightningcraft.entities.EntityLCTNTPrimed;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.blocks.ItemBlockUnderTNT;
 import sblectric.lightningcraft.ref.Material;
+import sblectric.lightningcraft.registry.ClientRegistryHelper;
 
 /** Underworld TNT (VERY short fuse and strong splosion) */
 public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
@@ -51,9 +51,9 @@ public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
 	}
 	
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList list) {
 	    for (int i = 0; i < nVariants; i++) {
-	        list.add(new ItemStack(item, 1, i));
+	        list.add(new ItemStack(this, 1, i));
 	    }
 	}
 	
@@ -89,7 +89,7 @@ public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
 			if(state.getValue(EXPLODE)) {
 				EntityLCTNTPrimed entitytntprimed = new EntityLCTNTPrimed(worldIn, state.getValue(VARIANT), 
 						pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
-				worldIn.spawnEntityInWorld(entitytntprimed);
+				worldIn.spawnEntity(entitytntprimed);
 				worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
 						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
@@ -105,7 +105,7 @@ public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
 			EntityLCTNTPrimed entitytntprimed = new EntityLCTNTPrimed(worldIn, variant, 
 					pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, explosionIn.getExplosivePlacedBy());
 			entitytntprimed.fuse = worldIn.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
-			worldIn.spawnEntityInWorld(entitytntprimed);
+			worldIn.spawnEntity(entitytntprimed);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class BlockUnderTNT extends BlockTNT implements ILightningCraftBlock {
 		JointList<ResourceLocation> names = new JointList();
 		Item item = Item.getItemFromBlock(this);
 		for(int meta = 0; meta < nVariants; meta++) {
-			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
+			ClientRegistryHelper.registerModel(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
 		}
 	}
 

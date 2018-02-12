@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "half=bottom,variant=0": { "model": "lightningcraft:thunderstone_slab_lower" },
+        "half=top,variant=0": { "model": "lightningcraft:thunderstone_slab_upper" },
+		"half=bottom,variant=1": { "model": "lightningcraft:demonstone_slab_lower" },
+        "half=top,variant=1": { "model": "lightningcraft:demonstone_slab_upper" },
+		"half=bottom,variant=2": { "model": "lightningcraft:understone_slab_lower" },
+        "half=top,variant=2": { "model": "lightningcraft:understone_slab_upper" },
+		"half=bottom,variant=3": { "model": "lightningcraft:under_plank_slab_lower" },
+        "half=top,variant=3": { "model": "lightningcraft:under_plank_slab_upper" }
+    }
+}

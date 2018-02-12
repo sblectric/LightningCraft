@@ -1,8 +1,0 @@
-{
-    "parent": "lightningcraft:block/underworldCannon",
-    "textures": {
-        "0": "lightningcraft:blocks/electricium_block",
-        "1": "lightningcraft:blocks/lightning_cannon",
-		"particle": "lightningcraft:blocks/lightning_cannon"
-    }
-}

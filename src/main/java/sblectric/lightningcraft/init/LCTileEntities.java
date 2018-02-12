@@ -1,6 +1,8 @@
 package sblectric.lightningcraft.init;
 
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import sblectric.lightningcraft.ref.RefStrings;
 import sblectric.lightningcraft.tiles.TileEntityChargingPlate;
 import sblectric.lightningcraft.tiles.TileEntityEnchReallocator;
 import sblectric.lightningcraft.tiles.TileEntityLightningBreaker;
@@ -21,20 +23,25 @@ public class LCTileEntities {
 	
 	/** Register the tile entities */
 	public static void mainRegistry() {
-		GameRegistry.registerTileEntity(TileEntityLightningCell.class, "TileEntityLightningCell");
-		GameRegistry.registerTileEntity(TileEntityLightningFurnace.class, "TileEntityLightningFurnace");
-		GameRegistry.registerTileEntity(TileEntityLightningCrusher.class, "TileEntityLightningCrusher");
-		GameRegistry.registerTileEntity(TileEntityLightningInfuser.class, "TileEntityLightningInfuser");
-		GameRegistry.registerTileEntity(TileEntityLightningBreaker.class, "TileEntityLightningBreaker");
-		GameRegistry.registerTileEntity(TileEntityLightningMiner.class, "TileEntityLightningMiner");
-		GameRegistry.registerTileEntity(TileEntityStaticGenerator.class, "TileEntityStaticGenerator");
-		GameRegistry.registerTileEntity(TileEntityChargingPlate.class, "TileEntityChargingPlate");
-		GameRegistry.registerTileEntity(TileEntityEnchReallocator.class, "TileEntityEnchReallocator");
-		GameRegistry.registerTileEntity(TileEntityLightningCannon.class, "TileEntityLightningCannon");
-		GameRegistry.registerTileEntity(TileEntityLightningTransmitter.class, "TileEntityLightningTransmitter");
-		GameRegistry.registerTileEntity(TileEntityLightningReceiver.class, "TileEntityLightningReceiver");
-		GameRegistry.registerTileEntity(TileEntityRFProvider.class, "TileEntityLERFProvider");
-		GameRegistry.registerTileEntity(TileEntityRFReceiver.class, "TileEntityLERFReceiver");
+		registerTileEntity(TileEntityLightningCell.class);
+		registerTileEntity(TileEntityLightningFurnace.class);
+		registerTileEntity(TileEntityLightningCrusher.class);
+		registerTileEntity(TileEntityLightningInfuser.class);
+		registerTileEntity(TileEntityLightningBreaker.class);
+		registerTileEntity(TileEntityLightningMiner.class);
+		registerTileEntity(TileEntityStaticGenerator.class);
+		registerTileEntity(TileEntityChargingPlate.class);
+		registerTileEntity(TileEntityEnchReallocator.class);
+		registerTileEntity(TileEntityLightningCannon.class);
+		registerTileEntity(TileEntityLightningTransmitter.class);
+		registerTileEntity(TileEntityLightningReceiver.class);
+		registerTileEntity(TileEntityRFProvider.class);
+		registerTileEntity(TileEntityRFReceiver.class);
+	}
+	
+	/** Registration helper method */
+	private static void registerTileEntity(Class<? extends TileEntity> tileClass) {
+		GameRegistry.registerTileEntity(tileClass, RefStrings.MODID + ":" + tileClass.getSimpleName().toLowerCase());
 	}
 
 }

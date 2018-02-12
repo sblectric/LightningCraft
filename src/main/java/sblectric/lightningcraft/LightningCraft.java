@@ -12,7 +12,7 @@ import sblectric.lightningcraft.proxy.CommonProxy;
 import sblectric.lightningcraft.ref.RefStrings;
 
 /** The main mod class */
-@Mod(modid = RefStrings.MODID, name = RefStrings.NAME, version = RefStrings.VERSION)
+@Mod(modid = RefStrings.MODID, name = RefStrings.NAME, version = RefStrings.VERSION, acceptedMinecraftVersions = "[1.12, 1.13)")
 public class LightningCraft {
 	
 	static {

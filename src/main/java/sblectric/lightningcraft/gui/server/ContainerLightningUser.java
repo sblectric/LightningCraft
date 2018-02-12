@@ -26,11 +26,11 @@ public abstract class ContainerLightningUser extends Container {
 	public final int sendUpdate(IContainerListener craft, int n) {
 		int cellPower = (int)(this.tile.cellPower * 10D);
 		int maxPower = (int)this.tile.maxPower;
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(cellPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(cellPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(maxPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(maxPower));
-		craft.sendProgressBarUpdate(this, n++, (int)(this.tile.getEfficiency() * 1000D));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(cellPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(cellPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(maxPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(maxPower));
+		craft.sendWindowProperty(this, n++, (int)(this.tile.getEfficiency() * 1000D));
 		return n;
 	}
 	
@@ -85,7 +85,7 @@ public abstract class ContainerLightningUser extends Container {
 
 		@Override
 		public void sendInfo(IContainerListener craft) {
-			craft.sendProgressBarUpdate(this, 1500, tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).isUpgraded() ? 1 : 0);
+			craft.sendWindowProperty(this, 1500, tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null).isUpgraded() ? 1 : 0);
 		}
 		
 		@Override

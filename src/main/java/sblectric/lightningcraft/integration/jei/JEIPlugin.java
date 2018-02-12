@@ -55,9 +55,9 @@ public class JEIPlugin extends BlankModPlugin {
 			reg.addRecipeCategoryCraftingItem(new ItemStack(LCBlocks.lightningInfuser), LightningInfusionRecipeCategory.UID);
 			
 			// add item descriptions
-			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.ELEC), RefStrings.MODID + ".electriciumInfo");
-			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.SKY), RefStrings.MODID + ".skyfatherInfo");
-			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.MYSTIC), RefStrings.MODID + ".mysticInfo");
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.ELEC), RefStrings.MODID + ".electricium_info");
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.SKY), RefStrings.MODID + ".skyfather_info");
+			reg.addDescription(new ItemStack(LCItems.ingot, 1, Ingot.MYSTIC), RefStrings.MODID + ".mystic_info");
 			
 			Log.logger.info("JEI integration complete.");
 		} else {

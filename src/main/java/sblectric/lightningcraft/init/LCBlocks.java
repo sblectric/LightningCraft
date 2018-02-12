@@ -86,37 +86,37 @@ public class LCBlocks {
 	/** Add the blocks */
 	private static void addBlocks() {
 		blocks.join(
-			metalBlock = (BlockLC)new BlockMetal().setRegistryName("metalBlock").setCreativeTab(LCCreativeTabs.blocks),
-			stoneBlock = (BlockLC)new BlockStone().setRegistryName("stoneBlock").setCreativeTab(LCCreativeTabs.blocks),
-			woodLog = (BlockLogLC)new BlockLogLC().setRegistryName("woodLog").setCreativeTab(LCCreativeTabs.blocks),
-			woodPlank = (BlockLC)new BlockPlankLC().setRegistryName("woodPlank").setCreativeTab(LCCreativeTabs.blocks),
-			slabBlock = (BlockSlabLC)new BlockSlabLC().setRegistryName("slabBlock").setCreativeTab(LCCreativeTabs.blocks),
-			slabBlockDouble = (BlockSlabLC)new BlockDoubleSlabLC().setRegistryName("slabBlockDouble"), // no creative tab for the double slab
-			thunderStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("thunderStairs").setCreativeTab(LCCreativeTabs.blocks),
-			demonStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("demonStairs").setCreativeTab(LCCreativeTabs.blocks),
-			underStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("underStairs").setCreativeTab(LCCreativeTabs.blocks),
-			underPlankStairs = (BlockStairsLC)new BlockStairsLC(woodPlank).setRegistryName("underPlankStairs").setCreativeTab(LCCreativeTabs.blocks),
-			airTerminal = (BlockLC)new BlockAirTerminal().setRegistryName("airTerminal").setCreativeTab(LCCreativeTabs.blocks),
-			lightningCell = (BlockLC)new BlockLightningCell().setRegistryName("lightningCell").setCreativeTab(LCCreativeTabs.blocks),
-			lightningFurnace = (BlockLC)new BlockLightningFurnace().setRegistryName("lightningFurnace").setCreativeTab(LCCreativeTabs.blocks),
-			lightningCrusher = (BlockLC)new BlockLightningCrusher().setRegistryName("lightningCrusher").setCreativeTab(LCCreativeTabs.blocks),
-			lightningInfuser = (BlockLC)new BlockLightningInfuser().setRegistryName("lightningInfuser").setCreativeTab(LCCreativeTabs.blocks),
-			lightningBreaker = (BlockLC)new BlockLightningBreaker().setRegistryName("lightningBreaker").setCreativeTab(LCCreativeTabs.blocks),
-			lightningMiner = (BlockLC)new BlockLightningMiner().setRegistryName("lightningMiner").setCreativeTab(LCCreativeTabs.blocks),
-			staticGenerator = (BlockLC)new BlockStaticGenerator().setRegistryName("staticGenerator").setCreativeTab(LCCreativeTabs.blocks),
-			wirelessBlock = (BlockLC)new BlockWireless().setRegistryName("wirelessBlock").setCreativeTab(LCCreativeTabs.blocks),
-			chargingPlate = (BlockChargingPlate)new BlockChargingPlate().setRegistryName("chargingPlate").setCreativeTab(LCCreativeTabs.blocks),
-			enchReallocator = (BlockLC)new BlockEnchReallocator().setRegistryName("enchReallocator").setCreativeTab(LCCreativeTabs.blocks),
-			underPortal = (PortalUnderworld)new PortalUnderworld().setRegistryName("underPortal"), // no creative tab for the portal
-			underSand = (BlockUnderSand)new BlockUnderSand().setRegistryName("underSand").setCreativeTab(LCCreativeTabs.blocks),
-			corruptStone = (BlockLC)new BlockWeakStone().setRegistryName("corruptStone").setCreativeTab(LCCreativeTabs.blocks),
-			wallBlock = (BlockWallLC)new BlockWallLC().setRegistryName("wallBlock").setCreativeTab(LCCreativeTabs.blocks),
-			lightBlock = (BlockLC)new BlockLight().setRegistryName("lightBlock").setCreativeTab(LCCreativeTabs.blocks),
-			oreBlock = (BlockLC)new BlockUnderOre().setRegistryName("oreBlock").setCreativeTab(LCCreativeTabs.blocks),
-			underTNT = (BlockUnderTNT)new BlockUnderTNT().setRegistryName("underTNT").setCreativeTab(LCCreativeTabs.blocks),
-			lightningCannon = (BlockLC)new BlockLightningCannon().setRegistryName("lightningCannon").setCreativeTab(LCCreativeTabs.blocks),
-			rfProvider = (BlockLC)new BlockRFProvider().setRegistryName("rfProvider").setCreativeTab(LCCreativeTabs.blocks),
-			rfReceiver = (BlockLC)new BlockRFReceiver().setRegistryName("rfReceiver").setCreativeTab(LCCreativeTabs.blocks)
+			metalBlock = (BlockLC)new BlockMetal().setRegistryName("metal_block").setCreativeTab(LCCreativeTabs.blocks),
+			stoneBlock = (BlockLC)new BlockStone().setRegistryName("stone_block").setCreativeTab(LCCreativeTabs.blocks),
+			woodLog = (BlockLogLC)new BlockLogLC().setRegistryName("wood_log").setCreativeTab(LCCreativeTabs.blocks),
+			woodPlank = (BlockLC)new BlockPlankLC().setRegistryName("wood_plank").setCreativeTab(LCCreativeTabs.blocks),
+			slabBlock = (BlockSlabLC)new BlockSlabLC().setRegistryName("slab_block").setCreativeTab(LCCreativeTabs.blocks),
+			slabBlockDouble = (BlockSlabLC)new BlockDoubleSlabLC().setRegistryName("slab_block_double"), // no creative tab for the double slab
+			thunderStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("thunder_stairs").setCreativeTab(LCCreativeTabs.blocks),
+			demonStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("demon_stairs").setCreativeTab(LCCreativeTabs.blocks),
+			underStairs = (BlockStairsLC)new BlockStairsLC().setRegistryName("under_stairs").setCreativeTab(LCCreativeTabs.blocks),
+			underPlankStairs = (BlockStairsLC)new BlockStairsLC(woodPlank).setRegistryName("under_plank_stairs").setCreativeTab(LCCreativeTabs.blocks),
+			airTerminal = (BlockLC)new BlockAirTerminal().setRegistryName("air_terminal").setCreativeTab(LCCreativeTabs.blocks),
+			lightningCell = (BlockLC)new BlockLightningCell().setRegistryName("lightning_cell").setCreativeTab(LCCreativeTabs.blocks),
+			lightningFurnace = (BlockLC)new BlockLightningFurnace().setRegistryName("lightning_furnace").setCreativeTab(LCCreativeTabs.blocks),
+			lightningCrusher = (BlockLC)new BlockLightningCrusher().setRegistryName("lightning_crusher").setCreativeTab(LCCreativeTabs.blocks),
+			lightningInfuser = (BlockLC)new BlockLightningInfuser().setRegistryName("lightning_infuser").setCreativeTab(LCCreativeTabs.blocks),
+			lightningBreaker = (BlockLC)new BlockLightningBreaker().setRegistryName("lightning_breaker").setCreativeTab(LCCreativeTabs.blocks),
+			lightningMiner = (BlockLC)new BlockLightningMiner().setRegistryName("lightning_miner").setCreativeTab(LCCreativeTabs.blocks),
+			staticGenerator = (BlockLC)new BlockStaticGenerator().setRegistryName("static_generator").setCreativeTab(LCCreativeTabs.blocks),
+			wirelessBlock = (BlockLC)new BlockWireless().setRegistryName("wireless_block").setCreativeTab(LCCreativeTabs.blocks),
+			chargingPlate = (BlockChargingPlate)new BlockChargingPlate().setRegistryName("charging_plate").setCreativeTab(LCCreativeTabs.blocks),
+			enchReallocator = (BlockLC)new BlockEnchReallocator().setRegistryName("ench_reallocator").setCreativeTab(LCCreativeTabs.blocks),
+			underPortal = (PortalUnderworld)new PortalUnderworld().setRegistryName("under_portal"), // no creative tab for the portal
+			underSand = (BlockUnderSand)new BlockUnderSand().setRegistryName("under_sand").setCreativeTab(LCCreativeTabs.blocks),
+			corruptStone = (BlockLC)new BlockWeakStone().setRegistryName("corrupt_stone").setCreativeTab(LCCreativeTabs.blocks),
+			wallBlock = (BlockWallLC)new BlockWallLC().setRegistryName("wall_block").setCreativeTab(LCCreativeTabs.blocks),
+			lightBlock = (BlockLC)new BlockLight().setRegistryName("light_block").setCreativeTab(LCCreativeTabs.blocks),
+			oreBlock = (BlockLC)new BlockUnderOre().setRegistryName("ore_block").setCreativeTab(LCCreativeTabs.blocks),
+			underTNT = (BlockUnderTNT)new BlockUnderTNT().setRegistryName("under_tnt").setCreativeTab(LCCreativeTabs.blocks),
+			lightningCannon = (BlockLC)new BlockLightningCannon().setRegistryName("lightning_cannon").setCreativeTab(LCCreativeTabs.blocks),
+			rfProvider = (BlockLC)new BlockRFProvider().setRegistryName("rf_provider").setCreativeTab(LCCreativeTabs.blocks),
+			rfReceiver = (BlockLC)new BlockRFReceiver().setRegistryName("rf_receiver").setCreativeTab(LCCreativeTabs.blocks)
 		);
 	}
 	

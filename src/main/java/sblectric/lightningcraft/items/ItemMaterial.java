@@ -2,6 +2,7 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -16,7 +17,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.blocks.PortalUnderworld;
 import sblectric.lightningcraft.config.LCConfig;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.init.LCNetwork;
 import sblectric.lightningcraft.items.base.ItemMeta;
@@ -34,7 +34,7 @@ public class ItemMaterial extends ItemMeta {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		switch(stack.getItemDamage()) {
 		case Material.DEMON_BLOOD:
 			list.add(LCText.getDemonBloodLore());
@@ -71,8 +71,9 @@ public class ItemMaterial extends ItemMeta {
 
 	/** Right-click the item on a block */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 		switch(stack.getItemDamage()) {
 		
 		// Cell Upgrade usage
@@ -84,10 +85,10 @@ public class ItemMaterial extends ItemMeta {
 				EnumActionResult r = tile.getCapability(LCCapabilities.LIGHTNING_UPGRADABLE, null)
 						.onLightningUpgrade(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
 				if(r == EnumActionResult.SUCCESS && !world.isRemote) {
-					--stack.stackSize; // transfer the upgrade to the tile entity on success
+					stack.setCount(stack.getCount() - 1); // transfer the upgrade to the tile entity on success
 					tile.markDirty();
 					
-					player.addStat(LCAchievements.upgradeMachine, 1); // give out the achievement
+//					player.addStat(LCAchievements.upgradeMachine, 1); // give out the achievement
 					
 					// send a message to nearby clients to update the upgraded status
 					LCNetwork.net.sendToAllAround(new MessageLightningUpgrade(pos), 
@@ -103,16 +104,16 @@ public class ItemMaterial extends ItemMeta {
 
 			if(!world.isRemote) {
 				if(PortalUnderworld.ignitePortal(world, pos.up())) {
-					if(player.capabilities.isCreativeMode == false) stack.stackSize--;
+					if(player.capabilities.isCreativeMode == false) stack.setCount(stack.getCount() - 1);
 					Effect.lightning(world, pos.getX(), pos.getY() + 1, pos.getZ());
-					if(stack.stackSize <= 0) stack = null;
+					if(stack.getCount() <= 0) stack = ItemStack.EMPTY;
 				}
 			}
 			return EnumActionResult.SUCCESS;
 
 		// Default usage
 		default:
-			return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+			return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 		}
 	}
 

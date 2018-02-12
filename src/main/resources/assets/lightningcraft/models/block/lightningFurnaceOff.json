@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lightningcraft:blocks/lightning_furnace_top",
-        "front": "lightningcraft:blocks/lightning_furnace_off",
-        "side": "lightningcraft:blocks/lightning_furnace_side"
-    }
-}

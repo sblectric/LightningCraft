@@ -18,7 +18,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningCrusher;
 /** The category for crusher recipes */
 public class LightningCrusherRecipeCategory extends BlankRecipeCategory {
 	
-	public static final String UID = RefStrings.MODID + ".crusherRecipeCategory";
+	public static final String UID = RefStrings.MODID + ".crusher_recipe_category";
 	public static final String NAME = I18n.translateToLocal(UID);
 	private static final int INPUT = 0;
 	private static final int OUTPUT = 1;
@@ -52,7 +52,7 @@ public class LightningCrusherRecipeCategory extends BlankRecipeCategory {
 	}
 	
 	@Override
-	public void drawAnimations(Minecraft minecraft) {
+	public void drawExtras(Minecraft minecraft) {
 		flame.draw(minecraft, 2, 20);
 		arrow.draw(minecraft, 24, 18);
 	}
@@ -68,6 +68,11 @@ public class LightningCrusherRecipeCategory extends BlankRecipeCategory {
 			stacks.set(INPUT, lirWrapper.getInputs());
 			stacks.set(OUTPUT, lirWrapper.getOutputs());
 		}
+	}
+
+	@Override
+	public String getModName() {
+		return RefStrings.NAME;
 	}
 
 }

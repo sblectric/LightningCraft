@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "variant=0": { "model": "lightningcraft:underworldCannon" },
-		"variant=1": { "model": "lightningcraft:lightningCannon" },
-		"variant=2": { "model": "lightningcraft:eliteLightningCannon" }
-    }
-}

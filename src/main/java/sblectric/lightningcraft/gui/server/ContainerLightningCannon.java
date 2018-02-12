@@ -47,7 +47,7 @@ public class ContainerLightningCannon extends ContainerLightningUser {
 	/** Send the info to the client */
 	@Override
 	public void sendInfo(IContainerListener craft) {
-		craft.sendProgressBarUpdate(this, 0, this.tileCannon.mode.getID());
+		craft.sendWindowProperty(this, 0, this.tileCannon.mode.getID());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ContainerLightningCannon extends ContainerLightningUser {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 
 		int INPUT = -1;
@@ -86,31 +86,31 @@ public class ContainerLightningCannon extends ContainerLightningUser {
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, INPUT+28, INPUT+37, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				// item in action bar - place in player inventory
 				else if (par2 >= INPUT+28 && par2 < INPUT+37 && !this.mergeItemStack(itemstack1, INPUT+1, INPUT+28, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getCount() == 0)
 			{
-				slot.putStack((ItemStack)null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getCount() == itemstack.getCount())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 		return itemstack;
 	}

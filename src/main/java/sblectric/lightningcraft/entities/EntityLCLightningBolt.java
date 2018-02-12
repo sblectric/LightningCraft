@@ -39,9 +39,9 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
 
         if (setFire && !world.isRemote && world.getGameRules().getBoolean("doFireTick") && 
         		(world.getDifficulty() == EnumDifficulty.NORMAL || world.getDifficulty() == EnumDifficulty.HARD) && world.isAreaLoaded(blockpos, 10)) {
-            int i = MathHelper.floor_double(x);
-            int j = MathHelper.floor_double(y);
-            int k = MathHelper.floor_double(z);
+            int i = MathHelper.floor(x);
+            int j = MathHelper.floor(y);
+            int k = MathHelper.floor(z);
 
             IBlockState state1 = world.getBlockState(new BlockPos(i, j, k));
             if (state1.getBlock().getMaterial(state1) == Material.AIR && Blocks.FIRE.canPlaceBlockAt(world, new BlockPos(i, j, k)))
@@ -51,9 +51,9 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
 
             for (i = 0; i < 4; ++i)
             {
-                j = MathHelper.floor_double(x) + this.rand.nextInt(3) - 1;
-                k = MathHelper.floor_double(y) + this.rand.nextInt(3) - 1;
-                int l = MathHelper.floor_double(z) + this.rand.nextInt(3) - 1;
+                j = MathHelper.floor(x) + this.rand.nextInt(3) - 1;
+                k = MathHelper.floor(y) + this.rand.nextInt(3) - 1;
+                int l = MathHelper.floor(z) + this.rand.nextInt(3) - 1;
 
                 IBlockState state2 = world.getBlockState(new BlockPos(j, k, l));
                 if (state2.getBlock().getMaterial(state2) == Material.AIR && Blocks.FIRE.canPlaceBlockAt(world, new BlockPos(j, k, l)))
@@ -74,9 +74,9 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
         if (this.lightningState == 2)
         {
         	
-        	this.worldObj.playSound(null, posX, posY, posZ, 
+        	this.world.playSound(null, posX, posY, posZ, 
         			SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 3.0F, 2.8F + this.rand.nextFloat() * 0.2F);
-        	this.worldObj.playSound(null, posX, posY, posZ, 
+        	this.world.playSound(null, posX, posY, posZ, 
         			SoundEvents.ENTITY_LIGHTNING_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
         }
 
@@ -95,16 +95,16 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
                 this.boltVertex = this.rand.nextLong();
                 BlockPos blockpos = new BlockPos(this);
 
-                if (doSetFire && !worldObj.isRemote && worldObj.getGameRules().getBoolean("doFireTick") && 
-                		(worldObj.getDifficulty() == EnumDifficulty.NORMAL || worldObj.getDifficulty() == EnumDifficulty.HARD) && worldObj.isAreaLoaded(blockpos, 10)) {
-                    int i = MathHelper.floor_double(this.posX);
-                    int j = MathHelper.floor_double(this.posY);
-                    int k = MathHelper.floor_double(this.posZ);
+                if (doSetFire && !world.isRemote && world.getGameRules().getBoolean("doFireTick") && 
+                		(world.getDifficulty() == EnumDifficulty.NORMAL || world.getDifficulty() == EnumDifficulty.HARD) && world.isAreaLoaded(blockpos, 10)) {
+                    int i = MathHelper.floor(this.posX);
+                    int j = MathHelper.floor(this.posY);
+                    int k = MathHelper.floor(this.posZ);
 
-                    IBlockState state = worldObj.getBlockState(new BlockPos(i, j, k));
-                    if (state.getBlock().getMaterial(state) == Material.AIR && Blocks.FIRE.canPlaceBlockAt(this.worldObj, new BlockPos(i, j, k)))
+                    IBlockState state = world.getBlockState(new BlockPos(i, j, k));
+                    if (state.getBlock().getMaterial(state) == Material.AIR && Blocks.FIRE.canPlaceBlockAt(this.world, new BlockPos(i, j, k)))
                     {
-                        worldObj.setBlockState(new BlockPos(i, j, k), Blocks.FIRE.getDefaultState());
+                        world.setBlockState(new BlockPos(i, j, k), Blocks.FIRE.getDefaultState());
                     }
                 }
             }
@@ -112,14 +112,14 @@ public class EntityLCLightningBolt extends EntityLightningBolt {
 
         if (this.lightningState >= 0)
         {
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
-                this.worldObj.setLastLightningBolt(2);
+                this.world.setLastLightningBolt(2);
             }
             else
             {
                 double d0 = 3.0D;
-                List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, 
+                List list = this.world.getEntitiesWithinAABBExcludingEntity(this, 
                 		new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
                 for (int l = 0; l < list.size(); ++l)

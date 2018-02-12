@@ -1,0 +1,94 @@
+{
+    "textures": {
+        "0": "lightningcraft:blocks/receiver_side",
+        "1": "blocks/gold_block",
+		"2": "lightningcraft:blocks/air_terminal",
+		"particle": "lightningcraft:blocks/receiver_side"
+    },
+    "elements": [
+        {
+            "name": "base",
+            "from": [ 0.0, 0.0, 0.0 ], 
+            "to": [ 16.0, 10.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 10.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 10.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 10.0 ] },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 10.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "antenna base",
+            "from": [ 4.0, 10.0, 4.0 ], 
+            "to": [ 12.0, 11.0, 12.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 4.0, 15.0, 12.0, 16.0 ], "tintindex": 0 },
+                "east": { "texture": "#2", "uv": [ 4.0, 15.0, 12.0, 16.0 ], "tintindex": 0 },
+                "south": { "texture": "#2", "uv": [ 6.0, 15.0, 14.0, 16.0 ], "tintindex": 0 },
+                "west": { "texture": "#2", "uv": [ 1.0, 15.0, 9.0, 16.0 ], "tintindex": 0 },
+                "up": { "texture": "#2", "uv": [ 4.0, 4.0, 12.0, 12.0 ], "tintindex": 0 },
+                "down": { "texture": "#2", "uv": [ 4.0, 4.0, 12.0, 12.0 ], "tintindex": 0 }
+            }
+        },
+        {
+            "name": "rod",
+            "from": [ 7.0, 11.0, 7.0 ], 
+            "to": [ 9.0, 15.5, 9.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 7.0, 5.0, 9.0, 9.5 ], "tintindex": 0 },
+                "east": { "texture": "#2", "uv": [ 5.0, 5.0, 7.0, 9.5 ], "tintindex": 0 },
+                "south": { "texture": "#2", "uv": [ 8.0, 5.0, 10.0, 9.5 ], "tintindex": 0 },
+                "west": { "texture": "#2", "uv": [ 6.0, 5.0, 8.0, 9.5 ], "tintindex": 0 },
+                "up": { "texture": "#2", "uv": [ 11.0, 6.0, 13.0, 8.0 ], "tintindex": 0 },
+                "down": { "texture": "#2", "uv": [ 7.0, 10.0, 9.0, 12.0 ], "tintindex": 0 }
+            }
+        },
+        {
+            "name": "top",
+            "from": [ 7.5, 15.5, 7.5 ], 
+            "to": [ 8.5, 16.0, 8.5 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 7.0, 5.0, 8.0, 5.5 ], "tintindex": 0 },
+                "east": { "texture": "#2", "uv": [ 5.0, 7.0, 6.0, 7.5 ], "tintindex": 0 },
+                "south": { "texture": "#2", "uv": [ 9.0, 8.0, 10.0, 8.5 ], "tintindex": 0 },
+                "west": { "texture": "#2", "uv": [ 4.0, 11.0, 5.0, 11.5 ], "tintindex": 0 },
+                "up": { "texture": "#2", "uv": [ 10.0, 6.0, 11.0, 7.0 ], "tintindex": 0 },
+                "down": { "texture": "#2", "uv": [ 9.0, 7.0, 10.0, 8.0 ], "tintindex": 0 }
+            }
+        }
+    ],
+	"display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.5, 0.5, 0.5 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 45, 0 ],
+            "translation": [ 0, 2.5, 0],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 225, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        }
+    }
+}

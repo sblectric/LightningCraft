@@ -2,6 +2,7 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.util.StackHelper;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.base.ItemLC;
 import sblectric.lightningcraft.ref.LCText;
@@ -30,21 +30,23 @@ public class ItemGolfClub extends ItemLC {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		list.add(LCText.getSummonerLore());
 	}
 
 	/** Summon lightning when swung */
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(!world.isRemote && hand == EnumHand.MAIN_HAND) {
+			ItemStack stack = player.getHeldItem(hand);
 			SkyUtils.damageStack(2, stack, player, EntityEquipmentSlot.MAINHAND, true);
 			Effect.lightning(player, false);
 
 			// golf club achievement
-			player.addStat(LCAchievements.swingGolfClub, 1);
+//			player.addStat(LCAchievements.swingGolfClub, 1);
 		}
-		return super.onItemRightClick(stack, world, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

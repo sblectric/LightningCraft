@@ -18,20 +18,20 @@ public class TileEntityLightningBreaker extends TileEntityLightningUser {
 	// simply break the block in front of it every 0.5s
 	@Override
 	public void update() {
-		if(!worldObj.isRemote && !worldObj.isBlockPowered(pos) && worldObj.getTotalWorldTime() % breakModTime == 0 && 
+		if(!world.isRemote && !world.isBlockPowered(pos) && world.getTotalWorldTime() % breakModTime == 0 && 
 				this.hasLPCell() && this.canDrawCellPower(breakLE)) {
 			BlockPos check = this.pos.offset(EnumFacing.getFront(this.getBlockMetadata()));
 			
 			// make sure the block is valid and isn't unbreakable
-			IBlockState checkState = worldObj.getBlockState(check);
+			IBlockState checkState = world.getBlockState(check);
 			Block checkBlock = checkState.getBlock();
-			if(checkBlock != null && !checkBlock.isAir(checkState, worldObj, check) && checkState.getBlockHardness(worldObj, check) >= 0) {
-				List<ItemStack> drops = checkBlock.getDrops(this.worldObj, check, checkState, 0);
-	            float chance = ForgeEventFactory.fireBlockHarvesting(drops, this.worldObj, check, 
-	            		this.worldObj.getBlockState(check), 0, 1, false, null);
+			if(checkBlock != null && !checkBlock.isAir(checkState, world, check) && checkState.getBlockHardness(world, check) >= 0) {
+				List<ItemStack> drops = checkBlock.getDrops(this.world, check, checkState, 0);
+	            float chance = ForgeEventFactory.fireBlockHarvesting(drops, this.world, check, 
+	            		this.world.getBlockState(check), 0, 1, false, null);
 	            if(random.nextFloat() <= chance) {
 	            	this.drawCellPower(breakLE);
-	            	worldObj.destroyBlock(check, true);
+	            	world.destroyBlock(check, true);
 	            }
 			}
 		}

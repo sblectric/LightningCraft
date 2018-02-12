@@ -13,17 +13,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.items.blocks.ItemBlockMeta;
 import sblectric.lightningcraft.ref.RefMisc;
+import sblectric.lightningcraft.registry.ClientRegistryHelper;
 
 /** Block container class, with metadata */
 public abstract class BlockContainerLCMeta extends BlockContainerLC {
@@ -38,7 +39,6 @@ public abstract class BlockContainerLCMeta extends BlockContainerLC {
 	public BlockContainerLCMeta(Block parent, int nSubBlocks, float hardness, float resistance, EnumBlockRenderType renderType, boolean sameIcon) {
 		super(parent, hardness, resistance);
 		this.renderType = renderType;
-		this.isBlockContainer = true;
 		if(nSubBlocks > 16) throw new IllegalArgumentException("More than 16 metadata states is unsupported!");
 		this.nSubBlocks = nSubBlocks;
 		this.sameIcon = sameIcon;
@@ -62,9 +62,9 @@ public abstract class BlockContainerLCMeta extends BlockContainerLC {
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList list) {
 	    for (int i = 0; i < nSubBlocks; i++) {
-	        list.add(new ItemStack(item, 1, i));
+	        list.add(new ItemStack(this, 1, i));
 	    }
 	}
 	
@@ -111,11 +111,11 @@ public abstract class BlockContainerLCMeta extends BlockContainerLC {
 		Item item = Item.getItemFromBlock(this);
 		if(sameIcon) {
 			for(int meta = 0; meta < nSubBlocks; meta++) {
-				ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+				ClientRegistryHelper.registerModel(item, meta, new ModelResourceLocation(this.getRegistryName(), "inventory"));
 			}
 		} else {
 			for(int meta = 0; meta < nSubBlocks; meta++) {
-				ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
+				ClientRegistryHelper.registerModel(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
 			}
 		}
 	}

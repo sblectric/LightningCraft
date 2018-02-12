@@ -3,6 +3,7 @@ package sblectric.lightningcraft.items;
 import java.util.List;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -14,11 +15,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.items.base.ItemLC;
 import sblectric.lightningcraft.ref.LCText;
+import sblectric.lightningcraft.registry.ClientRegistryHelper;
 import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
 import sblectric.lightningcraft.tiles.TileEntityLightningTransmitter;
 
@@ -32,9 +33,10 @@ public class ItemWirelessMarker extends ItemLC {
 
 	/** Save a transmitter location and give it to a reciever */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		TileEntity tile = world.getTileEntity(pos);
+		ItemStack stack = player.getHeldItem(hand);
 
 		// make the tag compound if none exists
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
@@ -98,7 +100,8 @@ public class ItemWirelessMarker extends ItemLC {
 
 	/** item lore */
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		String lore1, lore2;
 		boolean addLore2 = true;
 		if(stack.getItemDamage() == 1) {
@@ -141,8 +144,8 @@ public class ItemWirelessMarker extends ItemLC {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerRender() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
-		ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+		ClientRegistryHelper.registerModel(this, 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+		ClientRegistryHelper.registerModel(this, 1, new ModelResourceLocation(this.getRegistryName(), "inventory"));
 	}
 
 }

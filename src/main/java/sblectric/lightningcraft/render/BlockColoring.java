@@ -47,7 +47,7 @@ public class BlockColoring implements IBlockColor, IItemColor {
 
 	/** The color multiplier for the block's item */
 	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+	public int colorMultiplier(ItemStack stack, int tintIndex) {
 		Block block;
 		if((block = Block.getBlockFromItem(stack.getItem())) != null) {
 			return colorMultiplier(block.getStateFromMeta(stack.getItemDamage()), null, null, tintIndex);

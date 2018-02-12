@@ -57,7 +57,7 @@ public class BlockLightningFurnace extends BlockContainerLC implements IFurnace 
 	/** Activate this block */
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, 
-			EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		player.openGui(LightningCraft.modInstance, LCGuiHandler.lightningFurnaceGui, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
@@ -75,10 +75,10 @@ public class BlockLightningFurnace extends BlockContainerLC implements IFurnace 
 	    return type.getIndex() + 6 * (state.getValue(lit) ? 1 : 0);
 	}
 	
-	@Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(dir, placer.getHorizontalFacing().getOpposite());
-    }
+//	@Override
+//    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+//        return this.getDefaultState().withProperty(dir, placer.getHorizontalFacing().getOpposite());
+//    }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {

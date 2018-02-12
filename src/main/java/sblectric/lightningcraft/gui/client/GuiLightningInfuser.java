@@ -16,7 +16,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
 
 /** The lightning infusion table GUI */
 @SideOnly(Side.CLIENT)
-public class GuiLightningInfuser extends GuiContainer {
+public class GuiLightningInfuser extends GuiContainerLC {
 	
 	public static final ResourceLocation infuserGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpinfuser.png");
 	private TileEntityLightningInfuser tileInfuser;
@@ -31,8 +31,8 @@ public class GuiLightningInfuser extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		
 		String string = this.tileInfuser.getName();
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 
 		// LP status
 		int color = 4210752;
@@ -45,13 +45,13 @@ public class GuiLightningInfuser extends GuiContainer {
 		}
 		String have = tileInfuser.cellPower + " LE available";
 		if(tileInfuser.cellPower < power || tileInfuser.cellPower == 0) color = 0xC00000;
-		this.fontRendererObj.drawString(need, 119 - this.fontRendererObj.getStringWidth(need) / 2, 60, color);
-		this.fontRendererObj.drawString(have, 119 - this.fontRendererObj.getStringWidth(have) / 2, 70, color);
+		this.fontRenderer.drawString(need, 119 - this.fontRenderer.getStringWidth(need) / 2, 60, color);
+		this.fontRenderer.drawString(have, 119 - this.fontRenderer.getStringWidth(have) / 2, 70, color);
 		
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+	protected void drawBackground() {
 		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        this.mc.getTextureManager().bindTexture(infuserGuiTextures);
 	        int k = (this.width - this.xSize) / 2;

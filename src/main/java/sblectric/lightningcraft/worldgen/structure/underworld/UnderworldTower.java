@@ -1,15 +1,18 @@
 package sblectric.lightningcraft.worldgen.structure.underworld;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStone;
 import sblectric.lightningcraft.entities.EntityUnderworldSkeleton;
@@ -55,9 +58,14 @@ public class UnderworldTower extends Feature {
 		super(rand, par2, 64, par3, 11, 25, 11);
 		this.spawnMinY = 32;
 		this.spawnMaxY = 180;
-		ItemStack bookThor = new ItemStack(Items.ENCHANTED_BOOK), bookAura = new ItemStack(Items.ENCHANTED_BOOK);
-		Items.ENCHANTED_BOOK.addEnchantment(bookThor, new EnchantmentData(LCEnchantments.handOfThor, 1));
-		Items.ENCHANTED_BOOK.addEnchantment(bookAura, new EnchantmentData(LCEnchantments.elecAura, 1));
+		ItemStack bookThor = new ItemStack(Items.ENCHANTED_BOOK);
+		ItemStack bookAura = new ItemStack(Items.ENCHANTED_BOOK);
+		Map<Enchantment, Integer> enchThor = new HashMap();
+		enchThor.put(LCEnchantments.handOfThor, 1);
+		Map<Enchantment, Integer> enchAura = new HashMap();
+		enchAura.put(LCEnchantments.elecAura, 1);
+		EnchantmentHelper.setEnchantments(enchThor, bookThor);
+		EnchantmentHelper.setEnchantments(enchAura, bookAura);
 		WeightedRandomChestContent contentBookThor = new WeightedRandomChestContent(null, 0, 1, 2, 2); contentBookThor.theItemId = bookThor;
 		WeightedRandomChestContent contentBookAura = new WeightedRandomChestContent(null, 0, 1, 2, 2); contentBookAura.theItemId = bookAura;
 		
@@ -80,8 +88,8 @@ public class UnderworldTower extends Feature {
 			return true;
 		} else {
 			int failed = 0;
-			int x = this.getBoundingBox().getCenter().getX();
-			int z = this.getBoundingBox().getCenter().getZ();
+			int x = WorldUtils.getStructureCenter(this.boundingBox).getX();
+			int z = WorldUtils.getStructureCenter(this.boundingBox).getZ();
 			if(RefMisc.DEBUG) System.out.println("Spawn check initiated at  ("+x+","+z+")");
 			IntList yPoints = new IntList();
 

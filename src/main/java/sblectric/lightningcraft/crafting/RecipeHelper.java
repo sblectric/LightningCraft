@@ -7,49 +7,34 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import sblectric.lightningcraft.api.util.StackHelper;
+import sblectric.lightningcraft.ref.RefStrings;
+import sblectric.lightningcraft.registry.RegistryHelper;
 
 /** Helps with crafting recipe management */
 public class RecipeHelper {
 	
+	private static final List<IRecipe> RECIPES = RegistryHelper.RECIPES_TO_REGISTER;
+	private static int recipeCounter = 0;
+	
+	/** Add a generic recipe */
+	public static void addRecipe(IRecipe recipe) {
+		System.out.println("recipe count: " + recipeCounter);
+		RECIPES.add(recipe.setRegistryName(new ResourceLocation(RefStrings.MODID, "recipe" + recipeCounter++)));
+	}
+	
 	/** Add a shaped ore recipe */
-	public static void addShapedOreRecipe(ItemStack result, Object... recipe) {
-		GameRegistry.addRecipe(new ShapedOreRecipe(result, recipe));
+	public static void addShapedRecipe(ItemStack result, Object... recipe) {
+		addRecipe(new ShapedOreRecipe(new ResourceLocation(RefStrings.MODID, "recipe" + recipeCounter), result, recipe));
 	}
 	
 	/** Add a shapeless ore recipe */
-	public static void addShapelessOreRecipe(ItemStack result, Object... recipe) {
-		GameRegistry.addRecipe(new ShapelessOreRecipe(result, recipe));
-	}
-	
-	/** Remove all recipes that give 'stackResult' (not amount-sensitive) */
-	public static void removeRecipes(ItemStack stackResult) {
-		List<IRecipe> allRecipes = CraftingManager.getInstance().getRecipeList();
-		Iterator<IRecipe> remover = allRecipes.iterator();
-		while(remover.hasNext()) { 
-			IRecipe current = remover.next();
-			if(StackHelper.areItemStacksEqualForCrafting(stackResult, current.getRecipeOutput())) {
-				remover.remove(); // get rid of it
-			}
-		}
-	}
-	
-	/** Remove all recipes that give 'stackResult' and can be crafted with 'inventory' (amount-sensitive) */
-	public static void removeRecipes(ItemStack stackResult, ItemStack... inventory) {
-		List<IRecipe> allRecipes = CraftingManager.getInstance().getRecipeList();
-		Iterator<IRecipe> remover = allRecipes.iterator();
-		InventoryCrafting inv = new LCInventoryCrafting(3, 3, inventory);
-		while(remover.hasNext()) {
-			IRecipe current = remover.next();
-			try {
-				if(ItemStack.areItemStacksEqual(stackResult, current.getCraftingResult(inv))) {
-					remover.remove(); // get rid of it
-				}
-			} catch(Exception e) {}
-		}
+	public static void addShapelessRecipe(ItemStack result, Object... recipe) {
+		addRecipe(new ShapelessOreRecipe(new ResourceLocation(RefStrings.MODID, "recipe" + recipeCounter), result, recipe));
 	}
 
 }

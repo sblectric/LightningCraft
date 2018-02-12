@@ -1,9 +1,11 @@
 package sblectric.lightningcraft.blocks;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import com.google.common.cache.LoadingCache;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
@@ -15,10 +17,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -27,15 +28,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.dimensions.TeleporterLC;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.init.LCDimensions;
 import sblectric.lightningcraft.init.LCParticles;
 import sblectric.lightningcraft.init.LCSoundEvents;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.util.WorldUtils;
-
-import com.google.common.cache.LoadingCache;
 
 /** The underworld portal block */
 public class PortalUnderworld extends BlockPortal implements ILightningCraftBlock {
@@ -66,7 +64,7 @@ public class PortalUnderworld extends BlockPortal implements ILightningCraftBloc
 	/** No blocks to show */
 	@Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {}
+    public void getSubBlocks(CreativeTabs tab, NonNullList list) {}
 
 	/** No updates for this block */
 	@Override
@@ -88,14 +86,14 @@ public class PortalUnderworld extends BlockPortal implements ILightningCraftBloc
 		} else if(p.dimension != LCDimensions.underworldID) {
 			p.timeUntilPortal = 10;
 			Log.logger.info("Sending player " + p.getName() + " to Underworld");
-			p.addStat(LCAchievements.reachUnderworld, 1);
+//			p.addStat(LCAchievements.reachUnderworld, 1);
 			server.getPlayerList().transferPlayerToDimension(p, LCDimensions.underworldID, 
-					new TeleporterLC(p.dimension, server.worldServerForDimension(LCDimensions.underworldID)));
+					new TeleporterLC(p.dimension, server.getWorld(LCDimensions.underworldID)));
 		} else {
 			p.timeUntilPortal = 10;
 			Log.logger.info("Sending player " + p.getName() + " to Overworld");
 			server.getPlayerList().transferPlayerToDimension(p, 0, 
-					new TeleporterLC(p.dimension, server.worldServerForDimension(0)));
+					new TeleporterLC(p.dimension, server.getWorld(0)));
 		}
 		portalStatus.setPortal(p, false); // teleporting over
 	}
@@ -183,7 +181,7 @@ public class PortalUnderworld extends BlockPortal implements ILightningCraftBloc
 	 * Called when a neighboring block changes.
 	 */
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		EnumFacing.Axis axis = state.getValue(AXIS);
 

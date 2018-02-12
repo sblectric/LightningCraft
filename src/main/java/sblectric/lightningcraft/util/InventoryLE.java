@@ -2,11 +2,18 @@ package sblectric.lightningcraft.util;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.items.ItemBattery;
 import sblectric.lightningcraft.ref.LCText;
@@ -40,8 +47,11 @@ public class InventoryLE {
 	}
 
 	/** Add the appropriate LP lore */
-	public static boolean addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4, LECharge charge) {
+	@SideOnly(Side.CLIENT)
+	public static boolean addInformation(@Nonnull ItemStack stack, World world, List list, ITooltipFlag flag, LECharge charge) {
 		list.add(LCText.getInventoryLEUserLore());
+		
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		boolean charged = hasLESource(player);
 		charge.setCharge(getAvailablePower(player));
 		
@@ -62,7 +72,7 @@ public class InventoryLE {
 			while((invPos = LCMisc.posInInventory(user, LCItems.battery, avoid)) >= 0) {
 				// check this inventory position
 				if(invPos >= 0) {
-					ItemStack battery = user.inventory.mainInventory[invPos];
+					ItemStack battery = user.inventory.mainInventory.get(invPos);
 					power = Math.max(power, ItemBattery.getStoredPower(battery));
 					avoid.add(invPos);
 				}
@@ -78,14 +88,14 @@ public class InventoryLE {
 	}
 
 	/** Find a battery to use */
-	public static ItemStack getLESource(EntityPlayer user, double lpNeeded) {
+	public static @Nonnull ItemStack getLESource(EntityPlayer user, double lpNeeded) {
 		if(hasLESource(user)) {
 			int invPos = 0;
 			IntList avoid = new IntList();
 			while((invPos = LCMisc.posInInventory(user, LCItems.battery, avoid)) >= 0) {
 				// check this inventory position
 				if(invPos >= 0) {
-					ItemStack battery = user.inventory.mainInventory[invPos];
+					ItemStack battery = user.inventory.mainInventory.get(invPos);
 					
 					if(ItemBattery.getStoredPower(battery) >= lpNeeded) {
 						return battery;
@@ -93,13 +103,13 @@ public class InventoryLE {
 						avoid.add(invPos);
 					}
 				}
-			}	
+			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 	/** Hit an entity with this weapon */
-	public static void hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase user, double normalDamage, boolean maxDamage) {
+	public static void hitEntity(@Nonnull ItemStack stack, EntityLivingBase entity, EntityLivingBase user, double normalDamage, boolean maxDamage) {
 		if(user instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer)user;
 			DamageSource source = DamageSource.causePlayerDamage(player);
@@ -129,7 +139,7 @@ public class InventoryLE {
 	
 	/** Variable tool efficiency based on current charge,
 	 *  Peak powered efficiency is between skyfather and mystic efficiency */
-	public static float getEfficiency(ItemStack tool, float baseEff) {
+	public static float getEfficiency(@Nonnull ItemStack tool, float baseEff) {
 		float newEff;
 		double charge;
 		if(tool.hasTagCompound()) {
@@ -137,7 +147,7 @@ public class InventoryLE {
 		} else {
 			charge = 0;
 		}
-		double multiplier = (LCItems.mysticMat.getEfficiencyOnProperMaterial() - 2) / baseEff;
+		double multiplier = (LCItems.mysticMat.getEfficiency() - 2) / baseEff;
 		double take = Math.min(charge / breakUsage, multiplier);
 		
 			if(charge > 0) {
@@ -150,7 +160,7 @@ public class InventoryLE {
 	}
 	
 	/** Updates stored power that the tool can use */
-	public static void updateToolPower(ItemStack tool, EntityPlayer player) {
+	public static void updateToolPower(@Nonnull ItemStack tool, EntityPlayer player) {
 		if(!tool.hasTagCompound()) tool.setTagCompound(new NBTTagCompound());
 		if(SkyUtils.canWriteItemNBT(tool, player) && tool.getTagCompound().getDouble("availablePower") != getAvailablePower(player)) {
 			tool.getTagCompound().setDouble("availablePower", getAvailablePower(player));
@@ -158,9 +168,9 @@ public class InventoryLE {
 	}
 	
 	/** When a block is broken, take power away */
-	public static void onBlockBreak(ItemStack tool, EntityPlayer player, float baseEff) {
+	public static void onBlockBreak(@Nonnull ItemStack tool, EntityPlayer player, float baseEff) {
 		double charge = getAvailablePower(player);
-		double multiplier = (LCItems.mysticMat.getEfficiencyOnProperMaterial() - 2) / baseEff;
+		double multiplier = (LCItems.mysticMat.getEfficiency() - 2) / baseEff;
 		double take = Math.min(charge, multiplier) * energyUsage;
 		ItemStack battery = getLESource(player, take);
 		ItemBattery.addStoredPower(battery, -take);

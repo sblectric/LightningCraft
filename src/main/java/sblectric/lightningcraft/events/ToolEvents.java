@@ -68,7 +68,7 @@ public class ToolEvents {
 			// get the held item and make sure it isn't null!
 			// 1.1.2 fix
 			tool = e.getHarvester().inventory.getCurrentItem();
-			if(e.getHarvester().inventory.getCurrentItem() == null) {
+			if(e.getHarvester().inventory.getCurrentItem().isEmpty()) {
 				return false;
 			}
 			
@@ -100,7 +100,7 @@ public class ToolEvents {
 						eitem.motionX = random.nextGaussian() * f3;
 						eitem.motionY = random.nextGaussian() * f3 + 0.2F;
 						eitem.motionZ = random.nextGaussian() * f3;
-						e.getWorld().spawnEntityInWorld(eitem);
+						e.getWorld().spawnEntity(eitem);
 						tool.damageItem(1, e.getHarvester()); // +1 damage per ore obtained
 						// spawn particles at this position
 						for(int j = 0; j < nParticles; j++) {

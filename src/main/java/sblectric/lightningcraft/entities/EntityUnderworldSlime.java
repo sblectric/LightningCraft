@@ -37,7 +37,7 @@ public class EntityUnderworldSlime extends EntityMagmaCube {
 
     @Override
 	@SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float p_70070_1_) {
+    public int getBrightnessForRender() {
         return 15728880;
     }
 
@@ -45,7 +45,7 @@ public class EntityUnderworldSlime extends EntityMagmaCube {
      * Gets how bright this entity is.
      */
     @Override
-	public float getBrightness(float p_70013_1_) {
+	public float getBrightness() {
         return 1.0F;
     }
 
@@ -59,7 +59,7 @@ public class EntityUnderworldSlime extends EntityMagmaCube {
 
     @Override
 	protected EntitySlime createInstance() {
-        return new EntityUnderworldSlime(this.worldObj);
+        return new EntityUnderworldSlime(this.world);
     }
     
 	/** The Underworld Slime loot table */

@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "lightningcraft:blocks/ench_realloc_top",
+        "front": "lightningcraft:blocks/ench_realloc_side",
+        "side": "lightningcraft:blocks/ench_realloc_side"
+    }
+}

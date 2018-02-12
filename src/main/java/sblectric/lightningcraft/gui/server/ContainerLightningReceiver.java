@@ -49,14 +49,14 @@ public class ContainerLightningReceiver extends Container {
 		int cellPower = (int)(this.rx.storedPower * 10D);
 		int maxPower = (int)this.rx.maxPower;
 		int x = rx.txPos.getX(); int z = rx.txPos.getZ();
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(cellPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(cellPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(maxPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(maxPower));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(x));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(x));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getLowShort(z));
-		craft.sendProgressBarUpdate(this, n++, ShortSender.getHighShort(z));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(cellPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(cellPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(maxPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(maxPower));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(x));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(x));
+		craft.sendWindowProperty(this, n++, ShortSender.getLowShort(z));
+		craft.sendWindowProperty(this, n++, ShortSender.getHighShort(z));
 		return n;
 	}
 	
@@ -64,9 +64,9 @@ public class ContainerLightningReceiver extends Container {
 	public void addListener(IContainerListener craft) {
 		super.addListener(craft);
 		int n = sendUpdate(craft, 0);
-		craft.sendProgressBarUpdate(this, n++, this.rx.txPos.getY());
-		craft.sendProgressBarUpdate(this, n++, this.rx.outOfRange ? 1 : 0);
-		craft.sendProgressBarUpdate(this, 100, (int)(this.rx.efficiency * 1000D));
+		craft.sendWindowProperty(this, n++, this.rx.txPos.getY());
+		craft.sendWindowProperty(this, n++, this.rx.outOfRange ? 1 : 0);
+		craft.sendWindowProperty(this, 100, (int)(this.rx.efficiency * 1000D));
 	}
 
 	@Override
@@ -75,8 +75,8 @@ public class ContainerLightningReceiver extends Container {
 		for(int i = 0; i < this.listeners.size(); i++) {
 			IContainerListener craft = this.listeners.get(i);
 			int n = sendUpdate(craft, 0);
-			craft.sendProgressBarUpdate(this, n++, this.rx.txPos.getY());
-			craft.sendProgressBarUpdate(this, n++, this.rx.outOfRange ? 1 : 0);
+			craft.sendWindowProperty(this, n++, this.rx.txPos.getY());
+			craft.sendWindowProperty(this, n++, this.rx.outOfRange ? 1 : 0);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class ContainerLightningReceiver extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 
 		int INPUT = -1;
@@ -130,31 +130,31 @@ public class ContainerLightningReceiver extends Container {
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, INPUT+28, INPUT+37, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				// item in action bar - place in player inventory
 				else if (par2 >= INPUT+28 && par2 < INPUT+37 && !this.mergeItemStack(itemstack1, INPUT+1, INPUT+28, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getCount() == 0)
 			{
-				slot.putStack((ItemStack)null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getCount() == itemstack.getCount())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 		return itemstack;
 	}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "lightningcraft:blocks/planks_underworld",
+        "top": "lightningcraft:blocks/planks_underworld",
+        "side": "lightningcraft:blocks/planks_underworld"
+    }
+}

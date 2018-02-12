@@ -100,7 +100,7 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 	/** The main operational loop */
 	@Override
 	public void update() {
-		if(!this.worldObj.isRemote) {
+		if(!this.world.isRemote) {
 
 			// keep the coordinates updated
 			tileX = getX() + 0.5;
@@ -125,17 +125,17 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 			if(this.currentTicks > this.ticksUntilNextAttack) {
 				doAttack = true;
 				if(meta == 0) { // normal Underworld cannon (players)
-					target = WorldUtils.getClosestVulnerablePlayer(this.worldObj, tileX, tileY, tileZ, 32.0D, new JointList<UUID>());
+					target = WorldUtils.getClosestVulnerablePlayer(this.world, tileX, tileY, tileZ, 32.0D, new JointList<UUID>());
 				} else {
 					if(hasCell && this.canDrawCellPower(getAttackEnergy())) {
 						drawPower = true;
 						switch(mode) {
 						case MOBS: // all mobs
-							target = (EntityLivingBase)WorldUtils.getClosestVulnerableEntityOfType(this.worldObj, tileX, tileY, tileZ, 32.0D, 
+							target = (EntityLivingBase)WorldUtils.getClosestVulnerableEntityOfType(this.world, tileX, tileY, tileZ, 32.0D, 
 									IMob.class);
 							break;
 						case ALL: // all EntityLivings
-							target = (EntityLivingBase)WorldUtils.getClosestVulnerableEntityOfType(this.worldObj, tileX, tileY, tileZ, 32.0D, 
+							target = (EntityLivingBase)WorldUtils.getClosestVulnerableEntityOfType(this.world, tileX, tileY, tileZ, 32.0D, 
 									EntityLiving.class);
 							break;
 						default: // nothing (default)
@@ -147,9 +147,9 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 			// perform the attack
 			if(doAttack) {
 				if(target != null && this.canEntityBeSeen(target)) {
-					EntityLCElectricAttack bolt = new EntityLCElectricAttack(worldObj, tileX, tileY, tileZ, target);
-					this.worldObj.spawnEntityInWorld(bolt);
-					this.worldObj.playSound(null, tileX, tileY, tileZ, SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.BLOCKS, 3.0F, 0.1F);
+					EntityLCElectricAttack bolt = new EntityLCElectricAttack(world, tileX, tileY, tileZ, target);
+					this.world.spawnEntity(bolt);
+					this.world.playSound(null, tileX, tileY, tileZ, SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.BLOCKS, 3.0F, 0.1F);
 					if(drawPower) this.drawCellPower(getAttackEnergy());
 				}
 
@@ -170,10 +170,10 @@ public class TileEntityLightningCannon extends TileEntityLightningUser {
 	 * returns true if the entity provided in the argument can be seen. (Raytrace)
 	 */
 	public boolean canEntityBeSeen(Entity e) {
-		return this.worldObj.rayTraceBlocks(new Vec3d(tileX + 1, tileY, tileZ + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				this.worldObj.rayTraceBlocks(new Vec3d(tileX + 0, tileY, tileZ + 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				this.worldObj.rayTraceBlocks(new Vec3d(tileX - 1, tileY, tileZ + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
-				this.worldObj.rayTraceBlocks(new Vec3d(tileX + 0, tileY, tileZ - 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null; 
+		return this.world.rayTraceBlocks(new Vec3d(tileX + 1, tileY, tileZ + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				this.world.rayTraceBlocks(new Vec3d(tileX + 0, tileY, tileZ + 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				this.world.rayTraceBlocks(new Vec3d(tileX - 1, tileY, tileZ + 0), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null || 
+				this.world.rayTraceBlocks(new Vec3d(tileX + 0, tileY, tileZ - 1), new Vec3d(e.posX, e.posY + e.getEyeHeight(), e.posZ)) == null; 
 
 	}
 

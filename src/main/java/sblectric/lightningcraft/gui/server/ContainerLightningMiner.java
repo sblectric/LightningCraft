@@ -57,8 +57,8 @@ public class ContainerLightningMiner extends ContainerLightningUser.Upgradable {
 	@Override
 	public void sendInfo(IContainerListener craft) {
 		super.sendInfo(craft);
-		craft.sendProgressBarUpdate(this, 0, this.tile.mode.getID());
-		craft.sendProgressBarUpdate(this, 1, this.tile.replaceBlocks ? 1 : 0);
+		craft.sendWindowProperty(this, 0, this.tile.mode.getID());
+		craft.sendWindowProperty(this, 1, this.tile.replaceBlocks ? 1 : 0);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ContainerLightningMiner extends ContainerLightningUser.Upgradable {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 
 		IntList INPUT = new IntList();
@@ -98,7 +98,7 @@ public class ContainerLightningMiner extends ContainerLightningUser.Upgradable {
 				// try to place in an input slot; add 1 to final input slot because mergeItemStack uses < index
 				if (!this.mergeItemStack(itemstack1, INPUT.getFirst(), INPUT.getLast() + 1, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 				
 				slot.onSlotChange(itemstack1, itemstack);
@@ -110,36 +110,36 @@ public class ContainerLightningMiner extends ContainerLightningUser.Upgradable {
 				// place in action bar
 				if (!this.mergeItemStack(itemstack1, OUTPUT+28, OUTPUT+37, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			// item in action bar - place in player inventory
 			else if (par2 >= OUTPUT+28 && par2 < OUTPUT+37 && !this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+28, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			// In one of the infuser slots; try to place in player inventory / action bar
 			else if (!this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+37, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			if (itemstack1.stackSize == 0)
+			if (itemstack1.getCount() == 0)
 			{
-				slot.putStack(null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize)
+			if (itemstack1.getCount() == itemstack.getCount())
 			{
 				return null;
 			}
 
-			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+			slot.onTake(par1EntityPlayer, itemstack1);
 		}
 		return itemstack;
 	}

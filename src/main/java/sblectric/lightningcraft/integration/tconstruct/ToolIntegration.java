@@ -1,9 +1,12 @@
 package sblectric.lightningcraft.integration.tconstruct;
 
+import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.init.LCFluids;
@@ -11,6 +14,7 @@ import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.ref.Log;
 import sblectric.lightningcraft.ref.Metal.Ingot;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.client.MaterialRenderInfo;
 import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
 import slimeknights.tconstruct.library.materials.HandleMaterialStats;
 import slimeknights.tconstruct.library.materials.HeadMaterialStats;

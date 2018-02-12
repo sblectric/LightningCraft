@@ -1,0 +1,6 @@
+{
+    "parent": "block/heavy_pressure_plate_down",
+    "textures": {
+        "texture": "lightningcraft:blocks/electricium_block"
+    }
+}

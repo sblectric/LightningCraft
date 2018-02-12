@@ -16,7 +16,7 @@ import sblectric.lightningcraft.tiles.TileEntityLightningCell;
 
 /** The energy cell GUI */
 @SideOnly(Side.CLIENT)
-public class GuiLightningCell extends GuiContainer {
+public class GuiLightningCell extends GuiContainerLC {
 	
 	private static final ResourceLocation lpCellGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpcell.png");
 	private TileEntityLightningCell tileLPCell;
@@ -35,24 +35,24 @@ public class GuiLightningCell extends GuiContainer {
 		int texty = 36;
 		
 		String string = this.tileLPCell.cellName;
-		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
+		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 		
 		Gui.drawRect(25, 17, 25 + (int) (((float)tileLPCell.storedPower/(float)tileLPCell.maxPower) * width), 17 + height, 0xffffffff);
 		
-		this.fontRendererObj.drawString("Stored LE:", 24, texty, 4210752);
-		this.fontRendererObj.drawString("Capacity:", 24, texty + 10, 4210752);
-		this.fontRendererObj.drawString("Terminal Efficiency:", 24, texty + 20, 4210752);
+		this.fontRenderer.drawString("Stored LE:", 24, texty, 4210752);
+		this.fontRenderer.drawString("Capacity:", 24, texty + 10, 4210752);
+		this.fontRenderer.drawString("Terminal Efficiency:", 24, texty + 20, 4210752);
 		String storedPower = tileLPCell.storedPower + " LE";
 		String maxPower = (int)tileLPCell.maxPower + " LE";
 		String efficiency = (int)(tileLPCell.efficiency * 100D) + "%";
-		this.fontRendererObj.drawString(storedPower, 151 - this.fontRendererObj.getStringWidth(storedPower), texty, 4210752);
-		this.fontRendererObj.drawString(maxPower, 151 - this.fontRendererObj.getStringWidth(maxPower), texty + 10, 4210752);
-		this.fontRendererObj.drawString(efficiency, 151 - this.fontRendererObj.getStringWidth(efficiency), texty + 20, 4210752);
+		this.fontRenderer.drawString(storedPower, 151 - this.fontRenderer.getStringWidth(storedPower), texty, 4210752);
+		this.fontRenderer.drawString(maxPower, 151 - this.fontRenderer.getStringWidth(maxPower), texty + 10, 4210752);
+		this.fontRenderer.drawString(efficiency, 151 - this.fontRenderer.getStringWidth(efficiency), texty + 20, 4210752);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+	protected void drawBackground() {
 		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        this.mc.getTextureManager().bindTexture(lpCellGuiTextures);
 	        int k = (this.width - this.xSize) / 2;

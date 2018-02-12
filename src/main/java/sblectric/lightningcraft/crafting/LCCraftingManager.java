@@ -28,16 +28,8 @@ import sblectric.lightningcraft.ref.RefStrings;
 /** Oredict, crafting, and smelting recipes */
 public class LCCraftingManager {
 
-	/** The main registry for crafting recipes and such */
-	public static void onInit() {
-		setOreDictionary();
-		addCraftingRecipes();
-		addSmeltingRecipes();
-		GameRegistry.registerFuelHandler(new LCFuelHandler());
-	}
-
 	/** Add Ore Dictionary entries */
-	private static void setOreDictionary() {
+	public static void setOreDictionary() {
 		// register this mod's items
 
 		// register blocks
@@ -90,254 +82,258 @@ public class LCCraftingManager {
 	}
 
 	/** Add crafting recipes */
-	private static void addCraftingRecipes() {
+	public static void addCraftingRecipes() {
 
 		// block <-> ingot recipes
 		for(int meta = 0; meta < Ingot.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.metalBlock, 1, meta), "XXX","XXX","XXX", 'X',Ingot.getIngotFromMeta(meta));
-			RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.ingot, 9, meta), new ItemStack(LCBlocks.metalBlock, 1, meta));
+			RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.metalBlock, 1, meta), "XXX","XXX","XXX", 'X',Ingot.getIngotFromMeta(meta));
+			RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.ingot, 9, meta), new ItemStack(LCBlocks.metalBlock, 1, meta));
 		}
 
 		// ingot <-> nugget recipes
 		for(int meta = 0; meta < Ingot.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.ingot, 1, meta), "XXX","XXX","XXX", 'X',Nugget.getNuggetFromMeta(meta));
-			RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.nugget, 9, meta), new ItemStack(LCItems.ingot, 1, meta));
+			RecipeHelper.addShapedRecipe(new ItemStack(LCItems.ingot, 1, meta), "XXX","XXX","XXX", 'X',Nugget.getNuggetFromMeta(meta));
+			RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.nugget, 9, meta), new ItemStack(LCItems.ingot, 1, meta));
 		}
 
 		// rod recipes
 		for(int meta = 0; meta < Rod.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.rod, 1, meta), "  X"," X ","X  ", 'X',Rod.getIngotFromMeta(meta));
+			RecipeHelper.addShapedRecipe(new ItemStack(LCItems.rod, 1, meta), "  X"," X ","X  ", 'X',Rod.getIngotFromMeta(meta));
 		}
 
 		// plate recipes
 		for(int meta = 0; meta < Rod.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.plate, 3, meta), "XXX", 'X',Rod.getIngotFromMeta(meta));
+			RecipeHelper.addShapedRecipe(new ItemStack(LCItems.plate, 3, meta), "XXX", 'X',Rod.getIngotFromMeta(meta));
 		}
 
 		// air terminal recipes
 		for(int meta = 0; meta < Rod.count; meta++) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.airTerminal, 1, meta), " I "," X ","PIP", 
+			RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.airTerminal, 1, meta), " I "," X ","PIP", 
 					'I',Rod.getIngotFromMeta(meta), 'X',Rod.getRodFromMeta(meta), 'P',Plate.getPlateFromMeta(meta));
 		}
 
 		// golf clubs
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.golfClub), " II"," X ","I  ", 'X',"rodIron", 'I',"ingotIron");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.golfClubGold), " II"," X ","I  ", 'X',"rodGold", 'I',"ingotGold");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.golfClub), " II"," X ","I  ", 'X',"rodIron", 'I',"ingotIron");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.golfClubGold), " II"," X ","I  ", 'X',"rodGold", 'I',"ingotGold");
 
 		// nether nugget
-		RecipeHelper.addShapedOreRecipe(new ItemStack(Items.NETHER_STAR), "XXX","XXX","XXX", 'X',"nuggetNetherStar");
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.material, 9, Material.NETHER_NUGGET), Items.NETHER_STAR);
+		RecipeHelper.addShapedRecipe(new ItemStack(Items.NETHER_STAR), "XXX","XXX","XXX", 'X',"nuggetNetherStar");
+		RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.material, 9, Material.NETHER_NUGGET), Items.NETHER_STAR);
 
 		// materials
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.material, 3, Material.UNDER_MEAL), new ItemStack(LCItems.material, 1, Material.UNDER_BONE));
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(Items.DYE, 6, 1), new ItemStack(LCItems.material, 1, Material.DEMON_BLOOD));
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(Items.DYE, 3, 6), new ItemStack(LCItems.material, 1, Material.UNDER_MEAL));
+		RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.material, 3, Material.UNDER_MEAL), new ItemStack(LCItems.material, 1, Material.UNDER_BONE));
+		RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 6, 1), new ItemStack(LCItems.material, 1, Material.DEMON_BLOOD));
+		RecipeHelper.addShapelessRecipe(new ItemStack(Items.DYE, 3, 6), new ItemStack(LCItems.material, 1, Material.UNDER_MEAL));
 
 		// thunderstone
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER), "QXQ","XOX","QXQ", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER), "QXQ","XOX","QXQ", 
 				'X',"cobblestone", 'O',Blocks.OBSIDIAN, 'Q',"gemQuartz");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK_CHISELED), "X","X",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.THUNDER));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK_CHISELED));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY_2), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.THUNDER_BRICK_FANCY_2), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK));
 		
 		// thunderstone slab and stairs
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.THUNDER), "XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.THUNDER), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.thunderStairs, 4), "X  ","XX ","XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.thunderStairs, 4), "X  ","XX ","XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER_BRICK));
 
 		// demonstone
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED), "X","X",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.DEMON));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY_2), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.DEMON_BRICK_FANCY_2), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK));
 		
 		// demonstone slab and stairs
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.DEMON), "XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.DEMON), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.demonStairs, 4), "X  ","XX ","XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.demonStairs, 4), "X  ","XX ","XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK));
 
 		// understone
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), "X","X",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), "X","X",
 				'X',new ItemStack(LCBlocks.slabBlock, 1, BlockSlabLC.UNDER));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY_2), "XX","XX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.stoneBlock, 4, BlockStone.UNDER_BRICK_FANCY_2), "XX","XX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK));
 		
 		// understone slab and stairs
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.UNDER), "XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.UNDER), "XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underStairs, 4), "X  ","XX ","XXX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.underStairs, 4), "X  ","XX ","XXX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK));
 
 		// lantern to lamp (decorative)
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP), "RBR","BLB","RBR",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP), "RBR","BLB","RBR",
 				'R',Blocks.GLOWSTONE, 'B',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), 
 				'L',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AB","BA",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AB","BA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER), 'B',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_2), "AA","AA",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_2), "AA","AA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_3), "AA","AA",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY_3), "AA","AA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY_2));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AA","AA",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightBlock, 4, BlockLight.UNDER_LAMP_FANCY), "AA","AA",
 				'A',new ItemStack(LCBlocks.lightBlock, 1, BlockLight.UNDER_LAMP_FANCY_3));
 		
 		// corrupt walls
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wallBlock, 6), "BBB","BBB", 'B',LCBlocks.corruptStone);
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wallBlock, 6), "BBB","BBB", 'B',LCBlocks.corruptStone);
 		
 		// TNT
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.LIGHTNING), "GSG","SGS","GSG",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.LIGHTNING), "GSG","SGS","GSG",
 				'G',new ItemStack(LCItems.material, 1, Material.UNDER_POWDER_2), 'S',LCBlocks.underSand);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.MYSTIC), "GSG","TGT","GSG",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.MYSTIC), "GSG","TGT","GSG",
 				'G',new ItemStack(LCItems.material, 1, Material.DIVINE_DUST), 'S',new ItemStack(LCBlocks.underTNT, 1, BlockUnderTNT.LIGHTNING), 'T',Blocks.TNT);
 
 		// wood
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCBlocks.woodPlank, 4), LCBlocks.woodLog);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.UNDER_PLANK), "XXX", 'X',LCBlocks.woodPlank);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.underPlankStairs, 4), "X  ","XX ","XXX", 'X',LCBlocks.woodPlank);
+		RecipeHelper.addShapelessRecipe(new ItemStack(LCBlocks.woodPlank, 4), LCBlocks.woodLog);
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.slabBlock, 6, BlockSlabLC.UNDER_PLANK), "XXX", 'X',LCBlocks.woodPlank);
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.underPlankStairs, 4), "X  ","XX ","XXX", 'X',LCBlocks.woodPlank);
 
 		// tool recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecHammer), "PPP","XIX"," I ", 'X',"ingotElectricium", 'I',"rodElectricium", 'P',"plateElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecSword), " X ","PXP"," I ", 'X',"ingotElectricium", 'I',"rodElectricium", 'P',"plateElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecPick), "XXX"," I "," I ", 'X',"ingotElectricium", 'I',"rodElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecAxe), "XX","XI"," I", 'X',"ingotElectricium", 'I',"rodElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecShovel), "X","I","I", 'X',"ingotElectricium", 'I',"rodElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecHoe), "XX"," I"," I", 'X',"ingotElectricium", 'I',"rodElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyHammer), "PPP","XIX"," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather", 'P',"plateSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skySword), " X ","PXP"," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather", 'P',"plateSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyPick), "XXX"," I "," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyAxe), "XX","XI"," I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyShovel), "X","I","I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyHoe), "XX"," I"," I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecHammer), "PPP","XIX"," I ", 'X',"ingotElectricium", 'I',"rodElectricium", 'P',"plateElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecSword), " X ","PXP"," I ", 'X',"ingotElectricium", 'I',"rodElectricium", 'P',"plateElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecPick), "XXX"," I "," I ", 'X',"ingotElectricium", 'I',"rodElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecAxe), "XX","XI"," I", 'X',"ingotElectricium", 'I',"rodElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecShovel), "X","I","I", 'X',"ingotElectricium", 'I',"rodElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecHoe), "XX"," I"," I", 'X',"ingotElectricium", 'I',"rodElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyHammer), "PPP","XIX"," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather", 'P',"plateSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skySword), " X ","PXP"," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather", 'P',"plateSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyPick), "XXX"," I "," I ", 'X',"ingotSkyfather", 'I',"rodSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyAxe), "XX","XI"," I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyShovel), "X","I","I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyHoe), "XX"," I"," I", 'X',"ingotSkyfather", 'I',"rodSkyfather");
 
 		// armor recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecHelm), "XXX","X X", 'X',"ingotElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecChest), "X X","XXX","XXX", 'X',"ingotElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecLegs), "XXX","X X","X X", 'X',"ingotElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.elecBoots), "X X","X X", 'X',"ingotElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyHelm), "XXX","X X", 'X',"ingotSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyChest), "X X","XXX","XXX", 'X',"ingotSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyLegs), "XXX","X X","X X", 'X',"ingotSkyfather");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.skyBoots), "X X","X X", 'X',"ingotSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecHelm), "XXX","X X", 'X',"ingotElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecChest), "X X","XXX","XXX", 'X',"ingotElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecLegs), "XXX","X X","X X", 'X',"ingotElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.elecBoots), "X X","X X", 'X',"ingotElectricium");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyHelm), "XXX","X X", 'X',"ingotSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyChest), "X X","XXX","XXX", 'X',"ingotSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyLegs), "XXX","X X","X X", 'X',"ingotSkyfather");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.skyBoots), "X X","X X", 'X',"ingotSkyfather");
 
 		// kinetic tools
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticSword), "RCR","RAR","RER",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticSword), "RCR","RAR","RER",
 				'A',Items.GOLDEN_SWORD, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticPick), "RCR","RAR","RER",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticPick), "RCR","RAR","RER",
 				'A',Items.GOLDEN_PICKAXE, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticAxe), "RCR","RAR","RER",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticAxe), "RCR","RAR","RER",
 				'A',Items.GOLDEN_AXE, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticShovel), "RCR","RAR","RER",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticShovel), "RCR","RAR","RER",
 				'A',Items.GOLDEN_SHOVEL, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
 
 		// kinetic armor
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticHelm), "RCR","RAR","RER", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticHelm), "RCR","RAR","RER", 
 				'A',Items.GOLDEN_HELMET, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticChest), "RCR","RAR","RER", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticChest), "RCR","RAR","RER", 
 				'A',Items.GOLDEN_CHESTPLATE, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticLegs), "RCR","RAR","RER", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticLegs), "RCR","RAR","RER", 
 				'A',Items.GOLDEN_LEGGINGS, 'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.kineticBoots), "RCR","RAR","RER", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.kineticBoots), "RCR","RAR","RER", 
 				'A',Items.GOLDEN_BOOTS,  'E',"plateElectricium", 'R',"dustRedstone", 'C',Items.COMPARATOR);
 
 		// cell recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), "XAX","IBI","XAX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), "XAX","IBI","XAX",
 				'B',"plateGold", 'X',"rodIron", 'I',"plateElectricium", 'A',"dustRedstone");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), "XAX","IBI","XAX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), "XAX","IBI","XAX",
 				'B',new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC), 'X',"rodGold", 'I',"plateSkyfather", 'A',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.MYSTIC), "XAX","IBI","XAX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCell, 1, Ingot.MYSTIC), "XAX","IBI","XAX",
 				'B',new ItemStack(LCBlocks.lightningCell, 1, Ingot.SKY), 'X',"rodSkyfather", 'I',"plateMystic", 'A',"plateElectricium");
 
 		// cell upgrade
 		ItemStack lUpgrade = new ItemStack(LCItems.material, 1, Material.UPGRADE);
-		RecipeHelper.addShapedOreRecipe(lUpgrade, " R ","RXR"," R ", 'X',"plateSkyfather", 'R',"dustRedstone");
+		RecipeHelper.addShapedRecipe(lUpgrade, " R ","RXR"," R ", 'X',"plateSkyfather", 'R',"dustRedstone");
 
 		// other machine recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningFurnace), "XCX","XAX","XIX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningFurnace), "XCX","XAX","XIX",
 				'X',"cobblestone", 'I',"plateIron", 'A',Blocks.FURNACE, 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCrusher), "ZCZ","XAX","ZIZ",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCrusher), "ZCZ","XAX","ZIZ",
 				'Z',Blocks.IRON_BARS, 'X',Blocks.OBSIDIAN, 'I',"plateElectricium", 'A',LCBlocks.lightningFurnace, 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningInfuser), "XCX","XAX","XIX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningInfuser), "XCX","XAX","XIX",
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.THUNDER), 'I',"plateGold", 'A',"rodElectricium", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningBreaker), "XCX","GAG","XIX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningBreaker), "XCX","GAG","XIX",
 				'X',"plateIron", 'G',"plateGold", 'I',Items.DIAMOND_PICKAXE, 'A',"blockIron", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningMiner), "XCX","GAG","XIX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningMiner), "XCX","GAG","XIX",
 				'X',"plateGold", 'G',"plateSkyfather", 'I',LCItems.elecPick, 'A',new ItemStack(LCBlocks.lightningBreaker), 'C',"plateElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.staticGenerator), "XCX","COC","XCX", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.staticGenerator), "XCX","COC","XCX", 
 				'C',Items.COMPARATOR, 'X',Blocks.QUARTZ_BLOCK, 'O',new ItemStack(LCBlocks.lightningCell, 1, Ingot.ELEC));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.enchReallocator), "TCT","XAX","XEX",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.enchReallocator), "TCT","XAX","XEX",
 				'A',new ItemStack(LCItems.material, 1, Material.ENSORCELLED), 'E',Blocks.ENCHANTING_TABLE, 
 				'T',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.UNDER_BRICK_CHISELED), 'C',Items.COMPARATOR, 
 				'X',new ItemStack(LCBlocks.stoneBlock, 1, BlockStone.DEMON_BRICK_CHISELED));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 1), "ERE","ICI","ETE", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 1), "ERE","ICI","ETE", 
 				'C',new ItemStack(LCItems.material, 1, Material.CANNON_CORE), 'I',"rodIron", 'E',"rodElectricium", 'T',Blocks.TNT, 'R',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 2), "EQE","ICI","EDE", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.lightningCannon, 1, 2), "EQE","ICI","EDE", 
 				'C',new ItemStack(LCBlocks.lightningCannon, 1, 1), 'I',"rodMystic", 'E',"rodSkyfather", 'Q',lUpgrade, 'D',"dustMystic");
 
 		// wireless recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 0), " T ","XOX","XCX", 'C',"dustDiamond",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 0), " T ","XOX","XCX", 'C',"dustDiamond",
 				'X',"plateIron", 'O',lUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 1), " T ","XOX","XCX", 'C',Items.COMPARATOR,
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 1), " T ","XOX","XCX", 'C',Items.COMPARATOR,
 				'X',"rodIron", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 0), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.SKY));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 2), " T ","XOX","XCX", 'C',"plateElectricium",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 2), " T ","XOX","XCX", 'C',"plateElectricium",
 				'X',"blockIron", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 1), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.MYSTIC));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 3), " T ","XOX","XCX", 'C',"dustRedstone",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 3), " T ","XOX","XCX", 'C',"dustRedstone",
 				'X',"plateGold", 'O',lUpgrade, 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.ELEC));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 4), " T ","XOX","XCX", 'C',Items.COMPARATOR,
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 4), " T ","XOX","XCX", 'C',Items.COMPARATOR,
 				'X',"rodGold", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 3), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.SKY));
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 5), " T ","XOX","XCX", 'C',"blockRedstone",
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.wirelessBlock, 1, 5), " T ","XOX","XCX", 'C',"blockRedstone",
 				'X',"blockGold", 'O',new ItemStack(LCBlocks.wirelessBlock, 1, 4), 'T',new ItemStack(LCBlocks.airTerminal, 1, Rod.MYSTIC));
 
 		// RF machines
 		if(EnergyApiHelper.rfOrTeslaLoaded) {
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.rfProvider), "BRB","CAC","BCB",
+			RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.rfProvider), "BRB","CAC","BCB",
 					'B',"plateElectricium", 'A',"blockIron", 'R',Items.COMPARATOR, 'C',"plateIron");
-			RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.rfReceiver), "BRB","CAC","BCB",
+			RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.rfReceiver), "BRB","CAC","BCB",
 					'B',"blockRedstone", 'A',"blockGold", 'R',Items.COMPARATOR, 'C',"plateIron");
 		}
 
 		// wireless markers
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.wirelessMarker, 1), " C ","EPE"," U ", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.wirelessMarker, 1), " C ","EPE"," U ", 
 				'P',Items.PAPER, 'E',"dustElectricium", 'U',lUpgrade, 'C',Items.COMPARATOR);
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.wirelessMarker, 1, 0), new ItemStack(LCItems.wirelessMarker, 1, 1));
+		RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.wirelessMarker, 1, 0), new ItemStack(LCItems.wirelessMarker, 1, 1));
 
 		// battery recipes
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 0), "ICI","IBI","IRI", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.battery, 1, 0), "ICI","IBI","IRI", 
 				'B',"plateElectricium", 'I',"rodIron", 'R',"dustRedstone", 'C',Items.COMPARATOR);
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 1), "RUR","RBR","RIR", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.battery, 1, 1), "RUR","RBR","RIR", 
 				'B',new ItemStack(LCItems.battery, 1, 0), 'U',lUpgrade, 'R',"dustRedstone", 'I',"rodElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.battery, 1, 2), "RUR","RBR","RIR", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.battery, 1, 2), "RUR","RBR","RIR", 
 				'B',new ItemStack(LCItems.battery, 1, 1), 'U',"ingotSkyfather", 'R',"blockRedstone", 'I',"blockElectricium");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCBlocks.chargingPlate), "RCR","RPR","RER", 'E',"plateElectricium", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCBlocks.chargingPlate), "RCR","RPR","RER", 'E',"plateElectricium", 
 				'P',Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, 'R',"dustRedstone", 'C',Items.COMPARATOR);
 
 		// magnets
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.itemMagnet, 1, 0), "INN","  N","INN", 'I',"plateIron", 'N',"blockRedstone");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.itemMagnet, 1, 1), "IEE"," ME","IEE", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.itemMagnet, 1, 0), "INN","  N","INN", 'I',"plateIron", 'N',"blockRedstone");
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.itemMagnet, 1, 1), "IEE"," ME","IEE", 
 				'I',"plateIron", 'M',new ItemStack(LCItems.itemMagnet, 1, 0), 'E',"ingotIron");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.itemMagnet, 1, 2), "IEE"," ME","IEE", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.itemMagnet, 1, 2), "IEE"," ME","IEE", 
 				'I',"plateIron", 'M',new ItemStack(LCItems.itemMagnet, 1, 1), 'E',"ingotGold");
-		RecipeHelper.addShapedOreRecipe(new ItemStack(LCItems.itemMagnet, 1, 3), "IEE"," ME","IEE", 
+		RecipeHelper.addShapedRecipe(new ItemStack(LCItems.itemMagnet, 1, 3), "IEE"," ME","IEE", 
 				'I',"plateIron", 'M',new ItemStack(LCItems.itemMagnet, 1, 2), 'E',"ingotElectricium");
 
 	}
 
 	/** Add smelting recipes */
-	private static void addSmeltingRecipes() {
+	public static void addSmeltingRecipes() {
+		
+		// register the fuel handler
+		GameRegistry.registerFuelHandler(new LCFuelHandler());
+		
 		// dust -> ingots
 		for(int meta = 0; meta < Ingot.count; meta++) {
 			GameRegistry.addSmelting(new ItemStack(LCItems.dust, 1, meta), new ItemStack(LCItems.ingot, 1, meta), 1.0F);
@@ -358,28 +354,28 @@ public class LCCraftingManager {
 		GameRegistry.addSmelting(new ItemStack(LCItems.material, 1, Material.QUARTZ_DUST), new ItemStack(Items.QUARTZ), 1.0F);
 	}
 
-	/** Wrap up the crafting stuff here */
-	public static void postInit() {
-		// find all rod prefixes
-		for(String name : OreDictionary.getOreNames()) {
-			if(!name.equals("rod") && name.startsWith("rod") && Metal.getAllNames().contains(name.substring(3))) {
-				for(ItemStack s : OreDictionary.getOres(name)) {
-					// remove the other mods' recipes
-					try {
-						if(LCConfig.disableOtherRods && !s.getItem().getRegistryName().getResourceDomain().equals(RefStrings.MODID)) {
-							RecipeHelper.removeRecipes(s);
-							continue; // don't add it to the valid metal types
-						}
-					} catch(Exception e) {}
-
-					// add it to the "rodLC" group if it's a valid metal type
-					OreDictionary.registerOre("rodLC", s);
-				}
-			}
-		}
-
-		// the guide's recipe
-		RecipeHelper.addShapelessOreRecipe(new ItemStack(LCItems.guide), Items.BOOK, "rodLC");
-	}
+//	/** Wrap up the crafting stuff here */
+//	public static void postInit() {
+//		// find all rod prefixes
+//		for(String name : OreDictionary.getOreNames()) {
+//			if(!name.equals("rod") && name.startsWith("rod") && Metal.getAllNames().contains(name.substring(3))) {
+//				for(ItemStack s : OreDictionary.getOres(name)) {
+//					// remove the other mods' recipes
+//					try {
+//						if(LCConfig.disableOtherRods && !s.getItem().getRegistryName().getResourceDomain().equals(RefStrings.MODID)) {
+//							RecipeHelper.removeRecipes(s);
+//							continue; // don't add it to the valid metal types
+//						}
+//					} catch(Exception e) {}
+//
+//					// add it to the "rodLC" group if it's a valid metal type
+//					OreDictionary.registerOre("rodLC", s);
+//				}
+//			}
+//		}
+//
+//		// the guide's recipe
+//		RecipeHelper.addShapelessRecipe(new ItemStack(LCItems.guide), Items.BOOK, "rodLC");
+//	}
 
 }

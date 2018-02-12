@@ -24,7 +24,6 @@ public abstract class BlockContainerLC extends BlockLC {
 	public BlockContainerLC(Block parent, float hardness, float resistance, EnumBlockRenderType renderType) {
 		super(parent, hardness, resistance);
 		this.renderType = renderType;
-		this.isBlockContainer = true;
 	}
 
 	/** A standard model Tile Entity container. */

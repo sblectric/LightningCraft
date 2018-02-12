@@ -2,12 +2,16 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.google.common.collect.Multimap;
 
@@ -25,7 +29,8 @@ public class ItemSkyPick extends ItemPickaxeLC {
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
 			if(LCConfig.autoSmelt) list.add(LCText.getAutoSmeltLore());
 			if(this instanceof IMysticGear) list.add(LCText.getFortuneBonusLore());

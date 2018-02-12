@@ -16,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.ref.RefMisc;
 import sblectric.lightningcraft.util.WorldUtils;
 
@@ -86,8 +85,8 @@ public class EntityLCZombie extends EntityZombie {
 		}
 		
 		// try to get entities
-		if(this.target == null)	this.target = this.targetID != null ? WorldUtils.getEntityLivingBaseFromUUID(worldObj, targetID, isTargetPlayer) : null;
-		if(this.owner == null)	this.owner = this.ownerID != null ? WorldUtils.getEntityLivingBaseFromUUID(worldObj, ownerID, isOwnerPlayer): null;
+		if(this.target == null)	this.target = this.targetID != null ? WorldUtils.getEntityLivingBaseFromUUID(world, targetID, isTargetPlayer) : null;
+		if(this.owner == null)	this.owner = this.ownerID != null ? WorldUtils.getEntityLivingBaseFromUUID(world, ownerID, isOwnerPlayer): null;
 		
 		// set read state
 		if(this.target == null && this.owner == null) {
@@ -119,7 +118,7 @@ public class EntityLCZombie extends EntityZombie {
 	public void onUpdate() {
 		super.onUpdate();
 		
-		if(!this.worldObj.isRemote) {
+		if(!this.world.isRemote) {
 			
 			// read in new data
 			if((loadstate == stateREADNBT || loadstate == stateTRIED) && target == null || owner == null) this.getData();
@@ -138,9 +137,9 @@ public class EntityLCZombie extends EntityZombie {
 				if(loadstate == stateDONE) {
 					
 					// achievement get!
-					if(owner != null && target != null && target.isDead && isOwnerPlayer && this.getHealth() > 0) {
-						((EntityPlayer)owner).addStat(LCAchievements.specialSwordKill, 1);
-					}
+//					if(owner != null && target != null && target.isDead && isOwnerPlayer && this.getHealth() > 0) {
+//						((EntityPlayer)owner).addStat(LCAchievements.specialSwordKill, 1);
+//					}
 					this.die(); // the zombie has no more purpose
 				}
 			}
@@ -151,7 +150,7 @@ public class EntityLCZombie extends EntityZombie {
 	/** Attacking mobs */
 	@Override
 	public boolean attackEntityAsMob(Entity victim) {
-		if(!victim.worldObj.isRemote) {
+		if(!victim.world.isRemote) {
 			if(victim instanceof EntityLivingBase) {
 				// make sure to make the victim drop stuff as if it were a player kill
 				// via reflection

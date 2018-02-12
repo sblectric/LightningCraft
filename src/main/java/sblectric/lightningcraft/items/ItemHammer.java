@@ -2,6 +2,7 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,6 +15,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.google.common.collect.Multimap;
 
@@ -34,19 +37,21 @@ public class ItemHammer extends ItemChargedSword {
 
 	// item lore
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		list.add(LCText.getChargedLore());
 		list.add(LCText.getSummonerLore());
 	}
 	
 	// set the item in use (only in main hand, though!)
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(hand == EnumHand.MAIN_HAND) {
 			player.setActiveHand(hand);
+			ItemStack stack = player.getHeldItem(hand);
 	        return new ActionResult(EnumActionResult.SUCCESS, stack);
 		} else {
-			return super.onItemRightClick(stack, world, player, hand);
+			return super.onItemRightClick(world, player, hand);
 		}
 	}
 
@@ -80,8 +85,8 @@ public class ItemHammer extends ItemChargedSword {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName()); // clear the attack speed
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), 
+			multimap.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getName()); // clear the attack speed
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), 
 					new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
 		}
 

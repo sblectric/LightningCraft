@@ -34,7 +34,7 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 	private int retries = 0;
 	
 	public TileEntityLightningMiner() {
-		stacks = new ItemStack[nStacks];
+		setSizeInventory(nStacks);
 	}
 
 	/** Operating mode */
@@ -82,12 +82,12 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 	// world-called update
 	@Override
 	public void update() {
-		if(!worldObj.isRemote && worldObj.getTotalWorldTime() % breakModTime == 0) doOperation();
+		if(!world.isRemote && world.getTotalWorldTime() % breakModTime == 0) doOperation();
 	}
 
 	/** Do the mining operation */
 	public void doOperation() {
-		if(this.hasLPCell() && this.canDrawCellPower(mode.cost) && !worldObj.isBlockPowered(pos)) {
+		if(this.hasLPCell() && this.canDrawCellPower(mode.cost) && !world.isBlockPowered(pos)) {
 			int effectiveRange = getEffectiveRange();
 			EnumFacing face = EnumFacing.getFront(this.getBlockMetadata());
 			BlockPos initial = pos.offset(face, random.nextInt(effectiveRange) + 1);
@@ -111,7 +111,7 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 				}
 				
 				// specialized processing ahead
-				IBlockState state = worldObj.getBlockState(find);
+				IBlockState state = world.getBlockState(find);
 				Block block = state == null ? null : state.getBlock();
 
 				// is it ores-only?
@@ -163,11 +163,11 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 		EnumFacing face = EnumFacing.getFront(this.getBlockMetadata());
 
 		// make sure the block is valid and isn't unbreakable, then mine it
-		IBlockState mineState = worldObj.getBlockState(minePos);
+		IBlockState mineState = world.getBlockState(minePos);
 		Block mineBlock = mineState.getBlock();
-		if(cond && mineBlock != null && !mineBlock.isAir(mineState, worldObj, minePos) && mineState.getBlockHardness(worldObj, minePos) >= 0) {
-			List<ItemStack> drops = mineBlock.getDrops(this.worldObj, minePos, mineState, 0);
-			float chance = ForgeEventFactory.fireBlockHarvesting(drops, this.worldObj, minePos, worldObj.getBlockState(minePos), 0, 1, false, null);
+		if(cond && mineBlock != null && !mineBlock.isAir(mineState, world, minePos) && mineState.getBlockHardness(world, minePos) >= 0) {
+			List<ItemStack> drops = mineBlock.getDrops(this.world, minePos, mineState, 0);
+			float chance = ForgeEventFactory.fireBlockHarvesting(drops, this.world, minePos, world.getBlockState(minePos), 0, 1, false, null);
 			
 			if(random.nextFloat() <= chance) {
 
@@ -177,29 +177,29 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 					if(!LCMisc.inArray(mineBlock, fillerBlocks)) {
 						for(int slot : stacksInt) {
 							ItemStack s = this.getStackInSlot(slot);
-							if(s != null) {
+							if(!s.isEmpty()) {
 								Block block = Block.getBlockFromItem(s.getItem());
 								if(block != null && s.getItemDamage() == 0 && LCMisc.inArray(block, fillerBlocks)) {
-									s.stackSize--;
-									if(s.stackSize <= 0) this.setInventorySlotContents(slot, null);
-									worldObj.setBlockState(minePos, block.getDefaultState(), 3);
+									s.setCount(s.getCount() - 1);
+									if(s.getCount() <= 0) this.setInventorySlotContents(slot, null);
+									world.setBlockState(minePos, block.getDefaultState(), 3);
 									flag = true; // success!
 								}
 							}
 						}
 					}
 				} else { // only set to air when replacing is disabled
-					worldObj.setBlockToAir(minePos);
+					world.setBlockToAir(minePos);
 					flag = true; // success!
 				}
 
 				// break the block upon success
 				if(flag) {
-					this.worldObj.playEvent(2001, minePos, Block.getStateId(mineState));
+					this.world.playEvent(2001, minePos, Block.getStateId(mineState));
 					this.drawCellPower(mode.cost);
 					for(ItemStack drop : drops) {
-						ItemStack leftover = TileEntityHopper.putStackInInventoryAllSlots(this, drop, face);
-						if(leftover != null) Block.spawnAsEntity(worldObj, pos, leftover);
+						ItemStack leftover = TileEntityHopper.putStackInInventoryAllSlots(this, this, drop, face);
+						if(!leftover.isEmpty()) Block.spawnAsEntity(world, pos, leftover);
 					}
 					retries = 0;
 					this.markDirty(); // mark the tile for saving
@@ -228,7 +228,7 @@ public class TileEntityLightningMiner extends TileEntityLightningItemHandler.Upg
 		retries++;
 		if(retries > getNumRetries()) retries = 0;
 		if(retries < getNumRetries()) {
-			((WorldServer)worldObj).addScheduledTask(() -> doOperation());
+			((WorldServer)world).addScheduledTask(() -> doOperation());
 		}
 	}
 

@@ -3,14 +3,10 @@ package sblectric.lightningcraft.blocks;
 import java.util.Random;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import sblectric.lightningcraft.blocks.base.BlockMeta;
-import sblectric.lightningcraft.init.LCAchievements;
 
 /** The class for all of the Underworld ore variants in the mod */
 public class BlockUnderOre extends BlockMeta {
@@ -29,10 +25,10 @@ public class BlockUnderOre extends BlockMeta {
 	}
 	
 	/** Add an achievement for harvesting this ore */
-	@Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if(!worldIn.isRemote) player.addStat(LCAchievements.mineUnderworldOre, 1);
-    }
+//	@Override
+//    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+//		if(!worldIn.isRemote) player.addStat(LCAchievements.mineUnderworldOre, 1);
+//    }
 	
 	/** Get the dropped item */
 	@Override

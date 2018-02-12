@@ -5,7 +5,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.init.LCBiomes;
@@ -17,16 +17,16 @@ public class LCWorldProviderUnderworld extends WorldProvider {
 	public static final Vec3d skyFogColor = new Vec3d(0.085D, 0.085D, 0.085D);
 	
 	@Override
-	public void createBiomeProvider() {
+	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(LCBiomes.underworld);
 		this.setDimension(LCDimensions.underworldID);
-		this.hasNoSky = true;
-		this.isHellWorld = false; // place some water bruh
+		this.hasSkyLight = false;
+		//this.isHellWorld = false; // place some water bruh
 	}
 	
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderUnderworld(this.worldObj, this.worldObj.getSeed());
+		return new ChunkProviderUnderworld(this.world, this.world.getSeed());
 	}
 	
 	@Override

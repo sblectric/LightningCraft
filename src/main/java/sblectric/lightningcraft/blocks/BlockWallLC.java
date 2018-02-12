@@ -1,7 +1,5 @@
 package sblectric.lightningcraft.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.properties.IProperty;
@@ -11,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.ref.RefMisc;
@@ -29,8 +28,8 @@ public class BlockWallLC extends BlockWall implements ILightningCraftBlock {
 	}
 	
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		list.add(new ItemStack(item));
+	public void getSubBlocks(CreativeTabs tab, NonNullList list) {
+		list.add(new ItemStack(this));
 	}
 	
 	@Override

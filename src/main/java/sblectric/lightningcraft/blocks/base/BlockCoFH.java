@@ -1,11 +1,10 @@
 package sblectric.lightningcraft.blocks.base;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.items.blocks.ItemBlockCoFH;
 
@@ -17,9 +16,9 @@ public abstract class BlockCoFH extends BlockContainerLC {
 	}
 	
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList list) {
 		if(EnergyApiHelper.rfOrTeslaLoaded) { // only expose the block when the RF API exists
-			list.add(new ItemStack(item));
+			list.add(new ItemStack(this));
 		}
 	}
 	

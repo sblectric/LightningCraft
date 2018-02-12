@@ -2,11 +2,13 @@ package sblectric.lightningcraft.items;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,9 +48,10 @@ public class ItemKineticSword extends ItemSwordLC implements ISimpleLEUser, IKin
 
 	/** item lore */
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List list, ITooltipFlag flag) {
 		LECharge charge = new LECharge();
-		boolean charged = InventoryLE.addInformation(stack, player, list, par4, charge);
+		boolean charged = InventoryLE.addInformation(stack, world, list, flag, charge);
 		double damage = 0;
 
 		// add more lore if there exists an LE source that isn't empty

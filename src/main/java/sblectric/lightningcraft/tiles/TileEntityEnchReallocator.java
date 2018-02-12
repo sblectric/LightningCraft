@@ -41,7 +41,7 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 	public boolean hasPlayer = false;
 	
 	public TileEntityEnchReallocator() {
-		stacks = new ItemStack[2]; // only two slots
+		setSizeInventory(2); // only two slots
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 			--this.reallocBurnTime;
 		}
 		
-		if (this.worldObj.isRemote) {
+		if (this.world.isRemote) {
 			// nothing client-only			
 		} else {
 			if (this.reallocBurnTime == 0 && this.canReallocate()) {
@@ -102,8 +102,8 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 			// Update the burning state
 			if (flag != this.reallocBurnTime > 0) {
 				dosave = true;
-				IBlockState state = worldObj.getBlockState(pos);
-				((IFurnace)state.getBlock()).setBurning(state, worldObj, pos, reallocBurnTime > 0);
+				IBlockState state = world.getBlockState(pos);
+				((IFurnace)state.getBlock()).setBurning(state, world, pos, reallocBurnTime > 0);
 			}
 			
 		}
@@ -132,8 +132,8 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 		// quick exit
 		if(!this.hasLPCell()) return false;
 		
-		ItemStack top = this.stacks[0];
-		ItemStack bottom = this.stacks[1];
+		ItemStack top = this.getStack(0);
+		ItemStack bottom = this.getStack(1);
 		
 		List<NBTTagCompound> topEnchs = LCMisc.getEnchantments(top);
 		
@@ -163,25 +163,25 @@ public class TileEntityEnchReallocator extends TileEntityLightningItemHandler.Up
 			if(!this.player.capabilities.isCreativeMode) ((EntityPlayerMP)this.player).addExperienceLevel(-xpCost);
 			this.hasPlayer = false;
 			
-			int topCost = this.stacks[0].getRepairCost();
-			int bottomCost = this.stacks[1].getRepairCost();
+			int topCost = this.getStack(0).getRepairCost();
+			int bottomCost = this.getStack(1).getRepairCost();
 			
 			// remove all top item enchantments
-			if(this.stacks[0].getItem() == Items.ENCHANTED_BOOK) {
-				this.stacks[0] = new ItemStack(Items.BOOK, 1);
-			} else if(this.stacks[0].getTagCompound().hasKey("ench")) {
-				this.stacks[0].getTagCompound().removeTag("ench");
+			if(this.getStack(0).getItem() == Items.ENCHANTED_BOOK) {
+				this.setStack(0, new ItemStack(Items.BOOK, 1));
+			} else if(this.getStack(0).getTagCompound().hasKey("ench")) {
+				this.getStack(0).getTagCompound().removeTag("ench");
 			}
-			this.stacks[0].setRepairCost(topCost + 5);
+			this.getStack(0).setRepairCost(topCost + 5);
 			
 			// change the book type if needed
-			if(this.stacks[1].getItem() == Items.BOOK) {
-				this.stacks[1] = new ItemStack(Items.ENCHANTED_BOOK, 1);
+			if(this.getStack(1).getItem() == Items.BOOK) {
+				this.setStack(1, new ItemStack(Items.ENCHANTED_BOOK, 1));
 			}
 			
 			// add the enchantments to the bottom item
-			LCMisc.addEnchantments(this.stacks[1], this.topEnchs);
-			this.stacks[1].setRepairCost(bottomCost + 5);
+			LCMisc.addEnchantments(this.getStack(1), this.topEnchs);
+			this.getStack(1).setRepairCost(bottomCost + 5);
 		}
 	}
 	

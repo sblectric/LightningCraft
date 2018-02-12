@@ -16,18 +16,18 @@ public class TileEntityChargingPlate extends TileEntityLightningUser {
 	/** The main operational loop */
 	@Override
 	public void update() {
-		if(!this.worldObj.isRemote && this.hasLPCell()) {
+		if(!this.world.isRemote && this.hasLPCell()) {
 			if(this.getBlockMetadata() != 0) {
 				
 				// check for a user
-				EntityPlayer user = WorldUtils.getClosestPlayer(worldObj, getX(), getY(), getZ(), 1.5);
+				EntityPlayer user = WorldUtils.getClosestPlayer(world, getX(), getY(), getZ(), 1.5);
 				if(user != null && LCMisc.posInInventory(user, LCItems.battery) >= 0 && this.tileCell.storedPower > 0) {
 					int invPos = 0;
 					IntList avoid = new IntList();
 					while((invPos = LCMisc.posInInventory(user, LCItems.battery, avoid)) >= 0) {
 						// check this inventory position
 						if(invPos >= 0) {
-							ItemStack battery = user.inventory.mainInventory[invPos];
+							ItemStack battery = user.inventory.mainInventory.get(invPos);
 							
 							if(ItemBattery.getStoredPower(battery) < ItemBattery.getMaxPower(battery)) {
 								

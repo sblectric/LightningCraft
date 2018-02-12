@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "active=false": { "model": "lightningcraft:staticGenerator" },
-		"active=true": { "model": "lightningcraft:staticGenerator" }
-    }
-}

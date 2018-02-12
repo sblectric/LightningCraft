@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "lightningcraft:charging_plate_up" },
+        "powered=true": { "model": "lightningcraft:charging_plate_down" }
+    }
+}

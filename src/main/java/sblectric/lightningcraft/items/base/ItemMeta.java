@@ -1,17 +1,17 @@
 package sblectric.lightningcraft.items.base;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.util.JointList;
+import sblectric.lightningcraft.init.LCCreativeTabs;
+import sblectric.lightningcraft.registry.ClientRegistryHelper;
 
 /** An item with metadata */
 public class ItemMeta extends ItemLC {
@@ -41,9 +41,11 @@ public class ItemMeta extends ItemLC {
 	}
 	
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List sub) {
-		for(int meta = 0; meta < nSubItems; meta++) {
-			sub.add(new ItemStack(item, 1, meta));
+	public void getSubItems(CreativeTabs tab, NonNullList sub) {
+		if(tab == LCCreativeTabs.items) {
+			for(int meta = 0; meta < nSubItems; meta++) {
+				sub.add(new ItemStack(this, 1, meta));
+			}
 		}
 	}
 	
@@ -69,11 +71,11 @@ public class ItemMeta extends ItemLC {
 		JointList<ResourceLocation> names = new JointList();
 		if(sameIcon) {
 			for(int meta = 0; meta < nSubItems; meta++) {
-				ModelLoader.setCustomModelResourceLocation(this, meta, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+				ClientRegistryHelper.registerModel(this, meta, new ModelResourceLocation(this.getRegistryName(), "inventory"));
 			}
 		} else {
 			for(int meta = 0; meta < nSubItems; meta++) {
-				ModelLoader.setCustomModelResourceLocation(this, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
+				ClientRegistryHelper.registerModel(this, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
 			}
 		}
 	}

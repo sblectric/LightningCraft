@@ -1,6 +1,5 @@
 package sblectric.lightningcraft.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockSlab;
@@ -14,15 +13,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.items.blocks.ItemSlabLC;
+import sblectric.lightningcraft.registry.ClientRegistryHelper;
 
 /** The half-slab block */
 public class BlockSlabLC extends BlockSlab implements ILightningCraftBlock {
@@ -82,9 +82,9 @@ public class BlockSlabLC extends BlockSlab implements ILightningCraftBlock {
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList list) {
 		for (int i = 0; i < nVariants; i++) {
-			list.add(new ItemStack(item, 1, i));
+			list.add(new ItemStack(this, 1, i));
 		}
 	}
 
@@ -160,7 +160,7 @@ public class BlockSlabLC extends BlockSlab implements ILightningCraftBlock {
 	public void registerRender() {
 		Item item = Item.getItemFromBlock(this);
 		for(int meta = 0; meta < nVariants; meta++) {
-			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
+			ClientRegistryHelper.registerModel(item, meta, new ModelResourceLocation(this.getRegistryName() + "_" + meta, "inventory"));
 		}
 	}
 

@@ -29,7 +29,7 @@ public class MapGenUnderworldTower extends MapGenLCStructure {
 	/** Get the start of the structure */
 	@Override
 	protected StructureStart getStructureStart(int x, int z) {
-		return new MapGenUnderworldTower.Start(this.worldObj, this.rand, x, z);
+		return new MapGenUnderworldTower.Start(this.world, this.rand, x, z);
 	}
 	
 	public static class Start extends StructureStart {

@@ -6,11 +6,15 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
 /** The Hand of Thor enchantment */
-public class EnchantmentHandOfThor extends Enchantment {
+public class EnchantmentHandOfThor extends LCEnchantment {
 
 	public EnchantmentHandOfThor(Rarity rarity) {
 		super(rarity, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
-		this.setName(RefStrings.MODID + ":handOfThor");
+	}
+	
+	@Override
+	public String getUnlocalizedName() {
+		return "hand_of_thor";
 	}
 	
 	@Override

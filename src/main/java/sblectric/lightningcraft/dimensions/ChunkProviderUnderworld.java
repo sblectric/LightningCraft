@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -275,11 +275,11 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 	 * specified chunk from the map seed and chunk seed
 	 */
 	@Override
-	public Chunk provideChunk(int x, int z) {
+	public Chunk generateChunk(int x, int z) {
 		this.dimRNG.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer p = new ChunkPrimer();
 		IBlockState[] ablock = new IBlockState[chunkHeight * 256];
-		Biome[] abiomegenbase = this.worldObj.getBiomeProvider().loadBlockGeneratorData(null, x * 16, z * 16, 16, 16);
+		Biome[] abiomegenbase = this.worldObj.getBiomeProvider().getBiomes(null, x * 16, z * 16, 16, 16);
 		this.initBlocks(x, z, ablock);
 		this.replaceBiomeBlocks(x, z, ablock, abiomegenbase);
 		WorldUtils.primeChunk(p, ablock);
@@ -554,14 +554,9 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 				this.genUnderworldWaterTemple.canAccessWorld() && this.genUnderworldRampart.canAccessWorld();
 
 		if(canAccessWorld) {
-			Biome biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
+			Biome biomegenbase = this.worldObj.getBiome(pos);
 			return biomegenbase.getSpawnableList(creatureType);
 		}
-		return null;
-	}
-
-	@Override
-	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
 		return null;
 	}
 
@@ -576,4 +571,15 @@ public class ChunkProviderUnderworld implements IChunkGenerator {
 	public boolean generateStructures(Chunk chunkIn, int x, int z) {
 		return false;
 	}
+
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+		return null;
+	}
+
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		return false;
+	}
+	
 }

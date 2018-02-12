@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -20,7 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import sblectric.lightningcraft.entities.EntityLCZombie;
-import sblectric.lightningcraft.init.LCAchievements;
 import sblectric.lightningcraft.init.LCEnchantments;
 import sblectric.lightningcraft.items.ItemBlazeSword;
 import sblectric.lightningcraft.items.ItemChargedSword;
@@ -44,7 +42,7 @@ public class CombatEvents {
 	/** Handle living hurt events */
 	@SubscribeEvent
 	public void onLivingHurt(LivingHurtEvent event) {
-		if(event.getEntity() instanceof EntityLivingBase && !event.getEntity().worldObj.isRemote) {
+		if(event.getEntity() instanceof EntityLivingBase && !event.getEntity().world.isRemote) {
 			handleLightningSwordStrike(event);
 			handleSpecialStrike(event);
 			handleElecAuraHurt(event);
@@ -57,9 +55,9 @@ public class CombatEvents {
 		EntityLivingBase target = (EntityLivingBase)event.getEntity();
 		if(target == null || target.isEntityInvulnerable(event.getSource())) return;
 		EntityLivingBase user = null;
-		if(event.getSource().getEntity() instanceof EntityLivingBase) user = (EntityLivingBase)event.getSource().getEntity();
+		if(event.getSource().getImmediateSource() instanceof EntityLivingBase) user = (EntityLivingBase)event.getSource().getImmediateSource();
 		if(user == null) return;
-		ItemStack weapon = user.getHeldItem(EnumHand.MAIN_HAND); if(weapon == null) return;
+		ItemStack weapon = user.getHeldItem(EnumHand.MAIN_HAND); if(weapon.isEmpty()) return;
 
 		// Hand of Thor enchantment
 		int j = EnchantmentHelper.getEnchantmentLevel(LCEnchantments.handOfThor, weapon);
@@ -67,10 +65,10 @@ public class CombatEvents {
 		Item w = weapon.getItem();
 		
 		// divine overkill achievement
-		int s = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, weapon);
-		if(!user.worldObj.isRemote && user instanceof EntityPlayer && j == 3 && s == 5) {
-			((EntityPlayer)user).addStat(LCAchievements.mysticHammer, 1);
-		}
+//		int s = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, weapon);
+//		if(!user.world.isRemote && user instanceof EntityPlayer && j == 3 && s == 5) {
+//			((EntityPlayer)user).addStat(LCAchievements.mysticHammer, 1);
+//		}
 
 		// different chances based on item type
 		// hammers: 50% chance, up to 100% with top Hand of Thor
@@ -88,8 +86,8 @@ public class CombatEvents {
 	public void handleElecAuraHurt(LivingHurtEvent event) {
 		if (event.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
-			if(event.getSource().getEntity() instanceof EntityLivingBase) {
-				EntityLivingBase attacker = (EntityLivingBase) event.getSource().getEntity();
+			if(event.getSource().getImmediateSource() instanceof EntityLivingBase) {
+				EntityLivingBase attacker = (EntityLivingBase) event.getSource().getImmediateSource();
 
 				// Electrostatic Aura handling
 				if(!attacker.isEntityInvulnerable(event.getSource())) { 
@@ -140,9 +138,9 @@ public class CombatEvents {
 							if(damageBoots > 0) boots.damageItem(4 * damageBoots, player);
 							
 							// achievement get (full Mystic armor, full elecAura)
-							if(a >= 4 && lv >= 12) {
-								player.addStat(LCAchievements.mysticArmor, 1);
-							}
+//							if(a >= 4 && lv >= 12) {
+//								player.addStat(LCAchievements.mysticArmor, 1);
+//							}
 						}
 					}
 				}				
@@ -154,8 +152,8 @@ public class CombatEvents {
 	public void handleSpecialStrike(LivingHurtEvent event) {
 		// definitions
 		EntityLivingBase target = (EntityLivingBase)event.getEntity();
-		World world = target.worldObj;
-		Entity src = event.getSource().getEntity();
+		World world = target.world;
+		Entity src = event.getSource().getImmediateSource();
 		float nextHealth = target.getHealth() - event.getAmount();
 
 		// ignore invalid damage
@@ -192,7 +190,7 @@ public class CombatEvents {
 					// summon a zombie to attack the entity you attacked
 					EntityZombie zombie = new EntityLCZombie(world, target, user);
 					zombie.setPosition(target.posX + random.nextFloat() - 0.5F, target.posY, target.posZ + random.nextFloat() - 0.5F);
-					world.spawnEntityInWorld(zombie);
+					world.spawnEntity(zombie);
 					zombie.playLivingSound();
 
 				// Winged Sword
@@ -252,9 +250,9 @@ public class CombatEvents {
 				if(effect != null) Effect.specialSword(effect, world, target.posX, target.posY, target.posZ);
 				
 				// achievement
-				if(user instanceof EntityPlayer && nextHealth <= 0) {
-					((EntityPlayer)user).addStat(LCAchievements.specialSwordKill, 1);
-				}
+//				if(user instanceof EntityPlayer && nextHealth <= 0) {
+//					((EntityPlayer)user).addStat(LCAchievements.specialSwordKill, 1);
+//				}
 			}
 		}
 	}

@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -26,7 +25,7 @@ public class BlockLightningMiner extends BlockLightningBreaker {
 	/** Activate this block */
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, 
-			EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		player.openGui(LightningCraft.modInstance, LCGuiHandler.lightningMinerGui, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

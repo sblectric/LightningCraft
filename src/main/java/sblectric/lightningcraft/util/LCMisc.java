@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -49,8 +51,8 @@ public class LCMisc {
 	}
 	
 	/** Get the rarity from an ItemStack */
-	public static EnumRarity getRarityFromStack(ItemStack stack) {
-		if(stack == null) return EnumRarity.COMMON;
+	public static EnumRarity getRarityFromStack(@Nonnull ItemStack stack) {
+		if(stack.isEmpty()) return EnumRarity.COMMON;
 		if(ItemStack.areItemStacksEqual(stack, new ItemStack(LCItems.ingot, 1, Ingot.ELEC))) {
 			return EnumRarity.UNCOMMON;
 		} else if(ItemStack.areItemStacksEqual(stack, new ItemStack(LCItems.ingot, 1, Ingot.SKY))) {
@@ -72,9 +74,9 @@ public class LCMisc {
 	
 	/** Get the position of an item in a player inventory */
 	public static int posInInventory(EntityPlayer player, Item item, List<Integer> skip) {
-		ItemStack[] mainInventory = player.inventory.mainInventory;
-		for (Integer i = 0; i < mainInventory.length; i++) {
-            if (!skip.contains(i) && mainInventory[i] != null && mainInventory[i].getItem() == item) {
+		List<ItemStack> mainInventory = player.inventory.mainInventory;
+		for (Integer i = 0; i < mainInventory.size(); i++) {
+            if (!skip.contains(i) && !mainInventory.get(i).isEmpty() && mainInventory.get(i).getItem() == item) {
                 return i;
             }
         }
@@ -207,10 +209,10 @@ public class LCMisc {
     } 
     
     /** Gets the enchantments that exist on a specified item stack */
-    public static List<NBTTagCompound> getEnchantments(ItemStack s) {
+    public static List<NBTTagCompound> getEnchantments(@Nonnull ItemStack s) {
     	List enchList = new ArrayList<NBTTagCompound>();
     	
-    	if(s != null && s.hasTagCompound()) {
+    	if(!s.isEmpty() && s.hasTagCompound()) {
     		NBTTagList enchants;
     		String ench = s.getItem() == Items.ENCHANTED_BOOK ? "StoredEnchantments" : "ench";
     		enchants = (NBTTagList) s.getTagCompound().getTag(ench);
@@ -227,8 +229,8 @@ public class LCMisc {
     }
     
     /** Adds a list of enchantments to a specified item stack */
-    public static boolean addEnchantments(ItemStack s, List<NBTTagCompound> enchList) {
-    	if(s != null) {
+    public static boolean addEnchantments(@Nonnull ItemStack s, List<NBTTagCompound> enchList) {
+    	if(!s.isEmpty()) {
 	    	String ench = s.getItem() == Items.ENCHANTED_BOOK ? "StoredEnchantments" : "ench";
 	    	if(!s.hasTagCompound()) s.setTagCompound(new NBTTagCompound());
 	    	NBTTagList currentEnchants = (NBTTagList) s.getTagCompound().getTag(ench);
