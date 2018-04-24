@@ -10,16 +10,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sblectric.lightningcraft.blocks.base.BlockCoFH;
+import sblectric.lightningcraft.blocks.base.BlockEnergy;
 
 /** An item of the BlockCoFH type */
 public class ItemBlockCoFH extends ItemBlockRarity {
 	
-	private BlockCoFH block;
+	private BlockEnergy block;
 
 	public ItemBlockCoFH(Block block) {
 		super(block, EnumRarity.UNCOMMON);
-		this.block = (BlockCoFH)block;
+		this.block = (BlockEnergy)block;
 	}
 	
 	@Override

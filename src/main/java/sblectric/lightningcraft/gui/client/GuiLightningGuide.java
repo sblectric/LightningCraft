@@ -28,8 +28,8 @@ import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.recipes.LightningInfusionRecipes;
 import sblectric.lightningcraft.ref.LCText;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
+import sblectric.lightningcraft.tiles.TileEntityEnergyProvider;
+import sblectric.lightningcraft.tiles.TileEntityEnergyReceiver;
 import sblectric.lightningcraft.util.LCMisc;
 
 /** The Lightning Guide GUI, yo */
@@ -92,8 +92,8 @@ public class GuiLightningGuide extends GuiScreen {
 		pages.add(S + "lLightning Miner" + S + "r - This useful machine will mine blocks in its area. It has 6 modes of operation: 1x1 tunnel, 3x3 tunnel, ores only, logs only, slot matching, and all blocks. The default range is a 16x16x16 cube in front of it, but it can be upgraded to 24x24x24.");
 		pages.add(S + "lElectrostatic Generator" + S + "r - This gives you a method of generating lightning, and by extension, LE by using blocks to generate a charge. When the charge is full (100C), lightning will strike. It does need a small amount of LE to run, though.");
 		if(EnergyApiHelper.rfOrTeslaLoaded) {
-			pages.add(S + "lLE to RF Export Bus" + S + "r - This machine takes LE and converts it to RF or Tesla so other mod's machines can make use of it. It transfers at a max rate of " + TileEntityRFProvider.rfPerTick + " RF/tick, where 1 LE yields " + LCConfig.RFtoLEConversion + " RF.");
-			pages.add(S + "lRF Lightning Generator" + S + "r - This machine takes RF or Tesla and uses it to generate lightning strikes. It transfers at a max rate of " + TileEntityRFReceiver.rfPerTick + " RF/tick, where " + LCConfig.RFtoLEConversion * 10 + " RF yields 1 LE.");
+			pages.add(S + "lLE to RF Export Bus" + S + "r - This machine takes LE and converts it to RF or Tesla so other mod's machines can make use of it. It transfers at a max rate of " + TileEntityEnergyProvider.rfPerTick + " RF/tick, where 1 LE yields " + LCConfig.RFtoLEConversion + " RF.");
+			pages.add(S + "lRF Lightning Generator" + S + "r - This machine takes RF or Tesla and uses it to generate lightning strikes. It transfers at a max rate of " + TileEntityEnergyReceiver.rfPerTick + " RF/tick, where " + LCConfig.RFtoLEConversion * 10 + " RF yields 1 LE.");
 		}
 		pages.add(S + "lWireless Power" + S + "r - Like Tesla, you've dreamt of wireless power. Today, you've discovered how to implement it. By creating a single transmitter from your core work area, you can add unlimited receivers nearby. To attune these receivers to the");
 		pages.add("transmitter, you must craft a Tx/Rx tag, right click on the transmitter, then shift right-click on the receiver. These tags are reusable, and can be crafted back into an empty tag if you wish to mark a different transmitter location.");

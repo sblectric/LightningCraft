@@ -3,20 +3,17 @@ package sblectric.lightningcraft.tiles;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fml.common.Optional;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.util.Effect;
 import sblectric.lightningcraft.util.EnergyStorage;
-import cofh.api.energy.IEnergyReceiver;
 
 /** The tile entity for RF -> LE conversion */
-@Optional.Interface(iface = "cofh.api.energy.IEnergyReceiver", modid = "CoFHAPI")
-public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceiver {
+public class TileEntityEnergyReceiver extends TileEntityEnergy {
 	
 	public static final int maxStorage = 100000;
 	public static final int rfPerTick = 512;
 	
-	public TileEntityRFReceiver() {
+	public TileEntityEnergyReceiver() {
 		storage = new EnergyStorage(maxStorage, rfPerTick, 0);
 	}
 
@@ -41,7 +38,7 @@ public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceive
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		if(capability != null) {
-			if(capability == consumerCap) {
+			if(capability == consumerCap || capability == storageCap) {
 				return true;
 			} else if(capability == producerCap) {
 				return false;
@@ -60,18 +57,15 @@ public class TileEntityRFReceiver extends TileEntityRF implements IEnergyReceive
 		storage.setEnergyStored(energy);
 	}
 
-	@Override
 	public int getMaxEnergyStored(EnumFacing from) {
 		return storage.getMaxEnergyStored();
 	}
 
 	// can be connected to RF on all sides
-	@Override
 	public boolean canConnectEnergy(EnumFacing from) {
 		return true;
 	}
 
-	@Override
 	public int receiveEnergy(EnumFacing from, int toReceive, boolean simulate) {
 		if(!simulate) this.markDirty();
 		return storage.receiveEnergy(toReceive, simulate);

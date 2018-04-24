@@ -13,16 +13,16 @@ import org.lwjgl.opengl.GL11;
 import sblectric.lightningcraft.gui.server.ContainerRFProvider;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
+import sblectric.lightningcraft.tiles.TileEntityEnergyProvider;
 
 /** The RF provider GUI */
 @SideOnly(Side.CLIENT)
 public class GuiRFProvider extends GuiContainerLC {
 	
 	private static final ResourceLocation lpCellGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpcell.png");
-	private TileEntityRFProvider tileRF;
+	private TileEntityEnergyProvider tileRF;
 
-	public GuiRFProvider(InventoryPlayer invPlayer, TileEntityRFProvider tile) {
+	public GuiRFProvider(InventoryPlayer invPlayer, TileEntityEnergyProvider tile) {
 		super(new ContainerRFProvider(invPlayer, tile));
 		this.tileRF = tile;		
 	}
@@ -39,13 +39,13 @@ public class GuiRFProvider extends GuiContainerLC {
 		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
 		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 		
-		Gui.drawRect(25, 17, 25 + (int) (((float)tileRF.getEnergyStored(null)/(float)TileEntityRFProvider.maxStorage) * width), 17 + height, 0xffffffff);
+		Gui.drawRect(25, 17, 25 + (int) (((float)tileRF.getEnergyStored(null)/(float)TileEntityEnergyProvider.maxStorage) * width), 17 + height, 0xffffffff);
 		
 		this.fontRenderer.drawString("Stored RF:", 24, texty, 4210752);
 		this.fontRenderer.drawString("Capacity:", 24, texty + 10, 4210752);
 		this.fontRenderer.drawString("Cell Energy:", 24, texty + 20, 4210752);
 		String storedPower = tileRF.getEnergyStored(null) + " RF";
-		String maxPower = TileEntityRFProvider.maxStorage + " RF";
+		String maxPower = TileEntityEnergyProvider.maxStorage + " RF";
 		String storedLE = (int)tileRF.cellPower + " LE";
 		this.fontRenderer.drawString(storedPower, 151 - this.fontRenderer.getStringWidth(storedPower), texty, 4210752);
 		this.fontRenderer.drawString(maxPower, 151 - this.fontRenderer.getStringWidth(maxPower), texty + 10, 4210752);

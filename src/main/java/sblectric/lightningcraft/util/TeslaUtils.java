@@ -5,13 +5,13 @@ import net.darkhax.tesla.api.ITeslaProducer;
 import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import sblectric.lightningcraft.tiles.TileEntityRF;
+import sblectric.lightningcraft.tiles.TileEntityEnergy;
 
 /** TESLA helper things */
 public class TeslaUtils {
 	
 	/** Provide (push-only) adjacent energy */
-	public static void tryPushEnergy(TileEntityRF origin) {
+	public static void tryPushEnergy(TileEntityEnergy origin) {
 		TileEntity adjacent;
 		ITeslaProducer producer;
 		ITeslaConsumer consumer;
@@ -19,7 +19,7 @@ public class TeslaUtils {
 		for(EnumFacing face : EnumFacing.values()) {
 			// make sure the tile exists and isn't another export bus / LE generator
 			if((adjacent = origin.getWorld().getTileEntity(origin.getPos().offset(face))) != null && 
-					!(adjacent instanceof TileEntityRF)) {
+					!(adjacent instanceof TileEntityEnergy)) {
 				
 				EnumFacing swap = face.getOpposite();
 				

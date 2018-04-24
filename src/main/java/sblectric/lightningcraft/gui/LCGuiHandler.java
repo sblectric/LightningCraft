@@ -34,8 +34,8 @@ import sblectric.lightningcraft.tiles.TileEntityLightningFurnace;
 import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
 import sblectric.lightningcraft.tiles.TileEntityLightningMiner;
 import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
+import sblectric.lightningcraft.tiles.TileEntityEnergyProvider;
+import sblectric.lightningcraft.tiles.TileEntityEnergyReceiver;
 import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;
 
 /** The GUI handler */
@@ -88,10 +88,10 @@ public class LCGuiHandler implements IGuiHandler {
 			TileEntityLightningMiner tileMiner = (TileEntityLightningMiner) world.getTileEntity(pos);
 			return new ContainerLightningMiner(player.inventory, tileMiner);
 		case lightningLEtoRFGui: // RF Provider
-			TileEntityRFProvider tileLERF = (TileEntityRFProvider) world.getTileEntity(pos);
+			TileEntityEnergyProvider tileLERF = (TileEntityEnergyProvider) world.getTileEntity(pos);
 			return new ContainerRFProvider(player.inventory, tileLERF);
 		case lightningRFtoLEGui: // RF Receiver
-			TileEntityRFReceiver tileRFLE = (TileEntityRFReceiver) world.getTileEntity(pos);
+			TileEntityEnergyReceiver tileRFLE = (TileEntityEnergyReceiver) world.getTileEntity(pos);
 			return new ContainerRFReceiver(player.inventory, tileRFLE);
 		default:
 			return null;
@@ -131,10 +131,10 @@ public class LCGuiHandler implements IGuiHandler {
 			TileEntityLightningMiner tileMiner = (TileEntityLightningMiner) world.getTileEntity(pos);
 			return new GuiLightningMiner(player.inventory, tileMiner);
 		case lightningLEtoRFGui: // RF Provider
-			TileEntityRFProvider tileLERF = (TileEntityRFProvider) world.getTileEntity(pos);
+			TileEntityEnergyProvider tileLERF = (TileEntityEnergyProvider) world.getTileEntity(pos);
 			return new GuiRFProvider(player.inventory, tileLERF);
 		case lightningRFtoLEGui: // RF Receiver
-			TileEntityRFReceiver tileRFLE = (TileEntityRFReceiver) world.getTileEntity(pos);
+			TileEntityEnergyReceiver tileRFLE = (TileEntityEnergyReceiver) world.getTileEntity(pos);
 			return new GuiRFReceiver(player.inventory, tileRFLE);
 		default:
 			return null;

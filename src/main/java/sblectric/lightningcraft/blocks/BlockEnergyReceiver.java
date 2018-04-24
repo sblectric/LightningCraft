@@ -9,21 +9,21 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.LightningCraft;
-import sblectric.lightningcraft.blocks.base.BlockCoFH;
+import sblectric.lightningcraft.blocks.base.BlockEnergy;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.LCGuiHandler;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
+import sblectric.lightningcraft.tiles.TileEntityEnergyReceiver;
 
-/** The RF receiver block */
-public class BlockRFReceiver extends BlockCoFH {
+/** The energy receiver block */
+public class BlockEnergyReceiver extends BlockEnergy {
 
-	public BlockRFReceiver() {
+	public BlockEnergyReceiver() {
 		super(Blocks.IRON_BLOCK, 10, 100);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityRFReceiver();
+		return new TileEntityEnergyReceiver();
 	}
 	
 	/** Activate this block */
@@ -36,7 +36,7 @@ public class BlockRFReceiver extends BlockCoFH {
 	
 	@Override
 	public int getMaxRFPerTick() {
-		return TileEntityRFReceiver.rfPerTick;
+		return TileEntityEnergyReceiver.rfPerTick;
 	}
 	
 	@Override

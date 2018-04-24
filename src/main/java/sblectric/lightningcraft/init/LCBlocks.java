@@ -19,8 +19,8 @@ import sblectric.lightningcraft.blocks.BlockLightningMiner;
 import sblectric.lightningcraft.blocks.BlockLogLC;
 import sblectric.lightningcraft.blocks.BlockMetal;
 import sblectric.lightningcraft.blocks.BlockPlankLC;
-import sblectric.lightningcraft.blocks.BlockRFProvider;
-import sblectric.lightningcraft.blocks.BlockRFReceiver;
+import sblectric.lightningcraft.blocks.BlockEnergyProvider;
+import sblectric.lightningcraft.blocks.BlockEnergyReceiver;
 import sblectric.lightningcraft.blocks.BlockSlabLC;
 import sblectric.lightningcraft.blocks.BlockStairsLC;
 import sblectric.lightningcraft.blocks.BlockStaticGenerator;
@@ -42,11 +42,10 @@ public class LCBlocks {
 	/** The list of blocks to help with registration */
 	private static JointList<ILightningCraftBlock> blocks;
 	
-	/** The main block registry */
-	public static void mainRegistry() {
+	/** Create the blocks */
+	public static void createBlocks() {
 		blocks = new JointList();
 		addBlocks();
-		registerBlocks();
 	}
 	
 	// the blocks
@@ -115,13 +114,13 @@ public class LCBlocks {
 			oreBlock = (BlockLC)new BlockUnderOre().setRegistryName("ore_block").setCreativeTab(LCCreativeTabs.blocks),
 			underTNT = (BlockUnderTNT)new BlockUnderTNT().setRegistryName("under_tnt").setCreativeTab(LCCreativeTabs.blocks),
 			lightningCannon = (BlockLC)new BlockLightningCannon().setRegistryName("lightning_cannon").setCreativeTab(LCCreativeTabs.blocks),
-			rfProvider = (BlockLC)new BlockRFProvider().setRegistryName("rf_provider").setCreativeTab(LCCreativeTabs.blocks),
-			rfReceiver = (BlockLC)new BlockRFReceiver().setRegistryName("rf_receiver").setCreativeTab(LCCreativeTabs.blocks)
+			rfProvider = (BlockLC)new BlockEnergyProvider().setRegistryName("rf_provider").setCreativeTab(LCCreativeTabs.blocks),
+			rfReceiver = (BlockLC)new BlockEnergyReceiver().setRegistryName("rf_receiver").setCreativeTab(LCCreativeTabs.blocks)
 		);
 	}
 	
 	/** Register the blocks */
-	private static void registerBlocks() {
+	public static void registerBlocks() {
 		RegistryHelper.registerBlocks(blocks);
 	}
 	

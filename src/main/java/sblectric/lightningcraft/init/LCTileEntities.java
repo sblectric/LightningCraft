@@ -14,8 +14,8 @@ import sblectric.lightningcraft.tiles.TileEntityLightningInfuser;
 import sblectric.lightningcraft.tiles.TileEntityLightningMiner;
 import sblectric.lightningcraft.tiles.TileEntityLightningReceiver;
 import sblectric.lightningcraft.tiles.TileEntityLightningTransmitter;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
+import sblectric.lightningcraft.tiles.TileEntityEnergyProvider;
+import sblectric.lightningcraft.tiles.TileEntityEnergyReceiver;
 import sblectric.lightningcraft.tiles.TileEntityStaticGenerator;
 
 /** Tile entities */
@@ -35,8 +35,8 @@ public class LCTileEntities {
 		registerTileEntity(TileEntityLightningCannon.class);
 		registerTileEntity(TileEntityLightningTransmitter.class);
 		registerTileEntity(TileEntityLightningReceiver.class);
-		registerTileEntity(TileEntityRFProvider.class);
-		registerTileEntity(TileEntityRFReceiver.class);
+		registerTileEntity(TileEntityEnergyProvider.class);
+		registerTileEntity(TileEntityEnergyReceiver.class);
 	}
 	
 	/** Registration helper method */

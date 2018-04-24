@@ -9,16 +9,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import sblectric.lightningcraft.gui.ShortSender;
-import sblectric.lightningcraft.tiles.TileEntityRF;
+import sblectric.lightningcraft.tiles.TileEntityEnergy;
 
 /** RF provider container */
 public class ContainerRFProvider extends ContainerLightningUser {
 	
-	private TileEntityRF tileRF;
+	private TileEntityEnergy tileRF;
 	private Short low = null;
 	private Short high = null;
 	
-	public ContainerRFProvider(InventoryPlayer player, TileEntityRF tile) {
+	public ContainerRFProvider(InventoryPlayer player, TileEntityEnergy tile) {
 		super(player, tile);
 		this.tileRF = tile;
 		

@@ -10,13 +10,13 @@ public class SmelteryIntegration {
 	
 	/** Register the fluids with the smeltery */
 	public static void registerFluids() {
-		registerFluid(LCFluids.moltenElectricium, "Electricium");
-		registerFluid(LCFluids.moltenSkyfather, "Skyfather");
-		registerFluid(LCFluids.moltenMystic, "Mystic");
+		registerTinkersFluid(LCFluids.moltenElectricium, "Electricium");
+		registerTinkersFluid(LCFluids.moltenSkyfather, "Skyfather");
+		registerTinkersFluid(LCFluids.moltenMystic, "Mystic");
 	}
 	
 	/** Register a single fluid with the smeltery */
-	private static void registerFluid(Fluid fluid, String oreSuffix) {
+	private static void registerTinkersFluid(Fluid fluid, String oreSuffix) {
 		// create NBT for the IMC
 		NBTTagCompound tag = new NBTTagCompound();
 		tag.setString("fluid", fluid.getName()); // name of the fluid

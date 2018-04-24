@@ -8,10 +8,10 @@ import net.minecraft.util.NonNullList;
 import sblectric.lightningcraft.integration.energy.EnergyApiHelper;
 import sblectric.lightningcraft.items.blocks.ItemBlockCoFH;
 
-/** A block that uses RF in some way */
-public abstract class BlockCoFH extends BlockContainerLC {
+/** A block that uses energy in some way */
+public abstract class BlockEnergy extends BlockContainerLC {
 
-	public BlockCoFH(Block parent, float hardness, float resistance) {
+	public BlockEnergy(Block parent, float hardness, float resistance) {
 		super(parent, hardness, resistance);
 	}
 	

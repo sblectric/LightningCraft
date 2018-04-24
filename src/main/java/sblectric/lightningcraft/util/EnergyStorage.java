@@ -4,15 +4,16 @@ import net.darkhax.tesla.api.ITeslaConsumer;
 import net.darkhax.tesla.api.ITeslaHolder;
 import net.darkhax.tesla.api.ITeslaProducer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.Optional;
 
-/** Custom implementation of energy storage for RF and TESLA */
+/** Custom implementation of energy storage for Forge Energy and TESLA */
 @Optional.InterfaceList({
 		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaConsumer", modid = "tesla"),
 		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaProducer", modid = "tesla"),
 		@Optional.Interface(iface = "net.darkhax.tesla.api.ITeslaHolder", modid = "tesla")
 })
-public class EnergyStorage implements ITeslaConsumer, ITeslaProducer, ITeslaHolder {
+public class EnergyStorage implements ITeslaConsumer, ITeslaProducer, ITeslaHolder, IEnergyStorage {
 
 	protected int energy;
 	protected int capacity;
@@ -163,6 +164,16 @@ public class EnergyStorage implements ITeslaConsumer, ITeslaProducer, ITeslaHold
 	public long givePower(long power, boolean simulated) {
 		if(power > Integer.MAX_VALUE) power = Integer.MAX_VALUE; // make sure no overflows happen on checks
 		return receiveEnergy((int)power, simulated);
+	}
+
+	@Override
+	public boolean canExtract() {
+		return getMaxExtract() > 0;
+	}
+
+	@Override
+	public boolean canReceive() {
+		return getMaxReceive() > 0;
 	}
 
 }

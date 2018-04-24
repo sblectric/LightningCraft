@@ -31,7 +31,7 @@ public class ToolIntegration {
 	/** Main method */
 	public static void mainRegistry() {
 		matList = new JointList();
-		registerMaterials();
+		addMaterials();
 	}
 
 	public static Material electricium;
@@ -43,7 +43,7 @@ public class ToolIntegration {
 	public static AbstractTrait repairTrait = new TraitRepair();
 
 	/** Add the mod's materials */
-	private static void registerMaterials() {
+	private static void addMaterials() {
 
 		// support for both new and old Tinker's versions
 		Class traitHolder = null;
@@ -61,12 +61,10 @@ public class ToolIntegration {
 
 		// continue tool integration if there were no errors
 		if(autosmelt != null) {
-			electricium = registerMaterial("electricium", LCFluids.moltenElectricium, 
-					"ingotElectricium", new ItemStack(LCItems.ingot, 1, Ingot.ELEC), lightning1);
-			skyfather = registerMaterial("skyfather", LCFluids.moltenSkyfather, 
-					"ingotSkyfather", new ItemStack(LCItems.ingot, 1, Ingot.SKY), lightning2, autosmelt);
-			mystic = registerMaterial("mystic", LCFluids.moltenMystic, 
-					"ingotMystic", new ItemStack(LCItems.ingot, 1, Ingot.MYSTIC), lightning2, autosmelt, repairTrait);
+			electricium = addMaterial("electricium", LCFluids.moltenElectricium, "Electricium", lightning1);
+			skyfather = addMaterial("skyfather", LCFluids.moltenSkyfather, "Skyfather", lightning2, autosmelt);
+			mystic = addMaterial("mystic", LCFluids.moltenMystic, "Mystic", lightning2, autosmelt, repairTrait);
+			
 
 			TinkerRegistry.addMaterialStats(electricium,
 					new HeadMaterialStats(800, 8.00f, 7.00f, 4),
@@ -83,19 +81,18 @@ public class ToolIntegration {
 					new HandleMaterialStats(0.90f, 70),
 					new ExtraMaterialStats(100));
 
-			for(Material m : matList) TinkerSmeltery.registerToolpartMeltingCasting(m);
 		} else {
 			Log.logger.error("Unable to find Tinker's Construct trait class, aborting tool integration.");
 		}
 	}
 
-	/** Makes a material and registers it */
-	private static Material registerMaterial(String name, Fluid fluid, String ingot, ItemStack ingotStack, AbstractTrait... traits) {
+	/** Makes a material and adds it */
+	private static Material addMaterial(String name, Fluid fluid, String oreSuffix, AbstractTrait... traits) {
 		Material mat = new Material(name, fluid.getColor());
 		mat.setFluid(fluid);
-		mat.addItem(ingot, 1, Material.VALUE_Ingot);
+		mat.addCommonItems(oreSuffix);
 		mat.setCraftable(false);
-		mat.setRepresentativeItem(ingotStack);
+		mat.setCastable(true);
 		for(AbstractTrait t : traits) { // make sure the config allows this!
 			if(t instanceof TraitAutosmelt && !LCConfig.autoSmelt) continue;
 			if(t instanceof TraitRepair && !LCConfig.autoRepair) continue;
@@ -104,6 +101,13 @@ public class ToolIntegration {
 		TinkerRegistry.addMaterial(mat);
 		matList.add(mat);
 		return mat;
+	}
+	
+	/** Register the materials later than adding them */
+	public static void registerMaterials() {
+		for(Material m : matList) {
+			TinkerSmeltery.registerToolpartMeltingCasting(m);
+		}
 	}
 
 }

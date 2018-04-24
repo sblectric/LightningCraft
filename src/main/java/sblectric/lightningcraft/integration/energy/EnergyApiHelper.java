@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.ModAPIManager;
 public class EnergyApiHelper {
 	
 	/** Is an RF API present? */
-	public static boolean rfLoaded = ModAPIManager.INSTANCE.hasAPI("CoFHAPI");
+	public static boolean rfLoaded = true; // always true with Forge Energy
 	
 	/** Does TESLA exist? */
 	public static boolean teslaLoaded = Loader.isModLoaded("tesla");

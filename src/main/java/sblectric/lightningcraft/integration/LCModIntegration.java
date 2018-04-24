@@ -15,35 +15,46 @@ import sblectric.lightningcraft.ref.Log;
 /** Class for integration with other mods */
 public class LCModIntegration {
 
-	public static void preInit() {}
-	
-	public static void afterFluids() {
+	public static void preInit() {
 		
-		// Tinker's Construct
+		// Tinker's Construct fluids
 		if(Loader.isModLoaded("tconstruct") && LCConfig.tinkersIntegration) {
 			SmelteryIntegration.registerFluids();
 			ToolIntegration.mainRegistry();
-			Log.logger.info("Tinker's Construct integration complete.");
+			Log.logger.info("Tinker's Construct fluid integration complete.");
 		} else {
 			if(LCConfig.tinkersIntegration) {
-				Log.logger.info("Tinker's Construct not found, integration skipped.");
+				Log.logger.info("Tinker's Construct not found, fluid integration skipped.");
 			} else {
-				Log.logger.info("Tinker's Construct integration disabled.");
+				Log.logger.info("Tinker's Construct fluid integration disabled.");
 			}
 		}
+		
 	}
 	
 	public static void onInit() {
+		
+		// Tinker's Construct tools
+		if(Loader.isModLoaded("tconstruct") && LCConfig.tinkersIntegration) {
+			ToolIntegration.registerMaterials();
+			Log.logger.info("Tinker's Construct tool integration complete.");
+		} else {
+			if(LCConfig.tinkersIntegration) {
+				Log.logger.info("Tinker's Construct not found, tool integration skipped.");
+			} else {
+				Log.logger.info("Tinker's Construct tool integration disabled.");
+			}
+		}
 
 		// Energy APIs
 		if(EnergyApiHelper.rfOrTeslaLoaded) {
-			if(EnergyApiHelper.rfLoaded) Log.logger.info("CoFH RF API found, compatibility enabled");
+			if(EnergyApiHelper.rfLoaded) Log.logger.info("Forge Energy compatibility enabled");
 			if(EnergyApiHelper.teslaLoaded) Log.logger.info("TESLA API found, compatibility enabled");
 		} else {
 			if(LCConfig.RFIntegration) {
-				Log.logger.info("CoFH RF API or TESLA not found.");
+				Log.logger.info("TESLA not found.");
 			} else {
-				Log.logger.info("RF and TESLA disabled in config.");
+				Log.logger.info("Forge Energy and TESLA disabled in config.");
 			}
 		}
 		

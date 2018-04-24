@@ -9,21 +9,21 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import sblectric.lightningcraft.LightningCraft;
-import sblectric.lightningcraft.blocks.base.BlockCoFH;
+import sblectric.lightningcraft.blocks.base.BlockEnergy;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.LCGuiHandler;
-import sblectric.lightningcraft.tiles.TileEntityRFProvider;
+import sblectric.lightningcraft.tiles.TileEntityEnergyProvider;
 
-/** The RF provider block */
-public class BlockRFProvider extends BlockCoFH {
+/** The energy provider block */
+public class BlockEnergyProvider extends BlockEnergy {
 
-	public BlockRFProvider() {
+	public BlockEnergyProvider() {
 		super(Blocks.IRON_BLOCK, 10, 100);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityRFProvider();
+		return new TileEntityEnergyProvider();
 	}
 	
 	/** Activate this block */
@@ -36,7 +36,7 @@ public class BlockRFProvider extends BlockCoFH {
 
 	@Override
 	public int getMaxRFPerTick() {
-		return TileEntityRFProvider.rfPerTick;
+		return TileEntityEnergyProvider.rfPerTick;
 	}
 
 	@Override

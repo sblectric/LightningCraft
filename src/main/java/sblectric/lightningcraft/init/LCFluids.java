@@ -17,6 +17,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sblectric.lightningcraft.api.registry.ILightningCraftBlock;
+import sblectric.lightningcraft.api.util.JointList;
 import sblectric.lightningcraft.fluids.BlockFluidLC;
 import sblectric.lightningcraft.fluids.ModFluid;
 import sblectric.lightningcraft.ref.RefStrings;
@@ -26,14 +28,19 @@ import sblectric.lightningcraft.registry.RegistryHelper;
 public class LCFluids {
 	
 	private static final List<Block> FLUIDS = RegistryHelper.FLUIDS_TO_REGISTER;
-	private static Map<Fluid, BlockFluidBase> fluidBlocks;
-	private static Map<BlockFluidBase, String> fluidBlockNames;
+	private static Map<Fluid, BlockFluidBase> fluidBlockMap;
+	private static Map<BlockFluidBase, String> fluidBlockNameMap;
 	
-	/** The main fluid registry */
-	public static void mainRegistry() {
-		fluidBlocks = new HashMap();
-		fluidBlockNames = new HashMap();
-		registerFluids();
+	private static JointList<Fluid> fluids;
+	private static JointList<BlockFluidBase> fluidBlocks;
+	
+	/** Add fluids */
+	public static void createFluids() {
+		fluids = new JointList();
+		fluidBlocks = new JointList();
+		fluidBlockMap = new HashMap();
+		fluidBlockNameMap = new HashMap();
+		addFluids();
 	}
 	
 	public static Fluid moltenElectricium;
@@ -45,15 +52,19 @@ public class LCFluids {
 	public static Fluid moltenMystic;
 	public static BlockFluidBase moltenBlockMystic;
 	
-	/** Register the fluids and fluid blocks */
-	private static void registerFluids() {
-		moltenElectricium = createFluid("electricium", 2000, 10000, 800, 12, new Color(32, 250, 250).getRGB());
-		moltenSkyfather = createFluid("skyfather", 2000, 10000, 900, 12, new Color(52, 52, 52).getRGB());
-		moltenMystic = createFluid("mystic", 2000, 10000, 1000, 12, new Color(180, 0, 0).getRGB());
+	/** Add the fluids and fluid blocks */
+	private static void addFluids() {
+		fluids.join(
+			moltenElectricium = createFluid("electricium", 2000, 10000, 800, 12, new Color(32, 250, 250).getRGB()),
+			moltenSkyfather = createFluid("skyfather", 2000, 10000, 900, 12, new Color(52, 52, 52).getRGB()),
+			moltenMystic = createFluid("mystic", 2000, 10000, 1000, 12, new Color(180, 0, 0).getRGB())
+		);
 		
-		moltenBlockElectricium = registerFluidBlock(moltenElectricium, "molten_electricium");
-		moltenBlockSkyfather = registerFluidBlock(moltenSkyfather, "molten_skyfather");
-		moltenBlockMystic = registerFluidBlock(moltenMystic, "molten_mystic");
+		fluidBlocks.join(
+			moltenBlockElectricium = addFluidBlock(moltenElectricium, "molten_electricium"),
+			moltenBlockSkyfather = addFluidBlock(moltenSkyfather, "molten_skyfather"),
+			moltenBlockMystic = addFluidBlock(moltenMystic, "molten_mystic")
+		);
 	}
 	
 	/** Create a fluid with the given properties */
@@ -65,13 +76,13 @@ public class LCFluids {
 		fluid.setTemperature(temperature);
 		fluid.setLuminosity(luminosity);
 		fluid.setUnlocalizedName(RefStrings.MODID + ":" + name);
-		FluidRegistry.registerFluid(fluid);
 		FluidRegistry.addBucketForFluid(fluid);
+		FluidRegistry.registerFluid(fluid);
 		return fluid;
 	}
 	
 	/** Register a fluid block with the specified fluid */
-	private static BlockFluidClassic registerFluidBlock(Fluid fluid, String blockName) {
+	private static BlockFluidClassic addFluidBlock(Fluid fluid, String blockName) {
 		BlockFluidClassic block = new BlockFluidLC(fluid);
 		
 		ResourceLocation location = new ResourceLocation(RefStrings.MODID, blockName);
@@ -79,18 +90,18 @@ public class LCFluids {
 		block.setUnlocalizedName(location.toString());
 		FLUIDS.add(block);
 
-		fluidBlocks.put(fluid, block);
-		fluidBlockNames.put(block, blockName);
+		fluidBlockMap.put(fluid, block);
+		fluidBlockNameMap.put(block, blockName);
 		return block;
 	}
 	
 	/** Make sure to set up the rendering info */
 	@SideOnly(Side.CLIENT)
 	public static void registerRendering() {
-		for(Fluid fluid : fluidBlocks.keySet()) {
-			BlockFluidBase block = fluidBlocks.get(fluid);
+		for(Fluid fluid : fluidBlockMap.keySet()) {
+			BlockFluidBase block = fluidBlockMap.get(fluid);
 			final ModelResourceLocation fluidModelLocation = new ModelResourceLocation(
-					RefStrings.MODID + ":" + fluidBlockNames.get(block), "fluid");
+					RefStrings.MODID + ":" + fluidBlockNameMap.get(block), "fluid");
 			ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {

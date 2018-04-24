@@ -23,7 +23,6 @@ public class RecipeHelper {
 	
 	/** Add a generic recipe */
 	public static void addRecipe(IRecipe recipe) {
-		System.out.println("recipe count: " + recipeCounter);
 		RECIPES.add(recipe.setRegistryName(new ResourceLocation(RefStrings.MODID, "recipe" + recipeCounter++)));
 	}
 	

@@ -94,8 +94,7 @@ public class RegistryHelper {
 	/** Register blocks and fluids */
 	@SubscribeEvent
 	public void onBlockRegistry(Register<Block> e) {
-		LCBlocks.mainRegistry();
-		LCFluids.mainRegistry();
+		LCBlocks.registerBlocks();
 		
 		for(Block b : new JointList<Block>().join(BLOCKS_TO_REGISTER).join(FLUIDS_TO_REGISTER)) {
 			e.getRegistry().register(b);
@@ -103,16 +102,13 @@ public class RegistryHelper {
 		BLOCKS_TO_REGISTER.clear();
 		FLUIDS_TO_REGISTER.clear();
 		
-		// execute any integrations that need fluids first
-		LCModIntegration.afterFluids();
-		
 		Log.logger.info("Blocks registered.");
 	}
 	
 	/** Register items */
 	@SubscribeEvent
 	public void onItemRegistry(Register<Item> e) {
-		LCItems.mainRegistry();
+		LCItems.registerItems();
 		
 		for(Item i : ITEMS_TO_REGISTER) {
 			e.getRegistry().register(i);

@@ -70,13 +70,12 @@ public class LCItems {
 	/** The list of items to help with registration */
 	private static JointList<ILightningCraftItem> items;
 
-	/** The main item registry */
-	public static void mainRegistry() {
+	/** Create the items */
+	public static void createItems() {
 		items = new JointList();
 		setupMaterials();
 		addItems();
 		finalizeMaterials();
-		registerItems();
 	}
 
 	// materials
@@ -276,7 +275,7 @@ public class LCItems {
 	}
 
 	/** Register the items */
-	private static void registerItems() {
+	public static void registerItems() {
 		RegistryHelper.registerItems(items);
 	}
 

@@ -9,11 +9,14 @@ import sblectric.lightningcraft.LightningCraft;
 import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.crafting.LCCraftingManager;
 import sblectric.lightningcraft.gui.LCGuiHandler;
+import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.init.LCCapabilities;
 import sblectric.lightningcraft.init.LCCreativeTabs;
 import sblectric.lightningcraft.init.LCDimensions;
 import sblectric.lightningcraft.init.LCEntities;
 import sblectric.lightningcraft.init.LCEvents;
+import sblectric.lightningcraft.init.LCFluids;
+import sblectric.lightningcraft.init.LCItems;
 import sblectric.lightningcraft.init.LCNetwork;
 import sblectric.lightningcraft.init.LCStructures;
 import sblectric.lightningcraft.init.LCTileEntities;
@@ -30,15 +33,11 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new RegistryHelper());
 		LCConfig.loadConfig(event.getSuggestedConfigurationFile());
 		LCCreativeTabs.mainRegistry();
-		//LCBlocks.mainRegistry();
-		//LCItems.mainRegistry();
-		//LCFluids.mainRegistry();
+		LCBlocks.createBlocks();
+		LCItems.createItems();
+		LCFluids.createFluids();
 		LCTileEntities.mainRegistry();
 		LCEntities.mainRegistry();
-		//LCPotions.mainRegistry();
-		//LCBiomes.mainRegistry();
-		//LCEnchantments.mainRegistry();
-		//LCSoundEvents.mainRegistry();
 		LCNetwork.mainRegistry();
 		LCCapabilities.mainRegistry();
 		LCModIntegration.preInit();
@@ -49,7 +48,6 @@ public class CommonProxy {
 		NetworkRegistry.INSTANCE.registerGuiHandler(LightningCraft.modInstance, new LCGuiHandler());
 		LCDimensions.mainRegistry();
 		LCStructures.mainRegistry();
-		//LCAchievements.mainRegistry();
 		LCEvents.mainRegistry();
 		LCCreativeTabs.updateCreativeTabs();
 		LCCraftingManager.addSmeltingRecipes();
@@ -58,7 +56,6 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent event) {
 		Log.logger.info("PostInitializing " + RefStrings.NAME + "...");
-		//LCCraftingManager.postInit();
 		LCModIntegration.postInit();
 	}
 	

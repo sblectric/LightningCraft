@@ -14,16 +14,16 @@ import sblectric.lightningcraft.config.LCConfig;
 import sblectric.lightningcraft.gui.server.ContainerRFReceiver;
 import sblectric.lightningcraft.init.LCBlocks;
 import sblectric.lightningcraft.ref.RefStrings;
-import sblectric.lightningcraft.tiles.TileEntityRFReceiver;
+import sblectric.lightningcraft.tiles.TileEntityEnergyReceiver;
 
 /** The RF receiver GUI */
 @SideOnly(Side.CLIENT)
 public class GuiRFReceiver extends GuiContainerLC {
 	
 	private static final ResourceLocation lpCellGuiTextures = new ResourceLocation(RefStrings.MODID, "textures/gui/container/lpcell.png");
-	private TileEntityRFReceiver tileRF;
+	private TileEntityEnergyReceiver tileRF;
 
-	public GuiRFReceiver(InventoryPlayer invPlayer, TileEntityRFReceiver tile) {
+	public GuiRFReceiver(InventoryPlayer invPlayer, TileEntityEnergyReceiver tile) {
 		super(new ContainerRFReceiver(invPlayer, tile));
 		this.tileRF = tile;
 	}
@@ -40,13 +40,13 @@ public class GuiRFReceiver extends GuiContainerLC {
 		this.fontRenderer.drawString(string, this.xSize / 2 - this.fontRenderer.getStringWidth(string) / 2, 6, 4210752);
 		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94, 4210752);
 		
-		Gui.drawRect(25, 17, 25 + (int) (((float)tileRF.getEnergyStored(null)/(float)TileEntityRFReceiver.maxStorage) * width), 17 + height, 0xffffffff);
+		Gui.drawRect(25, 17, 25 + (int) (((float)tileRF.getEnergyStored(null)/(float)TileEntityEnergyReceiver.maxStorage) * width), 17 + height, 0xffffffff);
 		
 		this.fontRenderer.drawString("Stored RF:", 24, texty, 4210752);
 		this.fontRenderer.drawString("Capacity:", 24, texty + 10, 4210752);
 		this.fontRenderer.drawString("Cell Energy:", 24, texty + 20, 4210752);
 		String storedPower = tileRF.getEnergyStored(null) + " RF";
-		String maxPower = TileEntityRFReceiver.maxStorage + " RF";
+		String maxPower = TileEntityEnergyReceiver.maxStorage + " RF";
 		String storedLE = (int)tileRF.cellPower + " LE";
 		
 		int color = 4210752;
